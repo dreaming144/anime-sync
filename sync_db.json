@@ -14002,6 +14002,7506 @@
       "last_synced": {
         "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
       }
+    },
+    "kitsu_3936": {
+      "ids": {
+        "kitsu": "3936",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:07.559000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_11614": {
+      "ids": {
+        "kitsu": "11614",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:46:26.493000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5646": {
+      "ids": {
+        "kitsu": "5646",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:46:32.890000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_176": {
+      "ids": {
+        "kitsu": "176",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.339000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_10028": {
+      "ids": {
+        "kitsu": "10028",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:46:46.544000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10740": {
+      "ids": {
+        "kitsu": "10740",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-12-08T05:58:23.866000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12268": {
+      "ids": {
+        "kitsu": "12268",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:30.458000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_1": {
+      "ids": {
+        "kitsu": "1",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 26,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.036000+00:00",
+      "last_synced": {
+        "kitsu": "dcb08ae83d39cb35498ee205a6c139fc"
+      }
+    },
+    "kitsu_142": {
+      "ids": {
+        "kitsu": "142",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.286000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7926": {
+      "ids": {
+        "kitsu": "7926",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 21,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:47:06.350000+00:00",
+      "last_synced": {
+        "kitsu": "d97250e6d2901161dfc16553b32d059c"
+      }
+    },
+    "kitsu_3505": {
+      "ids": {
+        "kitsu": "3505",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:47:12.387000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7937": {
+      "ids": {
+        "kitsu": "7937",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 20,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T04:47:14.900000+00:00",
+      "last_synced": {
+        "kitsu": "379dd3ece996fcf6b8d91c769a19cf4c"
+      }
+    },
+    "kitsu_12566": {
+      "ids": {
+        "kitsu": "12566",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:06:45.787000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7658": {
+      "ids": {
+        "kitsu": "7658",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:08.081000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_8403": {
+      "ids": {
+        "kitsu": "8403",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:06:56.725000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_2634": {
+      "ids": {
+        "kitsu": "2634",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-12-08T05:58:23.303000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5971": {
+      "ids": {
+        "kitsu": "5971",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:51.263000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_1415": {
+      "ids": {
+        "kitsu": "1415",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-12-08T05:58:23.285000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_1801": {
+      "ids": {
+        "kitsu": "1801",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 27,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.902000+00:00",
+      "last_synced": {
+        "kitsu": "03dcf0d7d46a31b6f06b7740ca527f3f"
+      }
+    },
+    "kitsu_395": {
+      "ids": {
+        "kitsu": "395",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.384000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7936": {
+      "ids": {
+        "kitsu": "7936",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 20,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:07:19.550000+00:00",
+      "last_synced": {
+        "kitsu": "379dd3ece996fcf6b8d91c769a19cf4c"
+      }
+    },
+    "kitsu_10083": {
+      "ids": {
+        "kitsu": "10083",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:07:25.193000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12325": {
+      "ids": {
+        "kitsu": "12325",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.230000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7253": {
+      "ids": {
+        "kitsu": "7253",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.273000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_7241": {
+      "ids": {
+        "kitsu": "7241",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:07:40.086000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_26": {
+      "ids": {
+        "kitsu": "26",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:46.174000+00:00",
+      "last_synced": {
+        "kitsu": "fd971986842ca542f699d502a04f2594"
+      }
+    },
+    "kitsu_13273": {
+      "ids": {
+        "kitsu": "13273",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.741000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_6028": {
+      "ids": {
+        "kitsu": "6028",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:36:19.279000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_2039": {
+      "ids": {
+        "kitsu": "2039",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:37.064000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_12553": {
+      "ids": {
+        "kitsu": "12553",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:08:29.022000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_818": {
+      "ids": {
+        "kitsu": "818",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:07.142000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_11459": {
+      "ids": {
+        "kitsu": "11459",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 39,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:15.681000+00:00",
+      "last_synced": {
+        "kitsu": "939090551bf76f3b9be3d1e5eb225ec8"
+      }
+    },
+    "kitsu_181": {
+      "ids": {
+        "kitsu": "181",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:32:40.376000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_1376": {
+      "ids": {
+        "kitsu": "1376",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 37,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:09.318000+00:00",
+      "last_synced": {
+        "kitsu": "935ded43097e6e57037689b9db3e89c4"
+      }
+    },
+    "kitsu_9967": {
+      "ids": {
+        "kitsu": "9967",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.556000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_6062": {
+      "ids": {
+        "kitsu": "6062",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:09:32.347000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8147": {
+      "ids": {
+        "kitsu": "8147",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:09.006000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_11612": {
+      "ids": {
+        "kitsu": "11612",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.599000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_11449": {
+      "ids": {
+        "kitsu": "11449",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:10:09.639000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12": {
+      "ids": {
+        "kitsu": "12",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.758000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_7000": {
+      "ids": {
+        "kitsu": "7000",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:03.626000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5853": {
+      "ids": {
+        "kitsu": "5853",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:47.244000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_6887": {
+      "ids": {
+        "kitsu": "6887",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:35.032000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_529": {
+      "ids": {
+        "kitsu": "529",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.530000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_695": {
+      "ids": {
+        "kitsu": "695",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:05.968000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_8077": {
+      "ids": {
+        "kitsu": "8077",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:10:56.520000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_482": {
+      "ids": {
+        "kitsu": "482",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.495000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_13658": {
+      "ids": {
+        "kitsu": "13658",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 51,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:13.834000+00:00",
+      "last_synced": {
+        "kitsu": "cdf7117d56522855585cfe2b961cbfe9"
+      }
+    },
+    "kitsu_23": {
+      "ids": {
+        "kitsu": "23",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.097000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_3250": {
+      "ids": {
+        "kitsu": "3250",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.701000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_8671": {
+      "ids": {
+        "kitsu": "8671",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.054000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_7158": {
+      "ids": {
+        "kitsu": "7158",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 26,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:43.721000+00:00",
+      "last_synced": {
+        "kitsu": "dcb08ae83d39cb35498ee205a6c139fc"
+      }
+    },
+    "kitsu_7696": {
+      "ids": {
+        "kitsu": "7696",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:08.604000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_10735": {
+      "ids": {
+        "kitsu": "10735",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 52,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:11:54.283000+00:00",
+      "last_synced": {
+        "kitsu": "9e6bdb90d5345459f88c103e9d239126"
+      }
+    },
+    "kitsu_7442": {
+      "ids": {
+        "kitsu": "7442",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:01.468000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_8706": {
+      "ids": {
+        "kitsu": "8706",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:12:09.461000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_24": {
+      "ids": {
+        "kitsu": "24",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:43.980000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_472": {
+      "ids": {
+        "kitsu": "472",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.464000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_534": {
+      "ids": {
+        "kitsu": "534",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.566000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_11110": {
+      "ids": {
+        "kitsu": "11110",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:37:46.933000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_471": {
+      "ids": {
+        "kitsu": "471",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.422000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_12633": {
+      "ids": {
+        "kitsu": "12633",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.292000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_7880": {
+      "ids": {
+        "kitsu": "7880",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.612000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_8699": {
+      "ids": {
+        "kitsu": "8699",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.240000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_1363": {
+      "ids": {
+        "kitsu": "1363",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.636000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_100": {
+      "ids": {
+        "kitsu": "100",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 51,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.918000+00:00",
+      "last_synced": {
+        "kitsu": "cdf7117d56522855585cfe2b961cbfe9"
+      }
+    },
+    "kitsu_4696": {
+      "ids": {
+        "kitsu": "4696",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:35:30.211000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_21": {
+      "ids": {
+        "kitsu": "21",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 26,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.481000+00:00",
+      "last_synced": {
+        "kitsu": "dcb08ae83d39cb35498ee205a6c139fc"
+      }
+    },
+    "kitsu_7928": {
+      "ids": {
+        "kitsu": "7928",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 65,
+        "score": 0
+      },
+      "last_updated": "2018-03-01T05:14:10.332000+00:00",
+      "last_synced": {
+        "kitsu": "2fdb58c38d9e20d1832cacbf6f29d93c"
+      }
+    },
+    "kitsu_540": {
+      "ids": {
+        "kitsu": "540",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:59.606000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_27": {
+      "ids": {
+        "kitsu": "27",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 94,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:52:58.841000+00:00",
+      "last_synced": {
+        "kitsu": "6c02c98a2cd87b948e159c6c2238e5e3"
+      }
+    },
+    "kitsu_128": {
+      "ids": {
+        "kitsu": "128",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:32:32.358000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_210": {
+      "ids": {
+        "kitsu": "210",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:33:01.022000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_244": {
+      "ids": {
+        "kitsu": "244",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:33:09.119000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_245": {
+      "ids": {
+        "kitsu": "245",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:09.428000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_405": {
+      "ids": {
+        "kitsu": "405",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.377000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_442": {
+      "ids": {
+        "kitsu": "442",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:33:28.968000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_486": {
+      "ids": {
+        "kitsu": "486",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 276,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:11.026000+00:00",
+      "last_synced": {
+        "kitsu": "097543ef95f8b993797cc589a2058022"
+      }
+    },
+    "kitsu_755": {
+      "ids": {
+        "kitsu": "755",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:33:49.036000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_833": {
+      "ids": {
+        "kitsu": "833",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.438000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_1555": {
+      "ids": {
+        "kitsu": "1555",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:01:12.156000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_1644": {
+      "ids": {
+        "kitsu": "1644",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:20.747000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_1824": {
+      "ids": {
+        "kitsu": "1824",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.144000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_1941": {
+      "ids": {
+        "kitsu": "1941",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.493000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_2706": {
+      "ids": {
+        "kitsu": "2706",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:49.044000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7753": {
+      "ids": {
+        "kitsu": "7753",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:56.983000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_3117": {
+      "ids": {
+        "kitsu": "3117",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:35:05.134000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_3128": {
+      "ids": {
+        "kitsu": "3128",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 51,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.749000+00:00",
+      "last_synced": {
+        "kitsu": "cdf7117d56522855585cfe2b961cbfe9"
+      }
+    },
+    "kitsu_3725": {
+      "ids": {
+        "kitsu": "3725",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:02:04.967000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_3840": {
+      "ids": {
+        "kitsu": "3840",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:37:22.140000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_3871": {
+      "ids": {
+        "kitsu": "3871",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:34.325000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_4354": {
+      "ids": {
+        "kitsu": "4354",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:09.575000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_4363": {
+      "ids": {
+        "kitsu": "4363",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:35:13.622000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_4604": {
+      "ids": {
+        "kitsu": "4604",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.318000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_4676": {
+      "ids": {
+        "kitsu": "4676",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 175,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:39.226000+00:00",
+      "last_synced": {
+        "kitsu": "77d1601cf16379a9cc3067f91ac635b1"
+      }
+    },
+    "kitsu_5187": {
+      "ids": {
+        "kitsu": "5187",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:35:38.408000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5507": {
+      "ids": {
+        "kitsu": "5507",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:02:44.753000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5605": {
+      "ids": {
+        "kitsu": "5605",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 48,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:35:54.488000+00:00",
+      "last_synced": {
+        "kitsu": "597c0076ed60e348cbe74b0c12dbbd72"
+      }
+    },
+    "kitsu_5940": {
+      "ids": {
+        "kitsu": "5940",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:03:05.248000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7728": {
+      "ids": {
+        "kitsu": "7728",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:08.011000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_6448": {
+      "ids": {
+        "kitsu": "6448",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 148,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:59.382000+00:00",
+      "last_synced": {
+        "kitsu": "4b5a8f65825c9ae40e49104d1c5f8047"
+      }
+    },
+    "kitsu_6462": {
+      "ids": {
+        "kitsu": "6462",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:08:16.294000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_6589": {
+      "ids": {
+        "kitsu": "6589",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-02-10T13:22:04.337000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_6687": {
+      "ids": {
+        "kitsu": "6687",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:36:55.706000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_6953": {
+      "ids": {
+        "kitsu": "6953",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:46.061000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7113": {
+      "ids": {
+        "kitsu": "7113",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:11.792000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7125": {
+      "ids": {
+        "kitsu": "7125",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:19.871000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7129": {
+      "ids": {
+        "kitsu": "7129",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:27.840000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7182": {
+      "ids": {
+        "kitsu": "7182",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:36.365000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7602": {
+      "ids": {
+        "kitsu": "7602",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.378000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7624": {
+      "ids": {
+        "kitsu": "7624",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.822000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7714": {
+      "ids": {
+        "kitsu": "7714",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:08.707000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_7712": {
+      "ids": {
+        "kitsu": "7712",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.072000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_7850": {
+      "ids": {
+        "kitsu": "7850",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 45,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:37:48.657000+00:00",
+      "last_synced": {
+        "kitsu": "0e5cd1a5964e823baf9a2950827bd632"
+      }
+    },
+    "kitsu_7862": {
+      "ids": {
+        "kitsu": "7862",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.621000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_7986": {
+      "ids": {
+        "kitsu": "7986",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:05:26.309000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8149": {
+      "ids": {
+        "kitsu": "8149",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.886000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_8174": {
+      "ids": {
+        "kitsu": "8174",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:03.493000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_8256": {
+      "ids": {
+        "kitsu": "8256",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:04.470000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7882": {
+      "ids": {
+        "kitsu": "7882",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.795000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_8271": {
+      "ids": {
+        "kitsu": "8271",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:12.519000+00:00",
+      "last_synced": {
+        "kitsu": "b17f8da6c85975bdc5fafd82354461f3"
+      }
+    },
+    "kitsu_8297": {
+      "ids": {
+        "kitsu": "8297",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:20.494000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8313": {
+      "ids": {
+        "kitsu": "8313",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:37:30.624000+00:00",
+      "last_synced": {
+        "kitsu": "93f48da41387d5f7dc4a0569985db134"
+      }
+    },
+    "kitsu_8631": {
+      "ids": {
+        "kitsu": "8631",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:06:18.054000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8638": {
+      "ids": {
+        "kitsu": "8638",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:28.595000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8684": {
+      "ids": {
+        "kitsu": "8684",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:36.680000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_8903": {
+      "ids": {
+        "kitsu": "8903",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.945000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_9962": {
+      "ids": {
+        "kitsu": "9962",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:07.599000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_10031": {
+      "ids": {
+        "kitsu": "10031",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.649000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_10038": {
+      "ids": {
+        "kitsu": "10038",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:06:52.827000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10879": {
+      "ids": {
+        "kitsu": "10879",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:09.873000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_11114": {
+      "ids": {
+        "kitsu": "11114",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.102000+00:00",
+      "last_synced": {
+        "kitsu": "9b256138ffc077c6d29c84f56be41241"
+      }
+    },
+    "kitsu_11209": {
+      "ids": {
+        "kitsu": "11209",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 22,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:09.956000+00:00",
+      "last_synced": {
+        "kitsu": "e527ffa6e0c518edd23f857be327903d"
+      }
+    },
+    "kitsu_11368": {
+      "ids": {
+        "kitsu": "11368",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:08:45.476000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_11469": {
+      "ids": {
+        "kitsu": "11469",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.719000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_11605": {
+      "ids": {
+        "kitsu": "11605",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:39:21.434000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_11913": {
+      "ids": {
+        "kitsu": "11913",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.946000+00:00",
+      "last_synced": {
+        "kitsu": "9b256138ffc077c6d29c84f56be41241"
+      }
+    },
+    "kitsu_13276": {
+      "ids": {
+        "kitsu": "13276",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.255000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_13209": {
+      "ids": {
+        "kitsu": "13209",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 60,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:37:58.996000+00:00",
+      "last_synced": {
+        "kitsu": "16ebf1190883f7fab0b53c71929a46b3"
+      }
+    },
+    "kitsu_13457": {
+      "ids": {
+        "kitsu": "13457",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:43.406000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_13569": {
+      "ids": {
+        "kitsu": "13569",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:05.917000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_13593": {
+      "ids": {
+        "kitsu": "13593",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 22,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.160000+00:00",
+      "last_synced": {
+        "kitsu": "e527ffa6e0c518edd23f857be327903d"
+      }
+    },
+    "kitsu_13717": {
+      "ids": {
+        "kitsu": "13717",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.486000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_40944": {
+      "ids": {
+        "kitsu": "40944",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.542000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_14043": {
+      "ids": {
+        "kitsu": "14043",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:15.396000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_41133": {
+      "ids": {
+        "kitsu": "41133",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.641000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_40600": {
+      "ids": {
+        "kitsu": "40600",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.405000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_40597": {
+      "ids": {
+        "kitsu": "40597",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:05.054000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42423": {
+      "ids": {
+        "kitsu": "42423",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:19.786000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_41024": {
+      "ids": {
+        "kitsu": "41024",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.691000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_42319": {
+      "ids": {
+        "kitsu": "42319",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.740000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_41312": {
+      "ids": {
+        "kitsu": "41312",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.556000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_41463": {
+      "ids": {
+        "kitsu": "41463",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:40:33.213000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_41370": {
+      "ids": {
+        "kitsu": "41370",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 26,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:06.475000+00:00",
+      "last_synced": {
+        "kitsu": "dcb08ae83d39cb35498ee205a6c139fc"
+      }
+    },
+    "kitsu_41982": {
+      "ids": {
+        "kitsu": "41982",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.182000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_42043": {
+      "ids": {
+        "kitsu": "42043",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.897000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42310": {
+      "ids": {
+        "kitsu": "42310",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 17,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.648000+00:00",
+      "last_synced": {
+        "kitsu": "addfa1de14f5b7945d8126845894af21"
+      }
+    },
+    "kitsu_42241": {
+      "ids": {
+        "kitsu": "42241",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 14,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:00.961000+00:00",
+      "last_synced": {
+        "kitsu": "bb4e37f69077fe356138821e0b5f7d36"
+      }
+    },
+    "kitsu_42222": {
+      "ids": {
+        "kitsu": "42222",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:40.774000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_42323": {
+      "ids": {
+        "kitsu": "42323",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:06.604000+00:00",
+      "last_synced": {
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
+      }
+    },
+    "kitsu_42204": {
+      "ids": {
+        "kitsu": "42204",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:42.414000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_42422": {
+      "ids": {
+        "kitsu": "42422",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 16,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.244000+00:00",
+      "last_synced": {
+        "kitsu": "2b2ff869e9e765bce57131ab0becd6fb"
+      }
+    },
+    "kitsu_43004": {
+      "ids": {
+        "kitsu": "43004",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:44.978000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_42531": {
+      "ids": {
+        "kitsu": "42531",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.666000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_42628": {
+      "ids": {
+        "kitsu": "42628",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.695000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42635": {
+      "ids": {
+        "kitsu": "42635",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:57.578000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_42765": {
+      "ids": {
+        "kitsu": "42765",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:01.238000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_43273": {
+      "ids": {
+        "kitsu": "43273",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:43.858000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43613": {
+      "ids": {
+        "kitsu": "43613",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:10.945000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_43301": {
+      "ids": {
+        "kitsu": "43301",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:01.684000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_44297": {
+      "ids": {
+        "kitsu": "44297",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:01.385000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44167": {
+      "ids": {
+        "kitsu": "44167",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:01.504000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_43806": {
+      "ids": {
+        "kitsu": "43806",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:10:15.699000+00:00",
+      "last_synced": {
+        "kitsu": "9f6d07e209065ce4109b5be247cc861d"
+      }
+    },
+    "kitsu_43911": {
+      "ids": {
+        "kitsu": "43911",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:43.222000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44207": {
+      "ids": {
+        "kitsu": "44207",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:10:19.996000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_44205": {
+      "ids": {
+        "kitsu": "44205",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.138000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_44012": {
+      "ids": {
+        "kitsu": "44012",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:06.791000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_44024": {
+      "ids": {
+        "kitsu": "44024",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:01.766000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44010": {
+      "ids": {
+        "kitsu": "44010",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:29.356000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44025": {
+      "ids": {
+        "kitsu": "44025",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:01.823000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44186": {
+      "ids": {
+        "kitsu": "44186",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.531000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44187": {
+      "ids": {
+        "kitsu": "44187",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:46.830000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44289": {
+      "ids": {
+        "kitsu": "44289",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.063000+00:00",
+      "last_synced": {
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
+      }
+    },
+    "kitsu_44240": {
+      "ids": {
+        "kitsu": "44240",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.290000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44423": {
+      "ids": {
+        "kitsu": "44423",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.115000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44432": {
+      "ids": {
+        "kitsu": "44432",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.208000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44511": {
+      "ids": {
+        "kitsu": "44511",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 9,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:37.435000+00:00",
+      "last_synced": {
+        "kitsu": "b12e5cbc05013a27ab4b45beb725d921"
+      }
+    },
+    "kitsu_44690": {
+      "ids": {
+        "kitsu": "44690",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:45.513000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_44691": {
+      "ids": {
+        "kitsu": "44691",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.310000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_44900": {
+      "ids": {
+        "kitsu": "44900",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.295000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_45269": {
+      "ids": {
+        "kitsu": "45269",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.366000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_45398": {
+      "ids": {
+        "kitsu": "45398",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:43:05.684000+00:00",
+      "last_synced": {
+        "kitsu": "5f6962b75100acad06e8081381199000"
+      }
+    },
+    "kitsu_45788": {
+      "ids": {
+        "kitsu": "45788",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.519000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_45813": {
+      "ids": {
+        "kitsu": "45813",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.343000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_45857": {
+      "ids": {
+        "kitsu": "45857",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.526000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_45884": {
+      "ids": {
+        "kitsu": "45884",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:42.633000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_45950": {
+      "ids": {
+        "kitsu": "45950",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:57.258000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46139": {
+      "ids": {
+        "kitsu": "46139",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:51.019000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_46171": {
+      "ids": {
+        "kitsu": "46171",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.422000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_46229": {
+      "ids": {
+        "kitsu": "46229",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.477000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46279": {
+      "ids": {
+        "kitsu": "46279",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-06T07:23:03.305000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46309": {
+      "ids": {
+        "kitsu": "46309",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 9,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.691000+00:00",
+      "last_synced": {
+        "kitsu": "b12e5cbc05013a27ab4b45beb725d921"
+      }
+    },
+    "kitsu_46311": {
+      "ids": {
+        "kitsu": "46311",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:57.306000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46370": {
+      "ids": {
+        "kitsu": "46370",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.553000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_46456": {
+      "ids": {
+        "kitsu": "46456",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:10.644000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46600": {
+      "ids": {
+        "kitsu": "46600",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:57.705000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46676": {
+      "ids": {
+        "kitsu": "46676",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.607000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46954": {
+      "ids": {
+        "kitsu": "46954",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:24:52.757000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_11942": {
+      "ids": {
+        "kitsu": "11942",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.659000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44982": {
+      "ids": {
+        "kitsu": "44982",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.784000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_44115": {
+      "ids": {
+        "kitsu": "44115",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:02.704000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_789": {
+      "ids": {
+        "kitsu": "789",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.580000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_7622": {
+      "ids": {
+        "kitsu": "7622",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.689000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_7881": {
+      "ids": {
+        "kitsu": "7881",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-08T09:34:13.398000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8203": {
+      "ids": {
+        "kitsu": "8203",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 102,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.742000+00:00",
+      "last_synced": {
+        "kitsu": "5611e75b169cf5ea3d629b813a4a319d"
+      }
+    },
+    "kitsu_13881": {
+      "ids": {
+        "kitsu": "13881",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:31.311000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_41971": {
+      "ids": {
+        "kitsu": "41971",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:31.335000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_42586": {
+      "ids": {
+        "kitsu": "42586",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.172000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_43108": {
+      "ids": {
+        "kitsu": "43108",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:31.379000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_44081": {
+      "ids": {
+        "kitsu": "44081",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.325000+00:00",
+      "last_synced": {
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
+      }
+    },
+    "kitsu_45249": {
+      "ids": {
+        "kitsu": "45249",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.267000+00:00",
+      "last_synced": {
+        "kitsu": "01f3bf2c37512e05fdcd8f60ed4cb500"
+      }
+    },
+    "kitsu_45866": {
+      "ids": {
+        "kitsu": "45866",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.218000+00:00",
+      "last_synced": {
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
+      }
+    },
+    "kitsu_46099": {
+      "ids": {
+        "kitsu": "46099",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:46.927000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_45472": {
+      "ids": {
+        "kitsu": "45472",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:11.463000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_47155": {
+      "ids": {
+        "kitsu": "47155",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-08T09:38:09.598000+00:00",
+      "last_synced": {
+        "kitsu": "8b12074880a5544d9c69cac20e194131"
+      }
+    },
+    "kitsu_47199": {
+      "ids": {
+        "kitsu": "47199",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:42:57.349000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_362": {
+      "ids": {
+        "kitsu": "362",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:33:20.882000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42080": {
+      "ids": {
+        "kitsu": "42080",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:36.168000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_41080": {
+      "ids": {
+        "kitsu": "41080",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.166000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_11807": {
+      "ids": {
+        "kitsu": "11807",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-10T13:44:35.004000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43047": {
+      "ids": {
+        "kitsu": "43047",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.030000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_1646": {
+      "ids": {
+        "kitsu": "1646",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.218000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_46641": {
+      "ids": {
+        "kitsu": "46641",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.966000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_14027": {
+      "ids": {
+        "kitsu": "14027",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.811000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_42951": {
+      "ids": {
+        "kitsu": "42951",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:44.853000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46016": {
+      "ids": {
+        "kitsu": "46016",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.437000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47268": {
+      "ids": {
+        "kitsu": "47268",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-18T22:50:21.577000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43703": {
+      "ids": {
+        "kitsu": "43703",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2023-08-21T19:50:09.606000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_45548": {
+      "ids": {
+        "kitsu": "45548",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.091000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_45579": {
+      "ids": {
+        "kitsu": "45579",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.156000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_13228": {
+      "ids": {
+        "kitsu": "13228",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:24.095000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_41174": {
+      "ids": {
+        "kitsu": "41174",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:40:25.118000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_10085": {
+      "ids": {
+        "kitsu": "10085",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:09.717000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46760": {
+      "ids": {
+        "kitsu": "46760",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:44:46.134000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_422": {
+      "ids": {
+        "kitsu": "422",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.966000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_1315": {
+      "ids": {
+        "kitsu": "1315",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:00.952000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_9965": {
+      "ids": {
+        "kitsu": "9965",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:11.590000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_11553": {
+      "ids": {
+        "kitsu": "11553",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.169000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_12272": {
+      "ids": {
+        "kitsu": "12272",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.519000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_13994": {
+      "ids": {
+        "kitsu": "13994",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:09:30.473000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_40599": {
+      "ids": {
+        "kitsu": "40599",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.589000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_41084": {
+      "ids": {
+        "kitsu": "41084",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:40:17.038000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_41265": {
+      "ids": {
+        "kitsu": "41265",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.186000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_42022": {
+      "ids": {
+        "kitsu": "42022",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:28.121000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_42623": {
+      "ids": {
+        "kitsu": "42623",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.329000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_42865": {
+      "ids": {
+        "kitsu": "42865",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:44.394000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_43612": {
+      "ids": {
+        "kitsu": "43612",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.693000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_43014": {
+      "ids": {
+        "kitsu": "43014",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 15,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:48.402000+00:00",
+      "last_synced": {
+        "kitsu": "fe7aea86cdc38f919307869b6309e073"
+      }
+    },
+    "kitsu_43367": {
+      "ids": {
+        "kitsu": "43367",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.532000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44121": {
+      "ids": {
+        "kitsu": "44121",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.630000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43521": {
+      "ids": {
+        "kitsu": "43521",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.465000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_43222": {
+      "ids": {
+        "kitsu": "43222",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 9,
+        "score": 0
+      },
+      "last_updated": "2024-12-08T05:58:18.759000+00:00",
+      "last_synced": {
+        "kitsu": "b12e5cbc05013a27ab4b45beb725d921"
+      }
+    },
+    "kitsu_43607": {
+      "ids": {
+        "kitsu": "43607",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:10.066000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_43709": {
+      "ids": {
+        "kitsu": "43709",
+        "mal": null
+      },
+      "state": {
+        "status": "dropped",
+        "progress": 26,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:50.215000+00:00",
+      "last_synced": {
+        "kitsu": "579c34d00b4d8b273e9064d2c5115472"
+      }
+    },
+    "kitsu_43795": {
+      "ids": {
+        "kitsu": "43795",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.682000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44107": {
+      "ids": {
+        "kitsu": "44107",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 20,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.487000+00:00",
+      "last_synced": {
+        "kitsu": "379dd3ece996fcf6b8d91c769a19cf4c"
+      }
+    },
+    "kitsu_44773": {
+      "ids": {
+        "kitsu": "44773",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:10.296000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_44981": {
+      "ids": {
+        "kitsu": "44981",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.072000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_45235": {
+      "ids": {
+        "kitsu": "45235",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:32.107000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_45512": {
+      "ids": {
+        "kitsu": "45512",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-05-30T07:53:52.587000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46259": {
+      "ids": {
+        "kitsu": "46259",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.892000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_45597": {
+      "ids": {
+        "kitsu": "45597",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.821000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_45619": {
+      "ids": {
+        "kitsu": "45619",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.030000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_46000": {
+      "ids": {
+        "kitsu": "46000",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.788000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_46059": {
+      "ids": {
+        "kitsu": "46059",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.138000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46231": {
+      "ids": {
+        "kitsu": "46231",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.252000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46241": {
+      "ids": {
+        "kitsu": "46241",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:07.735000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_46242": {
+      "ids": {
+        "kitsu": "46242",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-05-30T07:54:28.174000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46304": {
+      "ids": {
+        "kitsu": "46304",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:40:03.527000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_46300": {
+      "ids": {
+        "kitsu": "46300",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.560000+00:00",
+      "last_synced": {
+        "kitsu": "4d13c378f72ebf842c1fd495709c4858"
+      }
+    },
+    "kitsu_46320": {
+      "ids": {
+        "kitsu": "46320",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.022000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_46434": {
+      "ids": {
+        "kitsu": "46434",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.838000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_46474": {
+      "ids": {
+        "kitsu": "46474",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 28,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:50.809000+00:00",
+      "last_synced": {
+        "kitsu": "94c3157cea2a3cf9f1daf7ba16882142"
+      }
+    },
+    "kitsu_46688": {
+      "ids": {
+        "kitsu": "46688",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.912000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46690": {
+      "ids": {
+        "kitsu": "46690",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.635000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_46704": {
+      "ids": {
+        "kitsu": "46704",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:40:11.921000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_46733": {
+      "ids": {
+        "kitsu": "46733",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.369000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46807": {
+      "ids": {
+        "kitsu": "46807",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.258000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_46875": {
+      "ids": {
+        "kitsu": "46875",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-05-30T07:55:15.677000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_47076": {
+      "ids": {
+        "kitsu": "47076",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:12.738000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_47077": {
+      "ids": {
+        "kitsu": "47077",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.842000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47083": {
+      "ids": {
+        "kitsu": "47083",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.628000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_47099": {
+      "ids": {
+        "kitsu": "47099",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:31.850000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47154": {
+      "ids": {
+        "kitsu": "47154",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.725000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47237": {
+      "ids": {
+        "kitsu": "47237",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.623000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_47240": {
+      "ids": {
+        "kitsu": "47240",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:03.773000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47481": {
+      "ids": {
+        "kitsu": "47481",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:55:37.515000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48186": {
+      "ids": {
+        "kitsu": "48186",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:41.313000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47671": {
+      "ids": {
+        "kitsu": "47671",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:49.603000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_47813": {
+      "ids": {
+        "kitsu": "47813",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.298000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_47964": {
+      "ids": {
+        "kitsu": "47964",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.449000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_48059": {
+      "ids": {
+        "kitsu": "48059",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.314000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48257": {
+      "ids": {
+        "kitsu": "48257",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:49.685000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10941": {
+      "ids": {
+        "kitsu": "10941",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:32.294000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_43005": {
+      "ids": {
+        "kitsu": "43005",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:40.279000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_183": {
+      "ids": {
+        "kitsu": "183",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.932000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_11578": {
+      "ids": {
+        "kitsu": "11578",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-22T15:27:57.515000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_41950": {
+      "ids": {
+        "kitsu": "41950",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:11.805000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42079": {
+      "ids": {
+        "kitsu": "42079",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:12.902000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43059": {
+      "ids": {
+        "kitsu": "43059",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:32.432000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_42131": {
+      "ids": {
+        "kitsu": "42131",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:36.580000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_42268": {
+      "ids": {
+        "kitsu": "42268",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.282000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_42198": {
+      "ids": {
+        "kitsu": "42198",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-01-26T01:14:10.465000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_42525": {
+      "ids": {
+        "kitsu": "42525",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.927000+00:00",
+      "last_synced": {
+        "kitsu": "fd971986842ca542f699d502a04f2594"
+      }
+    },
+    "kitsu_42627": {
+      "ids": {
+        "kitsu": "42627",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:38:53.486000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_42638": {
+      "ids": {
+        "kitsu": "42638",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.498000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_42900": {
+      "ids": {
+        "kitsu": "42900",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.559000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_43089": {
+      "ids": {
+        "kitsu": "43089",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.614000+00:00",
+      "last_synced": {
+        "kitsu": "05bc7e7be231b773843954b460cdffd9"
+      }
+    },
+    "kitsu_43268": {
+      "ids": {
+        "kitsu": "43268",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.713000+00:00",
+      "last_synced": {
+        "kitsu": "4d13c378f72ebf842c1fd495709c4858"
+      }
+    },
+    "kitsu_44174": {
+      "ids": {
+        "kitsu": "44174",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.354000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44064": {
+      "ids": {
+        "kitsu": "44064",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.779000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_44393": {
+      "ids": {
+        "kitsu": "44393",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.824000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_44580": {
+      "ids": {
+        "kitsu": "44580",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:14.165000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_44745": {
+      "ids": {
+        "kitsu": "44745",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.418000+00:00",
+      "last_synced": {
+        "kitsu": "41fc2d74e0b40abfc9425bbf2afaf1e1"
+      }
+    },
+    "kitsu_45830": {
+      "ids": {
+        "kitsu": "45830",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:38.428000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_46243": {
+      "ids": {
+        "kitsu": "46243",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.469000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46533": {
+      "ids": {
+        "kitsu": "46533",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:14.986000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_46644": {
+      "ids": {
+        "kitsu": "46644",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.038000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_46764": {
+      "ids": {
+        "kitsu": "46764",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.088000+00:00",
+      "last_synced": {
+        "kitsu": "5f6962b75100acad06e8081381199000"
+      }
+    },
+    "kitsu_47197": {
+      "ids": {
+        "kitsu": "47197",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 5,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.147000+00:00",
+      "last_synced": {
+        "kitsu": "fc59900400b36af5dd987492347b5e57"
+      }
+    },
+    "kitsu_47236": {
+      "ids": {
+        "kitsu": "47236",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:40:44.581000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_47272": {
+      "ids": {
+        "kitsu": "47272",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:47.430000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47656": {
+      "ids": {
+        "kitsu": "47656",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:11:58.712000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_47786": {
+      "ids": {
+        "kitsu": "47786",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.059000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48214": {
+      "ids": {
+        "kitsu": "48214",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:48.197000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48269": {
+      "ids": {
+        "kitsu": "48269",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 9,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:46:38.590000+00:00",
+      "last_synced": {
+        "kitsu": "b12e5cbc05013a27ab4b45beb725d921"
+      }
+    },
+    "kitsu_48390": {
+      "ids": {
+        "kitsu": "48390",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.002000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48440": {
+      "ids": {
+        "kitsu": "48440",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.882000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_48468": {
+      "ids": {
+        "kitsu": "48468",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:45.828000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48534": {
+      "ids": {
+        "kitsu": "48534",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.305000+00:00",
+      "last_synced": {
+        "kitsu": "05bc7e7be231b773843954b460cdffd9"
+      }
+    },
+    "kitsu_48559": {
+      "ids": {
+        "kitsu": "48559",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:12.704000+00:00",
+      "last_synced": {
+        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+      }
+    },
+    "kitsu_48677": {
+      "ids": {
+        "kitsu": "48677",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:12.732000+00:00",
+      "last_synced": {
+        "kitsu": "93f48da41387d5f7dc4a0569985db134"
+      }
+    },
+    "kitsu_48981": {
+      "ids": {
+        "kitsu": "48981",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.456000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_48202": {
+      "ids": {
+        "kitsu": "48202",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:25:23.899000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_11": {
+      "ids": {
+        "kitsu": "11",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 220,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.809000+00:00",
+      "last_synced": {
+        "kitsu": "b2ffe2cf2de7bb9d0eada5fd431e87f2"
+      }
+    },
+    "kitsu_29": {
+      "ids": {
+        "kitsu": "29",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.843000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_224": {
+      "ids": {
+        "kitsu": "224",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.920000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_1021": {
+      "ids": {
+        "kitsu": "1021",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.895000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_1156": {
+      "ids": {
+        "kitsu": "1156",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 19,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.942000+00:00",
+      "last_synced": {
+        "kitsu": "c328aa85cc511e4396f1e49489748a04"
+      }
+    },
+    "kitsu_6636": {
+      "ids": {
+        "kitsu": "6636",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:36:47.727000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_6896": {
+      "ids": {
+        "kitsu": "6896",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:20:33.725000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7303": {
+      "ids": {
+        "kitsu": "7303",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:21:06.532000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8640": {
+      "ids": {
+        "kitsu": "8640",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 22,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.040000+00:00",
+      "last_synced": {
+        "kitsu": "669c4e3ce13bbe5c755c41ab627154be"
+      }
+    },
+    "kitsu_10036": {
+      "ids": {
+        "kitsu": "10036",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:22:12.251000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_11409": {
+      "ids": {
+        "kitsu": "11409",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:22:45.212000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_11447": {
+      "ids": {
+        "kitsu": "11447",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:42.632000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_11794": {
+      "ids": {
+        "kitsu": "11794",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:23:50.756000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_13230": {
+      "ids": {
+        "kitsu": "13230",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.127000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_13689": {
+      "ids": {
+        "kitsu": "13689",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:24:56.399000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43907": {
+      "ids": {
+        "kitsu": "43907",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:06.174000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44015": {
+      "ids": {
+        "kitsu": "44015",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:05.777000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_44125": {
+      "ids": {
+        "kitsu": "44125",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:25.933000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_45222": {
+      "ids": {
+        "kitsu": "45222",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:13.065000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_45242": {
+      "ids": {
+        "kitsu": "45242",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-11-25T09:28:07.667000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_45341": {
+      "ids": {
+        "kitsu": "45341",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:39:26.280000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46415": {
+      "ids": {
+        "kitsu": "46415",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:16.025000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_48619": {
+      "ids": {
+        "kitsu": "48619",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:16.073000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_12584": {
+      "ids": {
+        "kitsu": "12584",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2024-12-07T09:17:10.221000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12722": {
+      "ids": {
+        "kitsu": "12722",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:04.570000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43302": {
+      "ids": {
+        "kitsu": "43302",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:13.426000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_48391": {
+      "ids": {
+        "kitsu": "48391",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:16.122000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_48449": {
+      "ids": {
+        "kitsu": "48449",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:25:47.838000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_47835": {
+      "ids": {
+        "kitsu": "47835",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:15.195000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_48979": {
+      "ids": {
+        "kitsu": "48979",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.683000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48225": {
+      "ids": {
+        "kitsu": "48225",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:41:49.807000+00:00",
+      "last_synced": {
+        "kitsu": "8c70f49fda7080f62ac65d89f75fad96"
+      }
+    },
+    "kitsu_42191": {
+      "ids": {
+        "kitsu": "42191",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:05.293000+00:00",
+      "last_synced": {
+        "kitsu": "01f3bf2c37512e05fdcd8f60ed4cb500"
+      }
+    },
+    "kitsu_47323": {
+      "ids": {
+        "kitsu": "47323",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:42.617000+00:00",
+      "last_synced": {
+        "kitsu": "41fc2d74e0b40abfc9425bbf2afaf1e1"
+      }
+    },
+    "kitsu_48837": {
+      "ids": {
+        "kitsu": "48837",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 7,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:16.254000+00:00",
+      "last_synced": {
+        "kitsu": "5f6962b75100acad06e8081381199000"
+      }
+    },
+    "kitsu_42838": {
+      "ids": {
+        "kitsu": "42838",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:42.897000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43883": {
+      "ids": {
+        "kitsu": "43883",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.186000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_45957": {
+      "ids": {
+        "kitsu": "45957",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:12.681000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46729": {
+      "ids": {
+        "kitsu": "46729",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:48.146000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_47195": {
+      "ids": {
+        "kitsu": "47195",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:55:33.486000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_10045": {
+      "ids": {
+        "kitsu": "10045",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:34.260000+00:00",
+      "last_synced": {
+        "kitsu": "b96abc4bb5134171a3c8b79f45c7a5f7"
+      }
+    },
+    "kitsu_11467": {
+      "ids": {
+        "kitsu": "11467",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:36.841000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_42277": {
+      "ids": {
+        "kitsu": "42277",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:23:32.602000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_46081": {
+      "ids": {
+        "kitsu": "46081",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.099000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_44503": {
+      "ids": {
+        "kitsu": "44503",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:38.729000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_45420": {
+      "ids": {
+        "kitsu": "45420",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:24:24.582000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_46214": {
+      "ids": {
+        "kitsu": "46214",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2025-01-26T01:15:57.200000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46274": {
+      "ids": {
+        "kitsu": "46274",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:46.619000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_46454": {
+      "ids": {
+        "kitsu": "46454",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 16,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.095000+00:00",
+      "last_synced": {
+        "kitsu": "2b2ff869e9e765bce57131ab0becd6fb"
+      }
+    },
+    "kitsu_47375": {
+      "ids": {
+        "kitsu": "47375",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:39.849000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_47752": {
+      "ids": {
+        "kitsu": "47752",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:34.554000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_48216": {
+      "ids": {
+        "kitsu": "48216",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:25:31.880000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_48620": {
+      "ids": {
+        "kitsu": "48620",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:13.605000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_48638": {
+      "ids": {
+        "kitsu": "48638",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:40.022000+00:00",
+      "last_synced": {
+        "kitsu": "4d13c378f72ebf842c1fd495709c4858"
+      }
+    },
+    "kitsu_48671": {
+      "ids": {
+        "kitsu": "48671",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:12.332000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_48842": {
+      "ids": {
+        "kitsu": "48842",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:10.537000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_48973": {
+      "ids": {
+        "kitsu": "48973",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:26:07.512000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_49059": {
+      "ids": {
+        "kitsu": "49059",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:13.626000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_49065": {
+      "ids": {
+        "kitsu": "49065",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:26:23.598000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_49121": {
+      "ids": {
+        "kitsu": "49121",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:38.576000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_49179": {
+      "ids": {
+        "kitsu": "49179",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 21,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:07:46.682000+00:00",
+      "last_synced": {
+        "kitsu": "f336ed8ab11d30a6c293cae4142aec38"
+      }
+    },
+    "kitsu_44383": {
+      "ids": {
+        "kitsu": "44383",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:41:30.340000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_48649": {
+      "ids": {
+        "kitsu": "48649",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:56:12.530000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_48450": {
+      "ids": {
+        "kitsu": "48450",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:42.683000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_47858": {
+      "ids": {
+        "kitsu": "47858",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-07-05T13:25:12.110000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_48628": {
+      "ids": {
+        "kitsu": "48628",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:56:08.521000+00:00",
+      "last_synced": {
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
+      }
+    },
+    "kitsu_48971": {
+      "ids": {
+        "kitsu": "48971",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T10:12:22.580000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_49333": {
+      "ids": {
+        "kitsu": "49333",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 4,
+        "score": 0
+      },
+      "last_updated": "2025-02-15T18:43:17.770000+00:00",
+      "last_synced": {
+        "kitsu": "205829a55a3fcf2a90c93b820883b099"
+      }
+    },
+    "kitsu_49063": {
+      "ids": {
+        "kitsu": "49063",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:11.671000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_49124": {
+      "ids": {
+        "kitsu": "49124",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 9,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:07:38.761000+00:00",
+      "last_synced": {
+        "kitsu": "b12e5cbc05013a27ab4b45beb725d921"
+      }
+    },
+    "kitsu_14212": {
+      "ids": {
+        "kitsu": "14212",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:03.823000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_4662": {
+      "ids": {
+        "kitsu": "4662",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 6,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:01.909000+00:00",
+      "last_synced": {
+        "kitsu": "4d13c378f72ebf842c1fd495709c4858"
+      }
+    },
+    "kitsu_3": {
+      "ids": {
+        "kitsu": "3",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:09:55.316000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10": {
+      "ids": {
+        "kitsu": "10",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:32:16.325000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_162": {
+      "ids": {
+        "kitsu": "162",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:39.993000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_194": {
+      "ids": {
+        "kitsu": "194",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:32:48.729000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_195": {
+      "ids": {
+        "kitsu": "195",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:32:56.696000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_201": {
+      "ids": {
+        "kitsu": "201",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:39.616000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_207": {
+      "ids": {
+        "kitsu": "207",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:02.433000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_214": {
+      "ids": {
+        "kitsu": "214",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:42.450000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_346": {
+      "ids": {
+        "kitsu": "346",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:13.663000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_417": {
+      "ids": {
+        "kitsu": "417",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:17.837000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_507": {
+      "ids": {
+        "kitsu": "507",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:39.642000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_521": {
+      "ids": {
+        "kitsu": "521",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:30.147000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_548": {
+      "ids": {
+        "kitsu": "548",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:34.322000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_643": {
+      "ids": {
+        "kitsu": "643",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:42.337000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_727": {
+      "ids": {
+        "kitsu": "727",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:50.409000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_785": {
+      "ids": {
+        "kitsu": "785",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:11:58.378000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_1547": {
+      "ids": {
+        "kitsu": "1547",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:34:12.826000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_2696": {
+      "ids": {
+        "kitsu": "2696",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:12:06.799000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_3470": {
+      "ids": {
+        "kitsu": "3470",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:12:10.985000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_3835": {
+      "ids": {
+        "kitsu": "3835",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:12:19.127000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_4095": {
+      "ids": {
+        "kitsu": "4095",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:12:27.012000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_4617": {
+      "ids": {
+        "kitsu": "4617",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.478000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_4804": {
+      "ids": {
+        "kitsu": "4804",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:12:42.434000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_5090": {
+      "ids": {
+        "kitsu": "5090",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.501000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_5497": {
+      "ids": {
+        "kitsu": "5497",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:43.230000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_6203": {
+      "ids": {
+        "kitsu": "6203",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:22:47.585000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_6288": {
+      "ids": {
+        "kitsu": "6288",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:53:55.324000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_6516": {
+      "ids": {
+        "kitsu": "6516",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:03.285000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7167": {
+      "ids": {
+        "kitsu": "7167",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:11.152000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_7914": {
+      "ids": {
+        "kitsu": "7914",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:07.653000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_8091": {
+      "ids": {
+        "kitsu": "8091",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 2,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:03.337000+00:00",
+      "last_synced": {
+        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce"
+      }
+    },
+    "kitsu_8305": {
+      "ids": {
+        "kitsu": "8305",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:27.445000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_8736": {
+      "ids": {
+        "kitsu": "8736",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:35.430000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_9135": {
+      "ids": {
+        "kitsu": "9135",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:39.618000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10092": {
+      "ids": {
+        "kitsu": "10092",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:38:49.284000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10082": {
+      "ids": {
+        "kitsu": "10082",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:47.864000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10789": {
+      "ids": {
+        "kitsu": "10789",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:23:52.043000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_10877": {
+      "ids": {
+        "kitsu": "10877",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 25,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.524000+00:00",
+      "last_synced": {
+        "kitsu": "358d311252f0ccb4a39489592eb847c3"
+      }
+    },
+    "kitsu_11342": {
+      "ids": {
+        "kitsu": "11342",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:24:04.838000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_11752": {
+      "ids": {
+        "kitsu": "11752",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:16.694000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_11937": {
+      "ids": {
+        "kitsu": "11937",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.250000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_11957": {
+      "ids": {
+        "kitsu": "11957",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:24:17.581000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12115": {
+      "ids": {
+        "kitsu": "12115",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.546000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_12769": {
+      "ids": {
+        "kitsu": "12769",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:54:19.794000+00:00",
+      "last_synced": {
+        "kitsu": "63fc67f631226a8bdf7091da756ae00a"
+      }
+    },
+    "kitsu_12502": {
+      "ids": {
+        "kitsu": "12502",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:24:41.783000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_12535": {
+      "ids": {
+        "kitsu": "12535",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:04.151000+00:00",
+      "last_synced": {
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+      }
+    },
+    "kitsu_12767": {
+      "ids": {
+        "kitsu": "12767",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:24:50.469000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_13136": {
+      "ids": {
+        "kitsu": "13136",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:24:58.521000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_13563": {
+      "ids": {
+        "kitsu": "13563",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:25:03.037000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_13581": {
+      "ids": {
+        "kitsu": "13581",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.574000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_13612": {
+      "ids": {
+        "kitsu": "13612",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:39:57.577000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_13929": {
+      "ids": {
+        "kitsu": "13929",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-24T22:34:17.033000+00:00",
+      "last_synced": {
+        "kitsu": "b17f8da6c85975bdc5fafd82354461f3"
+      }
+    },
+    "kitsu_41761": {
+      "ids": {
+        "kitsu": "41761",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:13.384000+00:00",
+      "last_synced": {
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
+      }
+    },
+    "kitsu_41083": {
+      "ids": {
+        "kitsu": "41083",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:25:35.889000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_41359": {
+      "ids": {
+        "kitsu": "41359",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:25:43.935000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_41442": {
+      "ids": {
+        "kitsu": "41442",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:25:48.136000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_41440": {
+      "ids": {
+        "kitsu": "41440",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:25:56.129000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42068": {
+      "ids": {
+        "kitsu": "42068",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:26:00.260000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_46176": {
+      "ids": {
+        "kitsu": "46176",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:26:08.202000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42148": {
+      "ids": {
+        "kitsu": "42148",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:41:05.341000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42892": {
+      "ids": {
+        "kitsu": "42892",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:41:13.245000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42196": {
+      "ids": {
+        "kitsu": "42196",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.598000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42263": {
+      "ids": {
+        "kitsu": "42263",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.622000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_42390": {
+      "ids": {
+        "kitsu": "42390",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.646000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42611": {
+      "ids": {
+        "kitsu": "42611",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.359000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_42921": {
+      "ids": {
+        "kitsu": "42921",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 13,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.669000+00:00",
+      "last_synced": {
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+      }
+    },
+    "kitsu_42909": {
+      "ids": {
+        "kitsu": "42909",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:27:03.878000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_42957": {
+      "ids": {
+        "kitsu": "42957",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.695000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43067": {
+      "ids": {
+        "kitsu": "43067",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:27:19.577000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43458": {
+      "ids": {
+        "kitsu": "43458",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.720000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
+    },
+    "kitsu_43086": {
+      "ids": {
+        "kitsu": "43086",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.745000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_43118": {
+      "ids": {
+        "kitsu": "43118",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 10,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.431000+00:00",
+      "last_synced": {
+        "kitsu": "0ca32964a1c1ac1aecad477dd470ce16"
+      }
+    },
+    "kitsu_43600": {
+      "ids": {
+        "kitsu": "43600",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:06.483000+00:00",
+      "last_synced": {
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403"
+      }
+    },
+    "kitsu_43861": {
+      "ids": {
+        "kitsu": "43861",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:01.488000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43933": {
+      "ids": {
+        "kitsu": "43933",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:09.465000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_43932": {
+      "ids": {
+        "kitsu": "43932",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:28:04.349000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_44032": {
+      "ids": {
+        "kitsu": "44032",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:21.146000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_44102": {
+      "ids": {
+        "kitsu": "44102",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 8,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:11.381000+00:00",
+      "last_synced": {
+        "kitsu": "aa304aed627c8edda5ce5ecd418bd8bd"
+      }
+    },
+    "kitsu_44185": {
+      "ids": {
+        "kitsu": "44185",
+        "mal": null
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-06-30T11:42:25.254000+00:00",
+      "last_synced": {
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
+      }
+    },
+    "kitsu_44294": {
+      "ids": {
+        "kitsu": "44294",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.772000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44665": {
+      "ids": {
+        "kitsu": "44665",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 12,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.798000+00:00",
+      "last_synced": {
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
+      }
+    },
+    "kitsu_44911": {
+      "ids": {
+        "kitsu": "44911",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 11,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.408000+00:00",
+      "last_synced": {
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
+      }
+    },
+    "kitsu_46643": {
+      "ids": {
+        "kitsu": "46643",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:28:52.591000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_44988": {
+      "ids": {
+        "kitsu": "44988",
+        "mal": null
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 0,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:28:56.642000+00:00",
+      "last_synced": {
+        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4"
+      }
+    },
+    "kitsu_45151": {
+      "ids": {
+        "kitsu": "45151",
+        "mal": null
+      },
+      "state": {
+        "status": "completed",
+        "progress": 24,
+        "score": 0
+      },
+      "last_updated": "2026-01-23T11:53:33.454000+00:00",
+      "last_synced": {
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
+      }
     }
   }
 }
