@@ -64,10 +64,28 @@ def load_simkl():
     r = requests.get(f"https://api.simkl.com/sync/all-items/anime?client_id={client_id}", headers=headers, timeout=30)
     if not r.ok: 
         print(f"   SIMKL error {r.status_code}"); return []
+    data = r.json()
+    # API can return list directly or dict with 'anime' key
+    raw_list = data if isinstance(data, list) else data.get("anime", []) or data.get("shows", []) or []
     items=[]
-    for show in r.json().get("anime", []):
-        last = show.get("last_watched_at")
-        items.append({"platform":"simkl","ids":{"simkl": show["ids"].get("simkl"), "mal": show["ids"].get("mal"), "anilist": show["ids"].get("anilist")},"state":{"status": STATUS_MAP["simkl"].get(show.get("status"), "plantowatch"), "progress": show.get("watched_episodes_count",0), "score": show.get("user_rating") or 0},"updated": datetime.fromisoformat(last.replace("Z","+00:00")) if last else datetime.now(timezone.utc)})
+    for entry in raw_list:
+        # entry can be {"show": {"ids":...}, "status":...} or direct
+        show_obj = entry.get("show", entry) if isinstance(entry, dict) else {}
+        ids_obj = entry.get("ids") or show_obj.get("ids") or {}
+        if not ids_obj:
+            continue
+        last = entry.get("last_watched_at") or entry.get("last_updated_at") or show_obj.get("last_watched_at")
+        status_raw = entry.get("status") or show_obj.get("status") or "plantowatch"
+        items.append({
+            "platform":"simkl",
+            "ids":{"simkl": ids_obj.get("simkl") or ids_obj.get("simkl_id"), "mal": ids_obj.get("mal"), "anilist": ids_obj.get("anilist") or ids_obj.get("anidb")},
+            "state":{
+                "status": STATUS_MAP["simkl"].get(status_raw, "plantowatch"),
+                "progress": entry.get("watched_episodes_count") or entry.get("watched_episodes") or show_obj.get("watched_episodes_count",0),
+                "score": entry.get("user_rating") or show_obj.get("user_rating") or 0
+            },
+            "updated": datetime.fromisoformat(last.replace("Z","+00:00")) if last else datetime.now(timezone.utc)
+        })
     print(f"   SIMKL: {len(items)} entries")
     return items
 
