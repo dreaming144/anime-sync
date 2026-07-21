@@ -21,8 +21,9 @@
     },
     "mal_52619": {
       "ids": {
-        "anilist": 153360,
-        "mal": 52619
+        "anilist": "153360",
+        "mal": "52619",
+        "simkl": 1968312
       },
       "state": {
         "status": "completed",
@@ -208,8 +209,9 @@
     },
     "mal_39576": {
       "ids": {
-        "anilist": 108623,
-        "mal": 39576
+        "anilist": "108623",
+        "mal": "39576",
+        "simkl": 1062561
       },
       "state": {
         "status": "completed",
@@ -243,8 +245,9 @@
     },
     "mal_442": {
       "ids": {
-        "anilist": 442,
-        "mal": 442
+        "anilist": "442",
+        "mal": "442",
+        "simkl": 40808
       },
       "state": {
         "status": "completed",
@@ -259,8 +262,9 @@
     },
     "mal_527": {
       "ids": {
-        "anilist": 527,
-        "mal": 527
+        "anilist": "527",
+        "mal": "527",
+        "simkl": 37468
       },
       "state": {
         "status": "completed",
@@ -275,8 +279,9 @@
     },
     "mal_936": {
       "ids": {
-        "anilist": 936,
-        "mal": 936
+        "anilist": "936",
+        "mal": "936",
+        "simkl": 40419
       },
       "state": {
         "status": "completed",
@@ -348,8 +353,9 @@
     },
     "mal_2144": {
       "ids": {
-        "anilist": 2144,
-        "mal": 2144
+        "anilist": "2144",
+        "mal": "2144",
+        "simkl": 41723
       },
       "state": {
         "status": "completed",
@@ -491,8 +497,9 @@
     },
     "mal_13391": {
       "ids": {
-        "anilist": 13391,
-        "mal": 13391
+        "anilist": "13391",
+        "mal": "13391",
+        "simkl": 47928
       },
       "state": {
         "status": "completed",
@@ -523,8 +530,9 @@
     },
     "mal_17269": {
       "ids": {
-        "anilist": 17269,
-        "mal": 17269
+        "anilist": "17269",
+        "mal": "17269",
+        "simkl": 39775
       },
       "state": {
         "status": "completed",
@@ -558,8 +566,9 @@
     },
     "mal_19489": {
       "ids": {
-        "anilist": 19489,
-        "mal": 19489
+        "anilist": "19489",
+        "mal": "19489",
+        "simkl": 43078
       },
       "state": {
         "status": "completed",
@@ -574,8 +583,9 @@
     },
     "mal_21569": {
       "ids": {
-        "anilist": 20644,
-        "mal": 21569
+        "anilist": "20644",
+        "mal": "21569",
+        "simkl": 45750
       },
       "state": {
         "status": "completed",
@@ -590,8 +600,9 @@
     },
     "mal_21881": {
       "ids": {
-        "anilist": 20594,
-        "mal": 21881
+        "anilist": "20594",
+        "mal": "21881",
+        "simkl": 46206
       },
       "state": {
         "status": "completed",
@@ -625,8 +636,9 @@
     },
     "mal_25805": {
       "ids": {
-        "anilist": 21266,
-        "mal": 25805
+        "anilist": "21266",
+        "mal": "25805",
+        "simkl": 447618
       },
       "state": {
         "status": "completed",
@@ -660,8 +672,9 @@
     },
     "mal_28495": {
       "ids": {
-        "anilist": 21154,
-        "mal": 28495
+        "anilist": "21154",
+        "mal": "28495",
+        "simkl": 438720
       },
       "state": {
         "status": "completed",
@@ -866,8 +879,9 @@
     },
     "mal_32": {
       "ids": {
-        "anilist": 32,
-        "mal": 32
+        "anilist": "32",
+        "mal": "32",
+        "simkl": 41175
       },
       "state": {
         "status": "completed",
@@ -939,8 +953,9 @@
     },
     "mal_164": {
       "ids": {
-        "anilist": 164,
-        "mal": 164
+        "anilist": "164",
+        "mal": "164",
+        "simkl": 36228
       },
       "state": {
         "status": "completed",
@@ -955,8 +970,9 @@
     },
     "mal_199": {
       "ids": {
-        "anilist": 199,
-        "mal": 199
+        "anilist": "199",
+        "mal": "199",
+        "simkl": 39079
       },
       "state": {
         "status": "completed",
@@ -971,8 +987,9 @@
     },
     "mal_431": {
       "ids": {
-        "anilist": 431,
-        "mal": 431
+        "anilist": "431",
+        "mal": "431",
+        "simkl": 36368
       },
       "state": {
         "status": "completed",
@@ -987,8 +1004,9 @@
     },
     "mal_512": {
       "ids": {
-        "anilist": 512,
-        "mal": 512
+        "anilist": "512",
+        "mal": "512",
+        "simkl": 40068
       },
       "state": {
         "status": "completed",
@@ -1003,8 +1021,9 @@
     },
     "mal_513": {
       "ids": {
-        "anilist": 513,
-        "mal": 513
+        "anilist": "513",
+        "mal": "513",
+        "simkl": 41683
       },
       "state": {
         "status": "completed",
@@ -1019,8 +1038,9 @@
     },
     "mal_523": {
       "ids": {
-        "anilist": 523,
-        "mal": 523
+        "anilist": "523",
+        "mal": "523",
+        "simkl": 41612
       },
       "state": {
         "status": "completed",
@@ -1035,8 +1055,9 @@
     },
     "mal_572": {
       "ids": {
-        "anilist": 572,
-        "mal": 572
+        "anilist": "572",
+        "mal": "572",
+        "simkl": 36223
       },
       "state": {
         "status": "completed",
@@ -1051,8 +1072,9 @@
     },
     "mal_578": {
       "ids": {
-        "anilist": 578,
-        "mal": 578
+        "anilist": "578",
+        "mal": "578",
+        "simkl": 40605
       },
       "state": {
         "status": "completed",
@@ -1067,8 +1089,9 @@
     },
     "mal_585": {
       "ids": {
-        "anilist": 585,
-        "mal": 585
+        "anilist": "585",
+        "mal": "585",
+        "simkl": 38494
       },
       "state": {
         "status": "completed",
@@ -1121,8 +1144,9 @@
     },
     "mal_3784": {
       "ids": {
-        "anilist": 3784,
-        "mal": 3784
+        "anilist": "3784",
+        "mal": "3784",
+        "simkl": 38372
       },
       "state": {
         "status": "completed",
@@ -1270,8 +1294,9 @@
     },
     "mal_33674": {
       "ids": {
-        "anilist": 21875,
-        "mal": 33674
+        "anilist": "21875",
+        "mal": "33674",
+        "simkl": 601109
       },
       "state": {
         "status": "completed",
@@ -1324,8 +1349,9 @@
     },
     "mal_35972": {
       "ids": {
-        "anilist": 99749,
-        "mal": 35972
+        "anilist": "99749",
+        "mal": "35972",
+        "simkl": 703757
       },
       "state": {
         "status": "completed",
@@ -1530,8 +1556,9 @@
     },
     "mal_39535": {
       "ids": {
-        "anilist": 108465,
-        "mal": 39535
+        "anilist": "108465",
+        "mal": "39535",
+        "simkl": 1059371
       },
       "state": {
         "status": "completed",
@@ -2078,8 +2105,9 @@
     },
     "mal_40456": {
       "ids": {
-        "anilist": 112151,
-        "mal": 40456
+        "anilist": "112151",
+        "mal": "40456",
+        "simkl": 1176707
       },
       "state": {
         "status": "completed",
@@ -2205,8 +2233,9 @@
     },
     "mal_1829": {
       "ids": {
-        "anilist": 1829,
-        "mal": 1829
+        "anilist": "1829",
+        "mal": "1829",
+        "simkl": 36691
       },
       "state": {
         "status": "completed",
@@ -2240,8 +2269,9 @@
     },
     "mal_36862": {
       "ids": {
-        "anilist": 100643,
-        "mal": 36862
+        "anilist": "100643",
+        "mal": "36862",
+        "simkl": 740881
       },
       "state": {
         "status": "completed",
@@ -2332,8 +2362,9 @@
     },
     "mal_53613": {
       "ids": {
-        "anilist": 157198,
-        "mal": 53613
+        "anilist": "157198",
+        "mal": "53613",
+        "simkl": 2036090
       },
       "state": {
         "status": "completed",
@@ -2538,8 +2569,9 @@
     },
     "mal_460": {
       "ids": {
-        "anilist": 460,
-        "mal": 460
+        "anilist": "460",
+        "mal": "460",
+        "simkl": 37672
       },
       "state": {
         "status": "completed",
@@ -2630,8 +2662,9 @@
     },
     "mal_52299": {
       "ids": {
-        "anilist": 151807,
-        "mal": 52299
+        "anilist": "151807",
+        "mal": "52299",
+        "simkl": 1944032
       },
       "state": {
         "status": "completed",
@@ -2798,8 +2831,9 @@
     },
     "mal_54492": {
       "ids": {
-        "anilist": 161645,
-        "mal": 54492
+        "anilist": "161645",
+        "mal": "54492",
+        "simkl": 2097814
       },
       "state": {
         "status": "completed",
@@ -2833,8 +2867,9 @@
     },
     "mal_55717": {
       "ids": {
-        "anilist": 166372,
-        "mal": 55717
+        "anilist": "166372",
+        "mal": "55717",
+        "simkl": 2193168
       },
       "state": {
         "status": "completed",
@@ -2849,8 +2884,9 @@
     },
     "mal_55265": {
       "ids": {
-        "anilist": 164702,
-        "mal": 55265
+        "anilist": "164702",
+        "mal": "55265",
+        "simkl": 2160736
       },
       "state": {
         "status": "completed",
@@ -2865,8 +2901,9 @@
     },
     "mal_50594": {
       "ids": {
-        "anilist": 142770,
-        "mal": 50594
+        "anilist": "142770",
+        "mal": "50594",
+        "simkl": 1807454
       },
       "state": {
         "status": "completed",
@@ -3128,8 +3165,9 @@
     },
     "mal_57944": {
       "ids": {
-        "anilist": 174043,
-        "mal": 57944
+        "anilist": "174043",
+        "mal": "57944",
+        "simkl": 2359370
       },
       "state": {
         "status": "completed",
@@ -3163,8 +3201,9 @@
     },
     "mal_57058": {
       "ids": {
-        "anilist": 170695,
-        "mal": 57058
+        "anilist": "170695",
+        "mal": "57058",
+        "simkl": 2281228
       },
       "state": {
         "status": "completed",
@@ -3198,8 +3237,9 @@
     },
     "mal_47": {
       "ids": {
-        "anilist": 47,
-        "mal": 47
+        "anilist": "47",
+        "mal": "47",
+        "simkl": 40079
       },
       "state": {
         "status": "completed",
@@ -3214,8 +3254,9 @@
     },
     "mal_1140": {
       "ids": {
-        "anilist": 1140,
-        "mal": 1140
+        "anilist": "1140",
+        "mal": "1140",
+        "simkl": 41100
       },
       "state": {
         "status": "completed",
@@ -3344,8 +3385,9 @@
     },
     "mal_48417": {
       "ids": {
-        "anilist": 130588,
-        "mal": 48417
+        "anilist": "130588",
+        "mal": "48417",
+        "simkl": 1570398
       },
       "state": {
         "status": "completed",
@@ -3452,8 +3494,9 @@
     },
     "mal_54743": {
       "ids": {
-        "anilist": 162803,
-        "mal": 54743
+        "anilist": "162803",
+        "mal": "54743",
+        "simkl": 2123446
       },
       "state": {
         "status": "completed",
@@ -3468,8 +3511,9 @@
     },
     "mal_50306": {
       "ids": {
-        "anilist": 141182,
-        "mal": 50306
+        "anilist": "141182",
+        "mal": "50306",
+        "simkl": 1771535
       },
       "state": {
         "status": "completed",
@@ -3503,8 +3547,9 @@
     },
     "mal_58822": {
       "ids": {
-        "anilist": 177506,
-        "mal": 58822
+        "anilist": "177506",
+        "mal": "58822",
+        "simkl": 2460014
       },
       "state": {
         "status": "completed",
@@ -3519,8 +3564,9 @@
     },
     "mal_58567": {
       "ids": {
-        "anilist": 176496,
-        "mal": 58567
+        "anilist": "176496",
+        "mal": "58567",
+        "simkl": 2419656
       },
       "state": {
         "status": "completed",
@@ -3535,8 +3581,9 @@
     },
     "mal_59265": {
       "ids": {
-        "anilist": 179297,
-        "mal": 59265
+        "anilist": "179297",
+        "mal": "59265",
+        "simkl": 2512650
       },
       "state": {
         "status": "completed",
@@ -3551,8 +3598,9 @@
     },
     "mal_58514": {
       "ids": {
-        "anilist": 176301,
-        "mal": 58514
+        "anilist": "176301",
+        "mal": "58514",
+        "simkl": 2413572
       },
       "state": {
         "status": "completed",
@@ -3605,8 +3653,9 @@
     },
     "mal_60140": {
       "ids": {
-        "anilist": 183133,
-        "mal": 60140
+        "anilist": "183133",
+        "mal": "60140",
+        "simkl": 2612238
       },
       "state": {
         "status": "completed",
@@ -3640,8 +3689,9 @@
     },
     "mal_32937": {
       "ids": {
-        "anilist": 21699,
-        "mal": 32937
+        "anilist": "21699",
+        "mal": "32937",
+        "simkl": 568514
       },
       "state": {
         "status": "completed",
@@ -3690,8 +3740,9 @@
     },
     "mal_50738": {
       "ids": {
-        "anilist": 143337,
-        "mal": 50738
+        "anilist": "143337",
+        "mal": "50738",
+        "simkl": 1819462
       },
       "state": {
         "status": "completed",
@@ -3706,8 +3757,9 @@
     },
     "mal_56400": {
       "ids": {
-        "anilist": 168500,
-        "mal": 56400
+        "anilist": "168500",
+        "mal": "56400",
+        "simkl": 2237118
       },
       "state": {
         "status": "completed",
@@ -3741,8 +3793,9 @@
     },
     "mal_55888": {
       "ids": {
-        "anilist": 166873,
-        "mal": 55888
+        "anilist": "166873",
+        "mal": "55888",
+        "simkl": 2204668
       },
       "state": {
         "status": "completed",
@@ -3757,8 +3810,9 @@
     },
     "mal_56700": {
       "ids": {
-        "anilist": 169440,
-        "mal": 56700
+        "anilist": "169440",
+        "mal": "56700",
+        "simkl": 2260548
       },
       "state": {
         "status": "completed",
@@ -3773,8 +3827,9 @@
     },
     "mal_49458": {
       "ids": {
-        "anilist": 136804,
-        "mal": 49458
+        "anilist": "136804",
+        "mal": "49458",
+        "simkl": 1920042
       },
       "state": {
         "status": "completed",
@@ -3789,8 +3844,9 @@
     },
     "mal_52293": {
       "ids": {
-        "anilist": 151799,
-        "mal": 52293
+        "anilist": "151799",
+        "mal": "52293",
+        "simkl": 1944026
       },
       "state": {
         "status": "completed",
@@ -3805,8 +3861,9 @@
     },
     "mal_41623": {
       "ids": {
-        "anilist": 117448,
-        "mal": 41623
+        "anilist": "117448",
+        "mal": "41623",
+        "simkl": 1315941
       },
       "state": {
         "status": "completed",
@@ -3840,8 +3897,9 @@
     },
     "mal_8795": {
       "ids": {
-        "anilist": 8795,
-        "mal": 8795
+        "anilist": "8795",
+        "mal": "8795",
+        "simkl": 40204
       },
       "state": {
         "status": "completed",
@@ -3951,8 +4009,9 @@
     },
     "mal_35788": {
       "ids": {
-        "anilist": 99255,
-        "mal": 35788
+        "anilist": "99255",
+        "mal": "35788",
+        "simkl": 695795
       },
       "state": {
         "status": "completed",
@@ -3967,8 +4026,9 @@
     },
     "mal_39551": {
       "ids": {
-        "anilist": 108511,
-        "mal": 39551
+        "anilist": "108511",
+        "mal": "39551",
+        "simkl": 1060335
       },
       "state": {
         "status": "completed",
@@ -3983,8 +4043,9 @@
     },
     "mal_39701": {
       "ids": {
-        "anilist": 108928,
-        "mal": 39701
+        "anilist": "108928",
+        "mal": "39701",
+        "simkl": 1072473
       },
       "state": {
         "status": "completed",
@@ -3999,8 +4060,9 @@
     },
     "mal_39940": {
       "ids": {
-        "anilist": 109963,
-        "mal": 39940
+        "anilist": "109963",
+        "mal": "39940",
+        "simkl": 1109881
       },
       "state": {
         "status": "completed",
@@ -4015,8 +4077,9 @@
     },
     "mal_40902": {
       "ids": {
-        "anilist": 114043,
-        "mal": 40902
+        "anilist": "114043",
+        "mal": "40902",
+        "simkl": 1228845
       },
       "state": {
         "status": "completed",
@@ -4031,8 +4094,9 @@
     },
     "mal_41109": {
       "ids": {
-        "anilist": 114862,
-        "mal": 41109
+        "anilist": "114862",
+        "mal": "41109",
+        "simkl": 1247169
       },
       "state": {
         "status": "completed",
@@ -4047,8 +4111,9 @@
     },
     "mal_41491": {
       "ids": {
-        "anilist": 116752,
-        "mal": 41491
+        "anilist": "116752",
+        "mal": "41491",
+        "simkl": 1302113
       },
       "state": {
         "status": "completed",
@@ -4063,8 +4128,9 @@
     },
     "mal_41514": {
       "ids": {
-        "anilist": 116867,
-        "mal": 41514
+        "anilist": "116867",
+        "mal": "41514",
+        "simkl": 1304507
       },
       "state": {
         "status": "completed",
@@ -4079,8 +4145,9 @@
     },
     "mal_48661": {
       "ids": {
-        "anilist": 131942,
-        "mal": 48661
+        "anilist": "131942",
+        "mal": "48661",
+        "simkl": 1599907
       },
       "state": {
         "status": "completed",
@@ -4095,8 +4162,9 @@
     },
     "mal_49109": {
       "ids": {
-        "anilist": 135102,
-        "mal": 49109
+        "anilist": "135102",
+        "mal": "49109",
+        "simkl": 1650679
       },
       "state": {
         "status": "completed",
@@ -4111,8 +4179,9 @@
     },
     "mal_49918": {
       "ids": {
-        "anilist": 139630,
-        "mal": 49918
+        "anilist": "139630",
+        "mal": "49918",
+        "simkl": 1737071
       },
       "state": {
         "status": "completed",
@@ -4127,8 +4196,9 @@
     },
     "mal_50404": {
       "ids": {
-        "anilist": 141852,
-        "mal": 50404
+        "anilist": "141852",
+        "mal": "50404",
+        "simkl": 2003644
       },
       "state": {
         "status": "completed",
@@ -4143,8 +4213,9 @@
     },
     "mal_50664": {
       "ids": {
-        "anilist": 143085,
-        "mal": 50664
+        "anilist": "143085",
+        "mal": "50664",
+        "simkl": 1813848
       },
       "state": {
         "status": "completed",
@@ -4159,8 +4230,9 @@
     },
     "mal_51495": {
       "ids": {
-        "anilist": 146954,
-        "mal": 51495
+        "anilist": "146954",
+        "mal": "51495",
+        "simkl": 1882260
       },
       "state": {
         "status": "completed",
@@ -4175,8 +4247,9 @@
     },
     "mal_51632": {
       "ids": {
-        "anilist": 147571,
-        "mal": 51632
+        "anilist": "147571",
+        "mal": "51632",
+        "simkl": 1892262
       },
       "state": {
         "status": "completed",
@@ -4191,8 +4264,9 @@
     },
     "mal_53450": {
       "ids": {
-        "anilist": 156110,
-        "mal": 53450
+        "anilist": "156110",
+        "mal": "53450",
+        "simkl": 2327198
       },
       "state": {
         "status": "completed",
@@ -4207,8 +4281,9 @@
     },
     "mal_53488": {
       "ids": {
-        "anilist": 156131,
-        "mal": 53488
+        "anilist": "156131",
+        "mal": "53488",
+        "simkl": 2025266
       },
       "state": {
         "status": "completed",
@@ -4223,8 +4298,9 @@
     },
     "mal_54789": {
       "ids": {
-        "anilist": 163139,
-        "mal": 54789
+        "anilist": "163139",
+        "mal": "54789",
+        "simkl": 2125452
       },
       "state": {
         "status": "completed",
@@ -4258,8 +4334,9 @@
     },
     "mal_60098": {
       "ids": {
-        "anilist": 182896,
-        "mal": 60098
+        "anilist": "182896",
+        "mal": "60098",
+        "simkl": 2607190
       },
       "state": {
         "status": "completed",
@@ -4274,8 +4351,9 @@
     },
     "mal_50695": {
       "ids": {
-        "anilist": 143327,
-        "mal": 50695
+        "anilist": "143327",
+        "mal": "50695",
+        "simkl": 1816794
       },
       "state": {
         "status": "completed",
@@ -4309,8 +4387,9 @@
     },
     "mal_39948": {
       "ids": {
-        "anilist": 110028,
-        "mal": 39948
+        "anilist": "110028",
+        "mal": "39948",
+        "simkl": 1111463
       },
       "state": {
         "status": "completed",
@@ -4325,8 +4404,9 @@
     },
     "mal_37487": {
       "ids": {
-        "anilist": 101340,
-        "mal": 37487
+        "anilist": "101340",
+        "mal": "37487",
+        "simkl": 782273
       },
       "state": {
         "status": "completed",
@@ -4341,8 +4421,9 @@
     },
     "mal_1107": {
       "ids": {
-        "anilist": 1107,
-        "mal": 1107
+        "anilist": "1107",
+        "mal": "1107",
+        "simkl": 38559
       },
       "state": {
         "status": "completed",
@@ -4391,8 +4472,9 @@
     },
     "mal_37320": {
       "ids": {
-        "anilist": 101160,
-        "mal": 37320
+        "anilist": "13806",
+        "mal": "37320",
+        "simkl": 766129
       },
       "state": {
         "status": "completed",
@@ -4426,8 +4508,9 @@
     },
     "mal_1074": {
       "ids": {
-        "anilist": 1074,
-        "mal": 1074
+        "anilist": "1074",
+        "mal": "1074",
+        "simkl": 37326
       },
       "state": {
         "status": "completed",
@@ -4461,8 +4544,9 @@
     },
     "mal_17115": {
       "ids": {
-        "anilist": 17115,
-        "mal": 17115
+        "anilist": "17115",
+        "mal": "17115",
+        "simkl": 37333
       },
       "state": {
         "status": "completed",
@@ -4477,8 +4561,9 @@
     },
     "mal_19759": {
       "ids": {
-        "anilist": 19759,
-        "mal": 19759
+        "anilist": "19759",
+        "mal": "19759",
+        "simkl": 43122
       },
       "state": {
         "status": "completed",
@@ -4493,8 +4578,9 @@
     },
     "mal_20899": {
       "ids": {
-        "anilist": 20474,
-        "mal": 20899
+        "anilist": "20474",
+        "mal": "20899",
+        "simkl": 45984
       },
       "state": {
         "status": "completed",
@@ -4509,8 +4595,9 @@
     },
     "mal_26055": {
       "ids": {
-        "anilist": 20799,
-        "mal": 26055
+        "anilist": "20799",
+        "mal": "26055",
+        "simkl": 419352
       },
       "state": {
         "status": "completed",
@@ -4525,8 +4612,9 @@
     },
     "mal_31592": {
       "ids": {
-        "anilist": 21356,
-        "mal": 31592
+        "anilist": "21356",
+        "mal": "31592",
+        "simkl": 522924
       },
       "state": {
         "status": "completed",
@@ -4541,8 +4629,9 @@
     },
     "mal_31637": {
       "ids": {
-        "anilist": 21364,
-        "mal": 31637
+        "anilist": "21364",
+        "mal": "31637",
+        "simkl": 523776
       },
       "state": {
         "status": "completed",
@@ -4557,8 +4646,9 @@
     },
     "mal_36949": {
       "ids": {
-        "anilist": 100773,
-        "mal": 36949
+        "anilist": "100773",
+        "mal": "36949",
+        "simkl": 747261
       },
       "state": {
         "status": "completed",
@@ -4573,8 +4663,9 @@
     },
     "mal_37991": {
       "ids": {
-        "anilist": 102883,
-        "mal": 37991
+        "anilist": "102883",
+        "mal": "37991",
+        "simkl": 847427
       },
       "state": {
         "status": "completed",
@@ -4589,8 +4680,9 @@
     },
     "mal_41487": {
       "ids": {
-        "anilist": 116742,
-        "mal": 41487
+        "anilist": "116742",
+        "mal": "41487",
+        "simkl": 1301569
       },
       "state": {
         "status": "completed",
@@ -4605,8 +4697,9 @@
     },
     "mal_43729": {
       "ids": {
-        "anilist": 118200,
-        "mal": 43729
+        "anilist": "118200",
+        "mal": "43729",
+        "simkl": 1613165
       },
       "state": {
         "status": "completed",
@@ -4621,8 +4714,9 @@
     },
     "mal_48418": {
       "ids": {
-        "anilist": 130590,
-        "mal": 48418
+        "anilist": "130590",
+        "mal": "48418",
+        "simkl": 1570400
       },
       "state": {
         "status": "completed",
@@ -4637,8 +4731,9 @@
     },
     "mal_51347": {
       "ids": {
-        "anilist": 153906,
-        "mal": 51347
+        "anilist": "153906",
+        "mal": "51347",
+        "simkl": 1980740
       },
       "state": {
         "status": "completed",
@@ -4653,8 +4748,9 @@
     },
     "mal_57559": {
       "ids": {
-        "anilist": 171642,
-        "mal": 57559
+        "anilist": "171642",
+        "mal": "57559",
+        "simkl": 2325190
       },
       "state": {
         "status": "completed",
@@ -4669,24 +4765,28 @@
     },
     "mal_58929": {
       "ids": {
-        "anilist": 177699,
-        "mal": 58929
+        "anilist": "177699",
+        "mal": "58929",
+        "simkl": 2474924
       },
       "state": {
-        "status": "completed",
-        "progress": 1,
+        "status": "watching",
+        "progress": 3,
         "score": 0
       },
-      "last_updated": "2026-07-02T02:15:15+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "84136cbbe5583f666bd2e7dfa22963d9",
-        "simkl": "84136cbbe5583f666bd2e7dfa22963d9"
+        "anilist": "fa63b1ae147cef2683168c97d84165a4",
+        "simkl": "fa63b1ae147cef2683168c97d84165a4",
+        "mal": "fa63b1ae147cef2683168c97d84165a4",
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
       }
     },
     "mal_52608": {
       "ids": {
-        "anilist": 153332,
-        "mal": 52608
+        "anilist": "153332",
+        "mal": "52608",
+        "simkl": 1967682
       },
       "state": {
         "status": "completed",
@@ -5138,18 +5238,21 @@
     },
     "mal_34572": {
       "ids": {
-        "anilist": 97940,
-        "mal": 34572
+        "anilist": "97940",
+        "mal": "34572",
+        "simkl": 644079
       },
       "state": {
-        "status": "watching",
-        "progress": 60,
+        "status": "completed",
+        "progress": 170,
         "score": 7
       },
-      "last_updated": "2026-01-24T22:37:54+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "7a657eabadae0975af1b6749f7ee9fe0",
-        "simkl": "7a657eabadae0975af1b6749f7ee9fe0"
+        "anilist": "e2b98b6a4726b56acea8b5f6e2cf1732",
+        "simkl": "e2b98b6a4726b56acea8b5f6e2cf1732",
+        "mal": "e2b98b6a4726b56acea8b5f6e2cf1732",
+        "kitsu": "e2b98b6a4726b56acea8b5f6e2cf1732"
       }
     },
     "mal_35790": {
@@ -5553,8 +5656,9 @@
     },
     "mal_51064": {
       "ids": {
-        "anilist": 145260,
-        "mal": 51064
+        "anilist": "145260",
+        "mal": "51064",
+        "simkl": 1852004
       },
       "state": {
         "status": "watching",
@@ -5683,8 +5787,9 @@
     },
     "mal_52991": {
       "ids": {
-        "anilist": 154587,
-        "mal": 52991
+        "anilist": "154587",
+        "mal": "52991",
+        "simkl": 1990194
       },
       "state": {
         "status": "watching",
@@ -6706,18 +6811,21 @@
     },
     "mal_57891": {
       "ids": {
-        "anilist": 173693,
-        "mal": 57891
+        "anilist": "173693",
+        "mal": "57891",
+        "simkl": 2354146
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:10+00:00",
+      "last_updated": "2026-07-21T18:17:32+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_249": {
@@ -6870,34 +6978,40 @@
     },
     "mal_57066": {
       "ids": {
-        "anilist": 170732,
-        "mal": 57066
+        "anilist": "170732",
+        "mal": "57066",
+        "simkl": 2282064
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 15,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:02+00:00",
+      "last_updated": "2026-07-21T18:17:31+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "fe7aea86cdc38f919307869b6309e073",
+        "simkl": "fe7aea86cdc38f919307869b6309e073",
+        "mal": "fe7aea86cdc38f919307869b6309e073",
+        "kitsu": "fe7aea86cdc38f919307869b6309e073"
       }
     },
     "mal_55150": {
       "ids": {
-        "anilist": 164299,
-        "mal": 55150
+        "anilist": "164299",
+        "mal": "55150",
+        "simkl": 2152500
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 12,
         "score": 1
       },
-      "last_updated": "2025-09-06T12:24:14+00:00",
+      "last_updated": "2026-07-21T18:17:30+00:00",
       "last_synced": {
-        "anilist": "5493ddb4751c6f3f49e597fdc9fcfcca",
-        "simkl": "5493ddb4751c6f3f49e597fdc9fcfcca"
+        "anilist": "22b861a56c88ffcbae062b10641d2d9c",
+        "simkl": "22b861a56c88ffcbae062b10641d2d9c",
+        "mal": "22b861a56c88ffcbae062b10641d2d9c",
+        "kitsu": "22b861a56c88ffcbae062b10641d2d9c"
       }
     },
     "mal_38555": {
@@ -6940,34 +7054,40 @@
     },
     "mal_59002": {
       "ids": {
-        "anilist": 178100,
-        "mal": 59002
+        "anilist": "178100",
+        "mal": "59002",
+        "simkl": 2484896
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:18+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_59349": {
       "ids": {
-        "anilist": 179689,
-        "mal": 59349
+        "anilist": "179689",
+        "mal": "59349",
+        "simkl": 2520726
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:22+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_28537": {
@@ -6991,8 +7111,9 @@
     },
     "mal_52446": {
       "ids": {
-        "anilist": 152523,
-        "mal": 52446
+        "anilist": "152523",
+        "mal": "52446",
+        "simkl": 1955698
       },
       "state": {
         "status": "watching",
@@ -7083,8 +7204,9 @@
     },
     "mal_58473": {
       "ids": {
-        "anilist": 176158,
-        "mal": 58473
+        "anilist": "176158",
+        "mal": "58473",
+        "simkl": 2408678
       },
       "state": {
         "status": "watching",
@@ -7099,18 +7221,21 @@
     },
     "mal_55997": {
       "ids": {
-        "anilist": 167143,
-        "mal": 55997
+        "anilist": "167143",
+        "mal": "55997",
+        "simkl": 2210444
       },
       "state": {
-        "status": "watching",
-        "progress": 4,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-09-06T12:24:34+00:00",
+      "last_updated": "2026-07-21T18:17:30+00:00",
       "last_synced": {
-        "anilist": "205829a55a3fcf2a90c93b820883b099",
-        "simkl": "205829a55a3fcf2a90c93b820883b099"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_58502": {
@@ -7134,18 +7259,21 @@
     },
     "mal_59113": {
       "ids": {
-        "anilist": 178312,
-        "mal": 59113
+        "anilist": "178312",
+        "mal": "59113",
+        "simkl": 2496716
       },
       "state": {
-        "status": "watching",
-        "progress": 4,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-03-02T19:32:12+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "205829a55a3fcf2a90c93b820883b099",
-        "simkl": "205829a55a3fcf2a90c93b820883b099"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_59730": {
@@ -7207,18 +7335,21 @@
     },
     "mal_57152": {
       "ids": {
-        "anilist": 170916,
-        "mal": 57152
+        "anilist": "170916",
+        "mal": "57152",
+        "simkl": 2444132
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-03-16T20:04:14+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_37141": {
@@ -7242,98 +7373,116 @@
     },
     "mal_6682": {
       "ids": {
-        "anilist": 6682,
-        "mal": 6682
+        "anilist": "6682",
+        "mal": "6682",
+        "simkl": 38606
       },
       "state": {
-        "status": "watching",
-        "progress": 6,
+        "status": "completed",
+        "progress": 12,
         "score": 4
       },
-      "last_updated": "2025-03-16T20:01:28+00:00",
+      "last_updated": "2026-07-21T18:17:18+00:00",
       "last_synced": {
-        "anilist": "b19af85b93556a415afdb00b102f9b20",
-        "simkl": "b19af85b93556a415afdb00b102f9b20"
+        "anilist": "c812c120fd841432c6f378488f17a886",
+        "simkl": "c812c120fd841432c6f378488f17a886",
+        "mal": "c812c120fd841432c6f378488f17a886",
+        "kitsu": "c812c120fd841432c6f378488f17a886"
       }
     },
     "mal_57648": {
       "ids": {
-        "anilist": 172439,
-        "mal": 57648
+        "anilist": "172439",
+        "mal": "57648",
+        "simkl": 2333756
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-03-03T18:38:38+00:00",
+      "last_updated": "2026-07-21T18:17:32+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_21167": {
       "ids": {
-        "anilist": 20506,
-        "mal": 21167
+        "anilist": "20506",
+        "mal": "21167",
+        "simkl": 44660
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-03-16T20:06:04+00:00",
+      "last_updated": "2026-07-21T18:17:21+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_58216": {
       "ids": {
-        "anilist": 175198,
-        "mal": 58216
+        "anilist": "175198",
+        "mal": "58216",
+        "simkl": 2382554
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:14+00:00",
+      "last_updated": "2026-07-21T18:17:32+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_57827": {
       "ids": {
-        "anilist": 173333,
-        "mal": 57827
+        "anilist": "173333",
+        "mal": "57827",
+        "simkl": 2347540
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 24,
         "score": 0
       },
-      "last_updated": "2025-03-21T15:04:14+00:00",
+      "last_updated": "2026-07-21T18:17:32+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "01903f2b313eb6403ff4da7d03a8890d",
+        "simkl": "01903f2b313eb6403ff4da7d03a8890d",
+        "mal": "01903f2b313eb6403ff4da7d03a8890d",
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
       }
     },
     "mal_34012": {
       "ids": {
-        "anilist": 97617,
-        "mal": 34012
+        "anilist": "97617",
+        "mal": "34012",
+        "simkl": 615059
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-03-26T23:55:40+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_51128": {
@@ -7376,8 +7525,9 @@
     },
     "mal_58359": {
       "ids": {
-        "anilist": 175872,
-        "mal": 58359
+        "anilist": "175872",
+        "mal": "58359",
+        "simkl": 2399590
       },
       "state": {
         "status": "watching",
@@ -7392,18 +7542,21 @@
     },
     "mal_59745": {
       "ids": {
-        "anilist": 180829,
-        "mal": 59745
+        "anilist": "180829",
+        "mal": "59745",
+        "simkl": 2573734
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-09-06T12:28:18+00:00",
+      "last_updated": "2026-07-21T18:17:34+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_59452": {
@@ -7484,8 +7637,9 @@
     },
     "mal_49818": {
       "ids": {
-        "anilist": 137667,
-        "mal": 49818
+        "anilist": "137667",
+        "mal": "49818",
+        "simkl": 2823778
       },
       "state": {
         "status": "watching",
@@ -7519,8 +7673,9 @@
     },
     "mal_59424": {
       "ids": {
-        "anilist": 179885,
-        "mal": 59424
+        "anilist": "179885",
+        "mal": "59424",
+        "simkl": 2527126
       },
       "state": {
         "status": "watching",
@@ -7535,8 +7690,9 @@
     },
     "mal_60316": {
       "ids": {
-        "anilist": 184575,
-        "mal": 60316
+        "anilist": "184575",
+        "mal": "60316",
+        "simkl": 2639608
       },
       "state": {
         "status": "watching",
@@ -7627,18 +7783,21 @@
     },
     "mal_59095": {
       "ids": {
-        "anilist": 178090,
-        "mal": 59095
+        "anilist": "178090",
+        "mal": "59095",
+        "simkl": 2494340
       },
       "state": {
-        "status": "watching",
-        "progress": 6,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-09-06T12:27:20+00:00",
+      "last_updated": "2026-07-21T18:17:33+00:00",
       "last_synced": {
-        "anilist": "4d13c378f72ebf842c1fd495709c4858",
-        "simkl": "4d13c378f72ebf842c1fd495709c4858"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_61150": {
@@ -7681,18 +7840,21 @@
     },
     "mal_58614": {
       "ids": {
-        "anilist": 176702,
-        "mal": 58614
+        "anilist": "176702",
+        "mal": "58614",
+        "simkl": 2424538
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2025-09-06T12:32:30+00:00",
+      "last_updated": "2026-07-21T18:17:32+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_60543": {
@@ -7716,8 +7878,9 @@
     },
     "mal_56923": {
       "ids": {
-        "anilist": 170130,
-        "mal": 56923
+        "anilist": "170130",
+        "mal": "56923",
+        "simkl": 2275518
       },
       "state": {
         "status": "watching",
@@ -7747,8 +7910,9 @@
     },
     "mal_56854": {
       "ids": {
-        "anilist": 169969,
-        "mal": 56854
+        "anilist": "169969",
+        "mal": "56854",
+        "simkl": 2272656
       },
       "state": {
         "status": "watching",
@@ -7763,18 +7927,21 @@
     },
     "mal_60303": {
       "ids": {
-        "anilist": 184322,
-        "mal": 60303
+        "anilist": "184322",
+        "mal": "60303",
+        "simkl": 2637424
       },
       "state": {
-        "status": "watching",
-        "progress": 4,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-17T16:20:37+00:00",
+      "last_updated": "2026-07-21T18:17:34+00:00",
       "last_synced": {
-        "anilist": "205829a55a3fcf2a90c93b820883b099",
-        "simkl": "205829a55a3fcf2a90c93b820883b099"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_57888": {
@@ -7836,8 +8003,9 @@
     },
     "mal_62144": {
       "ids": {
-        "anilist": 198561,
-        "mal": 62144
+        "anilist": "198561",
+        "mal": "62144",
+        "simkl": 2892688
       },
       "state": {
         "status": "watching",
@@ -7871,8 +8039,9 @@
     },
     "mal_61276": {
       "ids": {
-        "anilist": 188487,
-        "mal": 61276
+        "anilist": "188487",
+        "mal": "61276",
+        "simkl": 2864124
       },
       "state": {
         "status": "watching",
@@ -7887,8 +8056,9 @@
     },
     "mal_61026": {
       "ids": {
-        "anilist": 186794,
-        "mal": 61026
+        "anilist": "186794",
+        "mal": "61026",
+        "simkl": 2717108
       },
       "state": {
         "status": "watching",
@@ -7941,8 +8111,9 @@
     },
     "mal_59644": {
       "ids": {
-        "anilist": 180523,
-        "mal": 59644
+        "anilist": "180523",
+        "mal": "59644",
+        "simkl": 2554952
       },
       "state": {
         "status": "watching",
@@ -8109,34 +8280,40 @@
     },
     "mal_60692": {
       "ids": {
-        "anilist": 185993,
-        "mal": 60692
+        "anilist": "185993",
+        "mal": "60692",
+        "simkl": 2677074
       },
       "state": {
-        "status": "watching",
-        "progress": 6,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-03-21T03:40:10+00:00",
+      "last_updated": "2026-07-21T18:17:35+00:00",
       "last_synced": {
-        "anilist": "4d13c378f72ebf842c1fd495709c4858",
-        "simkl": "4d13c378f72ebf842c1fd495709c4858"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_56009": {
       "ids": {
-        "anilist": 167152,
-        "mal": 56009
+        "anilist": "167152",
+        "mal": "56009",
+        "simkl": 2211126
       },
       "state": {
-        "status": "watching",
-        "progress": 9,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-03-06T11:10:17+00:00",
+      "last_updated": "2026-07-21T18:17:30+00:00",
       "last_synced": {
-        "anilist": "b12e5cbc05013a27ab4b45beb725d921",
-        "simkl": "b12e5cbc05013a27ab4b45beb725d921"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_2608": {
@@ -8236,18 +8413,21 @@
     },
     "mal_48483": {
       "ids": {
-        "anilist": 131083,
-        "mal": 48483
+        "anilist": "131083",
+        "mal": "48483",
+        "simkl": 1568925
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-01-31T13:46:53+00:00",
+      "last_updated": "2026-07-21T18:17:26+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_51535": {
@@ -8271,18 +8451,21 @@
     },
     "mal_52034": {
       "ids": {
-        "anilist": 150672,
-        "mal": 52034
+        "anilist": "150672",
+        "mal": "52034",
+        "simkl": 1928828
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 11,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:43:50+00:00",
+      "last_updated": "2026-07-21T18:17:28+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "40eb97e88471736da1a3c721116ed99f",
+        "simkl": "40eb97e88471736da1a3c721116ed99f",
+        "mal": "40eb97e88471736da1a3c721116ed99f",
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
       }
     },
     "mal_55791": {
@@ -8306,18 +8489,21 @@
     },
     "mal_55825": {
       "ids": {
-        "anilist": 166613,
-        "mal": 55825
+        "anilist": "166613",
+        "mal": "55825",
+        "simkl": 2200134
       },
       "state": {
-        "status": "watching",
-        "progress": 5,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-02-10T08:04:37+00:00",
+      "last_updated": "2026-07-21T18:17:30+00:00",
       "last_synced": {
-        "anilist": "fc59900400b36af5dd987492347b5e57",
-        "simkl": "fc59900400b36af5dd987492347b5e57"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_59970": {
@@ -8338,8 +8524,9 @@
     },
     "mal_60560": {
       "ids": {
-        "anilist": 185857,
-        "mal": 60560
+        "anilist": "185857",
+        "mal": "60560",
+        "simkl": 2965274
       },
       "state": {
         "status": "watching",
@@ -8392,8 +8579,9 @@
     },
     "mal_61549": {
       "ids": {
-        "anilist": 191205,
-        "mal": 61549
+        "anilist": "191205",
+        "mal": "61549",
+        "simkl": 2761708
       },
       "state": {
         "status": "watching",
@@ -8408,18 +8596,21 @@
     },
     "mal_61637": {
       "ids": {
-        "anilist": 192261,
-        "mal": 61637
+        "anilist": "192261",
+        "mal": "61637",
+        "simkl": 2773404
       },
       "state": {
-        "status": "watching",
-        "progress": 9,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:50:07+00:00",
+      "last_updated": "2026-07-21T18:17:35+00:00",
       "last_synced": {
-        "anilist": "b12e5cbc05013a27ab4b45beb725d921",
-        "simkl": "b12e5cbc05013a27ab4b45beb725d921"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_62617": {
@@ -8443,24 +8634,28 @@
     },
     "mal_60522": {
       "ids": {
-        "anilist": 185542,
-        "mal": 60522
+        "anilist": "185542",
+        "mal": "60522",
+        "simkl": 2661530
       },
       "state": {
         "status": "watching",
-        "progress": 2,
+        "progress": 3,
         "score": 0
       },
-      "last_updated": "2026-07-19T07:59:23+00:00",
+      "last_updated": "2026-07-21T18:17:35+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "fa63b1ae147cef2683168c97d84165a4",
+        "simkl": "fa63b1ae147cef2683168c97d84165a4",
+        "mal": "fa63b1ae147cef2683168c97d84165a4",
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
       }
     },
     "mal_63316": {
       "ids": {
-        "anilist": 184356,
-        "mal": 63316
+        "anilist": "184356",
+        "mal": "63316",
+        "simkl": 2995878
       },
       "state": {
         "status": "watching",
@@ -8494,34 +8689,40 @@
     },
     "mal_49784": {
       "ids": {
-        "anilist": 139092,
-        "mal": 49784
+        "anilist": "139092",
+        "mal": "49784",
+        "simkl": 1728821
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 21,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:42:49+00:00",
+      "last_updated": "2026-07-21T18:17:27+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "d97250e6d2901161dfc16553b32d059c",
+        "simkl": "d97250e6d2901161dfc16553b32d059c",
+        "mal": "d97250e6d2901161dfc16553b32d059c",
+        "kitsu": "d97250e6d2901161dfc16553b32d059c"
       }
     },
     "mal_60310": {
       "ids": {
-        "anilist": 184492,
-        "mal": 60310
+        "anilist": "184492",
+        "mal": "60310",
+        "simkl": 2638832
       },
       "state": {
         "status": "watching",
-        "progress": 1,
+        "progress": 16,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:48:54+00:00",
+      "last_updated": "2026-07-21T18:17:34+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "aa372033375b4a5e50b3326685e02d1b",
+        "simkl": "aa372033375b4a5e50b3326685e02d1b",
+        "mal": "aa372033375b4a5e50b3326685e02d1b",
+        "kitsu": "aa372033375b4a5e50b3326685e02d1b"
       }
     },
     "mal_61196": {
@@ -8545,34 +8746,40 @@
     },
     "mal_55830": {
       "ids": {
-        "anilist": 166617,
-        "mal": 55830
+        "anilist": "166617",
+        "mal": "55830",
+        "simkl": 2200822
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 13,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:45:28+00:00",
+      "last_updated": "2026-07-21T18:17:30+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "simkl": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "mal": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
       }
     },
     "mal_356": {
       "ids": {
-        "anilist": 356,
-        "mal": 356
+        "anilist": "356",
+        "mal": "356",
+        "simkl": 39520
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 24,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:33:12+00:00",
+      "last_updated": "2026-07-21T18:17:18+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "01903f2b313eb6403ff4da7d03a8890d",
+        "simkl": "01903f2b313eb6403ff4da7d03a8890d",
+        "mal": "01903f2b313eb6403ff4da7d03a8890d",
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
       }
     },
     "mal_44070": {
@@ -8592,56 +8799,66 @@
     },
     "mal_34393": {
       "ids": {
-        "anilist": 98238,
-        "mal": 34393
+        "anilist": "98238",
+        "mal": "34393",
+        "simkl": 635943
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:39:37+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_61587": {
       "ids": {
-        "anilist": 191718,
-        "mal": 61587
+        "anilist": "191718",
+        "mal": "61587",
+        "simkl": 2765276
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:50:03+00:00",
+      "last_updated": "2026-07-21T18:17:35+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_62146": {
       "ids": {
-        "anilist": 197824,
-        "mal": 62146
+        "anilist": "197824",
+        "mal": "62146",
+        "simkl": 2849414
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:50:30+00:00",
+      "last_updated": "2026-07-21T18:17:36+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_63304": {
       "ids": {
-        "anilist": 210234,
-        "mal": 63304
+        "anilist": "210234",
+        "mal": "63304",
+        "simkl": 2992900
       },
       "state": {
         "status": "watching",
@@ -8656,114 +8873,135 @@
     },
     "mal_63376": {
       "ids": {
-        "anilist": 206951,
-        "mal": 63376
+        "anilist": "206951",
+        "mal": "63376",
+        "simkl": 3006108
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-10T13:29:18+00:00",
+      "last_updated": "2026-07-21T18:17:37+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_62068": {
       "ids": {
-        "anilist": 196144,
-        "mal": 62068
+        "anilist": "196144",
+        "mal": "62068",
+        "simkl": 2837598
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 13,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:50:26+00:00",
+      "last_updated": "2026-07-21T18:17:36+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "simkl": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "mal": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
       }
     },
     "mal_62048": {
       "ids": {
-        "anilist": 196012,
-        "mal": 62048
+        "anilist": "196012",
+        "mal": "62048",
+        "simkl": 2833322
       },
       "state": {
         "status": "watching",
-        "progress": 1,
+        "progress": 16,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:50:23+00:00",
+      "last_updated": "2026-07-21T18:17:36+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "aa372033375b4a5e50b3326685e02d1b",
+        "simkl": "aa372033375b4a5e50b3326685e02d1b",
+        "mal": "aa372033375b4a5e50b3326685e02d1b",
+        "kitsu": "aa372033375b4a5e50b3326685e02d1b"
       }
     },
     "mal_34300": {
       "ids": {
-        "anilist": 99200,
-        "mal": 34300
+        "anilist": "99200",
+        "mal": "34300",
+        "simkl": 686261
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:39:33+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_38450": {
       "ids": {
-        "anilist": 104458,
-        "mal": 38450
+        "anilist": "104458",
+        "mal": "38450",
+        "simkl": 923343
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 8,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:40:37+00:00",
+      "last_updated": "2026-07-21T18:17:24+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "aa304aed627c8edda5ce5ecd418bd8bd",
+        "simkl": "aa304aed627c8edda5ce5ecd418bd8bd",
+        "mal": "aa304aed627c8edda5ce5ecd418bd8bd",
+        "kitsu": "aa304aed627c8edda5ce5ecd418bd8bd"
       }
     },
     "mal_37208": {
       "ids": {
-        "anilist": 101972,
-        "mal": 37208
+        "anilist": "101972",
+        "mal": "37208",
+        "simkl": 844067
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 15,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:40:01+00:00",
+      "last_updated": "2026-07-21T18:17:24+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "fe7aea86cdc38f919307869b6309e073",
+        "simkl": "fe7aea86cdc38f919307869b6309e073",
+        "mal": "fe7aea86cdc38f919307869b6309e073",
+        "kitsu": "fe7aea86cdc38f919307869b6309e073"
       }
     },
     "mal_1589": {
       "ids": {
-        "anilist": 1589,
-        "mal": 1589
+        "anilist": "1589",
+        "mal": "1589",
+        "simkl": 40624
       },
       "state": {
-        "status": "watching",
-        "progress": 8,
+        "status": "completed",
+        "progress": 11,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:34:04+00:00",
+      "last_updated": "2026-07-21T18:17:19+00:00",
       "last_synced": {
-        "anilist": "8c70f49fda7080f62ac65d89f75fad96",
-        "simkl": "8c70f49fda7080f62ac65d89f75fad96"
+        "anilist": "40eb97e88471736da1a3c721116ed99f",
+        "simkl": "40eb97e88471736da1a3c721116ed99f",
+        "mal": "40eb97e88471736da1a3c721116ed99f",
+        "kitsu": "40eb97e88471736da1a3c721116ed99f"
       }
     },
     "mal_31741": {
@@ -8878,56 +9116,66 @@
     },
     "mal_1564": {
       "ids": {
-        "anilist": 1564,
-        "mal": 1564
+        "anilist": "1564",
+        "mal": "1564",
+        "simkl": 40184
       },
       "state": {
-        "status": "watching",
-        "progress": 192,
+        "status": "completed",
+        "progress": 193,
         "score": 8
       },
-      "last_updated": "2026-06-30T11:52:06+00:00",
+      "last_updated": "2026-07-21T18:17:19+00:00",
       "last_synced": {
-        "anilist": "0aa26f1bf6b6f5e6f75d256887ec8743",
-        "simkl": "0aa26f1bf6b6f5e6f75d256887ec8743"
+        "anilist": "adf9374e2050efcf8f263de59ff9fc0f",
+        "simkl": "adf9374e2050efcf8f263de59ff9fc0f",
+        "mal": "adf9374e2050efcf8f263de59ff9fc0f",
+        "kitsu": "adf9374e2050efcf8f263de59ff9fc0f"
       }
     },
     "mal_1565": {
       "ids": {
-        "anilist": 1565,
-        "mal": 1565
+        "anilist": "1565",
+        "mal": "1565",
+        "simkl": 39403
       },
       "state": {
-        "status": "watching",
+        "status": "completed",
         "progress": 191,
         "score": 8
       },
-      "last_updated": "2026-06-30T11:52:14+00:00",
+      "last_updated": "2026-07-21T18:17:18+00:00",
       "last_synced": {
-        "anilist": "5e99c9979e3248217271a2cc053cdd90",
-        "simkl": "5e99c9979e3248217271a2cc053cdd90"
+        "anilist": "c894eed520e3d7684e32e16033171e32",
+        "simkl": "c894eed520e3d7684e32e16033171e32",
+        "mal": "c894eed520e3d7684e32e16033171e32",
+        "kitsu": "c894eed520e3d7684e32e16033171e32"
       }
     },
     "mal_6707": {
       "ids": {
-        "anilist": 6707,
-        "mal": 6707
+        "anilist": "6707",
+        "mal": "6707",
+        "simkl": 41353
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 12,
         "score": 7
       },
-      "last_updated": "2026-06-30T11:57:52+00:00",
+      "last_updated": "2026-07-21T18:17:20+00:00",
       "last_synced": {
-        "anilist": "c44248b23df8d6b2a75ae055dd98561a",
-        "simkl": "c44248b23df8d6b2a75ae055dd98561a"
+        "anilist": "460521f858b29a7df24ca850409ea97b",
+        "simkl": "460521f858b29a7df24ca850409ea97b",
+        "mal": "460521f858b29a7df24ca850409ea97b",
+        "kitsu": "460521f858b29a7df24ca850409ea97b"
       }
     },
     "mal_17873": {
       "ids": {
-        "anilist": 17873,
-        "mal": 17873
+        "anilist": "17873",
+        "mal": "17873",
+        "simkl": 41719
       },
       "state": {
         "status": "watching",
@@ -8961,18 +9209,21 @@
     },
     "mal_33255": {
       "ids": {
-        "anilist": 21804,
-        "mal": 33255
+        "anilist": "21804",
+        "mal": "33255",
+        "simkl": 581837
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 120,
         "score": 0
       },
-      "last_updated": "2026-06-30T12:00:29+00:00",
+      "last_updated": "2026-07-21T18:17:22+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "1a37cb7db3c2be37ab0f892c813443f0",
+        "simkl": "1a37cb7db3c2be37ab0f892c813443f0",
+        "mal": "1a37cb7db3c2be37ab0f892c813443f0",
+        "kitsu": "1a37cb7db3c2be37ab0f892c813443f0"
       }
     },
     "mal_33950": {
@@ -8996,50 +9247,59 @@
     },
     "mal_34034": {
       "ids": {
-        "anilist": 97634,
-        "mal": 34034
+        "anilist": "97634",
+        "mal": "34034",
+        "simkl": 617303
       },
       "state": {
-        "status": "watching",
-        "progress": 45,
+        "status": "completed",
+        "progress": 146,
         "score": 8
       },
-      "last_updated": "2026-06-30T12:00:44+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "3eaf9618ca6ff7429edb2bfc5277452a",
-        "simkl": "3eaf9618ca6ff7429edb2bfc5277452a"
+        "anilist": "456ba18e41f33bce16258d10f4024c7f",
+        "simkl": "456ba18e41f33bce16258d10f4024c7f",
+        "mal": "456ba18e41f33bce16258d10f4024c7f",
+        "kitsu": "456ba18e41f33bce16258d10f4024c7f"
       }
     },
     "mal_34612": {
       "ids": {
-        "anilist": 98034,
-        "mal": 34612
+        "anilist": "98034",
+        "mal": "34612",
+        "simkl": 645921
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 24,
         "score": 0
       },
-      "last_updated": "2026-06-30T12:01:00+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "01903f2b313eb6403ff4da7d03a8890d",
+        "simkl": "01903f2b313eb6403ff4da7d03a8890d",
+        "mal": "01903f2b313eb6403ff4da7d03a8890d",
+        "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
       }
     },
     "mal_35073": {
       "ids": {
-        "anilist": 98437,
-        "mal": 35073
+        "anilist": "98437",
+        "mal": "35073",
+        "simkl": 667803
       },
       "state": {
-        "status": "watching",
-        "progress": 1,
+        "status": "completed",
+        "progress": 13,
         "score": 0
       },
-      "last_updated": "2026-06-30T12:01:08+00:00",
+      "last_updated": "2026-07-21T18:17:23+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "simkl": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "mal": "c28e35bb46f3fa3f7a548f7bdb28d295",
+        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
       }
     },
     "mal_40351": {
@@ -9063,18 +9323,21 @@
     },
     "mal_53876": {
       "ids": {
-        "anilist": 158871,
-        "mal": 53876
+        "anilist": "158871",
+        "mal": "53876",
+        "simkl": 2059216
       },
       "state": {
         "status": "watching",
-        "progress": 43,
+        "progress": 143,
         "score": 0
       },
-      "last_updated": "2026-06-30T12:12:06+00:00",
+      "last_updated": "2026-07-21T18:17:29+00:00",
       "last_synced": {
-        "anilist": "690cdd718d3ca08bf3f5d70016f83aa7",
-        "simkl": "690cdd718d3ca08bf3f5d70016f83aa7"
+        "anilist": "0567bdb3bbde1a08a691120233ead648",
+        "simkl": "0567bdb3bbde1a08a691120233ead648",
+        "mal": "0567bdb3bbde1a08a691120233ead648",
+        "kitsu": "0567bdb3bbde1a08a691120233ead648"
       }
     },
     "mal_54141": {
@@ -9098,8 +9361,9 @@
     },
     "mal_61469": {
       "ids": {
-        "anilist": 190327,
-        "mal": 61469
+        "anilist": "190327",
+        "mal": "61469",
+        "simkl": 2754038
       },
       "state": {
         "status": "watching",
@@ -9149,40 +9413,47 @@
     },
     "mal_467": {
       "ids": {
-        "anilist": 467,
-        "mal": 467
+        "anilist": "467",
+        "mal": "467",
+        "simkl": 38384
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
+        "status": "completed",
+        "progress": 26,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:42:50+00:00",
+      "last_updated": "2026-07-21T18:17:17+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "dcb08ae83d39cb35498ee205a6c139fc",
+        "simkl": "dcb08ae83d39cb35498ee205a6c139fc",
+        "mal": "dcb08ae83d39cb35498ee205a6c139fc",
+        "kitsu": "dcb08ae83d39cb35498ee205a6c139fc"
       }
     },
     "mal_52955": {
       "ids": {
-        "anilist": 154364,
-        "mal": 52955
+        "anilist": "154364",
+        "mal": "52955",
+        "simkl": 1987604
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:43:12+00:00",
+      "last_updated": "2026-07-21T18:17:29+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_56736": {
       "ids": {
-        "anilist": 169582,
-        "mal": 56736
+        "anilist": "169582",
+        "mal": "56736",
+        "simkl": 2263626
       },
       "state": {
         "status": "watching",
@@ -9197,18 +9468,21 @@
     },
     "mal_62435": {
       "ids": {
-        "anilist": 198409,
-        "mal": 62435
+        "anilist": "198409",
+        "mal": "62435",
+        "simkl": 2877684
       },
       "state": {
         "status": "watching",
-        "progress": 2,
+        "progress": 3,
         "score": 0
       },
-      "last_updated": "2026-07-12T15:24:16+00:00",
+      "last_updated": "2026-07-21T18:17:36+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "fa63b1ae147cef2683168c97d84165a4",
+        "simkl": "fa63b1ae147cef2683168c97d84165a4",
+        "mal": "fa63b1ae147cef2683168c97d84165a4",
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
       }
     },
     "mal_61169": {
@@ -10647,8 +10921,9 @@
     },
     "mal_32380": {
       "ids": {
-        "anilist": 21574,
-        "mal": 32380
+        "anilist": "21574",
+        "mal": "32380",
+        "simkl": 545458
       },
       "state": {
         "status": "plantowatch",
@@ -10853,8 +11128,9 @@
     },
     "mal_59459": {
       "ids": {
-        "anilist": 179966,
-        "mal": 59459
+        "anilist": "179966",
+        "mal": "59459",
+        "simkl": 2530200
       },
       "state": {
         "status": "plantowatch",
@@ -10888,8 +11164,9 @@
     },
     "mal_60253": {
       "ids": {
-        "anilist": 183960,
-        "mal": 60253
+        "anilist": "183960",
+        "mal": "60253",
+        "simkl": 2629434
       },
       "state": {
         "status": "plantowatch",
@@ -11227,8 +11504,9 @@
     },
     "mal_36511": {
       "ids": {
-        "anilist": 100240,
-        "mal": 36511
+        "anilist": "100240",
+        "mal": "36511",
+        "simkl": 725373
       },
       "state": {
         "status": "plantowatch",
@@ -11300,8 +11578,9 @@
     },
     "mal_51553": {
       "ids": {
-        "anilist": 147105,
-        "mal": 51553
+        "anilist": "147105",
+        "mal": "51553",
+        "simkl": 1885096
       },
       "state": {
         "status": "plantowatch",
@@ -11411,8 +11690,9 @@
     },
     "mal_59741": {
       "ids": {
-        "anilist": 180136,
-        "mal": 59741
+        "anilist": "180136",
+        "mal": "59741",
+        "simkl": 2573730
       },
       "state": {
         "status": "plantowatch",
@@ -11484,18 +11764,21 @@
     },
     "mal_50159": {
       "ids": {
-        "anilist": 140337,
-        "mal": 50159
+        "anilist": "140337",
+        "mal": "50159",
+        "simkl": 1754475
       },
       "state": {
-        "status": "plantowatch",
+        "status": "completed",
         "progress": 1,
         "score": 0
       },
-      "last_updated": "2026-01-23T10:11:08+00:00",
+      "last_updated": "2026-07-21T18:17:27+00:00",
       "last_synced": {
-        "anilist": "63fc67f631226a8bdf7091da756ae00a",
-        "simkl": "63fc67f631226a8bdf7091da756ae00a"
+        "anilist": "84136cbbe5583f666bd2e7dfa22963d9",
+        "simkl": "84136cbbe5583f666bd2e7dfa22963d9",
+        "mal": "84136cbbe5583f666bd2e7dfa22963d9",
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
       }
     },
     "mal_28771": {
@@ -11782,18 +12065,21 @@
     },
     "mal_10681": {
       "ids": {
-        "anilist": 10681,
-        "mal": 10681
+        "anilist": "10681",
+        "mal": "10681",
+        "simkl": 40931
       },
       "state": {
-        "status": "plantowatch",
+        "status": "completed",
         "progress": 1,
         "score": 0
       },
-      "last_updated": "2026-06-30T11:36:23+00:00",
+      "last_updated": "2026-07-21T18:17:19+00:00",
       "last_synced": {
-        "anilist": "63fc67f631226a8bdf7091da756ae00a",
-        "simkl": "63fc67f631226a8bdf7091da756ae00a"
+        "anilist": "84136cbbe5583f666bd2e7dfa22963d9",
+        "simkl": "84136cbbe5583f666bd2e7dfa22963d9",
+        "mal": "84136cbbe5583f666bd2e7dfa22963d9",
+        "kitsu": "84136cbbe5583f666bd2e7dfa22963d9"
       }
     },
     "mal_11471": {
@@ -11874,8 +12160,9 @@
     },
     "mal_33502": {
       "ids": {
-        "anilist": 21860,
-        "mal": 33502
+        "anilist": "21860",
+        "mal": "33502",
+        "simkl": 595993
       },
       "state": {
         "status": "plantowatch",
@@ -12422,8 +12709,9 @@
     },
     "mal_57466": {
       "ids": {
-        "anilist": 171110,
-        "mal": 57466
+        "anilist": "171110",
+        "mal": "57466",
+        "simkl": 2316218
       },
       "state": {
         "status": "plantowatch",
@@ -12438,8 +12726,9 @@
     },
     "mal_61831": {
       "ids": {
-        "anilist": 194317,
-        "mal": 61831
+        "anilist": "194317",
+        "mal": "61831",
+        "simkl": 2808584
       },
       "state": {
         "status": "plantowatch",
@@ -12454,8 +12743,9 @@
     },
     "mal_62001": {
       "ids": {
-        "anilist": 195600,
-        "mal": 62001
+        "anilist": "195600",
+        "mal": "62001",
+        "simkl": 2832222
       },
       "state": {
         "status": "plantowatch",
@@ -12698,8 +12988,9 @@
     },
     "mal_59983": {
       "ids": {
-        "anilist": 182300,
-        "mal": 59983
+        "anilist": "182300",
+        "mal": "59983",
+        "simkl": 2595998
       },
       "state": {
         "status": "plantowatch",
@@ -12733,8 +13024,9 @@
     },
     "mal_62825": {
       "ids": {
-        "anilist": 200769,
-        "mal": 62825
+        "anilist": "200769",
+        "mal": "62825",
+        "simkl": 2908912
       },
       "state": {
         "status": "plantowatch",
@@ -13486,8 +13778,9 @@
     },
     "mal_62289": {
       "ids": {
-        "anilist": 199408,
-        "mal": 62289
+        "anilist": "199408",
+        "mal": "62289",
+        "simkl": 2863374
       },
       "state": {
         "status": "plantowatch",
@@ -13578,8 +13871,9 @@
     },
     "mal_60347": {
       "ids": {
-        "anilist": 184718,
-        "mal": 60347
+        "anilist": "184718",
+        "mal": "60347",
+        "simkl": 2641942
       },
       "state": {
         "status": "dropped",
@@ -13596,7 +13890,7 @@
       "ids": {
         "anilist": "2043",
         "mal": "2043",
-        "simkl": 1006399
+        "simkl": 40985
       },
       "state": {
         "status": "watching",
@@ -13613,8 +13907,9 @@
     },
     "mal_55809": {
       "ids": {
-        "anilist": 137653,
-        "mal": 55809
+        "anilist": "137653",
+        "mal": "55809",
+        "simkl": 2275520
       },
       "state": {
         "status": "dropped",
@@ -13629,8 +13924,9 @@
     },
     "mal_63433": {
       "ids": {
-        "anilist": 210375,
-        "mal": 63433
+        "anilist": "210375",
+        "mal": "63433",
+        "simkl": 3071770
       },
       "state": {
         "status": "dropped",
