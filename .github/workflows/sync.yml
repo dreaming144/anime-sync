@@ -1,0 +1,48 @@
+name: Universal Anime Sync - Dreamstorm
+
+on:
+  schedule:
+    # every 15 mins = ~96 runs/day = ~300 mins/month, well within free 2000 mins
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # lets you run manually with a button
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Run 4-way sync
+        env:
+          ANILIST_USERNAME: ${{ secrets.ANILIST_USERNAME }}
+          ANILIST_TOKEN: ${{ secrets.ANILIST_TOKEN }}
+          MAL_CLIENT_ID: ${{ secrets.MAL_CLIENT_ID }}
+          MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
+          MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
+          MAL_REFRESH_TOKEN: ${{ secrets.MAL_REFRESH_TOKEN }}
+          KITSU_USERNAME: ${{ secrets.KITSU_USERNAME }}
+          KITSU_EMAIL: ${{ secrets.KITSU_EMAIL }}
+          KITSU_PASSWORD: ${{ secrets.KITSU_PASSWORD }}
+          SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+          SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
+          SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
+        run: python universal_anime_sync_github.py --once
+
+      - name: Save DB back to repo
+        run: |
+          git config user.name "anime-sync-bot"
+          git config user.email "bot@github.com"
+          git add sync_db.json || true
+          git diff --staged --quiet || git commit -m "sync: update DB [skip ci] - $(date -u)"
+          git push || echo "Nothing to push"
