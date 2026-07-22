@@ -8873,8 +8873,8 @@
     },
     "mal_63376": {
       "ids": {
-        "anilist": 206951,
-        "mal": 63376,
+        "anilist": "206951",
+        "mal": "63376",
         "simkl": 3006108
       },
       "state": {
@@ -8897,16 +8897,16 @@
         "simkl": 2837598
       },
       "state": {
-        "status": "completed",
-        "progress": 13,
+        "status": "watching",
+        "progress": 1,
         "score": 0
       },
-      "last_updated": "2026-07-21T18:17:36+00:00",
+      "last_updated": "2026-07-22T12:29:13+00:00",
       "last_synced": {
-        "anilist": "c28e35bb46f3fa3f7a548f7bdb28d295",
-        "simkl": "c28e35bb46f3fa3f7a548f7bdb28d295",
-        "mal": "c28e35bb46f3fa3f7a548f7bdb28d295",
-        "kitsu": "c28e35bb46f3fa3f7a548f7bdb28d295"
+        "anilist": "35381787b3daff04e42f52265bfcab0c",
+        "simkl": "35381787b3daff04e42f52265bfcab0c",
+        "mal": "35381787b3daff04e42f52265bfcab0c",
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
       }
     },
     "mal_62048": {
@@ -8917,15 +8917,15 @@
       },
       "state": {
         "status": "watching",
-        "progress": 16,
+        "progress": 1,
         "score": 0
       },
-      "last_updated": "2026-07-21T18:17:36+00:00",
+      "last_updated": "2026-07-22T12:28:56+00:00",
       "last_synced": {
-        "anilist": "aa372033375b4a5e50b3326685e02d1b",
-        "simkl": "aa372033375b4a5e50b3326685e02d1b",
-        "mal": "aa372033375b4a5e50b3326685e02d1b",
-        "kitsu": "aa372033375b4a5e50b3326685e02d1b"
+        "anilist": "35381787b3daff04e42f52265bfcab0c",
+        "simkl": "35381787b3daff04e42f52265bfcab0c",
+        "mal": "35381787b3daff04e42f52265bfcab0c",
+        "kitsu": "35381787b3daff04e42f52265bfcab0c"
       }
     },
     "mal_34300": {
