@@ -21506,6 +21506,22 @@
       "last_synced": {
         "kitsu": "01903f2b313eb6403ff4da7d03a8890d"
       }
+    },
+    "mal_64359": {
+      "ids": {
+        "simkl": 41422,
+        "mal": "64359",
+        "anilist": "235"
+      },
+      "state": {
+        "status": "plantowatch",
+        "progress": 1,
+        "score": 0
+      },
+      "last_updated": "2026-07-21T07:30:18+00:00",
+      "last_synced": {
+        "simkl": "63fc67f631226a8bdf7091da756ae00a"
+      }
     }
   }
 }
