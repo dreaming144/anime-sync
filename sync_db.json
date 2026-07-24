@@ -8659,13 +8659,15 @@
       },
       "state": {
         "status": "watching",
-        "progress": 2,
+        "progress": 3,
         "score": 0
       },
-      "last_updated": "2026-07-17T15:54:07+00:00",
+      "last_updated": "2026-07-24T10:26:00+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "fa63b1ae147cef2683168c97d84165a4",
+        "simkl": "fa63b1ae147cef2683168c97d84165a4",
+        "mal": "fa63b1ae147cef2683168c97d84165a4",
+        "kitsu": "fa63b1ae147cef2683168c97d84165a4"
       }
     },
     "mal_50399": {
