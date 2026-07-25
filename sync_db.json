@@ -8900,15 +8900,15 @@
       },
       "state": {
         "status": "watching",
-        "progress": 1,
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-22T12:29:13+00:00",
+      "last_updated": "2026-07-24T17:54:00+00:00",
       "last_synced": {
-        "anilist": "35381787b3daff04e42f52265bfcab0c",
-        "simkl": "35381787b3daff04e42f52265bfcab0c",
-        "mal": "35381787b3daff04e42f52265bfcab0c",
-        "kitsu": "35381787b3daff04e42f52265bfcab0c"
+        "anilist": "ee8fa2254483f8607c7f704176a7f6fe",
+        "simkl": "ee8fa2254483f8607c7f704176a7f6fe",
+        "mal": "ee8fa2254483f8607c7f704176a7f6fe",
+        "kitsu": "ee8fa2254483f8607c7f704176a7f6fe"
       }
     },
     "mal_62048": {
