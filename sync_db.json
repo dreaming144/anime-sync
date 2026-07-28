@@ -8615,21 +8615,21 @@
     },
     "mal_62617": {
       "ids": {
-        "anilist": "199748",
-        "mal": "62617",
+        "anilist": 199748,
+        "mal": 62617,
         "simkl": 2893984
       },
       "state": {
         "status": "watching",
-        "progress": 3,
+        "progress": 4,
         "score": 0
       },
-      "last_updated": "2026-07-21T09:03:00+00:00",
+      "last_updated": "2026-07-28T08:01:16+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "mal": "fa63b1ae147cef2683168c97d84165a4",
-        "kitsu": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "205829a55a3fcf2a90c93b820883b099",
+        "mal": "205829a55a3fcf2a90c93b820883b099",
+        "kitsu": "205829a55a3fcf2a90c93b820883b099",
+        "simkl": "205829a55a3fcf2a90c93b820883b099"
       }
     },
     "mal_60522": {
