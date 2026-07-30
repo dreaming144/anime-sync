@@ -6513,15 +6513,15 @@
       },
       "state": {
         "status": "watching",
-        "progress": 3,
+        "progress": 5,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:37:58+00:00",
+      "last_updated": "2026-07-30T15:42:00+00:00",
       "last_synced": {
-        "anilist": "fa63b1ae147cef2683168c97d84165a4",
-        "mal": "fa63b1ae147cef2683168c97d84165a4",
-        "kitsu": "fa63b1ae147cef2683168c97d84165a4",
-        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+        "anilist": "fc59900400b36af5dd987492347b5e57",
+        "mal": "fc59900400b36af5dd987492347b5e57",
+        "kitsu": "fc59900400b36af5dd987492347b5e57",
+        "simkl": "fc59900400b36af5dd987492347b5e57"
       }
     },
     "mal_48997": {
