@@ -6512,16 +6512,16 @@
         "simkl": 1546995
       },
       "state": {
-        "status": "watching",
-        "progress": 5,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-07-30T15:42:00+00:00",
+      "last_updated": "2026-07-30T16:08:48+00:00",
       "last_synced": {
-        "anilist": "fc59900400b36af5dd987492347b5e57",
-        "mal": "fc59900400b36af5dd987492347b5e57",
-        "kitsu": "fc59900400b36af5dd987492347b5e57",
-        "simkl": "fc59900400b36af5dd987492347b5e57"
+        "anilist": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "kitsu": "13678ebd6c64f1e1046bf150f9b1f1a9",
+        "simkl": "13678ebd6c64f1e1046bf150f9b1f1a9"
       }
     },
     "mal_48997": {
