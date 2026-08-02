@@ -21528,6 +21528,22 @@
       "last_synced": {
         "simkl": "63fc67f631226a8bdf7091da756ae00a"
       }
+    },
+    "mal_44406": {
+      "ids": {
+        "simkl": 1815400,
+        "mal": "44406",
+        "anilist": "120220"
+      },
+      "state": {
+        "status": "watching",
+        "progress": 3,
+        "score": 0
+      },
+      "last_updated": "2026-08-02T10:48:43+00:00",
+      "last_synced": {
+        "simkl": "fa63b1ae147cef2683168c97d84165a4"
+      }
     }
   }
 }
