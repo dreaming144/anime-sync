@@ -30046,5860 +30046,246 @@
     }
   },
   "id_cache": {
-    "kitsu_3936": {
-      "kitsu": "3936",
-      "_cached_at": "2026-08-07T21:45:48.206638+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 5114,
-      "anidb": 6107,
-      "tvdb": "85249/1",
-      "anilist": 5114
-    },
-    "kitsu_11614": {
-      "kitsu": "11614",
-      "_cached_at": "2026-08-07T21:45:48.638897+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32281,
-      "anidb": 11829,
-      "anilist": 21519
-    },
-    "kitsu_5646": {
-      "kitsu": "5646",
-      "_cached_at": "2026-08-07T21:45:49.056424+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9253,
-      "anidb": 7729,
-      "tvdb": "244061/1",
-      "anilist": 9253
-    },
-    "kitsu_176": {
-      "kitsu": "176",
-      "_cached_at": "2026-08-07T21:45:49.464641+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 199,
-      "anidb": 112,
-      "anilist": 199
-    },
-    "kitsu_10028": {
-      "kitsu": "10028",
-      "_cached_at": "2026-08-07T21:45:49.881234+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28851,
-      "anidb": 10937,
-      "anilist": 20954
-    },
-    "kitsu_10740": {
-      "kitsu": "10740",
-      "_cached_at": "2026-08-07T21:45:50.331189+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30276,
-      "anidb": 11123,
-      "tvdb": "293088/1",
-      "anilist": 21087
-    },
-    "kitsu_12268": {
-      "kitsu": "12268",
-      "_cached_at": "2026-08-07T21:45:50.742275+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33486,
-      "anidb": 12233,
-      "tvdb": "305074/2",
-      "anilist": 21856
-    },
-    "kitsu_1": {
-      "kitsu": "1",
-      "_cached_at": "2026-08-07T21:45:51.151607+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1,
-      "tvdb": "76885",
-      "anilist": 1,
-      "anidb": 23
-    },
-    "kitsu_142": {
-      "kitsu": "142",
-      "_cached_at": "2026-08-07T21:45:51.563593+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 164,
-      "anidb": 7,
-      "anilist": 164
+    "arm_anidb_7508": {
+      "anidb": 7508,
+      "_cached_at": "2026-08-07T22:09:57.614746+00:00",
+      "_source": "arm"
     },
     "kitsu_7926": {
       "kitsu": "7926",
-      "_cached_at": "2026-08-07T21:45:51.978367+00:00",
+      "_cached_at": "2026-08-07T22:09:57.935136+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/3"
     },
-    "kitsu_3505": {
-      "kitsu": "3505",
-      "_cached_at": "2026-08-07T21:45:52.477853+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4181,
-      "anidb": 5841,
-      "tvdb": "80644/2",
-      "anilist": 4181
+    "arm_kitsu_7926": {
+      "kitsu": 7926,
+      "_cached_at": "2026-08-07T22:09:58.548836+00:00",
+      "_source": "arm"
     },
     "kitsu_7937": {
       "kitsu": "7937",
-      "_cached_at": "2026-08-07T21:45:52.920572+00:00",
+      "_cached_at": "2026-08-07T22:09:58.884405+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/2"
     },
-    "kitsu_12566": {
-      "kitsu": "12566",
-      "_cached_at": "2026-08-07T21:45:53.319745+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34134,
-      "anidb": 12430,
-      "tvdb": "293088/2",
-      "anilist": 97668
-    },
-    "kitsu_7658": {
-      "kitsu": "7658",
-      "_cached_at": "2026-08-07T21:45:53.746259+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11741,
-      "anidb": 8880,
-      "tvdb": "275798/1",
-      "anilist": 11741
-    },
-    "kitsu_8403": {
-      "kitsu": "8403",
-      "_cached_at": "2026-08-07T21:45:54.156461+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 23273,
-      "anidb": 10539,
-      "tvdb": "279830/1",
-      "anilist": 20665
-    },
-    "kitsu_2634": {
-      "kitsu": "2634",
-      "_cached_at": "2026-08-07T21:45:54.567876+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2904,
-      "anidb": 5373,
-      "tvdb": "79525/2",
-      "anilist": 2904
-    },
-    "kitsu_5971": {
-      "kitsu": "5971",
-      "_cached_at": "2026-08-07T21:45:54.982361+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9969,
-      "anidb": 8126,
-      "tvdb": "79895/5",
-      "anilist": 9969
-    },
-    "kitsu_1415": {
-      "kitsu": "1415",
-      "_cached_at": "2026-08-07T21:45:55.436871+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1575,
-      "anidb": 4521,
-      "tvdb": "79525/1",
-      "anilist": 1575
-    },
-    "kitsu_1801": {
-      "kitsu": "1801",
-      "_cached_at": "2026-08-07T21:45:55.830380+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2001,
-      "anidb": 4575,
-      "tvdb": "80096/1",
-      "anilist": 2001
-    },
-    "kitsu_395": {
-      "kitsu": "395",
-      "_cached_at": "2026-08-07T21:45:56.243915+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 431,
-      "anidb": 1218,
-      "anilist": 431
+    "arm_kitsu_7937": {
+      "kitsu": 7937,
+      "_cached_at": "2026-08-07T22:09:59.424327+00:00",
+      "_source": "arm"
     },
     "kitsu_7936": {
       "kitsu": "7936",
-      "_cached_at": "2026-08-07T21:45:56.705715+00:00",
+      "_cached_at": "2026-08-07T22:09:59.768322+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/1"
     },
-    "kitsu_10083": {
-      "kitsu": "10083",
-      "_cached_at": "2026-08-07T21:45:57.104313+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28977,
-      "anidb": 10993,
-      "tvdb": "79895",
-      "anilist": 20996
-    },
-    "kitsu_12325": {
-      "kitsu": "12325",
-      "_cached_at": "2026-08-07T21:45:57.532300+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33674,
-      "anidb": 12276,
-      "anilist": 21875
-    },
-    "kitsu_7253": {
-      "kitsu": "7253",
-      "_cached_at": "2026-08-07T21:45:57.940971+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 15417,
-      "anidb": 9427,
-      "tvdb": "79895/6",
-      "anilist": 15417
-    },
-    "kitsu_7241": {
-      "kitsu": "7241",
-      "_cached_at": "2026-08-07T21:45:58.344748+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 15335,
-      "anidb": 9384,
-      "anilist": 15335
-    },
-    "kitsu_26": {
-      "kitsu": "26",
-      "_cached_at": "2026-08-07T21:45:58.749517+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44,
-      "anidb": 73,
-      "anilist": 44
-    },
-    "kitsu_13273": {
-      "kitsu": "13273",
-      "_cached_at": "2026-08-07T21:45:59.160103+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34599,
-      "anidb": 12681,
-      "tvdb": "326109/1",
-      "anilist": 97986
-    },
-    "kitsu_6028": {
-      "kitsu": "6028",
-      "_cached_at": "2026-08-07T21:45:59.603739+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10087,
-      "anidb": 8160,
-      "tvdb": "275798/1",
-      "anilist": 10087
-    },
-    "kitsu_2039": {
-      "kitsu": "2039",
-      "_cached_at": "2026-08-07T21:45:59.998648+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2251,
-      "anidb": 4897,
-      "tvdb": "80421/1",
-      "anilist": 2251
-    },
-    "kitsu_12553": {
-      "kitsu": "12553",
-      "_cached_at": "2026-08-07T21:46:00.397635+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34096,
-      "anidb": 12419,
-      "tvdb": "79895/8",
-      "anilist": 97889
-    },
-    "kitsu_818": {
-      "kitsu": "818",
-      "_cached_at": "2026-08-07T21:46:00.841619+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 918,
-      "anidb": 3468,
-      "tvdb": "79895",
-      "anilist": 918
-    },
-    "kitsu_11459": {
-      "kitsu": "11459",
-      "_cached_at": "2026-08-07T21:46:01.252661+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31933,
-      "anidb": 11734,
-      "tvdb": "262954",
-      "anilist": 21450
-    },
-    "kitsu_181": {
-      "kitsu": "181",
-      "_cached_at": "2026-08-07T21:46:01.656053+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 205,
-      "anidb": 1543,
-      "tvdb": "79089/1",
-      "anilist": 205
-    },
-    "kitsu_1376": {
-      "kitsu": "1376",
-      "_cached_at": "2026-08-07T21:46:02.151401+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1535,
-      "anidb": 4563,
-      "tvdb": "79481/1",
-      "anilist": 1535
-    },
-    "kitsu_9967": {
-      "kitsu": "9967",
-      "_cached_at": "2026-08-07T21:46:02.549384+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28171,
-      "anidb": 10901,
-      "tvdb": "289909",
-      "anilist": 20923
-    },
-    "kitsu_6062": {
-      "kitsu": "6062",
-      "_cached_at": "2026-08-07T21:46:02.959426+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10165,
-      "anidb": 8168,
-      "tvdb": "240291/1",
-      "anilist": 10165
-    },
-    "kitsu_8147": {
-      "kitsu": "8147",
-      "_cached_at": "2026-08-07T21:46:03.383751+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22535,
-      "anidb": 10272,
-      "tvdb": "279831/1",
-      "anilist": 20623
-    },
-    "kitsu_11612": {
-      "kitsu": "11612",
-      "_cached_at": "2026-08-07T21:46:03.802958+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32282,
-      "anidb": 11828,
-      "tvdb": "289909",
-      "anilist": 21518
-    },
-    "kitsu_11449": {
-      "kitsu": "11449",
-      "_cached_at": "2026-08-07T21:46:04.232787+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31812,
-      "anidb": 11696,
-      "anilist": 21425
-    },
-    "kitsu_12": {
-      "kitsu": "12",
-      "_cached_at": "2026-08-07T21:46:04.633282+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 21,
-      "anidb": 69,
-      "tvdb": "81797",
-      "anilist": 21
-    },
-    "kitsu_7000": {
-      "kitsu": "7000",
-      "_cached_at": "2026-08-07T21:46:05.054246+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 13601,
-      "anidb": 9127,
-      "tvdb": "262090/1",
-      "anilist": 13601
-    },
-    "kitsu_5853": {
-      "kitsu": "5853",
-      "_cached_at": "2026-08-07T21:46:05.473756+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9756,
-      "anidb": 8069,
-      "tvdb": "219181/1",
-      "anilist": 9756
-    },
-    "kitsu_6887": {
-      "kitsu": "6887",
-      "_cached_at": "2026-08-07T21:46:05.887699+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 13125,
-      "anidb": 9002,
-      "tvdb": "262838/1",
-      "anilist": 13125
-    },
-    "kitsu_529": {
-      "kitsu": "529",
-      "_cached_at": "2026-08-07T21:46:06.314224+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 572,
-      "anidb": 275,
-      "anilist": 572
-    },
-    "kitsu_695": {
-      "kitsu": "695",
-      "_cached_at": "2026-08-07T21:46:06.730900+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 777,
-      "anidb": 3296,
-      "anilist": 777
+    "arm_kitsu_7936": {
+      "kitsu": 7936,
+      "_cached_at": "2026-08-07T22:10:00.253619+00:00",
+      "_source": "arm"
     },
     "kitsu_8077": {
       "kitsu": "8077",
-      "_cached_at": "2026-08-07T21:46:07.165299+00:00",
+      "_cached_at": "2026-08-07T22:10:00.531128+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "251085/3"
     },
-    "kitsu_482": {
-      "kitsu": "482",
-      "_cached_at": "2026-08-07T21:46:07.573128+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 523,
-      "anidb": 303,
-      "anilist": 523
-    },
-    "kitsu_13658": {
-      "kitsu": "13658",
-      "_cached_at": "2026-08-07T21:46:07.978168+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35972,
-      "anidb": 13295,
-      "anilist": 99749
-    },
-    "kitsu_23": {
-      "kitsu": "23",
-      "_cached_at": "2026-08-07T21:46:08.377899+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32,
-      "anidb": 202,
-      "anilist": 32
-    },
-    "kitsu_3250": {
-      "kitsu": "3250",
-      "_cached_at": "2026-08-07T21:46:08.801709+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 3784,
-      "anidb": 6171,
-      "anilist": 3784
-    },
-    "kitsu_8671": {
-      "kitsu": "8671",
-      "_cached_at": "2026-08-07T21:46:09.212038+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 25777,
-      "anidb": 10944,
-      "tvdb": "267440/2",
-      "anilist": 20958
-    },
-    "kitsu_7158": {
-      "kitsu": "7158",
-      "_cached_at": "2026-08-07T21:46:09.815066+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14719,
-      "anidb": 9304,
-      "tvdb": "262954/1",
-      "anilist": 14719
-    },
-    "kitsu_7696": {
-      "kitsu": "7696",
-      "_cached_at": "2026-08-07T21:46:10.247595+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 18115,
-      "anidb": 9807,
-      "tvdb": "262094/1",
-      "anilist": 18115
+    "arm_kitsu_8077": {
+      "kitsu": 8077,
+      "_cached_at": "2026-08-07T22:10:01.055082+00:00",
+      "_source": "arm"
     },
     "kitsu_10735": {
       "kitsu": "10735",
-      "_cached_at": "2026-08-07T21:46:10.666684+00:00",
+      "_cached_at": "2026-08-07T22:10:01.378331+00:00",
       "_source": "kitsu_mappings"
-    },
-    "kitsu_7442": {
-      "kitsu": "7442",
-      "_cached_at": "2026-08-07T21:46:11.089390+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 16498,
-      "anidb": 9541,
-      "tvdb": "267440/1",
-      "anilist": 16498
-    },
-    "kitsu_8706": {
-      "kitsu": "8706",
-      "_cached_at": "2026-08-07T21:46:11.531651+00:00",
-      "_source": "kitsu_mappings",
-      "tvdb": "251085/4"
-    },
-    "kitsu_24": {
-      "kitsu": "24",
-      "_cached_at": "2026-08-07T21:46:11.974164+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33,
-      "anidb": 98,
-      "tvdb": "73752/1",
-      "anilist": 33
-    },
-    "kitsu_472": {
-      "kitsu": "472",
-      "_cached_at": "2026-08-07T21:46:12.381652+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 513,
-      "anidb": 331,
-      "anilist": 513
-    },
-    "kitsu_534": {
-      "kitsu": "534",
-      "_cached_at": "2026-08-07T21:46:12.797780+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 578,
-      "anidb": 332,
-      "anilist": 578
-    },
-    "kitsu_11110": {
-      "kitsu": "11110",
-      "_cached_at": "2026-08-07T21:46:13.221791+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31043,
-      "anidb": 11292,
-      "tvdb": "303071/1",
-      "anilist": 21234
-    },
-    "kitsu_471": {
-      "kitsu": "471",
-      "_cached_at": "2026-08-07T21:46:13.616409+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 512,
-      "anidb": 286,
-      "anilist": 512
-    },
-    "kitsu_12633": {
-      "kitsu": "12633",
-      "_cached_at": "2026-08-07T21:46:14.057084+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34577,
-      "anidb": 11646,
-      "tvdb": "284131/2",
-      "anilist": 99539
-    },
-    "kitsu_7880": {
-      "kitsu": "7880",
-      "_cached_at": "2026-08-07T21:46:14.456631+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19815,
-      "anidb": 9998,
-      "tvdb": "278155/1",
-      "anilist": 19815
-    },
-    "kitsu_8699": {
-      "kitsu": "8699",
-      "_cached_at": "2026-08-07T21:46:14.884034+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 23755,
-      "anidb": 10596,
-      "tvdb": "284131/1",
-      "anilist": 20789
-    },
-    "kitsu_1363": {
-      "kitsu": "1363",
-      "_cached_at": "2026-08-07T21:46:15.310947+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1519,
-      "anidb": 4597,
-      "tvdb": "79604/1",
-      "anilist": 1519
-    },
-    "kitsu_100": {
-      "kitsu": "100",
-      "_cached_at": "2026-08-07T21:46:15.717333+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 121,
-      "anidb": 979,
-      "tvdb": "75579/1",
-      "anilist": 121
-    },
-    "kitsu_4696": {
-      "kitsu": "4696",
-      "_cached_at": "2026-08-07T21:46:16.123162+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6746,
-      "anidb": 6671,
-      "tvdb": "133341/1",
-      "anilist": 6746
-    },
-    "kitsu_21": {
-      "kitsu": "21",
-      "_cached_at": "2026-08-07T21:46:16.550923+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30,
-      "anidb": 22,
-      "tvdb": "70350/1",
-      "anilist": 30
-    },
-    "kitsu_7928": {
-      "kitsu": "7928",
-      "_cached_at": "2026-08-07T21:46:16.976339+00:00",
-      "_source": "kitsu_mappings",
-      "tvdb": "71503/1"
-    },
-    "kitsu_540": {
-      "kitsu": "540",
-      "_cached_at": "2026-08-07T21:46:17.384773+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 585,
-      "anidb": 336,
-      "anilist": 585
-    },
-    "kitsu_27": {
-      "kitsu": "27",
-      "_cached_at": "2026-08-07T21:46:17.831546+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 45,
-      "anidb": 90,
-      "tvdb": "70863/1",
-      "anilist": 45
-    },
-    "kitsu_128": {
-      "kitsu": "128",
-      "_cached_at": "2026-08-07T21:46:18.230514+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 150,
-      "anidb": 3186,
-      "tvdb": "78960/1",
-      "anilist": 150
-    },
-    "kitsu_210": {
-      "kitsu": "210",
-      "_cached_at": "2026-08-07T21:46:18.636152+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 235,
-      "anidb": 266,
-      "tvdb": "72454/1",
-      "anilist": 235
-    },
-    "kitsu_244": {
-      "kitsu": "244",
-      "_cached_at": "2026-08-07T21:46:19.045593+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 269,
-      "anidb": 2369,
-      "tvdb": "74796/1",
-      "anilist": 269
-    },
-    "kitsu_245": {
-      "kitsu": "245",
-      "_cached_at": "2026-08-07T21:46:19.458863+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 270,
-      "anidb": 32,
-      "tvdb": "71278/1",
-      "anilist": 270
-    },
-    "kitsu_405": {
-      "kitsu": "405",
-      "_cached_at": "2026-08-07T21:46:19.872137+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 442,
-      "anidb": 1456,
-      "anilist": 442
-    },
-    "kitsu_442": {
-      "kitsu": "442",
-      "_cached_at": "2026-08-07T21:46:20.273428+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 481,
-      "anidb": 2061,
-      "tvdb": "76894/1",
-      "anilist": 481
-    },
-    "kitsu_486": {
-      "kitsu": "486",
-      "_cached_at": "2026-08-07T21:46:20.668348+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 527,
-      "anidb": 230,
-      "tvdb": "76703",
-      "anilist": 527
-    },
-    "kitsu_755": {
-      "kitsu": "755",
-      "_cached_at": "2026-08-07T21:46:21.086139+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 853,
-      "anidb": 4148,
-      "tvdb": "79713/1",
-      "anilist": 853
-    },
-    "kitsu_833": {
-      "kitsu": "833",
-      "_cached_at": "2026-08-07T21:46:21.478146+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 936,
-      "anidb": 3030,
-      "anilist": 936
-    },
-    "kitsu_1555": {
-      "kitsu": "1555",
-      "_cached_at": "2026-08-07T21:46:21.889200+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1735,
-      "anidb": 4880,
-      "tvdb": "79824/1",
-      "anilist": 1735
-    },
-    "kitsu_1644": {
-      "kitsu": "1644",
-      "_cached_at": "2026-08-07T21:46:22.298366+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1827,
-      "anidb": 4403,
-      "tvdb": "80044/1",
-      "anilist": 1827
-    },
-    "kitsu_1824": {
-      "kitsu": "1824",
-      "_cached_at": "2026-08-07T21:46:22.739711+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2025,
-      "anidb": 4906,
-      "tvdb": "80042/1",
-      "anilist": 2025
-    },
-    "kitsu_1941": {
-      "kitsu": "1941",
-      "_cached_at": "2026-08-07T21:46:23.153962+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2144,
-      "anidb": 4421,
-      "anilist": 2144
-    },
-    "kitsu_2706": {
-      "kitsu": "2706",
-      "_cached_at": "2026-08-07T21:46:23.555437+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2993,
-      "anidb": 5273,
-      "tvdb": "81184/1",
-      "anilist": 2993
-    },
-    "kitsu_7753": {
-      "kitsu": "7753",
-      "_cached_at": "2026-08-07T21:46:23.987924+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 3457,
-      "anidb": 5586,
-      "tvdb": "81816/1",
-      "anilist": 3457
-    },
-    "kitsu_3117": {
-      "kitsu": "3117",
-      "_cached_at": "2026-08-07T21:46:24.398934+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 3576,
-      "anidb": 4763,
-      "tvdb": "85329/1",
-      "anilist": 3576
-    },
-    "kitsu_3128": {
-      "kitsu": "3128",
-      "_cached_at": "2026-08-07T21:46:24.830599+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 3588,
-      "anidb": 5610,
-      "tvdb": "81751/1",
-      "anilist": 3588
-    },
-    "kitsu_3725": {
-      "kitsu": "3725",
-      "_cached_at": "2026-08-07T21:46:25.259325+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4654,
-      "anidb": 5975,
-      "tvdb": "83322/1",
-      "anilist": 4654
-    },
-    "kitsu_3840": {
-      "kitsu": "3840",
-      "_cached_at": "2026-08-07T21:46:25.669159+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4898,
-      "anidb": 6048,
-      "tvdb": "83996/1",
-      "anilist": 4898
-    },
-    "kitsu_3871": {
-      "kitsu": "3871",
-      "_cached_at": "2026-08-07T21:46:26.073064+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4975,
-      "anidb": 6088,
-      "tvdb": "83358/1",
-      "anilist": 4975
-    },
-    "kitsu_4354": {
-      "kitsu": "4354",
-      "_cached_at": "2026-08-07T21:46:26.485307+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 5940,
-      "anidb": 6546,
-      "tvdb": "117081/1",
-      "anilist": 5940
-    },
-    "kitsu_4363": {
-      "kitsu": "4363",
-      "_cached_at": "2026-08-07T21:46:26.907758+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 5958,
-      "anidb": 6658,
-      "tvdb": "118101/1",
-      "anilist": 5958
-    },
-    "kitsu_4604": {
-      "kitsu": "4604",
-      "_cached_at": "2026-08-07T21:46:27.352808+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6547,
-      "anidb": 6564,
-      "tvdb": "150471/1",
-      "anilist": 6547
-    },
-    "kitsu_4676": {
-      "kitsu": "4676",
-      "_cached_at": "2026-08-07T21:46:27.747283+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6702,
-      "anidb": 6662,
-      "tvdb": "114801",
-      "anilist": 6702
-    },
-    "kitsu_5187": {
-      "kitsu": "5187",
-      "_cached_at": "2026-08-07T21:46:28.132411+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8074,
-      "anidb": 7382,
-      "tvdb": "171591/1",
-      "anilist": 8074
-    },
-    "kitsu_5507": {
-      "kitsu": "5507",
-      "_cached_at": "2026-08-07T21:46:28.547611+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8841,
-      "anidb": 7674,
-      "tvdb": "220571/1",
-      "anilist": 8841
-    },
-    "kitsu_5605": {
-      "kitsu": "5605",
-      "_cached_at": "2026-08-07T21:46:29.131801+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9107,
-      "anidb": 7891,
-      "tvdb": "76703",
-      "anilist": 9107
-    },
-    "kitsu_5940": {
-      "kitsu": "5940",
-      "_cached_at": "2026-08-07T21:46:29.699231+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9919,
-      "anidb": 8148,
-      "tvdb": "248035/1",
-      "anilist": 9919
-    },
-    "kitsu_7728": {
-      "kitsu": "7728",
-      "_cached_at": "2026-08-07T21:46:30.106335+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10049,
-      "anidb": 8177,
-      "tvdb": "171731/2",
-      "anilist": 10049
-    },
-    "kitsu_6448": {
-      "kitsu": "6448",
-      "_cached_at": "2026-08-07T21:46:30.597681+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11061,
-      "anidb": 8550,
-      "tvdb": "252322/1",
-      "anilist": 11061
-    },
-    "kitsu_6462": {
-      "kitsu": "6462",
-      "_cached_at": "2026-08-07T21:46:30.994688+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11111,
-      "anidb": 8556,
-      "tvdb": "254349/1",
-      "anilist": 11111
-    },
-    "kitsu_6589": {
-      "kitsu": "6589",
-      "_cached_at": "2026-08-07T21:46:31.386323+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11757,
-      "anidb": 8692,
-      "tvdb": "259640/1",
-      "anilist": 11757
-    },
-    "kitsu_6687": {
-      "kitsu": "6687",
-      "_cached_at": "2026-08-07T21:46:31.838671+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 12191,
-      "anidb": 8819,
-      "tvdb": "255904/1",
-      "anilist": 12191
-    },
-    "kitsu_6953": {
-      "kitsu": "6953",
-      "_cached_at": "2026-08-07T21:46:32.261528+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 13391,
-      "anidb": 9088,
-      "anilist": 13391
-    },
-    "kitsu_7113": {
-      "kitsu": "7113",
-      "_cached_at": "2026-08-07T21:46:32.670098+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14345,
-      "anidb": 9249,
-      "tvdb": "262095/1",
-      "anilist": 14345
-    },
-    "kitsu_7125": {
-      "kitsu": "7125",
-      "_cached_at": "2026-08-07T21:46:33.106442+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14467,
-      "anidb": 9043,
-      "tvdb": "261249/1",
-      "anilist": 14467
-    },
-    "kitsu_7129": {
-      "kitsu": "7129",
-      "_cached_at": "2026-08-07T21:46:33.629111+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14513,
-      "anidb": 9268,
-      "tvdb": "262094/1",
-      "anilist": 14513
-    },
-    "kitsu_7182": {
-      "kitsu": "7182",
-      "_cached_at": "2026-08-07T21:46:34.079159+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14921,
-      "anidb": 9328,
-      "tvdb": "267433/1",
-      "anilist": 14921
-    },
-    "kitsu_7602": {
-      "kitsu": "7602",
-      "_cached_at": "2026-08-07T21:46:34.497499+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 17187,
-      "anidb": 9658,
-      "anilist": 17187
-    },
-    "kitsu_7624": {
-      "kitsu": "7624",
-      "_cached_at": "2026-08-07T21:46:34.934293+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 17269,
-      "anidb": 9687,
-      "anilist": 17269
-    },
-    "kitsu_7714": {
-      "kitsu": "7714",
-      "_cached_at": "2026-08-07T21:46:35.359928+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 18153,
-      "anidb": 9518,
-      "tvdb": "272697/1",
-      "anilist": 18153
-    },
-    "kitsu_7712": {
-      "kitsu": "7712",
-      "_cached_at": "2026-08-07T21:46:35.763466+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 18679,
-      "anidb": 9875,
-      "tvdb": "272074/1",
-      "anilist": 18679
-    },
-    "kitsu_7850": {
-      "kitsu": "7850",
-      "_cached_at": "2026-08-07T21:46:36.181803+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19291,
-      "anidb": 9956,
-      "tvdb": "76703",
-      "anilist": 19291
-    },
-    "kitsu_7862": {
-      "kitsu": "7862",
-      "_cached_at": "2026-08-07T21:46:36.583321+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19489,
-      "anidb": 9971,
-      "anilist": 19489
-    },
-    "kitsu_7986": {
-      "kitsu": "7986",
-      "_cached_at": "2026-08-07T21:46:37.000078+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 21339,
-      "anidb": 10066,
-      "tvdb": "262090",
-      "anilist": 20514
-    },
-    "kitsu_8149": {
-      "kitsu": "8149",
-      "_cached_at": "2026-08-07T21:46:37.399175+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 21569,
-      "anidb": 10318,
-      "anilist": 20644
-    },
-    "kitsu_8174": {
-      "kitsu": "8174",
-      "_cached_at": "2026-08-07T21:46:37.806880+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 21881,
-      "anidb": 10376,
-      "tvdb": "259640/2",
-      "anilist": 20594
-    },
-    "kitsu_8256": {
-      "kitsu": "8256",
-      "_cached_at": "2026-08-07T21:46:38.219256+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22097,
-      "anidb": 10392,
-      "anilist": 20609
-    },
-    "kitsu_7882": {
-      "kitsu": "7882",
-      "_cached_at": "2026-08-07T21:46:38.630512+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22297,
-      "anidb": 9977,
-      "tvdb": "278626/1",
-      "anilist": 19603
-    },
-    "kitsu_8271": {
-      "kitsu": "8271",
-      "_cached_at": "2026-08-07T21:46:39.151284+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22319,
-      "anidb": 10401,
-      "tvdb": "281249/1",
-      "anilist": 20605
-    },
-    "kitsu_8297": {
-      "kitsu": "8297",
-      "_cached_at": "2026-08-07T21:46:39.581795+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22729,
-      "anidb": 10445,
-      "tvdb": "279827/1",
-      "anilist": 20632
-    },
-    "kitsu_8313": {
-      "kitsu": "8313",
-      "_cached_at": "2026-08-07T21:46:39.993715+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 23321,
-      "anidb": 10551,
-      "tvdb": "272128/2",
-      "anilist": 20671
-    },
-    "kitsu_8631": {
-      "kitsu": "8631",
-      "_cached_at": "2026-08-07T21:46:40.387606+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 24405,
-      "anidb": 10657,
-      "tvdb": "283934/1",
-      "anilist": 20729
-    },
-    "kitsu_8638": {
-      "kitsu": "8638",
-      "_cached_at": "2026-08-07T21:46:40.775288+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 25519,
-      "anidb": 10750,
-      "tvdb": "284263/1",
-      "anilist": 20800
-    },
-    "kitsu_8684": {
-      "kitsu": "8684",
-      "_cached_at": "2026-08-07T21:46:41.235403+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 25687,
-      "tvdb": "290290",
-      "anilist": 20802
-    },
-    "kitsu_8903": {
-      "kitsu": "8903",
-      "_cached_at": "2026-08-07T21:46:41.666346+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 25805,
-      "anidb": 10966,
-      "anilist": 21266
-    },
-    "kitsu_9962": {
-      "kitsu": "9962",
-      "_cached_at": "2026-08-07T21:46:42.082413+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28121,
-      "anidb": 10894,
-      "tvdb": "289882",
-      "anilist": 20920
-    },
-    "kitsu_10031": {
-      "kitsu": "10031",
-      "_cached_at": "2026-08-07T21:46:42.512712+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28495,
-      "anidb": 10939,
-      "anilist": 21154
-    },
-    "kitsu_10038": {
-      "kitsu": "10038",
-      "_cached_at": "2026-08-07T21:46:42.947189+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28617,
-      "anidb": 10948,
-      "tvdb": "289907",
-      "anilist": 20964
-    },
-    "kitsu_10879": {
-      "kitsu": "10879",
-      "_cached_at": "2026-08-07T21:46:43.357131+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30694,
-      "anidb": 11210,
-      "tvdb": "295068",
-      "anilist": 21175
-    },
-    "kitsu_11114": {
-      "kitsu": "11114",
-      "_cached_at": "2026-08-07T21:46:43.748578+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31050,
-      "anidb": 11169,
-      "anilist": 21231
-    },
-    "kitsu_11209": {
-      "kitsu": "11209",
-      "_cached_at": "2026-08-07T21:46:44.163652+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31240,
-      "anidb": 11370,
-      "tvdb": "305089",
-      "anilist": 21355
-    },
-    "kitsu_11368": {
-      "kitsu": "11368",
-      "_cached_at": "2026-08-07T21:46:44.560234+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31580,
-      "anidb": 11577,
-      "tvdb": "300835/1",
-      "anilist": 21341
-    },
-    "kitsu_11469": {
-      "kitsu": "11469",
-      "_cached_at": "2026-08-07T21:46:44.960294+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31964,
-      "anidb": 11739,
-      "tvdb": "305074/1",
-      "anilist": 21459
-    },
-    "kitsu_11605": {
-      "kitsu": "11605",
-      "_cached_at": "2026-08-07T21:46:45.422699+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32245,
-      "anidb": 11819,
-      "tvdb": "307365/1",
-      "anilist": 21516
-    },
-    "kitsu_11913": {
-      "kitsu": "11913",
-      "_cached_at": "2026-08-07T21:46:45.847743+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32902,
-      "anidb": 11982,
-      "anilist": 21688
-    },
-    "kitsu_13276": {
-      "kitsu": "13276",
-      "_cached_at": "2026-08-07T21:46:46.240651+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34497,
-      "tvdb": "336404/1",
-      "anilist": 97907
-    },
-    "kitsu_13209": {
-      "kitsu": "13209",
-      "_cached_at": "2026-08-07T21:46:46.645595+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34572,
-      "anidb": 12665,
-      "tvdb": "331753/1",
-      "anilist": 97940
-    },
-    "kitsu_13457": {
-      "kitsu": "13457",
-      "_cached_at": "2026-08-07T21:46:47.047329+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35203,
-      "tvdb": "329992/1",
-      "anilist": 98491
-    },
-    "kitsu_13569": {
-      "kitsu": "13569",
-      "_cached_at": "2026-08-07T21:46:47.455691+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35760,
-      "anidb": 13241,
-      "tvdb": "267440/3",
-      "anilist": 99147
-    },
-    "kitsu_13593": {
-      "kitsu": "13593",
-      "_cached_at": "2026-08-07T21:46:47.877782+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35790,
-      "anilist": 99263
-    },
-    "kitsu_13717": {
-      "kitsu": "13717",
-      "_cached_at": "2026-08-07T21:46:48.323854+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36124,
-      "tvdb": "335237/1",
-      "anilist": 99940
-    },
-    "kitsu_40944": {
-      "kitsu": "40944",
-      "_cached_at": "2026-08-07T21:46:48.712439+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36407,
-      "anilist": 100112
-    },
-    "kitsu_14043": {
-      "kitsu": "14043",
-      "_cached_at": "2026-08-07T21:46:49.126866+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 13624,
-      "mal": 36882,
-      "anilist": 100668
-    },
-    "kitsu_41133": {
-      "kitsu": "41133",
-      "_cached_at": "2026-08-07T21:46:49.547762+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37210,
-      "anidb": 13757,
-      "tvdb": "347425/1",
-      "anilist": 101004
-    },
-    "kitsu_40600": {
-      "kitsu": "40600",
-      "_cached_at": "2026-08-07T21:46:49.952844+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37345,
-      "anilist": 101168
-    },
-    "kitsu_40597": {
-      "kitsu": "40597",
-      "_cached_at": "2026-08-07T21:46:50.344573+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37349,
-      "anidb": 13831,
-      "anilist": 101165
-    },
-    "kitsu_42423": {
-      "kitsu": "42423",
-      "_cached_at": "2026-08-07T21:46:50.762793+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37393,
-      "anidb": 13844,
-      "anilist": 101227
-    },
-    "kitsu_41024": {
-      "kitsu": "41024",
-      "_cached_at": "2026-08-07T21:46:51.152617+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37430,
-      "anidb": 13871,
-      "anilist": 101280
-    },
-    "kitsu_42319": {
-      "kitsu": "42319",
-      "_cached_at": "2026-08-07T21:46:51.558481+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37744,
-      "anilist": 101547
-    },
-    "kitsu_41312": {
-      "kitsu": "41312",
-      "_cached_at": "2026-08-07T21:46:52.012582+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37779,
-      "anidb": 14051,
-      "anilist": 101759
-    },
-    "kitsu_41463": {
-      "kitsu": "41463",
-      "_cached_at": "2026-08-07T21:46:52.419427+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14201,
-      "mal": 37984,
-      "anilist": 103632
-    },
-    "kitsu_41370": {
-      "kitsu": "41370",
-      "_cached_at": "2026-08-07T21:46:52.820627+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38000,
-      "anidb": 14107,
-      "anilist": 101922
-    },
-    "kitsu_41982": {
-      "kitsu": "41982",
-      "_cached_at": "2026-08-07T21:46:53.230816+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38524,
-      "anidb": 14444,
-      "anilist": 104578
-    },
-    "kitsu_42043": {
-      "kitsu": "42043",
-      "_cached_at": "2026-08-07T21:46:53.636619+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38790,
-      "anilist": 106479
-    },
-    "kitsu_42310": {
-      "kitsu": "42310",
-      "_cached_at": "2026-08-07T21:46:54.077351+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39196,
-      "anidb": 14660,
-      "anilist": 107693
-    },
-    "kitsu_42241": {
-      "kitsu": "42241",
-      "_cached_at": "2026-08-07T21:46:54.526688+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39468,
-      "anilist": 108268
-    },
-    "kitsu_42222": {
-      "kitsu": "42222",
-      "_cached_at": "2026-08-07T21:46:54.931175+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39523,
-      "anidb": 14750,
-      "anilist": 108388
-    },
-    "kitsu_42323": {
-      "kitsu": "42323",
-      "_cached_at": "2026-08-07T21:46:55.349729+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39535,
-      "anidb": 14758,
-      "anilist": 108465
-    },
-    "kitsu_42204": {
-      "kitsu": "42204",
-      "_cached_at": "2026-08-07T21:46:55.758680+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39576,
-      "anidb": 14782,
-      "anilist": 108623
-    },
-    "kitsu_42422": {
-      "kitsu": "42422",
-      "_cached_at": "2026-08-07T21:46:56.158573+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40028,
-      "anilist": 110277
-    },
-    "kitsu_43004": {
-      "kitsu": "43004",
-      "_cached_at": "2026-08-07T21:46:56.562935+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 15391,
-      "mal": 40221,
-      "anilist": 115230
-    },
-    "kitsu_42531": {
-      "kitsu": "42531",
-      "_cached_at": "2026-08-07T21:46:56.967673+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40357,
-      "anilist": 111322
-    },
-    "kitsu_42628": {
-      "kitsu": "42628",
-      "_cached_at": "2026-08-07T21:46:57.370901+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40586,
-      "anilist": 112608
-    },
-    "kitsu_42635": {
-      "kitsu": "42635",
-      "_cached_at": "2026-08-07T21:46:57.822238+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40594,
-      "anilist": 112649
-    },
-    "kitsu_42765": {
-      "kitsu": "42765",
-      "_cached_at": "2026-08-07T21:46:58.211356+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40748,
-      "anilist": 113415
-    },
-    "kitsu_43273": {
-      "kitsu": "43273",
-      "_cached_at": "2026-08-07T21:46:58.612691+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41312,
-      "anilist": 115740,
-      "anidb": 15400
-    },
-    "kitsu_43613": {
-      "kitsu": "43613",
-      "_cached_at": "2026-08-07T21:46:59.070705+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 117612,
-      "mal": 41710
-    },
-    "kitsu_43301": {
-      "kitsu": "43301",
-      "_cached_at": "2026-08-07T21:46:59.469892+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41899,
-      "anilist": 118375
-    },
-    "kitsu_44297": {
-      "kitsu": "44297",
-      "_cached_at": "2026-08-07T21:46:59.875526+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 43523,
-      "anidb": 15795,
-      "anilist": 125206
-    },
-    "kitsu_44167": {
-      "kitsu": "44167",
-      "_cached_at": "2026-08-07T21:47:00.285639+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 15853,
-      "mal": 44037,
-      "anilist": 126213
-    },
-    "kitsu_43806": {
-      "kitsu": "43806",
-      "_cached_at": "2026-08-07T21:47:00.694718+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44511,
-      "anilist": 127230,
-      "anidb": 15914
-    },
-    "kitsu_43911": {
-      "kitsu": "43911",
-      "_cached_at": "2026-08-07T21:47:01.100417+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44524,
-      "anidb": 15918,
-      "anilist": 127090
-    },
-    "kitsu_44207": {
-      "kitsu": "44207",
-      "_cached_at": "2026-08-07T21:47:01.522515+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 127399,
-      "mal": 44942,
-      "anidb": 15932
-    },
-    "kitsu_44205": {
-      "kitsu": "44205",
-      "_cached_at": "2026-08-07T21:47:01.916950+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 45560,
-      "anilist": 128034
-    },
-    "kitsu_44012": {
-      "kitsu": "44012",
-      "_cached_at": "2026-08-07T21:47:02.333615+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 46569,
-      "anilist": 128893,
-      "anidb": 16012
-    },
-    "kitsu_44024": {
-      "kitsu": "44024",
-      "_cached_at": "2026-08-07T21:47:02.752907+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 46985,
-      "anidb": 16018,
-      "anilist": 129068
-    },
-    "kitsu_44010": {
-      "kitsu": "44010",
-      "_cached_at": "2026-08-07T21:47:03.163607+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47160,
-      "anilist": 129188,
-      "anidb": 16027
-    },
-    "kitsu_44025": {
-      "kitsu": "44025",
-      "_cached_at": "2026-08-07T21:47:03.579296+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16029,
-      "anilist": 129191,
-      "mal": 47161
-    },
-    "kitsu_44186": {
-      "kitsu": "44186",
-      "_cached_at": "2026-08-07T21:47:04.008054+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48239,
-      "anilist": 130166,
-      "anidb": 16069
-    },
-    "kitsu_44187": {
-      "kitsu": "44187",
-      "_cached_at": "2026-08-07T21:47:04.407527+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48415,
-      "anidb": 16100,
-      "anilist": 130586
-    },
-    "kitsu_44289": {
-      "kitsu": "44289",
-      "_cached_at": "2026-08-07T21:47:04.826593+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48549,
-      "anilist": 131518,
-      "anidb": 16164
-    },
-    "kitsu_44240": {
-      "kitsu": "44240",
-      "_cached_at": "2026-08-07T21:47:05.216798+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48583,
-      "anilist": 131681
-    },
-    "kitsu_44423": {
-      "kitsu": "44423",
-      "_cached_at": "2026-08-07T21:47:05.661892+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16262,
-      "anilist": 132474,
-      "mal": 48760
-    },
-    "kitsu_44432": {
-      "kitsu": "44432",
-      "_cached_at": "2026-08-07T21:47:06.088111+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16261,
-      "anilist": 132473,
-      "mal": 48761
-    },
-    "kitsu_44511": {
-      "kitsu": "44511",
-      "_cached_at": "2026-08-07T21:47:06.497444+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 133175,
-      "mal": 48842,
-      "anidb": 16280
-    },
-    "kitsu_44690": {
-      "kitsu": "44690",
-      "_cached_at": "2026-08-07T21:47:06.908621+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49163,
-      "anilist": 135660
-    },
-    "kitsu_44691": {
-      "kitsu": "44691",
-      "_cached_at": "2026-08-07T21:47:07.310876+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49164,
-      "anilist": 135429
-    },
-    "kitsu_44900": {
-      "kitsu": "44900",
-      "_cached_at": "2026-08-07T21:47:07.724250+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 136707,
-      "mal": 49438
-    },
-    "kitsu_45269": {
-      "kitsu": "45269",
-      "_cached_at": "2026-08-07T21:47:08.134507+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139820,
-      "mal": 49979
-    },
-    "kitsu_45398": {
-      "kitsu": "45398",
-      "_cached_at": "2026-08-07T21:47:08.521557+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 140960,
-      "mal": 50265
-    },
-    "kitsu_45788": {
-      "kitsu": "45788",
-      "_cached_at": "2026-08-07T21:47:08.922120+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 144092,
-      "mal": 50854
-    },
-    "kitsu_45813": {
-      "kitsu": "45813",
-      "_cached_at": "2026-08-07T21:47:09.325400+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 144553,
-      "mal": 50932
-    },
-    "kitsu_45857": {
-      "kitsu": "45857",
-      "_cached_at": "2026-08-07T21:47:09.741120+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 145064,
-      "anidb": 17196,
-      "mal": 51009
-    },
-    "kitsu_45884": {
-      "kitsu": "45884",
-      "_cached_at": "2026-08-07T21:47:10.152205+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 145260,
-      "mal": 51064
-    },
-    "kitsu_45950": {
-      "kitsu": "45950",
-      "_cached_at": "2026-08-07T21:47:10.596095+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146065,
-      "mal": 51179
-    },
-    "kitsu_46139": {
-      "kitsu": "46139",
-      "_cached_at": "2026-08-07T21:47:11.006652+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 150075,
-      "mal": 51958
-    },
-    "kitsu_46171": {
-      "kitsu": "46171",
-      "_cached_at": "2026-08-07T21:47:11.394837+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 150695,
-      "mal": 52046
-    },
-    "kitsu_46229": {
-      "kitsu": "46229",
-      "_cached_at": "2026-08-07T21:47:11.799586+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 151801,
-      "mal": 52211
-    },
-    "kitsu_46279": {
-      "kitsu": "46279",
-      "_cached_at": "2026-08-07T21:47:12.439310+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 152802,
-      "mal": 52505,
-      "tvdb": "58943/1"
-    },
-    "kitsu_46309": {
-      "kitsu": "46309",
-      "_cached_at": "2026-08-07T21:47:12.851713+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153339,
-      "mal": 52611
-    },
-    "kitsu_46311": {
-      "kitsu": "46311",
-      "_cached_at": "2026-08-07T21:47:13.278436+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153360,
-      "mal": 52619
-    },
-    "kitsu_46370": {
-      "kitsu": "46370",
-      "_cached_at": "2026-08-07T21:47:13.664836+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153845,
-      "mal": 52830
-    },
-    "kitsu_46456": {
-      "kitsu": "46456",
-      "_cached_at": "2026-08-07T21:47:14.058297+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52969,
-      "anilist": 154391
-    },
-    "kitsu_46600": {
-      "kitsu": "46600",
-      "_cached_at": "2026-08-07T21:47:14.461481+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 155418,
-      "mal": 53263
-    },
-    "kitsu_46676": {
-      "kitsu": "46676",
-      "_cached_at": "2026-08-07T21:47:14.932802+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156067,
-      "mal": 53446
-    },
-    "kitsu_46954": {
-      "kitsu": "46954",
-      "_cached_at": "2026-08-07T21:47:15.351235+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 54112,
-      "anilist": 159831
-    },
-    "kitsu_11942": {
-      "kitsu": "11942",
-      "_cached_at": "2026-08-07T21:47:15.747547+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32951,
-      "anidb": 11995,
-      "tvdb": "318950/1",
-      "anilist": 21700
-    },
-    "kitsu_44982": {
-      "kitsu": "44982",
-      "_cached_at": "2026-08-07T21:47:16.144199+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 137909,
-      "mal": 49612
-    },
-    "kitsu_44115": {
-      "kitsu": "44115",
-      "_cached_at": "2026-08-07T21:47:16.658240+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42826,
-      "anilist": 123802
-    },
-    "kitsu_789": {
-      "kitsu": "789",
-      "_cached_at": "2026-08-07T21:47:17.081497+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 889,
-      "anidb": 3395,
-      "tvdb": "79604/1",
-      "anilist": 889
-    },
-    "kitsu_7622": {
-      "kitsu": "7622",
-      "_cached_at": "2026-08-07T21:47:17.480167+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 17265,
-      "anidb": 9677,
-      "tvdb": "272128/1",
-      "anilist": 17265
-    },
-    "kitsu_7881": {
-      "kitsu": "7881",
-      "_cached_at": "2026-08-07T21:47:17.889459+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 20507,
-      "anidb": 9925,
-      "tvdb": "275610/1",
-      "anilist": 20447
-    },
-    "kitsu_8203": {
-      "kitsu": "8203",
-      "_cached_at": "2026-08-07T21:47:18.291433+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22043,
-      "anidb": 9980,
-      "tvdb": "114801/5",
-      "anilist": 20626
-    },
-    "kitsu_13881": {
-      "kitsu": "13881",
-      "_cached_at": "2026-08-07T21:47:18.714071+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36456,
-      "anidb": 13485,
-      "tvdb": "305074/3",
-      "anilist": 100166
-    },
-    "kitsu_41971": {
-      "kitsu": "41971",
-      "_cached_at": "2026-08-07T21:47:19.114521+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38408,
-      "anilist": 104276
-    },
-    "kitsu_42586": {
-      "kitsu": "42586",
-      "_cached_at": "2026-08-07T21:47:19.525323+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40456,
-      "anidb": 15113,
-      "anilist": 112151
-    },
-    "kitsu_43108": {
-      "kitsu": "43108",
-      "_cached_at": "2026-08-07T21:47:19.916640+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41587,
-      "anidb": 15484,
-      "anilist": 117193
-    },
-    "kitsu_44081": {
-      "kitsu": "44081",
-      "_cached_at": "2026-08-07T21:47:20.314375+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47778,
-      "anilist": 142329,
-      "anidb": 16054
-    },
-    "kitsu_45249": {
-      "kitsu": "45249",
-      "_cached_at": "2026-08-07T21:47:20.713249+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49926,
-      "anidb": 16803,
-      "anilist": 129874
-    },
-    "kitsu_45866": {
-      "kitsu": "45866",
-      "_cached_at": "2026-08-07T21:47:21.098740+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 145139,
-      "mal": 51019
-    },
-    "kitsu_46099": {
-      "kitsu": "46099",
-      "_cached_at": "2026-08-07T21:47:21.525784+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 148465,
-      "mal": 51764
-    },
-    "kitsu_45472": {
-      "kitsu": "45472",
-      "_cached_at": "2026-08-07T21:47:21.932628+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 141352,
-      "mal": 50315
-    },
-    "kitsu_47155": {
-      "kitsu": "47155",
-      "_cached_at": "2026-08-07T21:47:22.373746+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 162291,
-      "mal": 53911
-    },
-    "kitsu_47199": {
-      "kitsu": "47199",
-      "_cached_at": "2026-08-07T21:47:22.778573+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 162893,
-      "mal": 54760
-    },
-    "kitsu_362": {
-      "kitsu": "362",
-      "_cached_at": "2026-08-07T21:47:23.202844+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 395,
-      "anidb": 2400,
-      "tvdb": "78916/2",
-      "anilist": 395
-    },
-    "kitsu_42080": {
-      "kitsu": "42080",
-      "_cached_at": "2026-08-07T21:47:23.618857+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38691,
-      "anilist": 105333
-    },
-    "kitsu_41080": {
-      "kitsu": "41080",
-      "_cached_at": "2026-08-07T21:47:24.035966+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37514,
-      "anidb": 13941,
-      "anilist": 101343
-    },
-    "kitsu_11807": {
-      "kitsu": "11807",
-      "_cached_at": "2026-08-07T21:47:24.441316+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32608,
-      "anidb": 11902,
-      "tvdb": "306845/1",
-      "anilist": 21611
-    },
-    "kitsu_43047": {
-      "kitsu": "43047",
-      "_cached_at": "2026-08-07T21:47:24.838367+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41402,
-      "anilist": 116338
-    },
-    "kitsu_1646": {
-      "kitsu": "1646",
-      "_cached_at": "2026-08-07T21:47:25.258105+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1829,
-      "anidb": 4193,
-      "anilist": 1829
-    },
-    "kitsu_46641": {
-      "kitsu": "46641",
-      "_cached_at": "2026-08-07T21:47:25.699768+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 155783,
-      "mal": 53393
-    },
-    "kitsu_14027": {
-      "kitsu": "14027",
-      "_cached_at": "2026-08-07T21:47:26.100309+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36862,
-      "anilist": 100643
-    },
-    "kitsu_42951": {
-      "kitsu": "42951",
-      "_cached_at": "2026-08-07T21:47:26.534231+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41084,
-      "anilist": 114745
-    },
-    "kitsu_46016": {
-      "kitsu": "46016",
-      "_cached_at": "2026-08-07T21:47:26.941559+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146850,
-      "mal": 51462
-    },
-    "kitsu_47268": {
-      "kitsu": "47268",
-      "_cached_at": "2026-08-07T21:47:27.340600+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163138,
-      "mal": 54851
-    },
-    "kitsu_43703": {
-      "kitsu": "43703",
-      "_cached_at": "2026-08-07T21:47:27.732897+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 43690,
-      "anidb": 15811,
-      "anilist": 125428
-    },
-    "kitsu_45548": {
-      "kitsu": "45548",
-      "_cached_at": "2026-08-07T21:47:28.149117+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 142193,
-      "mal": 50481
-    },
-    "kitsu_45579": {
-      "kitsu": "45579",
-      "_cached_at": "2026-08-07T21:47:28.551829+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 142598,
-      "mal": 50582
-    },
-    "kitsu_13228": {
-      "kitsu": "13228",
-      "_cached_at": "2026-08-07T21:47:28.946462+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35062,
-      "anidb": 12942,
-      "tvdb": "316842/1",
-      "anilist": 98436
-    },
-    "kitsu_41174": {
-      "kitsu": "41174",
-      "_cached_at": "2026-08-07T21:47:29.344344+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37675,
-      "anidb": 14008,
-      "tvdb": "294002/3",
-      "anilist": 101474
-    },
-    "kitsu_10085": {
-      "kitsu": "10085",
-      "_cached_at": "2026-08-07T21:47:29.751013+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28907,
-      "anidb": 10982,
-      "tvdb": "295222/1",
-      "anilist": 20994
-    },
-    "kitsu_46760": {
-      "kitsu": "46760",
-      "_cached_at": "2026-08-07T21:47:30.164523+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 157198,
-      "mal": 53613
-    },
-    "kitsu_422": {
-      "kitsu": "422",
-      "_cached_at": "2026-08-07T21:47:30.568315+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 460,
-      "anidb": 893,
-      "anilist": 460
-    },
-    "kitsu_1315": {
-      "kitsu": "1315",
-      "_cached_at": "2026-08-07T21:47:30.972313+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1469,
-      "anidb": 2908,
-      "tvdb": "72858",
-      "anilist": 1469
-    },
-    "kitsu_9965": {
-      "kitsu": "9965",
-      "_cached_at": "2026-08-07T21:47:31.396860+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 29803,
-      "anidb": 10816,
-      "tvdb": "294002/1",
-      "anilist": 20832
-    },
-    "kitsu_11553": {
-      "kitsu": "11553",
-      "_cached_at": "2026-08-07T21:47:31.794092+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32105,
-      "anidb": 11785,
-      "tvdb": "307061",
-      "anilist": 21499
-    },
-    "kitsu_12272": {
-      "kitsu": "12272",
-      "_cached_at": "2026-08-07T21:47:32.206293+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33489,
-      "anidb": 12235,
-      "tvdb": "318161/1",
-      "anilist": 21858
-    },
-    "kitsu_13994": {
-      "kitsu": "13994",
-      "_cached_at": "2026-08-07T21:47:32.605674+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36510,
-      "anidb": "a13498",
-      "anilist": 100432
-    },
-    "kitsu_40599": {
-      "kitsu": "40599",
-      "_cached_at": "2026-08-07T21:47:33.021483+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37347,
-      "anilist": 101167
-    },
-    "kitsu_41084": {
-      "kitsu": "41084",
-      "_cached_at": "2026-08-07T21:47:33.427595+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37521,
-      "anidb": 13945,
-      "anilist": 101348
-    },
-    "kitsu_41265": {
-      "kitsu": "41265",
-      "_cached_at": "2026-08-07T21:47:33.826557+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14063,
-      "mal": 37806,
-      "anilist": 101597
-    },
-    "kitsu_42022": {
-      "kitsu": "42022",
-      "_cached_at": "2026-08-07T21:47:34.300405+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38793,
-      "anidb": 14526,
-      "anilist": 106509
-    },
-    "kitsu_42623": {
-      "kitsu": "42623",
-      "_cached_at": "2026-08-07T21:47:34.707068+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40542,
-      "anilist": 112625
-    },
-    "kitsu_42865": {
-      "kitsu": "42865",
-      "_cached_at": "2026-08-07T21:47:35.089360+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40730,
-      "anilist": 113260
-    },
-    "kitsu_43612": {
-      "kitsu": "43612",
-      "_cached_at": "2026-08-07T21:47:35.491257+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40960,
-      "anilist": 114302
-    },
-    "kitsu_43014": {
-      "kitsu": "43014",
-      "_cached_at": "2026-08-07T21:47:35.906629+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41094,
-      "anilist": 114121
-    },
-    "kitsu_43367": {
-      "kitsu": "43367",
-      "_cached_at": "2026-08-07T21:47:36.314563+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41380,
-      "anilist": 116242
-    },
-    "kitsu_44121": {
-      "kitsu": "44121",
-      "_cached_at": "2026-08-07T21:47:36.734326+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 119056,
-      "mal": 42072
-    },
-    "kitsu_43521": {
-      "kitsu": "43521",
-      "_cached_at": "2026-08-07T21:47:37.148927+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42192,
-      "anilist": 119683
-    },
-    "kitsu_43222": {
-      "kitsu": "43222",
-      "_cached_at": "2026-08-07T21:47:37.556223+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42205,
-      "anidb": 15596,
-      "anilist": 119675
-    },
-    "kitsu_43607": {
-      "kitsu": "43607",
-      "_cached_at": "2026-08-07T21:47:37.948672+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42429,
-      "anilist": 121176
-    },
-    "kitsu_43709": {
-      "kitsu": "43709",
-      "_cached_at": "2026-08-07T21:47:38.347860+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 43684,
-      "anidb": 14244,
-      "anilist": 118199
-    },
-    "kitsu_43795": {
-      "kitsu": "43795",
-      "_cached_at": "2026-08-07T21:47:38.743470+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44069,
-      "anilist": 126357
-    },
-    "kitsu_44107": {
-      "kitsu": "44107",
-      "_cached_at": "2026-08-07T21:47:39.153790+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 130298,
-      "anidb": 16073,
-      "mal": 48316
-    },
-    "kitsu_44773": {
-      "kitsu": "44773",
-      "_cached_at": "2026-08-07T21:47:39.570031+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 135806,
-      "mal": 49220
-    },
-    "kitsu_44981": {
-      "kitsu": "44981",
-      "_cached_at": "2026-08-07T21:47:39.966796+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 137908,
-      "mal": 49613
-    },
-    "kitsu_45235": {
-      "kitsu": "45235",
-      "_cached_at": "2026-08-07T21:47:40.373266+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139518,
-      "mal": 49889
-    },
-    "kitsu_45512": {
-      "kitsu": "45512",
-      "_cached_at": "2026-08-07T21:47:40.794085+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 141821,
-      "mal": 50392
-    },
-    "kitsu_46259": {
-      "kitsu": "46259",
-      "_cached_at": "2026-08-07T21:47:41.186894+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 50571,
-      "anilist": 141882
-    },
-    "kitsu_45597": {
-      "kitsu": "45597",
-      "_cached_at": "2026-08-07T21:47:41.600662+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 142770,
-      "mal": 50594
-    },
-    "kitsu_45619": {
-      "kitsu": "45619",
-      "_cached_at": "2026-08-07T21:47:41.998646+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 142838,
-      "mal": 50602
-    },
-    "kitsu_46000": {
-      "kitsu": "46000",
-      "_cached_at": "2026-08-07T21:47:42.383495+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146493,
-      "mal": 51297
-    },
-    "kitsu_46059": {
-      "kitsu": "46059",
-      "_cached_at": "2026-08-07T21:47:42.795022+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 51648,
-      "anilist": 147642
-    },
-    "kitsu_46231": {
-      "kitsu": "46231",
-      "_cached_at": "2026-08-07T21:47:43.211846+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 151807,
-      "mal": 52299
-    },
-    "kitsu_46241": {
-      "kitsu": "46241",
-      "_cached_at": "2026-08-07T21:47:43.617799+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52347,
-      "anilist": 151970
-    },
-    "kitsu_46242": {
-      "kitsu": "46242",
-      "_cached_at": "2026-08-07T21:47:44.005298+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 152072,
-      "mal": 52359
-    },
-    "kitsu_46304": {
-      "kitsu": "46304",
-      "_cached_at": "2026-08-07T21:47:44.425387+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 152765,
-      "mal": 52461
-    },
-    "kitsu_46300": {
-      "kitsu": "46300",
-      "_cached_at": "2026-08-07T21:47:44.839603+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153288,
-      "mal": 52588
-    },
-    "kitsu_46320": {
-      "kitsu": "46320",
-      "_cached_at": "2026-08-07T21:47:45.250802+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153518,
-      "mal": 52701
-    },
-    "kitsu_46434": {
-      "kitsu": "46434",
-      "_cached_at": "2026-08-07T21:47:45.656325+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52934,
-      "anilist": 154214
-    },
-    "kitsu_46474": {
-      "kitsu": "46474",
-      "_cached_at": "2026-08-07T21:47:46.074225+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 154587,
-      "mal": 52991
-    },
-    "kitsu_46688": {
-      "kitsu": "46688",
-      "_cached_at": "2026-08-07T21:47:46.483289+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156039,
-      "mal": 53439
-    },
-    "kitsu_46690": {
-      "kitsu": "46690",
-      "_cached_at": "2026-08-07T21:47:46.888787+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156184,
-      "mal": 53494
-    },
-    "kitsu_46704": {
-      "kitsu": "46704",
-      "_cached_at": "2026-08-07T21:47:47.276654+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156415,
-      "mal": 53516
-    },
-    "kitsu_46733": {
-      "kitsu": "46733",
-      "_cached_at": "2026-08-07T21:47:47.687863+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156891,
-      "mal": 53590
-    },
-    "kitsu_46807": {
-      "kitsu": "46807",
-      "_cached_at": "2026-08-07T21:47:48.099072+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158028,
-      "mal": 53730
-    },
-    "kitsu_46875": {
-      "kitsu": "46875",
-      "_cached_at": "2026-08-07T21:47:48.486163+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158931,
-      "mal": 53889
-    },
-    "kitsu_47076": {
-      "kitsu": "47076",
-      "_cached_at": "2026-08-07T21:47:48.897937+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 160900,
-      "mal": 54362
-    },
-    "kitsu_47077": {
-      "kitsu": "47077",
-      "_cached_at": "2026-08-07T21:47:49.299728+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 161364,
-      "mal": 54431
-    },
-    "kitsu_47083": {
-      "kitsu": "47083",
-      "_cached_at": "2026-08-07T21:47:49.734627+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 161645,
-      "mal": 54492
-    },
-    "kitsu_47099": {
-      "kitsu": "47099",
-      "_cached_at": "2026-08-07T21:47:50.188340+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 161964,
-      "mal": 54595
-    },
-    "kitsu_47154": {
-      "kitsu": "47154",
-      "_cached_at": "2026-08-07T21:47:50.600440+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 161992,
-      "mal": 54616
-    },
-    "kitsu_47237": {
-      "kitsu": "47237",
-      "_cached_at": "2026-08-07T21:47:50.996027+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163076,
-      "mal": 54837
-    },
-    "kitsu_47240": {
-      "kitsu": "47240",
-      "_cached_at": "2026-08-07T21:47:51.401649+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 54852,
-      "anilist": 163142
-    },
-    "kitsu_47481": {
-      "kitsu": "47481",
-      "_cached_at": "2026-08-07T21:47:51.829084+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 164702,
-      "mal": 55265
-    },
-    "kitsu_48186": {
-      "kitsu": "48186",
-      "_cached_at": "2026-08-07T21:47:52.284452+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166372,
-      "mal": 55717
-    },
-    "kitsu_47671": {
-      "kitsu": "47671",
-      "_cached_at": "2026-08-07T21:47:52.731892+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166610,
-      "mal": 55813
-    },
-    "kitsu_47813": {
-      "kitsu": "47813",
-      "_cached_at": "2026-08-07T21:47:53.146386+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 56146,
-      "anilist": 167820
-    },
-    "kitsu_47964": {
-      "kitsu": "47964",
-      "_cached_at": "2026-08-07T21:47:53.541482+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 169417,
-      "mal": 56690
-    },
-    "kitsu_48059": {
-      "kitsu": "48059",
-      "_cached_at": "2026-08-07T21:47:53.960447+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 169935,
-      "mal": 56845
-    },
-    "kitsu_48257": {
-      "kitsu": "48257",
-      "_cached_at": "2026-08-07T21:47:54.345189+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 57315,
-      "anilist": 171019
-    },
-    "kitsu_10941": {
-      "kitsu": "10941",
-      "_cached_at": "2026-08-07T21:47:54.801146+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30831,
-      "anidb": 11261,
-      "tvdb": "303867/1",
-      "anilist": 21202
-    },
-    "kitsu_43005": {
-      "kitsu": "43005",
-      "_cached_at": "2026-08-07T21:47:55.194471+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40496,
-      "anidb": 15131,
-      "anilist": 112301
-    },
-    "kitsu_183": {
-      "kitsu": "183",
-      "_cached_at": "2026-08-07T21:47:55.622937+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 207,
-      "anidb": 169,
-      "anilist": 207
-    },
-    "kitsu_11578": {
-      "kitsu": "11578",
-      "_cached_at": "2026-08-07T21:47:56.027152+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32182,
-      "anidb": 11803,
-      "tvdb": "307375/1",
-      "anilist": 21507
-    },
-    "kitsu_41950": {
-      "kitsu": "41950",
-      "_cached_at": "2026-08-07T21:47:56.444686+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38297,
-      "anilist": 104252
-    },
-    "kitsu_42079": {
-      "kitsu": "42079",
-      "_cached_at": "2026-08-07T21:47:56.880150+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38659,
-      "anidb": 14477,
-      "anilist": 105156
-    },
-    "kitsu_43059": {
-      "kitsu": "43059",
-      "_cached_at": "2026-08-07T21:47:57.299143+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14535,
-      "mal": 38830,
-      "anilist": 106319
-    },
-    "kitsu_42131": {
-      "kitsu": "42131",
-      "_cached_at": "2026-08-07T21:47:57.793714+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38909,
-      "anilist": 107420
-    },
-    "kitsu_42268": {
-      "kitsu": "42268",
-      "_cached_at": "2026-08-07T21:47:58.203302+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39199,
-      "anilist": 107672
-    },
-    "kitsu_42198": {
-      "kitsu": "42198",
-      "_cached_at": "2026-08-07T21:47:58.599622+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39587,
-      "anilist": 108632
-    },
-    "kitsu_42525": {
-      "kitsu": "42525",
-      "_cached_at": "2026-08-07T21:47:59.017038+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 111314,
-      "mal": 40333
-    },
-    "kitsu_42627": {
-      "kitsu": "42627",
-      "_cached_at": "2026-08-07T21:47:59.438534+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40571,
-      "anilist": 112609
-    },
-    "kitsu_42638": {
-      "kitsu": "42638",
-      "_cached_at": "2026-08-07T21:47:59.833717+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40595,
-      "anilist": 112667
-    },
-    "kitsu_42900": {
-      "kitsu": "42900",
-      "_cached_at": "2026-08-07T21:48:00.251960+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40906,
-      "anidb": 15321,
-      "anilist": 114099
-    },
-    "kitsu_43089": {
-      "kitsu": "43089",
-      "_cached_at": "2026-08-07T21:48:00.639887+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41488,
-      "anilist": 116741
-    },
-    "kitsu_43268": {
-      "kitsu": "43268",
-      "_cached_at": "2026-08-07T21:48:01.049358+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42340,
-      "anilist": 120608
-    },
-    "kitsu_44174": {
-      "kitsu": "44174",
-      "_cached_at": "2026-08-07T21:48:01.468622+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44203,
-      "anidb": 15875,
-      "anilist": 126546
-    },
-    "kitsu_44064": {
-      "kitsu": "44064",
-      "_cached_at": "2026-08-07T21:48:01.869141+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47391,
-      "anilist": 129386,
-      "anidb": 16038
-    },
-    "kitsu_44393": {
-      "kitsu": "44393",
-      "_cached_at": "2026-08-07T21:48:02.293075+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 129898,
-      "mal": 47790,
-      "anidb": 16055
-    },
-    "kitsu_44580": {
-      "kitsu": "44580",
-      "_cached_at": "2026-08-07T21:48:02.684922+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16325,
-      "mal": 48997,
-      "anilist": 134252
-    },
-    "kitsu_44745": {
-      "kitsu": "44745",
-      "_cached_at": "2026-08-07T21:48:03.106918+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 135643,
-      "mal": 49210
-    },
-    "kitsu_45830": {
-      "kitsu": "45830",
-      "_cached_at": "2026-08-07T21:48:03.491944+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 144677,
-      "mal": 50953
-    },
-    "kitsu_46243": {
-      "kitsu": "46243",
-      "_cached_at": "2026-08-07T21:48:03.891250+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 152137,
-      "mal": 52367
-    },
-    "kitsu_46533": {
-      "kitsu": "46533",
-      "_cached_at": "2026-08-07T21:48:04.300947+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 53150,
-      "anilist": 155015
-    },
-    "kitsu_46644": {
-      "kitsu": "46644",
-      "_cached_at": "2026-08-07T21:48:04.710736+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 155890,
-      "mal": 53407
-    },
-    "kitsu_46764": {
-      "kitsu": "46764",
-      "_cached_at": "2026-08-07T21:48:05.132954+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 157371,
-      "mal": 53626
-    },
-    "kitsu_47197": {
-      "kitsu": "47197",
-      "_cached_at": "2026-08-07T21:48:05.561294+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 162896,
-      "mal": 54724
-    },
-    "kitsu_47236": {
-      "kitsu": "47236",
-      "_cached_at": "2026-08-07T21:48:06.173613+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163077,
-      "mal": 54835
-    },
-    "kitsu_47272": {
-      "kitsu": "47272",
-      "_cached_at": "2026-08-07T21:48:06.602077+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163292,
-      "mal": 54913
-    },
-    "kitsu_47656": {
-      "kitsu": "47656",
-      "_cached_at": "2026-08-07T21:48:07.037618+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 55774,
-      "anilist": 166522
-    },
-    "kitsu_47786": {
-      "kitsu": "47786",
-      "_cached_at": "2026-08-07T21:48:07.478527+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 167419,
-      "mal": 56062
-    },
-    "kitsu_48214": {
-      "kitsu": "48214",
-      "_cached_at": "2026-08-07T21:48:07.883410+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170890,
-      "mal": 57100
-    },
-    "kitsu_48269": {
-      "kitsu": "48269",
-      "_cached_at": "2026-08-07T21:48:08.286441+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171018,
-      "mal": 57334
-    },
-    "kitsu_48390": {
-      "kitsu": "48390",
-      "_cached_at": "2026-08-07T21:48:08.703349+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171031,
-      "mal": 57380
-    },
-    "kitsu_48440": {
-      "kitsu": "48440",
-      "_cached_at": "2026-08-07T21:48:09.102418+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 173584,
-      "mal": 57876
-    },
-    "kitsu_48468": {
-      "kitsu": "48468",
-      "_cached_at": "2026-08-07T21:48:09.507495+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 174043,
-      "mal": 57944
-    },
-    "kitsu_48534": {
-      "kitsu": "48534",
-      "_cached_at": "2026-08-07T21:48:09.911772+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 174576,
-      "mal": 58059
-    },
-    "kitsu_48559": {
-      "kitsu": "48559",
-      "_cached_at": "2026-08-07T21:48:10.449962+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 175019,
-      "mal": 58172
-    },
-    "kitsu_48677": {
-      "kitsu": "48677",
-      "_cached_at": "2026-08-07T21:48:10.852593+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176508,
-      "mal": 58572
-    },
-    "kitsu_48981": {
-      "kitsu": "48981",
-      "_cached_at": "2026-08-07T21:48:11.278174+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178533,
-      "mal": 59145
-    },
-    "kitsu_48202": {
-      "kitsu": "48202",
-      "_cached_at": "2026-08-07T21:48:11.700507+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170695,
-      "mal": 57058
-    },
-    "kitsu_11": {
-      "kitsu": "11",
-      "_cached_at": "2026-08-07T21:48:12.112718+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 20,
-      "anidb": 239,
-      "tvdb": "78857/1",
-      "anilist": 20
-    },
-    "kitsu_29": {
-      "kitsu": "29",
-      "_cached_at": "2026-08-07T21:48:12.507648+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47,
-      "anidb": 28,
-      "anilist": 47
-    },
-    "kitsu_224": {
-      "kitsu": "224",
-      "_cached_at": "2026-08-07T21:48:12.906694+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 249,
-      "anidb": 144,
-      "tvdb": "71361",
-      "anilist": 249
-    },
-    "kitsu_1021": {
-      "kitsu": "1021",
-      "_cached_at": "2026-08-07T21:48:13.442154+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1140,
-      "anidb": 3385,
-      "anilist": 1140
-    },
-    "kitsu_1156": {
-      "kitsu": "1156",
-      "_cached_at": "2026-08-07T21:48:13.866563+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1281,
-      "anidb": 481,
-      "tvdb": "82234/1",
-      "anilist": 1281
-    },
-    "kitsu_6636": {
-      "kitsu": "6636",
-      "_cached_at": "2026-08-07T21:48:14.260051+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11977,
-      "anidb": 8778,
-      "anilist": 11977
-    },
-    "kitsu_6896": {
-      "kitsu": "6896",
-      "_cached_at": "2026-08-07T21:48:14.656580+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 13161,
-      "anidb": 9015,
-      "tvdb": "259649/1",
-      "anilist": 13161
-    },
-    "kitsu_7303": {
-      "kitsu": "7303",
-      "_cached_at": "2026-08-07T21:48:15.096671+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 15751,
-      "anidb": 9393,
-      "tvdb": "264050/1",
-      "anilist": 15751
-    },
-    "kitsu_8640": {
-      "kitsu": "8640",
-      "_cached_at": "2026-08-07T21:48:15.500296+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 24833,
-      "anidb": 10702,
-      "tvdb": "283947/1",
-      "anilist": 20755
-    },
-    "kitsu_10036": {
-      "kitsu": "10036",
-      "_cached_at": "2026-08-07T21:48:15.900085+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28623,
-      "anidb": 10951,
-      "tvdb": "305082/1",
-      "anilist": 21196
-    },
-    "kitsu_11409": {
-      "kitsu": "11409",
-      "_cached_at": "2026-08-07T21:48:16.307341+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31710,
-      "anidb": 11266,
-      "tvdb": "299500/1",
-      "anilist": 21380
-    },
-    "kitsu_11447": {
-      "kitsu": "11447",
-      "_cached_at": "2026-08-07T21:48:16.710973+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31859,
-      "anidb": 11712,
-      "tvdb": "303868/1",
-      "anilist": 21428
-    },
-    "kitsu_11794": {
-      "kitsu": "11794",
-      "_cached_at": "2026-08-07T21:48:17.112922+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32615,
-      "anidb": 11905,
-      "tvdb": "315500",
-      "anilist": 21613
-    },
-    "kitsu_13230": {
-      "kitsu": "13230",
-      "_cached_at": "2026-08-07T21:48:17.527756+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35120,
-      "tvdb": "338192",
-      "anilist": 98460
-    },
-    "kitsu_13689": {
-      "kitsu": "13689",
-      "_cached_at": "2026-08-07T21:48:17.934265+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36028,
-      "tvdb": "338455/1",
-      "anilist": 99699
-    },
-    "kitsu_43907": {
-      "kitsu": "43907",
-      "_cached_at": "2026-08-07T21:48:18.444149+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 45576,
-      "anidb": 15954,
-      "anilist": 127720
-    },
-    "kitsu_44015": {
-      "kitsu": "44015",
-      "_cached_at": "2026-08-07T21:48:18.827931+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47163,
-      "anidb": 16030,
-      "anilist": 129192
-    },
-    "kitsu_44125": {
-      "kitsu": "44125",
-      "_cached_at": "2026-08-07T21:48:19.221562+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16101,
-      "mal": 48417,
-      "anilist": 130588
-    },
-    "kitsu_45222": {
-      "kitsu": "45222",
-      "_cached_at": "2026-08-07T21:48:19.621606+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139369,
-      "mal": 49849
-    },
-    "kitsu_45242": {
-      "kitsu": "45242",
-      "_cached_at": "2026-08-07T21:48:20.028668+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139587,
-      "mal": 49891
-    },
-    "kitsu_45341": {
-      "kitsu": "45341",
-      "_cached_at": "2026-08-07T21:48:20.435113+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 140457,
-      "mal": 50175
-    },
-    "kitsu_46415": {
-      "kitsu": "46415",
-      "_cached_at": "2026-08-07T21:48:20.840291+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 154116,
-      "mal": 52741
-    },
-    "kitsu_48619": {
-      "kitsu": "48619",
-      "_cached_at": "2026-08-07T21:48:21.243375+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176053,
-      "mal": 58445
-    },
-    "kitsu_12584": {
-      "kitsu": "12584",
-      "_cached_at": "2026-08-07T21:48:21.648920+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34161,
-      "anidb": 12439,
-      "anilist": 98873
-    },
-    "kitsu_12722": {
-      "kitsu": "12722",
-      "_cached_at": "2026-08-07T21:48:22.054851+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34338,
-      "anidb": 12523,
-      "anilist": 98073
-    },
-    "kitsu_43302": {
-      "kitsu": "43302",
-      "_cached_at": "2026-08-07T21:48:22.488939+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41265,
-      "anilist": 115183
-    },
-    "kitsu_48391": {
-      "kitsu": "48391",
-      "_cached_at": "2026-08-07T21:48:22.885449+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171038,
-      "mal": 57362
-    },
-    "kitsu_48449": {
-      "kitsu": "48449",
-      "_cached_at": "2026-08-07T21:48:23.287793+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 173693,
-      "mal": 57891
-    },
-    "kitsu_47835": {
-      "kitsu": "47835",
-      "_cached_at": "2026-08-07T21:48:23.730734+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 167991
-    },
-    "kitsu_48979": {
-      "kitsu": "48979",
-      "_cached_at": "2026-08-07T21:48:24.170976+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178434,
-      "mal": 59131
-    },
-    "kitsu_48225": {
-      "kitsu": "48225",
-      "_cached_at": "2026-08-07T21:48:24.608446+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177814,
-      "mal": 59390
-    },
-    "kitsu_42191": {
-      "kitsu": "42191",
-      "_cached_at": "2026-08-07T21:48:25.027255+00:00",
-      "_source": "kitsu_mappings"
-    },
-    "kitsu_47323": {
-      "kitsu": "47323",
-      "_cached_at": "2026-08-07T21:48:25.501384+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 51097,
-      "anilist": 148584
-    },
-    "kitsu_48837": {
-      "kitsu": "48837",
-      "_cached_at": "2026-08-07T21:48:25.908313+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177104,
-      "mal": 58714
-    },
-    "kitsu_42838": {
-      "kitsu": "42838",
-      "_cached_at": "2026-08-07T21:48:26.301290+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40815,
-      "anilist": 113693
-    },
-    "kitsu_43883": {
-      "kitsu": "43883",
-      "_cached_at": "2026-08-07T21:48:26.710175+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44881,
-      "anidb": 15930,
-      "anilist": 127366
-    },
-    "kitsu_45957": {
-      "kitsu": "45957",
-      "_cached_at": "2026-08-07T21:48:27.170890+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146206,
-      "mal": 51215
-    },
-    "kitsu_46729": {
-      "kitsu": "46729",
-      "_cached_at": "2026-08-07T21:48:27.568177+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156822,
-      "mal": 53580
-    },
-    "kitsu_47195": {
-      "kitsu": "47195",
-      "_cached_at": "2026-08-07T21:48:27.956296+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 162803,
-      "mal": 54743
-    },
-    "kitsu_10045": {
-      "kitsu": "10045",
-      "_cached_at": "2026-08-07T21:48:28.363960+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28537,
-      "anidb": 11459,
-      "tvdb": "303145/1",
-      "anilist": 21277
-    },
-    "kitsu_11467": {
-      "kitsu": "11467",
-      "_cached_at": "2026-08-07T21:48:28.767910+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31953,
-      "anidb": 11736,
-      "tvdb": "309532",
-      "anilist": 21455
-    },
-    "kitsu_42277": {
-      "kitsu": "42277",
-      "_cached_at": "2026-08-07T21:48:29.192401+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38555,
-      "anilist": 104647
-    },
-    "kitsu_46081": {
-      "kitsu": "46081",
-      "_cached_at": "2026-08-07T21:48:29.586846+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 114108,
-      "mal": 41915
-    },
-    "kitsu_44503": {
-      "kitsu": "44503",
-      "_cached_at": "2026-08-07T21:48:30.023381+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 126403,
-      "mal": 44074
-    },
-    "kitsu_45420": {
-      "kitsu": "45420",
-      "_cached_at": "2026-08-07T21:48:30.435176+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 141182,
-      "mal": 50306
-    },
-    "kitsu_46214": {
-      "kitsu": "46214",
-      "_cached_at": "2026-08-07T21:48:30.840163+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52215,
-      "anilist": 151514
-    },
-    "kitsu_46274": {
-      "kitsu": "46274",
-      "_cached_at": "2026-08-07T21:48:31.257141+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 152523,
-      "mal": 52446
-    },
-    "kitsu_46454": {
-      "kitsu": "46454",
-      "_cached_at": "2026-08-07T21:48:31.651555+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 154473,
-      "mal": 52995
-    },
-    "kitsu_47375": {
-      "kitsu": "47375",
-      "_cached_at": "2026-08-07T21:48:32.055209+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 55150,
-      "anilist": 164299
-    },
-    "kitsu_47752": {
-      "kitsu": "47752",
-      "_cached_at": "2026-08-07T21:48:32.440055+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 167143,
-      "mal": 55997
-    },
-    "kitsu_48216": {
-      "kitsu": "48216",
-      "_cached_at": "2026-08-07T21:48:32.859625+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170732,
-      "mal": 57066
-    },
-    "kitsu_48620": {
-      "kitsu": "48620",
-      "_cached_at": "2026-08-07T21:48:33.623294+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176063,
-      "mal": 58437
-    },
-    "kitsu_48638": {
-      "kitsu": "48638",
-      "_cached_at": "2026-08-07T21:48:34.039353+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176273,
-      "mal": 58502
-    },
-    "kitsu_48671": {
-      "kitsu": "48671",
-      "_cached_at": "2026-08-07T21:48:34.451366+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176496,
-      "mal": 58567
-    },
-    "kitsu_48842": {
-      "kitsu": "48842",
-      "_cached_at": "2026-08-07T21:48:34.856187+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177506,
-      "mal": 58822
-    },
-    "kitsu_48973": {
-      "kitsu": "48973",
-      "_cached_at": "2026-08-07T21:48:35.256399+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178100,
-      "mal": 59002
-    },
-    "kitsu_49059": {
-      "kitsu": "49059",
-      "_cached_at": "2026-08-07T21:48:35.648230+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178548,
-      "mal": 59144
-    },
-    "kitsu_49065": {
-      "kitsu": "49065",
-      "_cached_at": "2026-08-07T21:48:36.060733+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179689,
-      "mal": 59349
-    },
-    "kitsu_49121": {
-      "kitsu": "49121",
-      "_cached_at": "2026-08-07T21:48:36.450404+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59514,
-      "anilist": 180052
-    },
-    "kitsu_49179": {
-      "kitsu": "49179",
-      "_cached_at": "2026-08-07T21:48:37.013374+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 180812,
-      "mal": 59730
-    },
-    "kitsu_44383": {
-      "kitsu": "44383",
-      "_cached_at": "2026-08-07T21:48:37.409515+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48742,
-      "anilist": 132351
-    },
-    "kitsu_48649": {
-      "kitsu": "48649",
-      "_cached_at": "2026-08-07T21:48:37.807614+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176301,
-      "mal": 58514
-    },
-    "kitsu_48450": {
-      "kitsu": "48450",
-      "_cached_at": "2026-08-07T21:48:38.225080+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 173694,
-      "mal": 57892
-    },
-    "kitsu_47858": {
-      "kitsu": "47858",
-      "_cached_at": "2026-08-07T21:48:38.639824+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 168139,
-      "mal": 56228
-    },
-    "kitsu_48628": {
-      "kitsu": "48628",
-      "_cached_at": "2026-08-07T21:48:39.051921+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176158,
-      "mal": 58473
-    },
-    "kitsu_48971": {
-      "kitsu": "48971",
-      "_cached_at": "2026-08-07T21:48:39.531333+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170916,
-      "mal": 57152
-    },
-    "kitsu_49333": {
-      "kitsu": "49333",
-      "_cached_at": "2026-08-07T21:48:39.925752+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178312
-    },
-    "kitsu_49063": {
-      "kitsu": "49063",
-      "_cached_at": "2026-08-07T21:48:40.329147+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179297,
-      "mal": 59265
-    },
-    "kitsu_49124": {
-      "kitsu": "49124",
-      "_cached_at": "2026-08-07T21:48:40.719079+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 180292,
-      "mal": 59561
-    },
-    "kitsu_14212": {
-      "kitsu": "14212",
-      "_cached_at": "2026-08-07T21:48:41.133544+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37141,
-      "tvdb": "346931/1",
-      "anilist": 100977
-    },
-    "kitsu_4662": {
-      "kitsu": "4662",
-      "_cached_at": "2026-08-07T21:48:41.544929+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6682,
-      "anidb": 6751,
-      "tvdb": "117851/1",
-      "anilist": 6682
-    },
-    "kitsu_3": {
-      "kitsu": "3",
-      "_cached_at": "2026-08-07T21:48:42.111855+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6,
-      "anidb": 53,
-      "tvdb": "77680/1",
-      "anilist": 6
-    },
-    "kitsu_10": {
-      "kitsu": "10",
-      "_cached_at": "2026-08-07T21:48:42.729949+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19,
-      "anidb": 1539,
-      "tvdb": "74599/1",
-      "anilist": 19
-    },
-    "kitsu_162": {
-      "kitsu": "162",
-      "_cached_at": "2026-08-07T21:48:43.286942+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 185,
-      "anidb": 135,
-      "tvdb": "70900/1",
-      "anilist": 185
-    },
-    "kitsu_194": {
-      "kitsu": "194",
-      "_cached_at": "2026-08-07T21:48:43.710603+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 218,
-      "anidb": 180,
-      "tvdb": "71313/1",
-      "anilist": 218
-    },
-    "kitsu_195": {
-      "kitsu": "195",
-      "_cached_at": "2026-08-07T21:48:44.110574+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 219,
-      "anidb": 369,
-      "anilist": 219
-    },
-    "kitsu_201": {
-      "kitsu": "201",
-      "_cached_at": "2026-08-07T21:48:44.514758+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 226,
-      "anidb": 1544,
-      "tvdb": "75941/1",
-      "anilist": 226
-    },
-    "kitsu_207": {
-      "kitsu": "207",
-      "_cached_at": "2026-08-07T21:48:44.913518+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 232,
-      "anidb": 102,
-      "tvdb": "70668/1",
-      "anilist": 232
-    },
-    "kitsu_214": {
-      "kitsu": "214",
-      "_cached_at": "2026-08-07T21:48:45.315559+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 239,
-      "anidb": 1868,
-      "tvdb": "79178/1",
-      "anilist": 239
-    },
-    "kitsu_346": {
-      "kitsu": "346",
-      "_cached_at": "2026-08-07T21:48:45.725719+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 379,
-      "anidb": 25,
-      "tvdb": "72462/1",
-      "anilist": 379
-    },
-    "kitsu_417": {
-      "kitsu": "417",
-      "_cached_at": "2026-08-07T21:48:46.296050+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 455,
-      "anidb": 2387,
-      "tvdb": "79136/1",
-      "anilist": 455
-    },
-    "kitsu_507": {
-      "kitsu": "507",
-      "_cached_at": "2026-08-07T21:48:46.699314+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 550,
-      "anidb": 593,
-      "tvdb": "113561/1",
-      "anilist": 550
-    },
-    "kitsu_521": {
-      "kitsu": "521",
-      "_cached_at": "2026-08-07T21:48:47.097902+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 564,
-      "anidb": 65,
-      "anilist": 564
-    },
-    "kitsu_548": {
-      "kitsu": "548",
-      "_cached_at": "2026-08-07T21:48:47.518932+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 593,
-      "anidb": 192,
-      "tvdb": "72393/1",
-      "anilist": 593
-    },
-    "kitsu_643": {
-      "kitsu": "643",
-      "_cached_at": "2026-08-07T21:48:47.930688+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 709,
-      "anidb": 1122,
-      "tvdb": "84660/1",
-      "anilist": 709
-    },
-    "kitsu_727": {
-      "kitsu": "727",
-      "_cached_at": "2026-08-07T21:48:48.309646+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 820,
-      "anidb": 584,
-      "anilist": 820
-    },
-    "kitsu_785": {
-      "kitsu": "785",
-      "_cached_at": "2026-08-07T21:48:48.705788+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 885,
-      "anidb": 318,
-      "anilist": 885
-    },
-    "kitsu_1547": {
-      "kitsu": "1547",
-      "_cached_at": "2026-08-07T21:48:49.157297+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1726,
-      "anidb": 4776,
-      "tvdb": "80224/1",
-      "anilist": 1726
-    },
-    "kitsu_2696": {
-      "kitsu": "2696",
-      "_cached_at": "2026-08-07T21:48:49.570583+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2981,
-      "anidb": 3619,
-      "anilist": 2981
-    },
-    "kitsu_3470": {
-      "kitsu": "3470",
-      "_cached_at": "2026-08-07T21:48:49.977266+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4106,
-      "anidb": 7208,
-      "anilist": 4106
-    },
-    "kitsu_3835": {
-      "kitsu": "3835",
-      "_cached_at": "2026-08-07T21:48:50.375922+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 4879,
-      "anidb": 6047,
-      "tvdb": "83474/1",
-      "anilist": 4879
-    },
-    "kitsu_4095": {
-      "kitsu": "4095",
-      "_cached_at": "2026-08-07T21:48:50.792659+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 5420,
-      "anidb": 6187,
-      "tvdb": "88911/1",
-      "anilist": 5420
-    },
-    "kitsu_4617": {
-      "kitsu": "4617",
-      "_cached_at": "2026-08-07T21:48:51.238647+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6573,
-      "anidb": 6644,
-      "tvdb": "80042/2",
-      "anilist": 6573
-    },
-    "kitsu_4804": {
-      "kitsu": "4804",
-      "_cached_at": "2026-08-07T21:48:51.675369+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6954,
-      "anilist": 6954
-    },
-    "kitsu_5090": {
-      "kitsu": "5090",
-      "_cached_at": "2026-08-07T21:48:52.287744+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 7711,
-      "anidb": 7258,
-      "anilist": 7711
-    },
-    "kitsu_5497": {
-      "kitsu": "5497",
-      "_cached_at": "2026-08-07T21:48:52.834155+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8795,
-      "anidb": 7529,
-      "tvdb": "188551/1",
-      "anilist": 8795
-    },
-    "kitsu_6203": {
-      "kitsu": "6203",
-      "_cached_at": "2026-08-07T21:48:53.248213+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10490,
-      "anidb": 8348,
-      "tvdb": "249864/1",
-      "anilist": 10490
-    },
-    "kitsu_6288": {
-      "kitsu": "6288",
-      "_cached_at": "2026-08-07T21:48:53.757059+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10681,
-      "anidb": 8375,
-      "anilist": 10681
-    },
-    "kitsu_6516": {
-      "kitsu": "6516",
-      "_cached_at": "2026-08-07T21:48:54.157089+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11471,
-      "anidb": 8770,
-      "anilist": 11471
-    },
-    "kitsu_7167": {
-      "kitsu": "7167",
-      "_cached_at": "2026-08-07T21:48:54.571943+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 14807,
-      "anidb": 9309,
-      "anilist": 14807
-    },
-    "kitsu_7914": {
-      "kitsu": "7914",
-      "_cached_at": "2026-08-07T21:48:54.977785+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 20021,
-      "anidb": 10022,
-      "anilist": 20021
-    },
-    "kitsu_8091": {
-      "kitsu": "8091",
-      "_cached_at": "2026-08-07T21:48:55.378799+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 21167,
-      "anidb": 10241,
-      "tvdb": "278151/1",
-      "anilist": 20506
-    },
-    "kitsu_8305": {
-      "kitsu": "8305",
-      "_cached_at": "2026-08-07T21:48:55.799579+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 22763,
-      "anidb": 10566,
-      "anilist": 20697
-    },
-    "kitsu_8736": {
-      "kitsu": "8736",
-      "_cached_at": "2026-08-07T21:48:56.223959+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 26243,
-      "anidb": 10813,
-      "tvdb": "289906",
-      "anilist": 20829
-    },
-    "kitsu_9135": {
-      "kitsu": "9135",
-      "_cached_at": "2026-08-07T21:48:56.619199+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 27899,
-      "anidb": 10875,
-      "tvdb": "281249/2",
-      "anilist": 20850
-    },
-    "kitsu_10092": {
-      "kitsu": "10092",
-      "_cached_at": "2026-08-07T21:48:57.095446+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28771,
-      "anidb": 10963,
-      "anilist": 21265
-    },
-    "kitsu_10082": {
-      "kitsu": "10082",
-      "_cached_at": "2026-08-07T21:48:57.505672+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 28927,
-      "anidb": 10984,
-      "tvdb": "289906/1",
-      "anilist": 20993
-    },
-    "kitsu_10789": {
-      "kitsu": "10789",
-      "_cached_at": "2026-08-07T21:48:57.906421+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30458,
-      "anidb": 11268,
-      "anilist": 21132
-    },
-    "kitsu_10877": {
-      "kitsu": "10877",
-      "_cached_at": "2026-08-07T21:48:58.311088+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 30654,
-      "anidb": 11203,
-      "tvdb": "283947",
-      "anilist": 21170
-    },
-    "kitsu_11342": {
-      "kitsu": "11342",
-      "_cached_at": "2026-08-07T21:48:58.861422+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31378,
-      "anidb": 11809,
-      "anilist": 21586
-    },
-    "kitsu_11752": {
-      "kitsu": "11752",
-      "_cached_at": "2026-08-07T21:48:59.274422+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32380,
-      "anidb": 11854,
-      "anilist": 21574
-    },
-    "kitsu_11937": {
-      "kitsu": "11937",
-      "_cached_at": "2026-08-07T21:48:59.676768+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32937,
-      "anidb": 11992,
-      "tvdb": "303867/2",
-      "anilist": 21699
-    },
-    "kitsu_11957": {
-      "kitsu": "11957",
-      "_cached_at": "2026-08-07T21:49:00.140130+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 32998,
-      "anidb": 12014,
-      "tvdb": "309530/1",
-      "anilist": 21711
-    },
-    "kitsu_12115": {
-      "kitsu": "12115",
-      "_cached_at": "2026-08-07T21:49:00.589877+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33253,
-      "anidb": 12111,
-      "tvdb": "300835/2",
-      "anilist": 21799
-    },
-    "kitsu_12769": {
-      "kitsu": "12769",
-      "_cached_at": "2026-08-07T21:49:00.991602+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33502,
-      "anidb": 12238,
-      "tvdb": "325208/1",
-      "anilist": 21860
-    },
-    "kitsu_12502": {
-      "kitsu": "12502",
-      "_cached_at": "2026-08-07T21:49:01.422494+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33520,
-      "anilist": 98663
-    },
-    "kitsu_12535": {
-      "kitsu": "12535",
-      "_cached_at": "2026-08-07T21:49:01.846285+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34012,
-      "anidb": 12385,
-      "tvdb": "329820/1",
-      "anilist": 97617
-    },
-    "kitsu_12767": {
-      "kitsu": "12767",
-      "_cached_at": "2026-08-07T21:49:02.266733+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34437,
-      "anidb": 12566,
-      "tvdb": "79525/3",
-      "anilist": 97880
-    },
-    "kitsu_13136": {
-      "kitsu": "13136",
-      "_cached_at": "2026-08-07T21:49:02.658827+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34626,
-      "anilist": 97996
-    },
-    "kitsu_13563": {
-      "kitsu": "13563",
-      "_cached_at": "2026-08-07T21:49:03.070441+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35737,
-      "anilist": 99088
-    },
-    "kitsu_13581": {
-      "kitsu": "13581",
-      "_cached_at": "2026-08-07T21:49:03.479944+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35788,
-      "anilist": 99255
-    },
-    "kitsu_13612": {
-      "kitsu": "13612",
-      "_cached_at": "2026-08-07T21:49:03.887321+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35851,
-      "anidb": 13262,
-      "anilist": 99457
-    },
-    "kitsu_13929": {
-      "kitsu": "13929",
-      "_cached_at": "2026-08-07T21:49:04.330686+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 13499,
-      "mal": 36511,
-      "tvdb": "281249/3",
-      "anilist": 100240
-    },
-    "kitsu_41761": {
-      "kitsu": "41761",
-      "_cached_at": "2026-08-07T21:49:04.750061+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37262,
-      "anilist": 107864
-    },
-    "kitsu_41083": {
-      "kitsu": "41083",
-      "_cached_at": "2026-08-07T21:49:05.153836+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37520,
-      "anidb": "a13946",
-      "anilist": 101347
-    },
-    "kitsu_41359": {
-      "kitsu": "41359",
-      "_cached_at": "2026-08-07T21:49:05.544212+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14059,
-      "mal": 37799,
-      "anilist": 102351
-    },
-    "kitsu_41442": {
-      "kitsu": "41442",
-      "_cached_at": "2026-08-07T21:49:05.952687+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37989,
-      "anilist": 102977
-    },
-    "kitsu_41440": {
-      "kitsu": "41440",
-      "_cached_at": "2026-08-07T21:49:06.351283+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38040,
-      "anidb": 13310,
-      "anilist": 102976
-    },
-    "kitsu_42068": {
-      "kitsu": "42068",
-      "_cached_at": "2026-08-07T21:49:06.761731+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14488,
-      "mal": 38671,
-      "anilist": 105310
-    },
-    "kitsu_46176": {
-      "kitsu": "46176",
-      "_cached_at": "2026-08-07T21:49:07.208699+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 150654,
-      "mal": 38903
-    },
-    "kitsu_42148": {
-      "kitsu": "42148",
-      "_cached_at": "2026-08-07T21:49:07.625752+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39198,
-      "anilist": 107663
-    },
-    "kitsu_42892": {
-      "kitsu": "42892",
-      "_cached_at": "2026-08-07T21:49:08.035514+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14690,
-      "mal": 39292,
-      "anilist": 107871
-    },
-    "kitsu_42196": {
-      "kitsu": "42196",
-      "_cached_at": "2026-08-07T21:49:08.431899+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39551,
-      "anilist": 108511
-    },
-    "kitsu_42263": {
-      "kitsu": "42263",
-      "_cached_at": "2026-08-07T21:49:08.836842+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39701,
-      "anilist": 108928
-    },
-    "kitsu_42390": {
-      "kitsu": "42390",
-      "_cached_at": "2026-08-07T21:49:09.230963+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39940,
-      "anidb": 14951,
-      "anilist": 109963
-    },
-    "kitsu_42611": {
-      "kitsu": "42611",
-      "_cached_at": "2026-08-07T21:49:09.638530+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40507,
-      "anilist": 112323
-    },
-    "kitsu_42921": {
-      "kitsu": "42921",
-      "_cached_at": "2026-08-07T21:49:10.065406+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40902,
-      "anilist": 114043
-    },
-    "kitsu_42909": {
-      "kitsu": "42909",
-      "_cached_at": "2026-08-07T21:49:10.485118+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40956,
-      "anilist": 114236
-    },
-    "kitsu_42957": {
-      "kitsu": "42957",
-      "_cached_at": "2026-08-07T21:49:10.918419+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41109,
-      "anidb": 15363,
-      "anilist": 114862
-    },
-    "kitsu_43067": {
-      "kitsu": "43067",
-      "_cached_at": "2026-08-07T21:49:11.317276+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41433,
-      "anidb": 15437,
-      "anilist": 116566
-    },
-    "kitsu_43458": {
-      "kitsu": "43458",
-      "_cached_at": "2026-08-07T21:49:11.856409+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41491,
-      "anilist": 116752
-    },
-    "kitsu_43086": {
-      "kitsu": "43086",
-      "_cached_at": "2026-08-07T21:49:12.258424+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41514,
-      "anidb": 15464,
-      "anilist": 116867
-    },
-    "kitsu_43118": {
-      "kitsu": "43118",
-      "_cached_at": "2026-08-07T21:49:12.663089+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41623,
-      "anilist": 117448
-    },
-    "kitsu_43600": {
-      "kitsu": "43600",
-      "_cached_at": "2026-08-07T21:49:13.081292+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 42670,
-      "anidb": 15690,
-      "anilist": 122808
-    },
-    "kitsu_43861": {
-      "kitsu": "43861",
-      "_cached_at": "2026-08-07T21:49:13.484487+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 126791,
-      "mal": 44276
-    },
-    "kitsu_43933": {
-      "kitsu": "43933",
-      "_cached_at": "2026-08-07T21:49:13.879441+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 128546,
-      "anidb": 15988,
-      "mal": 46095
-    },
-    "kitsu_43932": {
-      "kitsu": "43932",
-      "_cached_at": "2026-08-07T21:49:14.323291+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 46102,
-      "anidb": 15989,
-      "anilist": 128547
-    },
-    "kitsu_44032": {
-      "kitsu": "44032",
-      "_cached_at": "2026-08-07T21:49:14.731490+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 129201,
-      "anidb": 16033,
-      "mal": 47194
-    },
-    "kitsu_44102": {
-      "kitsu": "44102",
-      "_cached_at": "2026-08-07T21:49:15.129705+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47591,
-      "anilist": 129801
-    },
-    "kitsu_44185": {
-      "kitsu": "44185",
-      "_cached_at": "2026-08-07T21:49:15.523966+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 131083,
-      "mal": 48483
-    },
-    "kitsu_44294": {
-      "kitsu": "44294",
-      "_cached_at": "2026-08-07T21:49:15.926967+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 48661,
-      "anilist": 131942
-    },
-    "kitsu_44665": {
-      "kitsu": "44665",
-      "_cached_at": "2026-08-07T21:49:16.342430+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 16364,
-      "anilist": 135102,
-      "mal": 49109
-    },
-    "kitsu_44911": {
-      "kitsu": "44911",
-      "_cached_at": "2026-08-07T21:49:16.747162+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 136804,
-      "mal": 49458
-    },
-    "kitsu_46643": {
-      "kitsu": "46643",
-      "_cached_at": "2026-08-07T21:49:17.154601+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49573,
-      "anilist": 137663
-    },
-    "kitsu_44988": {
-      "kitsu": "44988",
-      "_cached_at": "2026-08-07T21:49:17.556255+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 138056,
-      "mal": 49618
-    },
-    "kitsu_45151": {
-      "kitsu": "45151",
-      "_cached_at": "2026-08-07T21:49:17.975769+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49778,
-      "anilist": 143598
-    },
-    "kitsu_48233": {
-      "kitsu": "48233",
-      "_cached_at": "2026-08-07T21:49:18.381142+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 49818,
-      "anilist": 137667
-    },
-    "kitsu_45240": {
-      "kitsu": "45240",
-      "_cached_at": "2026-08-07T21:49:18.785546+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139630,
-      "mal": 49918
-    },
-    "kitsu_45333": {
-      "kitsu": "45333",
-      "_cached_at": "2026-08-07T21:49:19.170044+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 50159,
-      "anilist": 140337
-    },
-    "kitsu_45401": {
-      "kitsu": "45401",
-      "_cached_at": "2026-08-07T21:49:19.568743+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 141014,
-      "mal": 50273
-    },
-    "kitsu_45524": {
-      "kitsu": "45524",
-      "_cached_at": "2026-08-07T21:49:19.983778+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 50404,
-      "anilist": 141852
-    },
-    "kitsu_45616": {
-      "kitsu": "45616",
-      "_cached_at": "2026-08-07T21:49:20.379259+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 142877,
-      "mal": 50613
-    },
-    "kitsu_45653": {
-      "kitsu": "45653",
-      "_cached_at": "2026-08-07T21:49:20.824258+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 143080,
-      "mal": 50653
-    },
-    "kitsu_45657": {
-      "kitsu": "45657",
-      "_cached_at": "2026-08-07T21:49:21.217879+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 143085,
-      "mal": 50664
-    },
-    "kitsu_45717": {
-      "kitsu": "45717",
-      "_cached_at": "2026-08-07T21:49:21.634590+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 143337,
-      "mal": 50738
-    },
-    "kitsu_46270": {
-      "kitsu": "46270",
-      "_cached_at": "2026-08-07T21:49:22.052616+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 51128,
-      "anilist": 145815
-    },
-    "kitsu_46033": {
-      "kitsu": "46033",
-      "_cached_at": "2026-08-07T21:49:22.476542+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146954,
-      "mal": 51495
-    },
-    "kitsu_46038": {
-      "kitsu": "46038",
-      "_cached_at": "2026-08-07T21:49:22.878373+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 146984,
-      "mal": 51535
-    },
-    "kitsu_46043": {
-      "kitsu": "46043",
-      "_cached_at": "2026-08-07T21:49:23.259406+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 147105,
-      "mal": 51553
-    },
-    "kitsu_46057": {
-      "kitsu": "46057",
-      "_cached_at": "2026-08-07T21:49:23.676646+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 147571,
-      "mal": 51632
-    },
-    "kitsu_46119": {
-      "kitsu": "46119",
-      "_cached_at": "2026-08-07T21:49:24.070281+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 149118,
-      "mal": 51818
-    },
-    "kitsu_46170": {
-      "kitsu": "46170",
-      "_cached_at": "2026-08-07T21:49:24.460096+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 150672,
-      "mal": 52034
-    },
-    "kitsu_46209": {
-      "kitsu": "46209",
-      "_cached_at": "2026-08-07T21:49:24.865779+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 17471,
-      "anilist": 151189,
-      "mal": 52092
-    },
-    "kitsu_46183": {
-      "kitsu": "46183",
-      "_cached_at": "2026-08-07T21:49:25.270609+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52093,
-      "anilist": 151040
-    },
-    "kitsu_46210": {
-      "kitsu": "46210",
-      "_cached_at": "2026-08-07T21:49:25.674252+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 151379,
-      "mal": 52193,
-      "tvdb": "421676/1"
-    },
-    "kitsu_46227": {
-      "kitsu": "46227",
-      "_cached_at": "2026-08-07T21:49:26.077256+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 151799,
-      "mal": 52293
-    },
-    "kitsu_46648": {
-      "kitsu": "46648",
-      "_cached_at": "2026-08-07T21:49:26.489370+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 155838,
-      "mal": 53397
-    },
-    "kitsu_48349": {
-      "kitsu": "48349",
-      "_cached_at": "2026-08-07T21:49:26.891490+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156110,
-      "mal": 53450
-    },
-    "kitsu_46686": {
-      "kitsu": "46686",
-      "_cached_at": "2026-08-07T21:49:27.298344+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 156131,
-      "mal": 53488
-    },
-    "kitsu_46840": {
-      "kitsu": "46840",
-      "_cached_at": "2026-08-07T21:49:27.693756+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158417,
-      "mal": 53770
-    },
-    "kitsu_46842": {
-      "kitsu": "46842",
-      "_cached_at": "2026-08-07T21:49:28.110680+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158559,
-      "mal": 53802
-    },
-    "kitsu_46873": {
-      "kitsu": "46873",
-      "_cached_at": "2026-08-07T21:49:28.505568+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158927,
-      "mal": 53887
-    },
-    "kitsu_47232": {
-      "kitsu": "47232",
-      "_cached_at": "2026-08-07T21:49:28.926242+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163139,
-      "mal": 54789
-    },
-    "kitsu_47226": {
-      "kitsu": "47226",
-      "_cached_at": "2026-08-07T21:49:29.314790+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 162983,
-      "mal": 54790
-    },
-    "kitsu_47243": {
-      "kitsu": "47243",
-      "_cached_at": "2026-08-07T21:49:29.728242+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 163144,
-      "mal": 54863
-    },
-    "kitsu_47634": {
-      "kitsu": "47634",
-      "_cached_at": "2026-08-07T21:49:30.134212+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166216,
-      "mal": 55690
-    },
-    "kitsu_47635": {
-      "kitsu": "47635",
-      "_cached_at": "2026-08-07T21:49:30.548878+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166240,
-      "mal": 55701
-    },
-    "kitsu_47659": {
-      "kitsu": "47659",
-      "_cached_at": "2026-08-07T21:49:30.956901+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166531,
-      "mal": 55791
-    },
-    "kitsu_48036": {
-      "kitsu": "48036",
-      "_cached_at": "2026-08-07T21:49:31.444562+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 137653,
-      "mal": 55809
-    },
-    "kitsu_47679": {
-      "kitsu": "47679",
-      "_cached_at": "2026-08-07T21:49:31.851775+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166613,
-      "mal": 55825
-    },
-    "kitsu_47694": {
-      "kitsu": "47694",
-      "_cached_at": "2026-08-07T21:49:32.257730+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166873,
-      "mal": 55888
-    },
-    "kitsu_47778": {
-      "kitsu": "47778",
-      "_cached_at": "2026-08-07T21:49:32.653963+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 56038,
-      "anilist": 167336
-    },
-    "kitsu_47891": {
-      "kitsu": "47891",
-      "_cached_at": "2026-08-07T21:49:33.096875+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 56242,
-      "anilist": 168194
-    },
-    "kitsu_47872": {
-      "kitsu": "47872",
-      "_cached_at": "2026-08-07T21:49:33.507898+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 168345,
-      "mal": 56348
-    },
-    "kitsu_47881": {
-      "kitsu": "47881",
-      "_cached_at": "2026-08-07T21:49:33.946223+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 168500,
-      "mal": 56400
-    },
-    "kitsu_47968": {
-      "kitsu": "47968",
-      "_cached_at": "2026-08-07T21:49:34.371334+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 169440,
-      "mal": 56700
-    },
-    "kitsu_43855": {
-      "kitsu": "43855",
-      "_cached_at": "2026-08-07T21:49:34.791272+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 56835,
-      "anidb": 15910,
-      "anilist": 126830
-    },
-    "kitsu_48058": {
-      "kitsu": "48058",
-      "_cached_at": "2026-08-07T21:49:35.191246+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 169969,
-      "mal": 56854
-    },
-    "kitsu_48108": {
-      "kitsu": "48108",
-      "_cached_at": "2026-08-07T21:49:35.599363+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170083,
-      "mal": 56894
-    },
-    "kitsu_48125": {
-      "kitsu": "48125",
-      "_cached_at": "2026-08-07T21:49:35.989919+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170130,
-      "mal": 56923
-    },
-    "kitsu_48190": {
-      "kitsu": "48190",
-      "_cached_at": "2026-08-07T21:49:36.428650+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170577,
-      "mal": 57025
-    },
-    "kitsu_48323": {
-      "kitsu": "48323",
-      "_cached_at": "2026-08-07T21:49:36.847591+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171627,
-      "mal": 57555
-    },
-    "kitsu_48361": {
-      "kitsu": "48361",
-      "_cached_at": "2026-08-07T21:49:37.277468+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 172439,
-      "mal": 57648
-    },
-    "kitsu_49502": {
-      "kitsu": "49502",
-      "_cached_at": "2026-08-07T21:49:37.683089+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 57827,
-      "anilist": 173333
-    },
-    "kitsu_48448": {
-      "kitsu": "48448",
-      "_cached_at": "2026-08-07T21:49:38.093641+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 173692,
-      "mal": 57888
-    },
-    "kitsu_48476": {
-      "kitsu": "48476",
-      "_cached_at": "2026-08-07T21:49:38.493202+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 174188,
-      "mal": 57969
-    },
-    "kitsu_48535": {
-      "kitsu": "48535",
-      "_cached_at": "2026-08-07T21:49:38.958606+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 174654,
-      "mal": 58082
-    },
-    "kitsu_48564": {
-      "kitsu": "48564",
-      "_cached_at": "2026-08-07T21:49:39.366922+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 175124,
-      "mal": 58197
-    },
-    "kitsu_48570": {
-      "kitsu": "48570",
-      "_cached_at": "2026-08-07T21:49:39.780917+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 58216,
-      "anilist": 175198
-    },
-    "kitsu_48606": {
-      "kitsu": "48606",
-      "_cached_at": "2026-08-07T21:49:40.218813+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 175872,
-      "mal": 58359
-    },
-    "kitsu_48690": {
-      "kitsu": "48690",
-      "_cached_at": "2026-08-07T21:49:40.637250+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176660,
-      "mal": 58488
-    },
-    "kitsu_48702": {
-      "kitsu": "48702",
-      "_cached_at": "2026-08-07T21:49:41.047473+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176702,
-      "mal": 58614
-    },
-    "kitsu_48834": {
-      "kitsu": "48834",
-      "_cached_at": "2026-08-07T21:49:41.447676+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177474,
-      "mal": 58811
-    },
-    "kitsu_48893": {
-      "kitsu": "48893",
-      "_cached_at": "2026-08-07T21:49:41.870492+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177689,
-      "mal": 58913
-    },
-    "kitsu_48939": {
-      "kitsu": "48939",
-      "_cached_at": "2026-08-07T21:49:42.273100+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 177937,
-      "mal": 59027
-    },
-    "kitsu_48946": {
-      "kitsu": "48946",
-      "_cached_at": "2026-08-07T21:49:42.664229+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178025,
-      "mal": 59062
-    },
-    "kitsu_48968": {
-      "kitsu": "48968",
-      "_cached_at": "2026-08-07T21:49:43.094307+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178090,
-      "mal": 59095
-    },
-    "kitsu_49057": {
-      "kitsu": "49057",
-      "_cached_at": "2026-08-07T21:49:43.488431+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178433,
-      "mal": 59130
-    },
-    "kitsu_49005": {
-      "kitsu": "49005",
-      "_cached_at": "2026-08-07T21:49:43.902810+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178701,
-      "mal": 59169
-    },
-    "kitsu_49001": {
-      "kitsu": "49001",
-      "_cached_at": "2026-08-07T21:49:44.314740+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178788,
-      "mal": 59192
-    },
-    "kitsu_49061": {
-      "kitsu": "49061",
-      "_cached_at": "2026-08-07T21:49:44.720924+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178869,
-      "mal": 59205
-    },
-    "kitsu_49016": {
-      "kitsu": "49016",
-      "_cached_at": "2026-08-07T21:49:45.126236+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179062,
-      "mal": 59229
-    },
-    "kitsu_49064": {
-      "kitsu": "49064",
-      "_cached_at": "2026-08-07T21:49:45.513484+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179541,
-      "mal": 59322
-    },
-    "kitsu_49896": {
-      "kitsu": "49896",
-      "_cached_at": "2026-08-07T21:49:45.927286+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59424,
-      "anilist": 179885
-    },
-    "kitsu_49119": {
-      "kitsu": "49119",
-      "_cached_at": "2026-08-07T21:49:46.325067+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179955,
-      "mal": 59452
-    },
-    "kitsu_49097": {
-      "kitsu": "49097",
-      "_cached_at": "2026-08-07T21:49:46.794042+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 179966,
-      "mal": 59459
-    },
-    "kitsu_49129": {
-      "kitsu": "49129",
-      "_cached_at": "2026-08-07T21:49:47.201504+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59571
-    },
-    "kitsu_49147": {
-      "kitsu": "49147",
-      "_cached_at": "2026-08-07T21:49:47.644380+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 180523,
-      "mal": 59644
-    },
-    "kitsu_49185": {
-      "kitsu": "49185",
-      "_cached_at": "2026-08-07T21:49:48.074908+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 180829,
-      "mal": 59745
-    },
-    "kitsu_49203": {
-      "kitsu": "49203",
-      "_cached_at": "2026-08-07T21:49:48.484335+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 181244,
-      "mal": 59833
-    },
-    "kitsu_49235": {
-      "kitsu": "49235",
-      "_cached_at": "2026-08-07T21:49:48.882460+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 182205,
-      "mal": 59970
-    },
-    "kitsu_49240": {
-      "kitsu": "49240",
-      "_cached_at": "2026-08-07T21:49:49.294813+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 182255,
-      "mal": 59978
-    },
-    "kitsu_49826": {
-      "kitsu": "49826",
-      "_cached_at": "2026-08-07T21:49:49.693619+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60009,
-      "anilist": 182419
-    },
-    "kitsu_49264": {
-      "kitsu": "49264",
-      "_cached_at": "2026-08-07T21:49:50.143134+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 182587,
-      "mal": 60058
-    },
-    "kitsu_49279": {
-      "kitsu": "49279",
-      "_cached_at": "2026-08-07T21:49:50.545410+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 182896,
-      "mal": 60098
-    },
-    "kitsu_49740": {
-      "kitsu": "49740",
-      "_cached_at": "2026-08-07T21:49:50.978772+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 183133,
-      "mal": 60140
-    },
-    "kitsu_49294": {
-      "kitsu": "49294",
-      "_cached_at": "2026-08-07T21:49:51.378065+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 183161,
-      "mal": 60146
-    },
-    "kitsu_49297": {
-      "kitsu": "49297",
-      "_cached_at": "2026-08-07T21:49:51.815546+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 183291,
-      "mal": 60162
-    },
-    "kitsu_49931": {
-      "kitsu": "49931",
-      "_cached_at": "2026-08-07T21:49:52.225455+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60168,
-      "anilist": 183385
-    },
-    "kitsu_49323": {
-      "kitsu": "49323",
-      "_cached_at": "2026-08-07T21:49:52.627818+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60255,
-      "anilist": 183984
-    },
-    "kitsu_49337": {
-      "kitsu": "49337",
-      "_cached_at": "2026-08-07T21:49:53.041100+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 184322,
-      "mal": 60303
-    },
-    "kitsu_49357": {
-      "kitsu": "49357",
-      "_cached_at": "2026-08-07T21:49:53.442561+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60315,
-      "anilist": 184574
-    },
-    "kitsu_49356": {
-      "kitsu": "49356",
-      "_cached_at": "2026-08-07T21:49:53.900753+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60316,
-      "anilist": 184575
-    },
-    "kitsu_49929": {
-      "kitsu": "49929",
-      "_cached_at": "2026-08-07T21:49:54.328569+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185116,
-      "mal": 60427
-    },
-    "kitsu_49407": {
-      "kitsu": "49407",
-      "_cached_at": "2026-08-07T21:49:54.763778+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185544,
-      "mal": 60523
-    },
-    "kitsu_49425": {
-      "kitsu": "49425",
-      "_cached_at": "2026-08-07T21:49:55.196249+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185660,
-      "mal": 60543
-    },
-    "kitsu_50106": {
-      "kitsu": "50106",
-      "_cached_at": "2026-08-07T21:49:55.619068+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60560,
-      "anilist": 185857
-    },
-    "kitsu_49892": {
-      "kitsu": "49892",
-      "_cached_at": "2026-08-07T21:49:56.019298+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 191974,
-      "mal": 60572
-    },
-    "kitsu_49651": {
-      "kitsu": "49651",
-      "_cached_at": "2026-08-07T21:49:56.462195+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185801,
-      "mal": 60619
-    },
-    "kitsu_49867": {
-      "kitsu": "49867",
-      "_cached_at": "2026-08-07T21:49:56.859185+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185993,
-      "mal": 60692
-    },
-    "kitsu_49493": {
-      "kitsu": "49493",
-      "_cached_at": "2026-08-07T21:49:57.269227+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60732,
-      "anilist": 186052
-    },
-    "kitsu_49899": {
-      "kitsu": "49899",
-      "_cached_at": "2026-08-07T21:49:57.684714+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 60951,
-      "anilist": 186561
-    },
-    "kitsu_49567": {
-      "kitsu": "49567",
-      "_cached_at": "2026-08-07T21:49:58.089463+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 186794,
-      "mal": 61026
-    },
-    "kitsu_50423": {
-      "kitsu": "50423",
-      "_cached_at": "2026-08-07T21:49:58.488521+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 187264,
-      "mal": 61128
-    },
-    "kitsu_49927": {
-      "kitsu": "49927",
-      "_cached_at": "2026-08-07T21:49:58.905298+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 187663,
-      "mal": 61174
-    },
-    "kitsu_49669": {
-      "kitsu": "49669",
-      "_cached_at": "2026-08-07T21:49:59.322651+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 61200,
-      "anilist": 187921
-    },
-    "kitsu_49715": {
-      "kitsu": "49715",
-      "_cached_at": "2026-08-07T21:49:59.717521+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 188487,
-      "mal": 61276
-    },
-    "kitsu_50008": {
-      "kitsu": "50008",
-      "_cached_at": "2026-08-07T21:50:00.114450+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 61917,
-      "anilist": 195153,
-      "anidb": 19415
-    },
-    "kitsu_50484": {
-      "kitsu": "50484",
-      "_cached_at": "2026-08-07T21:50:00.563853+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 199446,
-      "mal": 61969
-    },
-    "kitsu_50196": {
-      "kitsu": "50196",
-      "_cached_at": "2026-08-07T21:50:01.135318+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 62144,
-      "anilist": 198561
-    },
-    "kitsu_49363": {
-      "kitsu": "49363",
-      "_cached_at": "2026-08-07T21:50:01.602566+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 184718
-    },
-    "kitsu_50325": {
-      "kitsu": "50325",
-      "_cached_at": "2026-08-07T21:50:02.057844+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 181443
-    },
-    "kitsu_48237": {
-      "kitsu": "48237",
-      "_cached_at": "2026-08-07T21:50:02.480241+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 170936
-    },
-    "kitsu_49466": {
-      "kitsu": "49466",
-      "_cached_at": "2026-08-07T21:50:02.885174+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185965
-    },
-    "kitsu_698": {
-      "kitsu": "698",
-      "_cached_at": "2026-08-07T21:50:03.295247+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 781,
-      "anidb": 2646,
-      "anilist": 781
-    },
-    "kitsu_49909": {
-      "kitsu": "49909",
-      "_cached_at": "2026-08-07T21:50:03.710866+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 187387
-    },
-    "kitsu_47759": {
-      "kitsu": "47759",
-      "_cached_at": "2026-08-07T21:50:04.257758+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 167152,
-      "mal": 56009
-    },
-    "kitsu_13918": {
-      "kitsu": "13918",
-      "_cached_at": "2026-08-07T21:50:04.704957+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 12942,
-      "mal": 36502,
-      "anilist": 100256
-    },
-    "kitsu_50424": {
-      "kitsu": "50424",
-      "_cached_at": "2026-08-07T21:50:05.153203+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 186333,
-      "mal": 60810
-    },
-    "kitsu_2372": {
-      "kitsu": "2372",
-      "_cached_at": "2026-08-07T21:50:05.594226+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2608,
-      "anidb": 5088,
-      "tvdb": "81658/1",
-      "anilist": 2608
-    },
-    "kitsu_50444": {
-      "kitsu": "50444",
-      "_cached_at": "2026-08-07T21:50:06.137820+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185262
-    },
-    "kitsu_49923": {
-      "kitsu": "49923",
-      "_cached_at": "2026-08-07T21:50:06.528747+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 183960
-    },
-    "kitsu_49183": {
-      "kitsu": "49183",
-      "_cached_at": "2026-08-07T21:50:07.123646+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 180136
-    },
-    "kitsu_49674": {
-      "kitsu": "49674",
-      "_cached_at": "2026-08-07T21:50:07.542760+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 187924
-    },
-    "kitsu_48138": {
-      "kitsu": "48138",
-      "_cached_at": "2026-08-07T21:50:07.957429+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 56906,
-      "anilist": 170110
-    },
-    "kitsu_50466": {
-      "kitsu": "50466",
-      "_cached_at": "2026-08-07T21:50:08.368274+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 187941,
-      "mal": 61207
-    },
-    "kitsu_45713": {
-      "kitsu": "45713",
-      "_cached_at": "2026-08-07T21:50:08.808705+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 143327,
-      "mal": 50695
-    },
-    "kitsu_50432": {
-      "kitsu": "50432",
-      "_cached_at": "2026-08-07T21:50:09.244902+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 191205
-    },
-    "kitsu_49903": {
-      "kitsu": "49903",
-      "_cached_at": "2026-08-07T21:50:09.715930+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 192261
-    },
-    "kitsu_50442": {
-      "kitsu": "50442",
-      "_cached_at": "2026-08-07T21:50:10.143155+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 182771
-    },
-    "kitsu_48293": {
-      "kitsu": "48293",
-      "_cached_at": "2026-08-07T21:50:10.561624+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171110,
-      "mal": 57466
-    },
-    "kitsu_49983": {
-      "kitsu": "49983",
-      "_cached_at": "2026-08-07T21:50:10.983447+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 194317,
-      "mal": 61831
-    },
-    "kitsu_50023": {
-      "kitsu": "50023",
-      "_cached_at": "2026-08-07T21:50:11.390229+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 195600,
-      "mal": 62001
-    },
-    "kitsu_50171": {
-      "kitsu": "50171",
-      "_cached_at": "2026-08-07T21:50:11.819670+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 196029,
-      "mal": 62050
-    },
-    "kitsu_49002": {
-      "kitsu": "49002",
-      "_cached_at": "2026-08-07T21:50:12.247160+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178789,
-      "mal": 59193
-    },
-    "kitsu_49410": {
-      "kitsu": "49410",
-      "_cached_at": "2026-08-07T21:50:12.656468+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185542,
-      "mal": 60522
-    },
-    "kitsu_50154": {
-      "kitsu": "50154",
-      "_cached_at": "2026-08-07T21:50:13.070139+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 62513,
-      "anilist": 198946
-    },
-    "kitsu_49585": {
-      "kitsu": "49585",
-      "_cached_at": "2026-08-07T21:50:13.472977+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 61048,
-      "anilist": 186863
-    },
-    "kitsu_50437": {
-      "kitsu": "50437",
-      "_cached_at": "2026-08-07T21:50:13.896249+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 195515,
-      "mal": 61983
-    },
-    "kitsu_49236": {
-      "kitsu": "49236",
-      "_cached_at": "2026-08-07T21:50:14.327184+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59971,
-      "anilist": 182206
-    },
-    "kitsu_49296": {
-      "kitsu": "49296",
-      "_cached_at": "2026-08-07T21:50:14.751160+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 183270,
-      "mal": 60151
-    },
-    "kitsu_49992": {
-      "kitsu": "49992",
-      "_cached_at": "2026-08-07T21:50:15.161256+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 194742
-    },
-    "kitsu_48667": {
-      "kitsu": "48667",
-      "_cached_at": "2026-08-07T21:50:15.600898+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 176370,
-      "mal": 58524
-    },
-    "kitsu_50426": {
-      "kitsu": "50426",
-      "_cached_at": "2026-08-07T21:50:16.022369+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 197731
-    },
-    "kitsu_49241": {
-      "kitsu": "49241",
-      "_cached_at": "2026-08-07T21:50:16.463735+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59983,
-      "anilist": 182300
-    },
-    "kitsu_42608": {
-      "kitsu": "42608",
-      "_cached_at": "2026-08-07T21:50:16.854668+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40497,
-      "anilist": 112300
-    },
-    "kitsu_50275": {
-      "kitsu": "50275",
-      "_cached_at": "2026-08-07T21:50:17.293597+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 200769
-    },
-    "kitsu_50480": {
-      "kitsu": "50480",
-      "_cached_at": "2026-08-07T21:50:17.742092+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 184356,
-      "mal": 63316
-    },
-    "kitsu_43248": {
-      "kitsu": "43248",
-      "_cached_at": "2026-08-07T21:50:18.147583+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 120377,
-      "mal": 42310
-    },
-    "kitsu_1842": {
-      "kitsu": "1842",
-      "_cached_at": "2026-08-07T21:50:18.556706+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2043,
-      "anidb": 1025,
-      "tvdb": "79835/1",
-      "anilist": 2043
-    },
-    "kitsu_45488": {
-      "kitsu": "45488",
-      "_cached_at": "2026-08-07T21:50:19.070948+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 127976,
-      "mal": 50399
-    },
-    "kitsu_9": {
-      "kitsu": "9",
-      "_cached_at": "2026-08-07T21:50:19.460678+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 18,
-      "anidb": 1724,
-      "tvdb": "70900/4",
-      "anilist": 18
-    },
-    "kitsu_182": {
-      "kitsu": "182",
-      "_cached_at": "2026-08-07T21:50:19.882279+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 206,
-      "anidb": 137,
-      "tvdb": "113801/1",
-      "anilist": 206
-    },
-    "kitsu_186": {
-      "kitsu": "186",
-      "_cached_at": "2026-08-07T21:50:20.283503+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 210,
-      "anidb": 193,
-      "tvdb": "76932/1",
-      "anilist": 210
-    },
-    "kitsu_323": {
-      "kitsu": "323",
-      "_cached_at": "2026-08-07T21:50:21.211213+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 356,
-      "anidb": 3348,
-      "tvdb": "79151/1",
-      "anilist": 356
-    },
-    "kitsu_419": {
-      "kitsu": "419",
-      "_cached_at": "2026-08-07T21:50:21.636014+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 457,
-      "anidb": 3433,
-      "tvdb": "79214/1",
-      "anilist": 457
-    },
-    "kitsu_572": {
-      "kitsu": "572",
-      "_cached_at": "2026-08-07T21:50:22.160188+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 617,
-      "anidb": 277,
-      "anilist": 617
-    },
-    "kitsu_573": {
-      "kitsu": "573",
-      "_cached_at": "2026-08-07T21:50:22.635568+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 618,
-      "anidb": 681,
-      "tvdb": "72842/1",
-      "anilist": 618
-    },
-    "kitsu_649": {
-      "kitsu": "649",
-      "_cached_at": "2026-08-07T21:50:23.024694+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 719,
-      "anidb": 793,
-      "anilist": 719
-    },
-    "kitsu_758": {
-      "kitsu": "758",
-      "_cached_at": "2026-08-07T21:50:23.453478+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 856,
-      "anidb": 3427,
-      "tvdb": "79880/1",
-      "anilist": 856
-    },
-    "kitsu_897": {
-      "kitsu": "897",
-      "_cached_at": "2026-08-07T21:50:24.033032+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1007,
-      "anidb": 405,
-      "anilist": 1007
-    },
-    "kitsu_960": {
-      "kitsu": "960",
-      "_cached_at": "2026-08-07T21:50:24.454350+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1074,
-      "anidb": 9685,
-      "anilist": 1074
-    },
-    "kitsu_992": {
-      "kitsu": "992",
-      "_cached_at": "2026-08-07T21:50:24.953526+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1107,
-      "anidb": 1040,
-      "anilist": 1107
-    },
-    "kitsu_1404": {
-      "kitsu": "1404",
-      "_cached_at": "2026-08-07T21:50:25.381529+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1564,
-      "anidb": 1041,
-      "tvdb": "76703",
-      "anilist": 1564
-    },
-    "kitsu_1405": {
-      "kitsu": "1405",
-      "_cached_at": "2026-08-07T21:50:25.777668+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1565,
-      "anidb": 4728,
-      "tvdb": "76703",
-      "anilist": 1565
-    },
-    "kitsu_1429": {
-      "kitsu": "1429",
-      "_cached_at": "2026-08-07T21:50:26.204780+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1589,
-      "anidb": 4681,
-      "tvdb": "81091/1",
-      "anilist": 1589
-    },
-    "kitsu_1718": {
-      "kitsu": "1718",
-      "_cached_at": "2026-08-07T21:50:26.606250+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 1908,
-      "anidb": 799,
-      "anilist": 1908
-    },
-    "kitsu_1962": {
-      "kitsu": "1962",
-      "_cached_at": "2026-08-07T21:50:27.019790+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 2167,
-      "anidb": 5101,
-      "tvdb": "80644/1",
-      "anilist": 2167
-    },
-    "kitsu_4478": {
-      "kitsu": "4478",
-      "_cached_at": "2026-08-07T21:50:27.511737+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6213,
-      "anidb": 6460,
-      "tvdb": "114921/1",
-      "anilist": 6213
-    },
-    "kitsu_4586": {
-      "kitsu": "4586",
-      "_cached_at": "2026-08-07T21:50:27.946715+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6509,
-      "anidb": 2723,
-      "anilist": 6509
-    },
-    "kitsu_4678": {
-      "kitsu": "4678",
-      "_cached_at": "2026-08-07T21:50:28.365541+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 6707,
-      "anidb": 7369,
-      "tvdb": "83996/2",
-      "anilist": 6707
-    },
-    "kitsu_5044": {
-      "kitsu": "5044",
-      "_cached_at": "2026-08-07T21:50:28.782794+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 7592,
-      "anidb": 7404,
-      "tvdb": "171731/1",
-      "anilist": 7592
-    },
-    "kitsu_5512": {
-      "kitsu": "5512",
-      "_cached_at": "2026-08-07T21:50:29.182141+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8857,
-      "anidb": 7630,
-      "anilist": 8857
-    },
-    "kitsu_5518": {
-      "kitsu": "5518",
-      "_cached_at": "2026-08-07T21:50:29.580916+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8888,
-      "anidb": 7508,
-      "anilist": 8888
-    },
-    "kitsu_5562": {
-      "kitsu": "5562",
-      "_cached_at": "2026-08-07T21:50:30.020415+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 8986,
-      "anidb": 7654,
-      "anilist": 8986
-    },
-    "kitsu_5952": {
-      "kitsu": "5952",
-      "_cached_at": "2026-08-07T21:50:30.438336+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 9940,
-      "anidb": 8087,
-      "anilist": 9940
-    },
-    "kitsu_6084": {
-      "kitsu": "6084",
-      "_cached_at": "2026-08-07T21:50:30.871096+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 10218,
-      "anidb": 7991,
-      "anilist": 10218
-    },
-    "kitsu_6550": {
-      "kitsu": "6550",
-      "_cached_at": "2026-08-07T21:50:31.295751+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 11617,
-      "anidb": 8660,
-      "tvdb": "254653/1",
-      "anilist": 11617
-    },
-    "kitsu_7586": {
-      "kitsu": "7586",
-      "_cached_at": "2026-08-07T21:50:31.697602+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 17115,
-      "anidb": 9653,
-      "tvdb": "76703",
-      "anilist": 17115
-    },
-    "kitsu_7895": {
-      "kitsu": "7895",
-      "_cached_at": "2026-08-07T21:50:32.470782+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 17873,
-      "anidb": 9764,
-      "tvdb": "76703",
-      "anilist": 17873
-    },
-    "kitsu_8806": {
-      "kitsu": "8806",
-      "_cached_at": "2026-08-07T21:50:32.873950+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19469,
-      "anidb": 9974,
-      "anilist": 19469
-    },
-    "kitsu_7973": {
-      "kitsu": "7973",
-      "_cached_at": "2026-08-07T21:50:33.295099+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 19759,
-      "anidb": 9985,
-      "tvdb": "283947",
-      "anilist": 19759
-    },
-    "kitsu_8053": {
-      "kitsu": "8053",
-      "_cached_at": "2026-08-07T21:50:33.705699+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 20785,
-      "anidb": 10182,
-      "tvdb": "278329/1",
-      "anilist": 20458
-    },
-    "kitsu_8063": {
-      "kitsu": "8063",
-      "_cached_at": "2026-08-07T21:50:34.138940+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 20899,
-      "anidb": 10206,
-      "tvdb": "262954/2",
-      "anilist": 20474
-    },
-    "kitsu_8409": {
-      "kitsu": "8409",
-      "_cached_at": "2026-08-07T21:50:34.561713+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 23311,
-      "anidb": 10278,
-      "tvdb": "279980/1",
-      "anilist": 20753
-    },
-    "kitsu_8739": {
-      "kitsu": "8739",
-      "_cached_at": "2026-08-07T21:50:35.037028+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 26055,
-      "anidb": 10835,
-      "tvdb": "262954/2",
-      "anilist": 20799
-    },
-    "kitsu_11339": {
-      "kitsu": "11339",
-      "_cached_at": "2026-08-07T21:50:35.453823+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31478,
-      "anidb": 11523,
-      "tvdb": "305075/1",
-      "anilist": 21311
-    },
-    "kitsu_11367": {
-      "kitsu": "11367",
-      "_cached_at": "2026-08-07T21:50:35.897436+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31592,
-      "anidb": 11585,
-      "tvdb": "76703/17",
-      "anilist": 21356
-    },
-    "kitsu_11376": {
-      "kitsu": "11376",
-      "_cached_at": "2026-08-07T21:50:36.294561+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31637,
-      "anidb": 11602,
-      "tvdb": "295222/1",
-      "anilist": 21364
-    },
-    "kitsu_11431": {
-      "kitsu": "11431",
-      "_cached_at": "2026-08-07T21:50:36.700671+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 31741,
-      "anidb": 11672,
-      "tvdb": "310718/1",
-      "anilist": 21394
-    },
-    "kitsu_12127": {
-      "kitsu": "12127",
-      "_cached_at": "2026-08-07T21:50:37.126126+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33255,
-      "anidb": 12112,
-      "tvdb": "313435",
-      "anilist": 21804
-    },
-    "kitsu_12625": {
-      "kitsu": "12625",
-      "_cached_at": "2026-08-07T21:50:37.557955+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 33950,
-      "anidb": 12351,
-      "anilist": 87528
-    },
-    "kitsu_12533": {
-      "kitsu": "12533",
-      "_cached_at": "2026-08-07T21:50:38.035652+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34034,
-      "anidb": 12407,
-      "tvdb": "76703/18",
-      "anilist": 97634
-    },
-    "kitsu_13078": {
-      "kitsu": "13078",
-      "_cached_at": "2026-08-07T21:50:38.457921+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34300,
-      "anidb": 13171,
-      "anilist": 99200
-    },
-    "kitsu_12759": {
-      "kitsu": "12759",
-      "_cached_at": "2026-08-07T21:50:38.979313+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34393,
-      "anidb": 12551,
-      "tvdb": "325192/1",
-      "anilist": 98238
-    },
-    "kitsu_13477": {
-      "kitsu": "13477",
-      "_cached_at": "2026-08-07T21:50:39.419520+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 34612,
-      "tvdb": "313435/2",
-      "anilist": 98034
-    },
-    "kitsu_13237": {
-      "kitsu": "13237",
-      "_cached_at": "2026-08-07T21:50:39.824623+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 35073,
-      "anidb": 12952,
-      "tvdb": "294002/2",
-      "anilist": 98437
-    },
-    "kitsu_14092": {
-      "kitsu": "14092",
-      "_cached_at": "2026-08-07T21:50:40.240530+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 36949,
-      "anidb": 13658,
-      "anilist": 100773
-    },
-    "kitsu_41036": {
-      "kitsu": "41036",
-      "_cached_at": "2026-08-07T21:50:40.683260+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37208,
-      "anilist": 101972
-    },
-    "kitsu_41014": {
-      "kitsu": "41014",
-      "_cached_at": "2026-08-07T21:50:41.102493+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37320,
-      "anidb": 13806,
-      "anilist": 101160
-    },
-    "kitsu_41076": {
-      "kitsu": "41076",
-      "_cached_at": "2026-08-07T21:50:41.521482+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37487,
-      "anidb": 13916,
-      "tvdb": "347467/1",
-      "anilist": 101340
-    },
-    "kitsu_41459": {
-      "kitsu": "41459",
-      "_cached_at": "2026-08-07T21:50:41.927640+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 37976,
-      "anilist": 103871
-    },
-    "kitsu_41410": {
-      "kitsu": "41410",
-      "_cached_at": "2026-08-07T21:50:42.350477+00:00",
-      "_source": "kitsu_mappings",
-      "anidb": 14173,
-      "mal": 37991,
-      "anilist": 102883
-    },
-    "kitsu_42163": {
-      "kitsu": "42163",
-      "_cached_at": "2026-08-07T21:50:42.869493+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 38450,
-      "anilist": 104458
-    },
-    "kitsu_43295": {
-      "kitsu": "43295",
-      "_cached_at": "2026-08-07T21:50:43.471481+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 39948,
-      "anilist": 110028
-    },
-    "kitsu_42534": {
-      "kitsu": "42534",
-      "_cached_at": "2026-08-07T21:50:43.880583+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40351,
-      "anilist": 112153
-    },
-    "kitsu_43083": {
-      "kitsu": "43083",
-      "_cached_at": "2026-08-07T21:50:44.307298+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40434,
-      "anilist": 121467
-    },
-    "kitsu_43018": {
-      "kitsu": "43018",
-      "_cached_at": "2026-08-07T21:50:44.741953+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41353,
-      "anilist": 116006
-    },
-    "kitsu_43361": {
-      "kitsu": "43361",
-      "_cached_at": "2026-08-07T21:50:45.148689+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 41487,
-      "anilist": 116742
-    },
-    "kitsu_43793": {
-      "kitsu": "43793",
-      "_cached_at": "2026-08-07T21:50:45.694114+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 44070,
-      "anilist": 126356
-    },
-    "kitsu_44011": {
-      "kitsu": "44011",
-      "_cached_at": "2026-08-07T21:50:46.089018+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 47162,
-      "anidb": 16031,
-      "anilist": 129193,
-      "tvdb": "402640/1"
-    },
-    "kitsu_45081": {
-      "kitsu": "45081",
-      "_cached_at": "2026-08-07T21:50:46.647292+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 130590,
-      "mal": 48418
-    },
-    "kitsu_44529": {
-      "kitsu": "44529",
-      "_cached_at": "2026-08-07T21:50:47.100915+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 133844,
-      "mal": 48895
-    },
-    "kitsu_44530": {
-      "kitsu": "44530",
-      "_cached_at": "2026-08-07T21:50:47.507295+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 133845,
-      "mal": 48896
-    },
-    "kitsu_45154": {
-      "kitsu": "45154",
-      "_cached_at": "2026-08-07T21:50:47.909415+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 139092,
-      "mal": 49784
-    },
-    "kitsu_45985": {
-      "kitsu": "45985",
-      "_cached_at": "2026-08-07T21:50:48.345478+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153906,
-      "mal": 51347
-    },
-    "kitsu_46299": {
-      "kitsu": "46299",
-      "_cached_at": "2026-08-07T21:50:48.756666+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153152,
-      "mal": 52578
-    },
-    "kitsu_46369": {
-      "kitsu": "46369",
-      "_cached_at": "2026-08-07T21:50:49.180807+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 153818,
-      "mal": 52816
-    },
-    "kitsu_46323": {
-      "kitsu": "46323",
-      "_cached_at": "2026-08-07T21:50:49.574324+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 52976,
-      "anilist": 155011
-    },
-    "kitsu_46598": {
-      "kitsu": "46598",
-      "_cached_at": "2026-08-07T21:50:49.960615+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 53273
-    },
-    "kitsu_46859": {
-      "kitsu": "46859",
-      "_cached_at": "2026-08-07T21:50:50.350960+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 158871,
-      "mal": 53876
-    },
-    "kitsu_46958": {
-      "kitsu": "46958",
-      "_cached_at": "2026-08-07T21:50:50.759157+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 159926,
-      "mal": 54141
-    },
-    "kitsu_49777": {
-      "kitsu": "49777",
-      "_cached_at": "2026-08-07T21:50:51.175130+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 54945,
-      "anilist": 175646
-    },
-    "kitsu_47682": {
-      "kitsu": "47682",
-      "_cached_at": "2026-08-07T21:50:51.775802+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 166617,
-      "mal": 55830
-    },
-    "kitsu_48337": {
-      "kitsu": "48337",
-      "_cached_at": "2026-08-07T21:50:52.168348+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 171642,
-      "mal": 57559
-    },
-    "kitsu_50601": {
-      "kitsu": "50601",
-      "_cached_at": "2026-08-07T21:50:52.582792+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 178707,
-      "mal": 59174
-    },
-    "kitsu_49220": {
-      "kitsu": "49220",
-      "_cached_at": "2026-08-07T21:50:53.043412+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 59841,
-      "anilist": 184694
-    },
-    "kitsu_49392": {
-      "kitsu": "49392",
-      "_cached_at": "2026-08-07T21:50:53.443220+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 185407,
-      "mal": 60489
-    },
-    "kitsu_49847": {
-      "kitsu": "49847",
-      "_cached_at": "2026-08-07T21:50:53.870564+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 190327,
-      "mal": 61469
-    },
-    "kitsu_50201": {
-      "kitsu": "50201",
-      "_cached_at": "2026-08-07T21:50:54.272121+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 62066,
-      "anilist": 196230
-    },
-    "kitsu_50117": {
-      "kitsu": "50117",
-      "_cached_at": "2026-08-07T21:50:54.697718+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 197824,
-      "mal": 62146
-    },
-    "kitsu_50554": {
-      "kitsu": "50554",
-      "_cached_at": "2026-08-07T21:50:55.136896+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 202381,
-      "mal": 62964
-    },
-    "kitsu_50570": {
-      "kitsu": "50570",
-      "_cached_at": "2026-08-07T21:50:55.543532+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 63304,
-      "anilist": 210234
-    },
-    "kitsu_50642": {
-      "kitsu": "50642",
-      "_cached_at": "2026-08-07T21:50:55.944774+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 206951,
-      "mal": 63376
-    },
-    "kitsu_50648": {
-      "kitsu": "50648",
-      "_cached_at": "2026-08-07T21:50:56.343455+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 63433,
-      "anilist": 210375
-    },
-    "kitsu_50663": {
-      "kitsu": "50663",
-      "_cached_at": "2026-08-07T21:50:56.749542+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 63939
-    },
-    "kitsu_25": {
-      "kitsu": "25",
-      "_cached_at": "2026-08-07T21:50:57.151790+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 43,
-      "anidb": 61,
-      "anilist": 43
-    },
-    "kitsu_368": {
-      "kitsu": "368",
-      "_cached_at": "2026-08-07T21:50:57.565650+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 401,
-      "anidb": 195,
-      "anilist": 401
-    },
-    "kitsu_42467": {
-      "kitsu": "42467",
-      "_cached_at": "2026-08-07T21:50:58.027179+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40174,
-      "anilist": 110733
-    },
-    "kitsu_42641": {
-      "kitsu": "42641",
-      "_cached_at": "2026-08-07T21:50:58.575144+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 40590,
-      "anilist": 112640
-    },
-    "kitsu_50793": {
-      "kitsu": "50793",
-      "_cached_at": "2026-08-07T21:50:58.983224+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 208044,
-      "mal": 63508
-    },
-    "kitsu_50760": {
-      "kitsu": "50760",
-      "_cached_at": "2026-08-07T21:50:59.398361+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 209983,
-      "mal": 63817
-    },
-    "kitsu_429": {
-      "kitsu": "429",
-      "_cached_at": "2026-08-07T21:50:59.837027+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 467,
-      "anidb": 247,
-      "tvdb": "73749/1",
-      "anilist": 467
-    },
-    "kitsu_46436": {
-      "kitsu": "46436",
-      "_cached_at": "2026-08-07T21:51:00.291893+00:00",
-      "_source": "kitsu_mappings",
-      "anilist": 154364,
-      "mal": 52955
-    },
-    "anilist_126169": {
-      "anilist": 126169,
-      "mal": 41075,
-      "_cached_at": "2026-08-07T21:51:00.822291+00:00",
-      "_source": "anizip"
-    },
-    "anilist_139097": {
-      "anilist": 139097,
-      "mal": 42731,
-      "_cached_at": "2026-08-07T21:51:00.823266+00:00",
-      "_source": "anizip"
-    },
-    "anilist_191452": {
-      "anilist": 191452,
-      "mal": 61583,
-      "_cached_at": "2026-08-07T21:51:00.824832+00:00",
-      "_source": "anizip"
-    },
-    "anilist_148289": {
-      "anilist": 148289,
-      "mal": 55673,
-      "_cached_at": "2026-08-07T21:51:01.214880+00:00",
-      "_source": "anizip"
-    },
-    "anilist_235": {
-      "anilist": 235,
-      "mal": 235,
-      "kitsu": 210,
-      "anidb": 266,
-      "imdb": "tt0131179",
-      "tvdb": 72454,
-      "tmdb": "30983",
-      "title": "Case Closed",
-      "_cached_at": "2026-08-07T21:51:01.228386+00:00",
-      "_source": "anizip"
-    },
-    "arm_anidb_7508": {
-      "anidb": 7508,
-      "_cached_at": "2026-08-07T22:08:01.587927+00:00",
-      "_source": "arm"
-    },
-    "arm_kitsu_7926": {
-      "kitsu": 7926,
-      "_cached_at": "2026-08-07T22:08:02.134374+00:00",
-      "_source": "arm"
-    },
-    "arm_kitsu_7937": {
-      "kitsu": 7937,
-      "_cached_at": "2026-08-07T22:08:02.680171+00:00",
-      "_source": "arm"
-    },
-    "arm_kitsu_7936": {
-      "kitsu": 7936,
-      "_cached_at": "2026-08-07T22:08:03.492815+00:00",
-      "_source": "arm"
-    },
-    "arm_kitsu_8077": {
-      "kitsu": 8077,
-      "_cached_at": "2026-08-07T22:08:03.999854+00:00",
-      "_source": "arm"
     },
     "arm_kitsu_10735": {
       "kitsu": 10735,
-      "_cached_at": "2026-08-07T22:08:04.661830+00:00",
+      "_cached_at": "2026-08-07T22:10:01.899511+00:00",
       "_source": "arm"
+    },
+    "kitsu_8706": {
+      "kitsu": "8706",
+      "_cached_at": "2026-08-07T22:10:02.169412+00:00",
+      "_source": "kitsu_mappings",
+      "tvdb": "251085/4"
     },
     "arm_kitsu_8706": {
       "kitsu": 8706,
-      "_cached_at": "2026-08-07T22:08:05.322148+00:00",
+      "_cached_at": "2026-08-07T22:10:02.625821+00:00",
       "_source": "arm"
+    },
+    "kitsu_7928": {
+      "kitsu": "7928",
+      "_cached_at": "2026-08-07T22:10:02.954171+00:00",
+      "_source": "kitsu_mappings",
+      "tvdb": "71503/1"
     },
     "arm_kitsu_7928": {
       "kitsu": 7928,
-      "_cached_at": "2026-08-07T22:08:05.890612+00:00",
+      "_cached_at": "2026-08-07T22:10:03.480027+00:00",
       "_source": "arm"
+    },
+    "kitsu_50423": {
+      "kitsu": "50423",
+      "_cached_at": "2026-08-07T22:10:03.748471+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 187264,
+      "mal": 61128
     },
     "arm_anilist_187264": {
       "anilist": 187264,
       "mal": 61128,
       "anidb": 19190,
-      "_cached_at": "2026-08-07T22:08:06.446578+00:00",
+      "_cached_at": "2026-08-07T22:10:04.486258+00:00",
       "_source": "arm"
+    },
+    "kitsu_49927": {
+      "kitsu": "49927",
+      "_cached_at": "2026-08-07T22:10:05.163362+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 187663,
+      "mal": 61174
     },
     "arm_anilist_187663": {
       "anilist": 187663,
       "mal": 61174,
       "anidb": 19204,
-      "_cached_at": "2026-08-07T22:08:07.009736+00:00",
+      "_cached_at": "2026-08-07T22:10:05.563087+00:00",
       "_source": "arm"
+    },
+    "kitsu_50484": {
+      "kitsu": "50484",
+      "_cached_at": "2026-08-07T22:10:05.823338+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 199446,
+      "mal": 61969
     },
     "arm_anilist_199446": {
       "anilist": 199446,
-      "_cached_at": "2026-08-07T22:08:07.668040+00:00",
+      "_cached_at": "2026-08-07T22:10:06.367570+00:00",
       "_source": "arm"
+    },
+    "kitsu_49923": {
+      "kitsu": "49923",
+      "_cached_at": "2026-08-07T22:10:06.781513+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 183960
     },
     "arm_anilist_183960": {
       "anilist": 183960,
       "mal": 60253,
       "anidb": 18970,
-      "_cached_at": "2026-08-07T22:08:08.326417+00:00",
+      "_cached_at": "2026-08-07T22:10:07.196793+00:00",
       "_source": "arm"
+    },
+    "kitsu_48138": {
+      "kitsu": "48138",
+      "_cached_at": "2026-08-07T22:10:07.546582+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 56906,
+      "anilist": 170110
     },
     "arm_anilist_170110": {
       "anilist": 170110,
       "mal": 56906,
       "kitsu": 50637,
       "anidb": 18241,
-      "_cached_at": "2026-08-07T22:08:08.884163+00:00",
+      "_cached_at": "2026-08-07T22:10:08.163958+00:00",
       "_source": "arm"
+    },
+    "kitsu_50554": {
+      "kitsu": "50554",
+      "_cached_at": "2026-08-07T22:10:08.462135+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 202381,
+      "mal": 62964
     },
     "arm_anilist_202381": {
       "anilist": 202381,
       "mal": 62964,
       "anidb": 19722,
-      "_cached_at": "2026-08-07T22:08:09.428852+00:00",
+      "_cached_at": "2026-08-07T22:10:08.973871+00:00",
       "_source": "arm"
     },
     "anilist_129801": {
       "anilist": 129801,
       "mal": 47591,
       "kitsu": 44102,
-      "_cached_at": "2026-08-07T22:08:09.835681+00:00",
+      "_cached_at": "2026-08-07T22:10:09.338225+00:00",
       "_source": "anizip"
     },
     "anilist_17187": {
       "anilist": 17187,
       "mal": 17187,
       "kitsu": 7602,
-      "_cached_at": "2026-08-07T22:08:09.848854+00:00",
-      "_source": "anizip"
-    },
-    "anilist_101343": {
-      "anilist": 101343,
-      "mal": 37514,
-      "kitsu": 41080,
-      "_cached_at": "2026-08-07T22:08:09.894824+00:00",
-      "_source": "anizip"
-    },
-    "anilist_107864": {
-      "anilist": 107864,
-      "mal": 37262,
-      "kitsu": 41761,
-      "anidb": 13784,
-      "tmdb": "597419",
-      "title": "For Whom the Alchemist Exists the Movie",
-      "_cached_at": "2026-08-07T22:08:10.260928+00:00",
-      "_source": "anizip"
-    },
-    "anilist_101160": {
-      "anilist": 101160,
-      "mal": 37320,
-      "kitsu": 41014,
-      "_cached_at": "2026-08-07T22:08:10.569721+00:00",
+      "_cached_at": "2026-08-07T22:10:09.455986+00:00",
       "_source": "anizip"
     },
     "anilist_100256": {
       "anilist": 100256,
       "mal": 36502,
       "kitsu": 13918,
-      "_cached_at": "2026-08-07T22:08:10.572318+00:00",
+      "_cached_at": "2026-08-07T22:10:09.462125+00:00",
       "_source": "anizip"
+    },
+    "anilist_101343": {
+      "anilist": 101343,
+      "mal": 37514,
+      "kitsu": 41080,
+      "_cached_at": "2026-08-07T22:10:09.467181+00:00",
+      "_source": "anizip"
+    },
+    "kitsu_44102": {
+      "kitsu": "44102",
+      "_cached_at": "2026-08-07T22:10:09.758437+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 47591,
+      "anilist": 129801
+    },
+    "kitsu_7602": {
+      "kitsu": "7602",
+      "_cached_at": "2026-08-07T22:10:09.947545+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 17187,
+      "anidb": 9658,
+      "anilist": 17187
+    },
+    "kitsu_41080": {
+      "kitsu": "41080",
+      "_cached_at": "2026-08-07T22:10:09.963664+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 37514,
+      "anidb": 13941,
+      "anilist": 101343
+    },
+    "kitsu_13918": {
+      "kitsu": "13918",
+      "_cached_at": "2026-08-07T22:10:09.985733+00:00",
+      "_source": "kitsu_mappings",
+      "anidb": 12942,
+      "mal": 36502,
+      "anilist": 100256
     },
     "anilist_184694": {
       "anilist": 184694,
       "mal": 59841,
       "kitsu": 49220,
-      "_cached_at": "2026-08-07T22:08:10.573127+00:00",
+      "_cached_at": "2026-08-07T22:10:10.288381+00:00",
+      "_source": "anizip"
+    },
+    "anilist_101160": {
+      "anilist": 101160,
+      "mal": 37320,
+      "kitsu": 41014,
+      "_cached_at": "2026-08-07T22:10:10.481468+00:00",
+      "_source": "anizip"
+    },
+    "anilist_2359": {
+      "anilist": 2359,
+      "mal": 2359,
+      "_cached_at": "2026-08-07T22:10:10.517151+00:00",
       "_source": "anizip"
     },
     "anilist_1908": {
@@ -35908,28 +30294,46 @@
       "kitsu": 1718,
       "anidb": 799,
       "title": "Lesson Double X",
-      "_cached_at": "2026-08-07T22:08:10.917871+00:00",
+      "_cached_at": "2026-08-07T22:10:10.530887+00:00",
       "_source": "anizip"
+    },
+    "kitsu_49220": {
+      "kitsu": "49220",
+      "_cached_at": "2026-08-07T22:10:10.792483+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 59841,
+      "anilist": 184694
+    },
+    "kitsu_41014": {
+      "kitsu": "41014",
+      "_cached_at": "2026-08-07T22:10:10.889558+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 37320,
+      "anidb": 13806,
+      "anilist": 101160
+    },
+    "kitsu_2850": {
+      "kitsu": "2850",
+      "_cached_at": "2026-08-07T22:10:11.004689+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 3194,
+      "anidb": 3497,
+      "anilist": 3194
+    },
+    "kitsu_1718": {
+      "kitsu": "1718",
+      "_cached_at": "2026-08-07T22:10:11.139890+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 1908,
+      "anidb": 799,
+      "anilist": 1908
     },
     "arm_anilist_184694": {
       "anilist": 184694,
       "mal": 59841,
       "kitsu": 49220,
-      "_cached_at": "2026-08-07T22:08:11.278098+00:00",
+      "_cached_at": "2026-08-07T22:10:11.244802+00:00",
       "_source": "arm"
-    },
-    "anilist_2359": {
-      "anilist": 2359,
-      "mal": 2359,
-      "_cached_at": "2026-08-07T22:08:11.286740+00:00",
-      "_source": "anizip"
-    },
-    "anilist_141352": {
-      "anilist": 141352,
-      "mal": 50315,
-      "kitsu": 45472,
-      "_cached_at": "2026-08-07T22:08:11.541353+00:00",
-      "_source": "anizip"
     },
     "anilist_135429": {
       "anilist": 135429,
@@ -35937,27 +30341,62 @@
       "kitsu": 44691,
       "anidb": 16378,
       "title": "Make My Day",
-      "_cached_at": "2026-08-07T22:08:11.590360+00:00",
+      "_cached_at": "2026-08-07T22:10:11.441176+00:00",
       "_source": "anizip"
     },
-    "anilist_2341": {
-      "anilist": 2341,
-      "mal": 2341,
-      "_cached_at": "2026-08-07T22:08:11.603039+00:00",
-      "_source": "anizip"
-    },
-    "anilist_144677": {
-      "anilist": 144677,
-      "mal": 50953,
-      "kitsu": 45830,
-      "_cached_at": "2026-08-07T22:08:11.745579+00:00",
+    "anilist_141352": {
+      "anilist": 141352,
+      "mal": 50315,
+      "kitsu": 45472,
+      "_cached_at": "2026-08-07T22:10:11.548580+00:00",
       "_source": "anizip"
     },
     "anilist_148584": {
       "anilist": 148584,
       "mal": 51097,
       "kitsu": 47323,
-      "_cached_at": "2026-08-07T22:08:12.022090+00:00",
+      "_cached_at": "2026-08-07T22:10:11.561836+00:00",
+      "_source": "anizip"
+    },
+    "anilist_144677": {
+      "anilist": 144677,
+      "mal": 50953,
+      "kitsu": 45830,
+      "_cached_at": "2026-08-07T22:10:11.620720+00:00",
+      "_source": "anizip"
+    },
+    "kitsu_44691": {
+      "kitsu": "44691",
+      "_cached_at": "2026-08-07T22:10:11.918473+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 49164,
+      "anilist": 135429
+    },
+    "kitsu_45472": {
+      "kitsu": "45472",
+      "_cached_at": "2026-08-07T22:10:11.948897+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 141352,
+      "mal": 50315
+    },
+    "kitsu_47323": {
+      "kitsu": "47323",
+      "_cached_at": "2026-08-07T22:10:12.066422+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 51097,
+      "anilist": 148584
+    },
+    "kitsu_45830": {
+      "kitsu": "45830",
+      "_cached_at": "2026-08-07T22:10:12.109058+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 144677,
+      "mal": 50953
+    },
+    "anilist_191452": {
+      "anilist": 191452,
+      "mal": 61583,
+      "_cached_at": "2026-08-07T22:10:12.371240+00:00",
       "_source": "anizip"
     },
     "anilist_191974": {
@@ -35966,40 +30405,54 @@
       "kitsu": 49892,
       "anidb": 19323,
       "title": "The All-devouring Whale: Homecoming",
-      "_cached_at": "2026-08-07T22:08:12.384663+00:00",
-      "_source": "anizip"
-    },
-    "anilist_199446": {
-      "anilist": 199446,
-      "_cached_at": "2026-08-07T22:08:12.461011+00:00",
+      "_cached_at": "2026-08-07T22:10:12.414084+00:00",
       "_source": "anizip"
     },
     "arm_anilist_148584": {
       "anilist": 148584,
       "mal": 51097,
       "kitsu": 47323,
-      "_cached_at": "2026-08-07T22:08:12.821042+00:00",
+      "_cached_at": "2026-08-07T22:10:12.570364+00:00",
       "_source": "arm"
+    },
+    "anilist_199446": {
+      "anilist": 199446,
+      "_cached_at": "2026-08-07T22:10:12.646719+00:00",
+      "_source": "anizip"
+    },
+    "kitsu_49892": {
+      "kitsu": "49892",
+      "_cached_at": "2026-08-07T22:10:12.904089+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 191974,
+      "mal": 60572
     },
     "anilist_184356": {
       "anilist": 184356,
       "mal": 63316,
       "kitsu": 50480,
-      "_cached_at": "2026-08-07T22:08:12.841268+00:00",
+      "_cached_at": "2026-08-07T22:10:12.947409+00:00",
       "_source": "anizip"
     },
     "anilist_126356": {
       "anilist": 126356,
       "mal": 44070,
       "kitsu": 43793,
-      "_cached_at": "2026-08-07T22:08:13.100491+00:00",
+      "_cached_at": "2026-08-07T22:10:13.166299+00:00",
       "_source": "anizip"
+    },
+    "kitsu_50480": {
+      "kitsu": "50480",
+      "_cached_at": "2026-08-07T22:10:13.427355+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 184356,
+      "mal": 63316
     },
     "anilist_210234": {
       "anilist": 210234,
       "mal": 63304,
       "kitsu": 50570,
-      "_cached_at": "2026-08-07T22:08:13.152509+00:00",
+      "_cached_at": "2026-08-07T22:10:13.444964+00:00",
       "_source": "anizip"
     },
     "anilist_719": {
@@ -36008,43 +30461,65 @@
       "kitsu": 649,
       "anidb": 793,
       "title": "Love Wedge",
-      "_cached_at": "2026-08-07T22:08:13.487833+00:00",
+      "_cached_at": "2026-08-07T22:10:13.482489+00:00",
       "_source": "anizip"
+    },
+    "kitsu_43793": {
+      "kitsu": "43793",
+      "_cached_at": "2026-08-07T22:10:13.645188+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 44070,
+      "anilist": 126356
+    },
+    "kitsu_50570": {
+      "kitsu": "50570",
+      "_cached_at": "2026-08-07T22:10:13.904703+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 63304,
+      "anilist": 210234
     },
     "anilist_155011": {
       "anilist": 155011,
       "mal": 52976,
       "kitsu": 46323,
-      "_cached_at": "2026-08-07T22:08:13.552693+00:00",
+      "_cached_at": "2026-08-07T22:10:13.954175+00:00",
       "_source": "anizip"
+    },
+    "kitsu_649": {
+      "kitsu": "649",
+      "_cached_at": "2026-08-07T22:10:13.966290+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 719,
+      "anidb": 793,
+      "anilist": 719
     },
     "arm_anilist_126356": {
       "anilist": 126356,
       "mal": 44070,
       "kitsu": 43793,
-      "_cached_at": "2026-08-07T22:08:13.794513+00:00",
+      "_cached_at": "2026-08-07T22:10:14.057306+00:00",
       "_source": "arm"
+    },
+    "kitsu_46323": {
+      "kitsu": "46323",
+      "_cached_at": "2026-08-07T22:10:14.368486+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 52976,
+      "anilist": 155011
     },
     "anilist_11977": {
       "anilist": 11977,
       "mal": 11977,
       "kitsu": 6636,
-      "_cached_at": "2026-08-07T22:08:14.102191+00:00",
+      "_cached_at": "2026-08-07T22:10:14.440111+00:00",
       "_source": "anizip"
     },
     "anilist_98663": {
       "anilist": 98663,
       "mal": 33520,
       "kitsu": 12502,
-      "_cached_at": "2026-08-07T22:08:14.254370+00:00",
+      "_cached_at": "2026-08-07T22:10:14.490830+00:00",
       "_source": "anizip"
-    },
-    "arm_anilist_155011": {
-      "anilist": 155011,
-      "mal": 52976,
-      "kitsu": 46323,
-      "_cached_at": "2026-08-07T22:08:14.264066+00:00",
-      "_source": "arm"
     },
     "anilist_163138": {
       "anilist": 163138,
@@ -36052,30 +30527,44 @@
       "kitsu": 47268,
       "anidb": 17942,
       "title": "Yakitori: Soldiers of Misfortune",
-      "_cached_at": "2026-08-07T22:08:14.269345+00:00",
+      "_cached_at": "2026-08-07T22:10:14.571439+00:00",
       "_source": "anizip"
+    },
+    "kitsu_6636": {
+      "kitsu": "6636",
+      "_cached_at": "2026-08-07T22:10:14.834338+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 11977,
+      "anidb": 8778,
+      "anilist": 11977
+    },
+    "arm_anilist_155011": {
+      "anilist": 155011,
+      "mal": 52976,
+      "kitsu": 46323,
+      "_cached_at": "2026-08-07T22:10:14.874079+00:00",
+      "_source": "arm"
+    },
+    "kitsu_12502": {
+      "kitsu": "12502",
+      "_cached_at": "2026-08-07T22:10:14.983867+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 33520,
+      "anilist": 98663
+    },
+    "kitsu_47268": {
+      "kitsu": "47268",
+      "_cached_at": "2026-08-07T22:10:15.036375+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 163138,
+      "mal": 54851
     },
     "anilist_183960": {
       "anilist": 183960,
       "mal": 60253,
       "anidb": 18970,
       "title": "Otherworldly Munchkin: Let`s Speedrun the Dungeon with Only 1 HP!",
-      "_cached_at": "2026-08-07T22:08:14.717823+00:00",
-      "_source": "anizip"
-    },
-    "anilist_320": {
-      "anilist": 320,
-      "mal": 320,
-      "_cached_at": "2026-08-07T22:08:14.833997+00:00",
-      "_source": "anizip"
-    },
-    "anilist_187924": {
-      "anilist": 187924,
-      "mal": 61203,
-      "kitsu": 49674,
-      "anidb": 19213,
-      "title": "Konosuba: God`s Blessing on This Wonderful World! 4",
-      "_cached_at": "2026-08-07T22:08:15.076429+00:00",
+      "_cached_at": "2026-08-07T22:10:15.242025+00:00",
       "_source": "anizip"
     },
     "anilist_137663": {
@@ -36084,67 +30573,102 @@
       "kitsu": 46643,
       "anidb": 16582,
       "title": "Silent House",
-      "_cached_at": "2026-08-07T22:08:15.161385+00:00",
+      "_cached_at": "2026-08-07T22:10:15.383608+00:00",
       "_source": "anizip"
     },
     "anilist_6954": {
       "anilist": 6954,
       "mal": 6954,
       "kitsu": 4804,
-      "_cached_at": "2026-08-07T22:08:15.313168+00:00",
+      "_cached_at": "2026-08-07T22:10:15.466908+00:00",
       "_source": "anizip"
     },
-    "anilist_140337": {
-      "anilist": 140337,
-      "mal": 50159,
-      "kitsu": 45333,
-      "anidb": 16911,
-      "tmdb": "959646",
-      "title": "Zombie Land Saga Movie",
-      "_cached_at": "2026-08-07T22:08:15.335205+00:00",
+    "anilist_187924": {
+      "anilist": 187924,
+      "mal": 61203,
+      "kitsu": 49674,
+      "anidb": 19213,
+      "title": "Konosuba: God`s Blessing on This Wonderful World! 4",
+      "_cached_at": "2026-08-07T22:10:15.555985+00:00",
       "_source": "anizip"
     },
-    "anilist_182206": {
-      "anilist": 182206,
-      "mal": 59971,
-      "kitsu": 49236,
-      "anidb": 18885,
-      "tmdb": "1363974",
-      "title": "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea",
-      "_cached_at": "2026-08-07T22:08:15.772515+00:00",
-      "_source": "anizip"
+    "kitsu_46643": {
+      "kitsu": "46643",
+      "_cached_at": "2026-08-07T22:10:15.837939+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 49573,
+      "anilist": 137663
+    },
+    "kitsu_4804": {
+      "kitsu": "4804",
+      "_cached_at": "2026-08-07T22:10:15.858447+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 6954,
+      "anilist": 6954
     },
     "anilist_175646": {
       "anilist": 175646,
       "mal": 54945,
       "kitsu": 49777,
-      "_cached_at": "2026-08-07T22:08:15.890710+00:00",
+      "_cached_at": "2026-08-07T22:10:15.912379+00:00",
       "_source": "anizip"
     },
-    "arm_anilist_139097": {
+    "kitsu_49674": {
+      "kitsu": "49674",
+      "_cached_at": "2026-08-07T22:10:16.027978+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 187924
+    },
+    "kitsu_49777": {
+      "kitsu": "49777",
+      "_cached_at": "2026-08-07T22:10:16.326454+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 54945,
+      "anilist": 175646
+    },
+    "anilist_139097": {
       "anilist": 139097,
       "mal": 42731,
-      "_cached_at": "2026-08-07T22:08:16.108837+00:00",
-      "_source": "arm"
+      "_cached_at": "2026-08-07T22:10:16.396407+00:00",
+      "_source": "anizip"
+    },
+    "anilist_126169": {
+      "anilist": 126169,
+      "mal": 41075,
+      "_cached_at": "2026-08-07T22:10:16.464698+00:00",
+      "_source": "anizip"
     },
     "anilist_2360": {
       "anilist": 2360,
       "mal": 2360,
-      "_cached_at": "2026-08-07T22:08:16.244831+00:00",
+      "_cached_at": "2026-08-07T22:10:16.566203+00:00",
       "_source": "anizip"
-    },
-    "arm_anilist_126169": {
-      "anilist": 126169,
-      "mal": 41075,
-      "_cached_at": "2026-08-07T22:08:16.266574+00:00",
-      "_source": "arm"
     },
     "arm_anilist_175646": {
       "anilist": 175646,
       "mal": 54945,
       "kitsu": 49777,
-      "_cached_at": "2026-08-07T22:08:16.573882+00:00",
+      "_cached_at": "2026-08-07T22:10:16.746001+00:00",
       "_source": "arm"
+    },
+    "arm_anilist_139097": {
+      "anilist": 139097,
+      "mal": 42731,
+      "_cached_at": "2026-08-07T22:10:16.801941+00:00",
+      "_source": "arm"
+    },
+    "arm_anilist_126169": {
+      "anilist": 126169,
+      "mal": 41075,
+      "_cached_at": "2026-08-07T22:10:16.868731+00:00",
+      "_source": "arm"
+    },
+    "anilist_21132": {
+      "anilist": 21132,
+      "mal": 30458,
+      "kitsu": 10789,
+      "_cached_at": "2026-08-07T22:10:17.142295+00:00",
+      "_source": "anizip"
     },
     "anilist_6509": {
       "anilist": 6509,
@@ -36152,28 +30676,59 @@
       "kitsu": 4586,
       "anidb": 2723,
       "title": "Kiteretsu Encyclopedia",
-      "_cached_at": "2026-08-07T22:08:16.632803+00:00",
+      "_cached_at": "2026-08-07T22:10:17.147077+00:00",
       "_source": "anizip"
     },
     "anilist_8888": {
       "anilist": 8888,
       "mal": 8888,
       "kitsu": 5518,
-      "_cached_at": "2026-08-07T22:08:16.634121+00:00",
+      "_cached_at": "2026-08-07T22:10:17.152797+00:00",
       "_source": "anizip"
     },
     "anilist_10218": {
       "anilist": 10218,
       "mal": 10218,
       "kitsu": 6084,
-      "_cached_at": "2026-08-07T22:08:16.720515+00:00",
+      "_cached_at": "2026-08-07T22:10:17.183065+00:00",
       "_source": "anizip"
     },
-    "anilist_21132": {
-      "anilist": 21132,
+    "kitsu_10789": {
+      "kitsu": "10789",
+      "_cached_at": "2026-08-07T22:10:17.555809+00:00",
+      "_source": "kitsu_mappings",
       "mal": 30458,
-      "kitsu": 10789,
-      "_cached_at": "2026-08-07T22:08:16.876663+00:00",
+      "anidb": 11268,
+      "anilist": 21132
+    },
+    "kitsu_5518": {
+      "kitsu": "5518",
+      "_cached_at": "2026-08-07T22:10:17.648977+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 8888,
+      "anidb": 7508,
+      "anilist": 8888
+    },
+    "kitsu_4586": {
+      "kitsu": "4586",
+      "_cached_at": "2026-08-07T22:10:17.650523+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 6509,
+      "anidb": 2723,
+      "anilist": 6509
+    },
+    "kitsu_6084": {
+      "kitsu": "6084",
+      "_cached_at": "2026-08-07T22:10:17.662461+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 10218,
+      "anidb": 7991,
+      "anilist": 10218
+    },
+    "anilist_148289": {
+      "anilist": 148289,
+      "mal": 55673,
+      "_cached_at": "2026-08-07T22:10:18.076341+00:00",
       "_source": "anizip"
     },
     "anilist_137653": {
@@ -36182,7 +30737,7 @@
       "kitsu": 48036,
       "anidb": 18237,
       "title": "Renegade Immortal",
-      "_cached_at": "2026-08-07T22:08:17.324238+00:00",
+      "_cached_at": "2026-08-07T22:10:18.161418+00:00",
       "_source": "anizip"
     },
     "anilist_210375": {
@@ -36191,43 +30746,34 @@
       "kitsu": 50648,
       "anidb": 19994,
       "title": "The Great Sage Ryddel and the Hands of Time",
-      "_cached_at": "2026-08-07T22:08:17.574574+00:00",
+      "_cached_at": "2026-08-07T22:10:18.245333+00:00",
       "_source": "anizip"
+    },
+    "kitsu_48036": {
+      "kitsu": "48036",
+      "_cached_at": "2026-08-07T22:10:18.571238+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 137653,
+      "mal": 55809
     },
     "arm_anilist_148289": {
       "anilist": 148289,
       "mal": 55673,
-      "_cached_at": "2026-08-07T22:08:17.583558+00:00",
+      "_cached_at": "2026-08-07T22:10:18.591137+00:00",
       "_source": "arm"
+    },
+    "kitsu_50648": {
+      "kitsu": "50648",
+      "_cached_at": "2026-08-07T22:10:18.745332+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 63433,
+      "anilist": 210375
     },
     "mal_6954": {
       "anilist": 6954,
       "mal": 6954,
       "kitsu": 4804,
-      "_cached_at": "2026-08-07T22:08:18.492067+00:00",
-      "_source": "anizip"
-    },
-    "anilist_551": {
-      "anilist": 551,
-      "mal": 551,
-      "kitsu": 508,
-      "anidb": 880,
-      "imdb": "tt0981456",
-      "tvdb": 79237,
-      "tmdb": "56425",
-      "title": "Grappler Baki Chapter of The Maximum Tournament",
-      "_cached_at": "2026-08-07T22:08:19.040833+00:00",
-      "_source": "anizip"
-    },
-    "anilist_314": {
-      "anilist": 314,
-      "mal": 314,
-      "kitsu": 8123,
-      "anidb": 1390,
-      "tvdb": 85301,
-      "tmdb": "46419",
-      "title": "Aim for the Ace! 2",
-      "_cached_at": "2026-08-07T22:08:19.557942+00:00",
+      "_cached_at": "2026-08-07T22:10:19.615022+00:00",
       "_source": "anizip"
     },
     "anilist_3194": {
@@ -36236,76 +30782,64 @@
       "kitsu": 2850,
       "anidb": 3497,
       "title": "Saban`s Adventures of the Little Mermaid",
-      "_cached_at": "2026-08-07T22:08:19.902891+00:00",
+      "_cached_at": "2026-08-07T22:10:20.210668+00:00",
       "_source": "anizip"
-    },
-    "kitsu_8123": {
-      "kitsu": "8123",
-      "_cached_at": "2026-08-07T22:08:19.949013+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 314,
-      "anidb": 1390,
-      "anilist": 314
     },
     "mal_2360": {
       "anilist": 2360,
       "mal": 2360,
-      "_cached_at": "2026-08-07T22:08:19.970513+00:00",
+      "_cached_at": "2026-08-07T22:10:20.776839+00:00",
       "_source": "anizip"
-    },
-    "kitsu_2850": {
-      "kitsu": "2850",
-      "_cached_at": "2026-08-07T22:08:20.311967+00:00",
-      "_source": "kitsu_mappings",
-      "mal": 3194,
-      "anidb": 3497,
-      "anilist": 3194
     },
     "mal_47591": {
       "anilist": 129801,
       "mal": 47591,
       "kitsu": 44102,
-      "_cached_at": "2026-08-07T22:08:20.698073+00:00",
-      "_source": "anizip"
-    },
-    "mal_59571": {
-      "mal": 59571,
-      "kitsu": 49129,
-      "anidb": 18820,
-      "tmdb": "1333100",
-      "title": "Attack on Titan: The Last Attack",
-      "_cached_at": "2026-08-07T22:08:21.979923+00:00",
+      "_cached_at": "2026-08-07T22:10:20.807283+00:00",
       "_source": "anizip"
     },
     "mal_61969": {
       "mal": 61969,
-      "_cached_at": "2026-08-07T22:08:22.326939+00:00",
+      "_cached_at": "2026-08-07T22:10:22.410251+00:00",
       "_source": "anizip"
     },
     "anilist_162291": {
       "anilist": 162291,
       "mal": 53911,
       "kitsu": 47155,
-      "_cached_at": "2026-08-07T22:08:23.647888+00:00",
+      "_cached_at": "2026-08-07T22:10:23.682793+00:00",
       "_source": "anizip"
+    },
+    "kitsu_47155": {
+      "kitsu": "47155",
+      "_cached_at": "2026-08-07T22:10:24.168245+00:00",
+      "_source": "kitsu_mappings",
+      "anilist": 162291,
+      "mal": 53911
     },
     "arm_anilist_162291": {
       "anilist": 162291,
       "mal": 53911,
       "kitsu": 47155,
-      "_cached_at": "2026-08-07T22:08:24.317481+00:00",
+      "_cached_at": "2026-08-07T22:10:24.579124+00:00",
       "_source": "arm"
     },
     "mal_63939": {
       "mal": 63939,
       "kitsu": 50663,
-      "_cached_at": "2026-08-07T22:08:28.399255+00:00",
+      "_cached_at": "2026-08-07T22:10:28.235956+00:00",
       "_source": "anizip"
+    },
+    "kitsu_50663": {
+      "kitsu": "50663",
+      "_cached_at": "2026-08-07T22:10:28.654755+00:00",
+      "_source": "kitsu_mappings",
+      "mal": 63939
     },
     "arm_mal_63939": {
       "mal": 63939,
       "kitsu": 50663,
-      "_cached_at": "2026-08-07T22:08:29.102504+00:00",
+      "_cached_at": "2026-08-07T22:10:29.166860+00:00",
       "_source": "arm"
     }
   }
