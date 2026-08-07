@@ -1,25 +1,21 @@
 """
-Universal Anime Sync - GitHub Actions version for Dreamstorm
-V3 - With full ID pairing (MAL + AniList + Kitsu + AniDB + IMDB + TVDB + TMDB)
-Runs once per invocation (for cron), loop-proof with timestamp + hash.
-
-Enable in GitHub: Settings -> Secrets and variables -> Actions
-
-NEW: 
-- load_kitsu() now paginates all pages (no 500 cap)
-- enrich_ids() uses api.ani.zip + Kitsu mappings + MALSync to pair IDs
-- get_key() merges entries that map to same show (kitsu_11 + mal_21 -> same key)
-- sync_db.json now stores: {mal, anilist, kitsu, anidb, imdb, tvdb, tmdb, simkl}
+Universal Anime Sync V3.2 - With manual overrides + unmatched report
+- Adds manual_overrides.json support for shows APIs can't pair
+- Exports unmatched.csv for quick manual fixing
+- Still exports anime_pairings.csv with all IDs
 """
-import requests, json, os, hashlib, argparse, time
+
+import requests, json, os, hashlib, argparse, time, csv
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
 
 DB_PATH = Path("sync_db.json")
 CACHE_PATH = Path("id_cache.json")
+CSV_PATH_DEFAULT = Path("anime_pairings.csv")
+UNMATCHED_PATH = Path("unmatched.csv")
+OVERRIDES_PATH = Path("manual_overrides.json")
 
-# Load DB
 if DB_PATH.exists():
     try:
         db = json.loads(DB_PATH.read_text())
@@ -30,7 +26,6 @@ if DB_PATH.exists():
 else:
     db = {"entries": {}, "id_cache": {}}
 
-# Load ID cache for AniZip results to avoid re-querying every run
 if CACHE_PATH.exists():
     try:
         id_cache = json.loads(CACHE_PATH.read_text())
@@ -38,6 +33,20 @@ if CACHE_PATH.exists():
         id_cache = {}
 else:
     id_cache = db.get("id_cache", {})
+
+# Load manual overrides
+if OVERRIDES_PATH.exists():
+    try:
+        manual_overrides = json.loads(OVERRIDES_PATH.read_text())
+        print(f"Loaded {len(manual_overrides)} manual overrides from {OVERRIDES_PATH}")
+    except Exception as e:
+        print(f"Failed to load overrides: {e}")
+        manual_overrides = {}
+else:
+    manual_overrides = {}
+    # Create empty file for user
+    OVERRIDES_PATH.write_text(json.dumps({}, indent=2))
+    print(f"Created empty {OVERRIDES_PATH} - add manual pairings there")
 
 CONFIG = {
     "anilist_username": os.getenv("ANILIST_USERNAME", "Dreamstorm"),
@@ -61,12 +70,29 @@ REVERSE_STATUS = {
 def hash_state(state):
     return hashlib.md5(f"{state['status']}|{state['progress']}|{state['score']}".encode()).hexdigest()
 
-# ============== ID PAIRING LOGIC ==============
+# ============== MANUAL OVERRIDES ==============
+def get_override_for_ids(ids_dict):
+    """Check if any ID in ids_dict has a manual override"""
+    possible_keys = []
+    for k in ["mal", "anilist", "kitsu", "anidb", "simkl"]:
+        if ids_dict.get(k):
+            possible_keys.append(f"{k}_{ids_dict[k]}")
+            # also try just the numeric id as key
+            possible_keys.append(str(ids_dict[k]))
+    
+    for key in possible_keys:
+        if key in manual_overrides:
+            return manual_overrides[key]
+        # case-insensitive
+        if key.lower() in manual_overrides:
+            return manual_overrides[key.lower()]
+    
+    return None
+
+# ============== ID PAIRING ==============
 def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
-    """Fetch from api.ani.zip - best hub"""
     cache_key = f"anilist_{anilist_id}" if anilist_id else f"mal_{mal_id}" if mal_id else None
     if use_cache and cache_key and cache_key in id_cache:
-        # cache for 30 days
         cached = id_cache[cache_key]
         try:
             age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached.get("_cached_at", "2000-01-01T00:00:00+00:00"))).days
@@ -89,27 +115,26 @@ def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
             return None
         data = r.json()
         mappings = data.get("mappings", {})
+        titles = data.get("titles", {})
+        title = titles.get("en") or titles.get("x-jat") or (list(titles.values())[0] if titles else None)
+        
         result = {
             "anilist": data.get("id") or mappings.get("anilist_id") or anilist_id,
             "mal": mappings.get("mal_id") or mal_id,
             "kitsu": mappings.get("kitsu_id"),
             "anidb": mappings.get("anidb_id"),
-            "anidb_id": mappings.get("anidb_id"),
             "imdb": mappings.get("imdb_id"),
-            "imdb_id": mappings.get("imdb_id"),
             "tvdb": mappings.get("thetvdb_id"),
-            "thetvdb": mappings.get("thetvdb_id"),
             "tmdb": mappings.get("themoviedb_id"),
+            "title": title,
             "_cached_at": datetime.now(timezone.utc).isoformat(),
             "_source": "anizip"
         }
-        # Clean None
         result = {k: v for k, v in result.items() if v}
         if cache_key:
             id_cache[cache_key] = result
         return result
-    except Exception as e:
-        # print(f" AniZip fail {anilist_id or mal_id}: {e}")
+    except Exception:
         return None
 
 def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
@@ -150,32 +175,25 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
         if cache_key:
             id_cache[cache_key] = result
         return result
-    except Exception as e:
+    except Exception:
         return {}
 
 def enrich_ids(ids_dict, do_network=True):
-    """
-    Take any ids dict like {"anilist":21} or {"kitsu":"11"} 
-    Returns enriched dict with mal, anilist, kitsu, anidb, imdb, tvdb, tmdb
-    Uses cache first, then network if do_network=True
-    """
-    # Start with what we have, normalized
+    # 0. Manual overrides first - highest priority
+    override = get_override_for_ids(ids_dict)
+    if override:
+        enriched = {**ids_dict, **override}
+        enriched["_source"] = "manual_override"
+        return enriched
+
     enriched = {}
-    for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "simkl", "thetvdb", "imdb_id", "anidb_id"]:
+    for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "simkl", "title"]:
         if ids_dict.get(k):
             enriched[k] = ids_dict[k]
-    # Normalize aliases
-    if enriched.get("thetvdb") and not enriched.get("tvdb"):
-        enriched["tvdb"] = enriched["thetvdb"]
-    if enriched.get("anidb_id") and not enriched.get("anidb"):
-        enriched["anidb"] = enriched["anidb_id"]
-    if enriched.get("imdb_id") and not enriched.get("imdb"):
-        enriched["imdb"] = enriched["imdb_id"]
 
     if not do_network:
         return enriched
 
-    # Try AniZip
     anizip_result = None
     if enriched.get("anilist"):
         anizip_result = fetch_anizip(anilist_id=enriched["anilist"])
@@ -185,11 +203,10 @@ def enrich_ids(ids_dict, do_network=True):
         time.sleep(0.25)
     
     if anizip_result:
-        for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb"]:
+        for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "title"]:
             if anizip_result.get(k) and not enriched.get(k):
                 enriched[k] = anizip_result[k]
 
-    # If we have kitsu but still missing anidb/imdb/mal/anilist, try Kitsu mappings
     if enriched.get("kitsu") and (not enriched.get("anidb") or not enriched.get("mal") or not enriched.get("imdb")):
         km = fetch_kitsu_mappings(str(enriched["kitsu"]))
         time.sleep(0.25)
@@ -200,12 +217,7 @@ def enrich_ids(ids_dict, do_network=True):
     return enriched
 
 def get_canonical_key(ids):
-    """
-    Canonical key for DB, prefers mal > anilist > anidb > kitsu > simkl
-    This ensures mal_21 and kitsu_11 (same show) map to same key after enrichment
-    """
-    enriched = enrich_ids(ids, do_network=False)  # use cached only for key calc initially
-    # If not enriched enough, try network enrichment for key stability (only if missing mal/anilist)
+    enriched = enrich_ids(ids, do_network=False)
     if not enriched.get("mal") and not enriched.get("anilist"):
         enriched = enrich_ids(ids, do_network=True)
 
@@ -224,7 +236,7 @@ def get_canonical_key(ids):
 # ============== LOADERS ==============
 def load_anilist():
     print("-> Fetching AniList Dreamstorm...")
-    query = """query ($userName: String) { MediaListCollection(userName: $userName, type: ANIME) { lists { entries { status progress score updatedAt media { id idMal title { romaji } } } } } }"""
+    query = """query ($userName: String) { MediaListCollection(userName: $userName, type: ANIME) { lists { entries { status progress score updatedAt media { id idMal title { romaji english native } } } } } }"""
     headers = {}
     token = os.getenv("ANILIST_TOKEN")
     if token: headers["Authorization"] = f"Bearer {token}"
@@ -233,7 +245,8 @@ def load_anilist():
     items=[]
     for lst in r.json()["data"]["MediaListCollection"]["lists"]:
         for e in lst["entries"]:
-            items.append({"platform":"anilist","ids":{"anilist": e["media"]["id"], "mal": e["media"]["idMal"]},"state":{"status": STATUS_MAP["anilist"].get(e["status"], "plantowatch"), "progress": e["progress"], "score": e["score"] or 0},"updated": datetime.fromtimestamp(e["updatedAt"], tz=timezone.utc) if e["updatedAt"] else datetime.now(timezone.utc)})
+            title = e["media"]["title"]["romaji"] or e["media"]["title"]["english"] or e["media"]["title"]["native"]
+            items.append({"platform":"anilist","ids":{"anilist": e["media"]["id"], "mal": e["media"]["idMal"], "title": title},"state":{"status": STATUS_MAP["anilist"].get(e["status"], "plantowatch"), "progress": e["progress"], "score": e["score"] or 0},"updated": datetime.fromtimestamp(e["updatedAt"], tz=timezone.utc) if e["updatedAt"] else datetime.now(timezone.utc), "title": title})
     print(f"   AniList: {len(items)} entries")
     return items
 
@@ -256,15 +269,13 @@ def load_simkl():
             continue
         last = entry.get("last_watched_at") or entry.get("last_updated_at") or show_obj.get("last_watched_at")
         status_raw = entry.get("status") or show_obj.get("status") or "plantowatch"
+        title = show_obj.get("title") or ""
         items.append({
             "platform":"simkl",
-            "ids":{"simkl": ids_obj.get("simkl") or ids_obj.get("simkl_id"), "mal": ids_obj.get("mal"), "anilist": ids_obj.get("anilist") or ids_obj.get("anilist_id"), "anidb": ids_obj.get("anidb")},
-            "state":{
-                "status": STATUS_MAP["simkl"].get(status_raw, "plantowatch"),
-                "progress": entry.get("watched_episodes_count") or entry.get("watched_episodes") or show_obj.get("watched_episodes_count",0),
-                "score": entry.get("user_rating") or show_obj.get("user_rating") or 0
-            },
-            "updated": datetime.fromisoformat(last.replace("Z","+00:00")) if last else datetime.now(timezone.utc)
+            "ids":{"simkl": ids_obj.get("simkl") or ids_obj.get("simkl_id"), "mal": ids_obj.get("mal"), "anilist": ids_obj.get("anilist") or ids_obj.get("anilist_id"), "anidb": ids_obj.get("anidb"), "title": title},
+            "state":{"status": STATUS_MAP["simkl"].get(status_raw, "plantowatch"), "progress": entry.get("watched_episodes_count") or entry.get("watched_episodes") or show_obj.get("watched_episodes_count",0), "score": entry.get("user_rating") or show_obj.get("user_rating") or 0},
+            "updated": datetime.fromisoformat(last.replace("Z","+00:00")) if last else datetime.now(timezone.utc),
+            "title": title
         })
     print(f"   SIMKL: {len(items)} entries")
     return items
@@ -282,7 +293,8 @@ def load_mal():
     items=[]
     for n in r.json().get("data", []):
         ls = n["list_status"]
-        items.append({"platform":"mal","ids":{"mal": n["node"]["id"]},"state":{"status": STATUS_MAP["mal"].get(ls["status"], "plantowatch"), "progress": ls["num_episodes_watched"], "score": ls["score"]},"updated": datetime.fromisoformat(ls["updated_at"].replace("Z","+00:00"))})
+        title = n["node"].get("title","")
+        items.append({"platform":"mal","ids":{"mal": n["node"]["id"], "title": title},"state":{"status": STATUS_MAP["mal"].get(ls["status"], "plantowatch"), "progress": ls["num_episodes_watched"], "score": ls["score"]},"updated": datetime.fromisoformat(ls["updated_at"].replace("Z","+00:00")), "title": title})
     print(f"   MAL: {len(items)} entries")
     return items
 
@@ -317,18 +329,14 @@ def load_kitsu():
                 if not rel: continue
                 anime_id = rel.get("id")
                 anime = id_map.get(anime_id, {})
-                mal_id = None
-                if anime:
-                    mal_id = anime.get("idMal") or anime.get("id_mal")
+                mal_id = anime.get("idMal") or anime.get("id_mal") if anime else None
+                title = anime.get("canonicalTitle") if anime else ""
                 items.append({
                     "platform":"kitsu",
-                    "ids":{"kitsu": anime_id, "mal": mal_id},
-                    "state":{
-                        "status": STATUS_MAP["kitsu"].get(a.get("status"), "plantowatch"),
-                        "progress": a.get("progress", 0),
-                        "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0
-                    },
-                    "updated": datetime.fromisoformat(a["updatedAt"].replace("Z","+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc)
+                    "ids":{"kitsu": anime_id, "mal": mal_id, "title": title},
+                    "state":{"status": STATUS_MAP["kitsu"].get(a.get("status"), "plantowatch"), "progress": a.get("progress", 0), "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0},
+                    "updated": datetime.fromisoformat(a["updatedAt"].replace("Z","+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc),
+                    "title": title
                 })
             url = lib.get("links", {}).get("next")
             page+=1
@@ -355,13 +363,115 @@ def push_simkl(entry, state):
         requests.post(f"https://api.simkl.com/sync/history?client_id={client_id}", json=hist, headers=headers, timeout=15)
     print(f"   -> PUSH SIMKL {ids} => {state} [{r.status_code}]")
 
-def push_anilist(entry, state): print(f"   -> PUSH AniList would: {entry['ids']} => {state} (implement GraphQL mutation)")
-def push_mal(entry, state): print(f"   -> PUSH MAL would: {entry['ids']} => {state} (implement PUT /animelist)")
+def push_anilist(entry, state): print(f"   -> PUSH AniList would: {entry['ids']} => {state}")
+def push_mal(entry, state): print(f"   -> PUSH MAL would: {entry['ids']} => {state}")
 def push_kitsu(entry, state): print(f"   -> PUSH Kitsu would: {entry['ids']} => {state}")
 
 PUSHERS = {"anilist": push_anilist, "mal": push_mal, "kitsu": push_kitsu, "simkl": push_simkl}
 
-def run_once(enrich_new=True):
+def export_csv(file_path=CSV_PATH_DEFAULT):
+    entries = db.get("entries", {})
+    if not entries:
+        print("No entries to export")
+        return
+    
+    fieldnames = ["title", "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id", "imdb_id", "tvdb_id", "tmdb_id", "simkl_id", "status", "progress", "score", "last_updated", "source"]
+    
+    with open(file_path, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for key, data in sorted(entries.items(), key=lambda x: (x[1].get("ids",{}).get("title","") or "").lower()):
+            ids = data.get("ids", {})
+            state = data.get("state", {})
+            writer.writerow({
+                "title": ids.get("title") or data.get("title") or "",
+                "canonical_key": key,
+                "mal_id": ids.get("mal") or "",
+                "anilist_id": ids.get("anilist") or "",
+                "kitsu_id": ids.get("kitsu") or "",
+                "anidb_id": ids.get("anidb") or "",
+                "imdb_id": ids.get("imdb") or "",
+                "tvdb_id": ids.get("tvdb") or "",
+                "tmdb_id": ids.get("tmdb") or "",
+                "simkl_id": ids.get("simkl") or "",
+                "status": state.get("status") or "",
+                "progress": state.get("progress") or 0,
+                "score": state.get("score") or 0,
+                "last_updated": data.get("last_updated") or "",
+                "source": ids.get("_source") or ""
+            })
+    print(f"CSV exported to {file_path} - {len(entries)} rows")
+    return file_path
+
+def export_unmatched(file_path=UNMATCHED_PATH):
+    """Export shows that couldn't be fully paired"""
+    entries = db.get("entries", {})
+    unmatched = []
+    
+    for key, data in entries.items():
+        ids = data.get("ids", {})
+        # Consider unmatched if missing both mal AND anilist (core IDs) or missing anidb when we expect it
+        missing = []
+        if not ids.get("mal"):
+            missing.append("mal")
+        if not ids.get("anilist"):
+            missing.append("anilist")
+        if not ids.get("anidb"):
+            missing.append("anidb")
+        # IMDB missing is normal, don't count as unmatched unless it's a movie
+        # Only flag as unmatched if missing core pairing
+        if (not ids.get("mal") and not ids.get("anilist")) or (not ids.get("anidb") and (ids.get("mal") or ids.get("anilist"))):
+            reason = ""
+            if not ids.get("mal") and not ids.get("anilist"):
+                reason = "isolated - only has " + ",".join([k for k in ["kitsu","simkl"] if ids.get(k)]) + " - needs manual pairing"
+            elif not ids.get("anidb"):
+                reason = "no anidb mapping yet (too new or not in anizip)"
+            else:
+                reason = "partial pairing"
+            
+            unmatched.append({
+                "title": ids.get("title") or data.get("title") or "",
+                "canonical_key": key,
+                "mal_id": ids.get("mal") or "",
+                "anilist_id": ids.get("anilist") or "",
+                "kitsu_id": ids.get("kitsu") or "",
+                "anidb_id": ids.get("anidb") or "",
+                "imdb_id": ids.get("imdb") or "",
+                "existing_ids": json.dumps({k:v for k,v in ids.items() if v and not k.startswith("_")}),
+                "missing": ",".join(missing),
+                "reason": reason,
+                "suggested_override_key": key,
+                "suggested_override_value": f'{{"mal": {ids.get("mal") or "???"}, "anilist": {ids.get("anilist") or "???"}, "anidb": {ids.get("anidb") or "???"}}}'
+            })
+    
+    fieldnames = ["title", "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id", "imdb_id", "missing", "reason", "existing_ids", "suggested_override_key"]
+    
+    with open(file_path, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in sorted(unmatched, key=lambda x: x["title"].lower()):
+            writer.writerow(row)
+    
+    print(f"Unmatched report: {file_path} - {len(unmatched)} entries need attention")
+    
+    # Also create a template overrides file for these
+    if unmatched:
+        template_path = Path("manual_overrides_template.json")
+        template = {}
+        for u in unmatched[:20]:  # first 20 as example
+            template[u["suggested_override_key"]] = {
+                "mal": None,
+                "anilist": None,
+                "anidb": None,
+                "title": u["title"],
+                "comment": f"Fill in IDs for {u['title']} - {u['reason']}"
+            }
+        template_path.write_text(json.dumps(template, indent=2))
+        print(f"Template for manual fixes: {template_path}")
+    
+    return file_path, len(unmatched)
+
+def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True):
     all_items=[]
     for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
         try: all_items.extend(loader())
@@ -371,30 +481,27 @@ def run_once(enrich_new=True):
     enriched_count=0
 
     for item in all_items:
-        # Enrich IDs via AniZip/Kitsu for full pairing
         if enrich_new:
-            # Only enrich if we haven't cached this already, or if missing anidb/imdb
-            needs_enrich = not item["ids"].get("anidb") or not item["ids"].get("imdb")
-            # For new entries, always enrich
+            needs_enrich = not item["ids"].get("anidb") or not item["ids"].get("mal") or not item["ids"].get("anilist")
             key_preview = get_canonical_key(item["ids"])
             if not db["entries"].get(key_preview):
                 needs_enrich = True
             
             if needs_enrich:
                 enriched_ids = enrich_ids(item["ids"], do_network=True)
-                # Merge enriched into item
                 for k, v in enriched_ids.items():
                     if v and not k.startswith("_"):
                         if not item["ids"].get(k):
                             item["ids"][k] = v
+                    # Keep source tracking
+                    if k == "_source":
+                        item["ids"]["_source"] = v
                 enriched_count += 1
                 if enriched_count % 10 == 0:
-                    print(f"   Enriched {enriched_count}/{len(all_items)} for ID pairing...")
+                    print(f"   Enriched {enriched_count}/{len(all_items)}...")
 
-        # Now compute canonical key AFTER enrichment (so kitsu_11 and mal_21 become same key)
         key = get_canonical_key(item["ids"])
         if not key: 
-            # fallback
             if item["ids"].get("mal"):
                 key = f"mal_{item['ids']['mal']}"
             elif item["ids"].get("anilist"):
@@ -412,13 +519,12 @@ def run_once(enrich_new=True):
                 "ids": item["ids"], 
                 "state": item["state"], 
                 "last_updated": item["updated"].isoformat(), 
-                "last_synced": {item["platform"]: incoming_hash}
+                "last_synced": {item["platform"]: incoming_hash},
+                "title": item.get("title","")
             }
             continue
         
-        # Loop protection
         if existing["last_synced"].get(item["platform"]) == incoming_hash:
-            # Merge any new IDs discovered
             for k, v in item["ids"].items():
                 if v and not existing["ids"].get(k):
                     existing["ids"][k] = v
@@ -426,10 +532,9 @@ def run_once(enrich_new=True):
         
         last_updated = datetime.fromisoformat(existing["last_updated"])
         if item["updated"] > last_updated:
-            print(f"[CHANGE] {key} newer on {item['platform']} - {item['state']} | IDs: {item['ids']}")
+            print(f"[CHANGE] {key} newer on {item['platform']} - {item['state']}")
             existing["state"] = item["state"]
             existing["last_updated"] = item["updated"].isoformat()
-            # Merge all IDs
             for k, v in item["ids"].items():
                 if v:
                     existing["ids"][k] = v
@@ -451,7 +556,6 @@ def run_once(enrich_new=True):
                     changes+=1
                 except Exception as e: print(e)
 
-    # Save caches
     db["id_cache"] = id_cache
     DB_PATH.write_text(json.dumps(db, indent=2))
     try:
@@ -459,26 +563,41 @@ def run_once(enrich_new=True):
     except:
         pass
     
-    # Print summary with ID coverage
     anidb_count = sum(1 for e in db["entries"].values() if e["ids"].get("anidb"))
     imdb_count = sum(1 for e in db["entries"].values() if e["ids"].get("imdb"))
     mal_count = sum(1 for e in db["entries"].values() if e["ids"].get("mal"))
     anilist_count = sum(1 for e in db["entries"].values() if e["ids"].get("anilist"))
     kitsu_count = sum(1 for e in db["entries"].values() if e["ids"].get("kitsu"))
+    manual_count = sum(1 for e in db["entries"].values() if e["ids"].get("_source") == "manual_override")
     
     print(f"Done. {len(all_items)} total fetched, {len(db['entries'])} unique shows, {changes} pushes.")
-    print(f"ID Coverage: MAL:{mal_count} AniList:{anilist_count} Kitsu:{kitsu_count} AniDB:{anidb_count} IMDB:{imdb_count}")
-    print(f"DB saved to {DB_PATH}, cache saved to {CACHE_PATH}")
+    print(f"ID Coverage: MAL:{mal_count} AniList:{anilist_count} Kitsu:{kitsu_count} AniDB:{anidb_count} IMDB:{imdb_count} (manual overrides: {manual_count})")
+
+    if export_csv_flag:
+        export_csv(csv_file)
+    
+    if export_unmatched_flag:
+        export_unmatched(UNMATCHED_PATH)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--once", action="store_true")
-    parser.add_argument("--no-enrich", action="store_true", help="Skip AniZip enrichment (faster)")
-    parser.add_argument("--enrich-all", action="store_true", help="Force enrich ALL entries (slow, hits API a lot)")
+    parser.add_argument("--no-enrich", action="store_true")
+    parser.add_argument("--enrich-all", action="store_true")
+    parser.add_argument("--export-csv", action="store_true")
+    parser.add_argument("--export-csv-file", default="anime_pairings.csv")
+    parser.add_argument("--export-only", action="store_true")
+    parser.add_argument("--no-unmatched", action="store_true", help="Skip unmatched report")
     args = parser.parse_args()
     
+    if args.export_only:
+        export_csv(args.export_csv_file)
+        if not args.no_unmatched:
+            export_unmatched(UNMATCHED_PATH)
+        sys.exit(0)
+    
     if args.enrich_all:
-        # Clear cache to force re-fetch
         id_cache.clear()
     
-    run_once(enrich_new=not args.no_enrich)
+    run_once(enrich_new=not args.no_enrich, export_csv_flag=args.export_csv, csv_file=Path(args.export_csv_file), export_unmatched_flag=not args.no_unmatched)
+    
