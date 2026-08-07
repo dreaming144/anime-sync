@@ -5721,5 +5721,544 @@
     "title": "Case Closed",
     "_cached_at": "2026-08-07T21:51:01.228386+00:00",
     "_source": "anizip"
+  },
+  "arm_anidb_7508": {
+    "anidb": 7508,
+    "_cached_at": "2026-08-07T22:08:01.587927+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_7926": {
+    "kitsu": 7926,
+    "_cached_at": "2026-08-07T22:08:02.134374+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_7937": {
+    "kitsu": 7937,
+    "_cached_at": "2026-08-07T22:08:02.680171+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_7936": {
+    "kitsu": 7936,
+    "_cached_at": "2026-08-07T22:08:03.492815+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_8077": {
+    "kitsu": 8077,
+    "_cached_at": "2026-08-07T22:08:03.999854+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_10735": {
+    "kitsu": 10735,
+    "_cached_at": "2026-08-07T22:08:04.661830+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_8706": {
+    "kitsu": 8706,
+    "_cached_at": "2026-08-07T22:08:05.322148+00:00",
+    "_source": "arm"
+  },
+  "arm_kitsu_7928": {
+    "kitsu": 7928,
+    "_cached_at": "2026-08-07T22:08:05.890612+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_187264": {
+    "anilist": 187264,
+    "mal": 61128,
+    "anidb": 19190,
+    "_cached_at": "2026-08-07T22:08:06.446578+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_187663": {
+    "anilist": 187663,
+    "mal": 61174,
+    "anidb": 19204,
+    "_cached_at": "2026-08-07T22:08:07.009736+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_199446": {
+    "anilist": 199446,
+    "_cached_at": "2026-08-07T22:08:07.668040+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_183960": {
+    "anilist": 183960,
+    "mal": 60253,
+    "anidb": 18970,
+    "_cached_at": "2026-08-07T22:08:08.326417+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_170110": {
+    "anilist": 170110,
+    "mal": 56906,
+    "kitsu": 50637,
+    "anidb": 18241,
+    "_cached_at": "2026-08-07T22:08:08.884163+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_202381": {
+    "anilist": 202381,
+    "mal": 62964,
+    "anidb": 19722,
+    "_cached_at": "2026-08-07T22:08:09.428852+00:00",
+    "_source": "arm"
+  },
+  "anilist_129801": {
+    "anilist": 129801,
+    "mal": 47591,
+    "kitsu": 44102,
+    "_cached_at": "2026-08-07T22:08:09.835681+00:00",
+    "_source": "anizip"
+  },
+  "anilist_17187": {
+    "anilist": 17187,
+    "mal": 17187,
+    "kitsu": 7602,
+    "_cached_at": "2026-08-07T22:08:09.848854+00:00",
+    "_source": "anizip"
+  },
+  "anilist_101343": {
+    "anilist": 101343,
+    "mal": 37514,
+    "kitsu": 41080,
+    "_cached_at": "2026-08-07T22:08:09.894824+00:00",
+    "_source": "anizip"
+  },
+  "anilist_107864": {
+    "anilist": 107864,
+    "mal": 37262,
+    "kitsu": 41761,
+    "anidb": 13784,
+    "tmdb": "597419",
+    "title": "For Whom the Alchemist Exists the Movie",
+    "_cached_at": "2026-08-07T22:08:10.260928+00:00",
+    "_source": "anizip"
+  },
+  "anilist_101160": {
+    "anilist": 101160,
+    "mal": 37320,
+    "kitsu": 41014,
+    "_cached_at": "2026-08-07T22:08:10.569721+00:00",
+    "_source": "anizip"
+  },
+  "anilist_100256": {
+    "anilist": 100256,
+    "mal": 36502,
+    "kitsu": 13918,
+    "_cached_at": "2026-08-07T22:08:10.572318+00:00",
+    "_source": "anizip"
+  },
+  "anilist_184694": {
+    "anilist": 184694,
+    "mal": 59841,
+    "kitsu": 49220,
+    "_cached_at": "2026-08-07T22:08:10.573127+00:00",
+    "_source": "anizip"
+  },
+  "anilist_1908": {
+    "anilist": 1908,
+    "mal": 1908,
+    "kitsu": 1718,
+    "anidb": 799,
+    "title": "Lesson Double X",
+    "_cached_at": "2026-08-07T22:08:10.917871+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_184694": {
+    "anilist": 184694,
+    "mal": 59841,
+    "kitsu": 49220,
+    "_cached_at": "2026-08-07T22:08:11.278098+00:00",
+    "_source": "arm"
+  },
+  "anilist_2359": {
+    "anilist": 2359,
+    "mal": 2359,
+    "_cached_at": "2026-08-07T22:08:11.286740+00:00",
+    "_source": "anizip"
+  },
+  "anilist_141352": {
+    "anilist": 141352,
+    "mal": 50315,
+    "kitsu": 45472,
+    "_cached_at": "2026-08-07T22:08:11.541353+00:00",
+    "_source": "anizip"
+  },
+  "anilist_135429": {
+    "anilist": 135429,
+    "mal": 49164,
+    "kitsu": 44691,
+    "anidb": 16378,
+    "title": "Make My Day",
+    "_cached_at": "2026-08-07T22:08:11.590360+00:00",
+    "_source": "anizip"
+  },
+  "anilist_2341": {
+    "anilist": 2341,
+    "mal": 2341,
+    "_cached_at": "2026-08-07T22:08:11.603039+00:00",
+    "_source": "anizip"
+  },
+  "anilist_144677": {
+    "anilist": 144677,
+    "mal": 50953,
+    "kitsu": 45830,
+    "_cached_at": "2026-08-07T22:08:11.745579+00:00",
+    "_source": "anizip"
+  },
+  "anilist_148584": {
+    "anilist": 148584,
+    "mal": 51097,
+    "kitsu": 47323,
+    "_cached_at": "2026-08-07T22:08:12.022090+00:00",
+    "_source": "anizip"
+  },
+  "anilist_191974": {
+    "anilist": 191974,
+    "mal": 60572,
+    "kitsu": 49892,
+    "anidb": 19323,
+    "title": "The All-devouring Whale: Homecoming",
+    "_cached_at": "2026-08-07T22:08:12.384663+00:00",
+    "_source": "anizip"
+  },
+  "anilist_199446": {
+    "anilist": 199446,
+    "_cached_at": "2026-08-07T22:08:12.461011+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_148584": {
+    "anilist": 148584,
+    "mal": 51097,
+    "kitsu": 47323,
+    "_cached_at": "2026-08-07T22:08:12.821042+00:00",
+    "_source": "arm"
+  },
+  "anilist_184356": {
+    "anilist": 184356,
+    "mal": 63316,
+    "kitsu": 50480,
+    "_cached_at": "2026-08-07T22:08:12.841268+00:00",
+    "_source": "anizip"
+  },
+  "anilist_126356": {
+    "anilist": 126356,
+    "mal": 44070,
+    "kitsu": 43793,
+    "_cached_at": "2026-08-07T22:08:13.100491+00:00",
+    "_source": "anizip"
+  },
+  "anilist_210234": {
+    "anilist": 210234,
+    "mal": 63304,
+    "kitsu": 50570,
+    "_cached_at": "2026-08-07T22:08:13.152509+00:00",
+    "_source": "anizip"
+  },
+  "anilist_719": {
+    "anilist": 719,
+    "mal": 719,
+    "kitsu": 649,
+    "anidb": 793,
+    "title": "Love Wedge",
+    "_cached_at": "2026-08-07T22:08:13.487833+00:00",
+    "_source": "anizip"
+  },
+  "anilist_155011": {
+    "anilist": 155011,
+    "mal": 52976,
+    "kitsu": 46323,
+    "_cached_at": "2026-08-07T22:08:13.552693+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_126356": {
+    "anilist": 126356,
+    "mal": 44070,
+    "kitsu": 43793,
+    "_cached_at": "2026-08-07T22:08:13.794513+00:00",
+    "_source": "arm"
+  },
+  "anilist_11977": {
+    "anilist": 11977,
+    "mal": 11977,
+    "kitsu": 6636,
+    "_cached_at": "2026-08-07T22:08:14.102191+00:00",
+    "_source": "anizip"
+  },
+  "anilist_98663": {
+    "anilist": 98663,
+    "mal": 33520,
+    "kitsu": 12502,
+    "_cached_at": "2026-08-07T22:08:14.254370+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_155011": {
+    "anilist": 155011,
+    "mal": 52976,
+    "kitsu": 46323,
+    "_cached_at": "2026-08-07T22:08:14.264066+00:00",
+    "_source": "arm"
+  },
+  "anilist_163138": {
+    "anilist": 163138,
+    "mal": 54851,
+    "kitsu": 47268,
+    "anidb": 17942,
+    "title": "Yakitori: Soldiers of Misfortune",
+    "_cached_at": "2026-08-07T22:08:14.269345+00:00",
+    "_source": "anizip"
+  },
+  "anilist_183960": {
+    "anilist": 183960,
+    "mal": 60253,
+    "anidb": 18970,
+    "title": "Otherworldly Munchkin: Let`s Speedrun the Dungeon with Only 1 HP!",
+    "_cached_at": "2026-08-07T22:08:14.717823+00:00",
+    "_source": "anizip"
+  },
+  "anilist_320": {
+    "anilist": 320,
+    "mal": 320,
+    "_cached_at": "2026-08-07T22:08:14.833997+00:00",
+    "_source": "anizip"
+  },
+  "anilist_187924": {
+    "anilist": 187924,
+    "mal": 61203,
+    "kitsu": 49674,
+    "anidb": 19213,
+    "title": "Konosuba: God`s Blessing on This Wonderful World! 4",
+    "_cached_at": "2026-08-07T22:08:15.076429+00:00",
+    "_source": "anizip"
+  },
+  "anilist_137663": {
+    "anilist": 137663,
+    "mal": 49573,
+    "kitsu": 46643,
+    "anidb": 16582,
+    "title": "Silent House",
+    "_cached_at": "2026-08-07T22:08:15.161385+00:00",
+    "_source": "anizip"
+  },
+  "anilist_6954": {
+    "anilist": 6954,
+    "mal": 6954,
+    "kitsu": 4804,
+    "_cached_at": "2026-08-07T22:08:15.313168+00:00",
+    "_source": "anizip"
+  },
+  "anilist_140337": {
+    "anilist": 140337,
+    "mal": 50159,
+    "kitsu": 45333,
+    "anidb": 16911,
+    "tmdb": "959646",
+    "title": "Zombie Land Saga Movie",
+    "_cached_at": "2026-08-07T22:08:15.335205+00:00",
+    "_source": "anizip"
+  },
+  "anilist_182206": {
+    "anilist": 182206,
+    "mal": 59971,
+    "kitsu": 49236,
+    "anidb": 18885,
+    "tmdb": "1363974",
+    "title": "That Time I Got Reincarnated as a Slime the Movie: Tears of the Azure Sea",
+    "_cached_at": "2026-08-07T22:08:15.772515+00:00",
+    "_source": "anizip"
+  },
+  "anilist_175646": {
+    "anilist": 175646,
+    "mal": 54945,
+    "kitsu": 49777,
+    "_cached_at": "2026-08-07T22:08:15.890710+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_139097": {
+    "anilist": 139097,
+    "mal": 42731,
+    "_cached_at": "2026-08-07T22:08:16.108837+00:00",
+    "_source": "arm"
+  },
+  "anilist_2360": {
+    "anilist": 2360,
+    "mal": 2360,
+    "_cached_at": "2026-08-07T22:08:16.244831+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_126169": {
+    "anilist": 126169,
+    "mal": 41075,
+    "_cached_at": "2026-08-07T22:08:16.266574+00:00",
+    "_source": "arm"
+  },
+  "arm_anilist_175646": {
+    "anilist": 175646,
+    "mal": 54945,
+    "kitsu": 49777,
+    "_cached_at": "2026-08-07T22:08:16.573882+00:00",
+    "_source": "arm"
+  },
+  "anilist_6509": {
+    "anilist": 6509,
+    "mal": 6509,
+    "kitsu": 4586,
+    "anidb": 2723,
+    "title": "Kiteretsu Encyclopedia",
+    "_cached_at": "2026-08-07T22:08:16.632803+00:00",
+    "_source": "anizip"
+  },
+  "anilist_8888": {
+    "anilist": 8888,
+    "mal": 8888,
+    "kitsu": 5518,
+    "_cached_at": "2026-08-07T22:08:16.634121+00:00",
+    "_source": "anizip"
+  },
+  "anilist_10218": {
+    "anilist": 10218,
+    "mal": 10218,
+    "kitsu": 6084,
+    "_cached_at": "2026-08-07T22:08:16.720515+00:00",
+    "_source": "anizip"
+  },
+  "anilist_21132": {
+    "anilist": 21132,
+    "mal": 30458,
+    "kitsu": 10789,
+    "_cached_at": "2026-08-07T22:08:16.876663+00:00",
+    "_source": "anizip"
+  },
+  "anilist_137653": {
+    "anilist": 137653,
+    "mal": 55809,
+    "kitsu": 48036,
+    "anidb": 18237,
+    "title": "Renegade Immortal",
+    "_cached_at": "2026-08-07T22:08:17.324238+00:00",
+    "_source": "anizip"
+  },
+  "anilist_210375": {
+    "anilist": 210375,
+    "mal": 63433,
+    "kitsu": 50648,
+    "anidb": 19994,
+    "title": "The Great Sage Ryddel and the Hands of Time",
+    "_cached_at": "2026-08-07T22:08:17.574574+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_148289": {
+    "anilist": 148289,
+    "mal": 55673,
+    "_cached_at": "2026-08-07T22:08:17.583558+00:00",
+    "_source": "arm"
+  },
+  "mal_6954": {
+    "anilist": 6954,
+    "mal": 6954,
+    "kitsu": 4804,
+    "_cached_at": "2026-08-07T22:08:18.492067+00:00",
+    "_source": "anizip"
+  },
+  "anilist_551": {
+    "anilist": 551,
+    "mal": 551,
+    "kitsu": 508,
+    "anidb": 880,
+    "imdb": "tt0981456",
+    "tvdb": 79237,
+    "tmdb": "56425",
+    "title": "Grappler Baki Chapter of The Maximum Tournament",
+    "_cached_at": "2026-08-07T22:08:19.040833+00:00",
+    "_source": "anizip"
+  },
+  "anilist_314": {
+    "anilist": 314,
+    "mal": 314,
+    "kitsu": 8123,
+    "anidb": 1390,
+    "tvdb": 85301,
+    "tmdb": "46419",
+    "title": "Aim for the Ace! 2",
+    "_cached_at": "2026-08-07T22:08:19.557942+00:00",
+    "_source": "anizip"
+  },
+  "anilist_3194": {
+    "anilist": 3194,
+    "mal": 3194,
+    "kitsu": 2850,
+    "anidb": 3497,
+    "title": "Saban`s Adventures of the Little Mermaid",
+    "_cached_at": "2026-08-07T22:08:19.902891+00:00",
+    "_source": "anizip"
+  },
+  "kitsu_8123": {
+    "kitsu": "8123",
+    "_cached_at": "2026-08-07T22:08:19.949013+00:00",
+    "_source": "kitsu_mappings",
+    "mal": 314,
+    "anidb": 1390,
+    "anilist": 314
+  },
+  "mal_2360": {
+    "anilist": 2360,
+    "mal": 2360,
+    "_cached_at": "2026-08-07T22:08:19.970513+00:00",
+    "_source": "anizip"
+  },
+  "kitsu_2850": {
+    "kitsu": "2850",
+    "_cached_at": "2026-08-07T22:08:20.311967+00:00",
+    "_source": "kitsu_mappings",
+    "mal": 3194,
+    "anidb": 3497,
+    "anilist": 3194
+  },
+  "mal_47591": {
+    "anilist": 129801,
+    "mal": 47591,
+    "kitsu": 44102,
+    "_cached_at": "2026-08-07T22:08:20.698073+00:00",
+    "_source": "anizip"
+  },
+  "mal_59571": {
+    "mal": 59571,
+    "kitsu": 49129,
+    "anidb": 18820,
+    "tmdb": "1333100",
+    "title": "Attack on Titan: The Last Attack",
+    "_cached_at": "2026-08-07T22:08:21.979923+00:00",
+    "_source": "anizip"
+  },
+  "mal_61969": {
+    "mal": 61969,
+    "_cached_at": "2026-08-07T22:08:22.326939+00:00",
+    "_source": "anizip"
+  },
+  "anilist_162291": {
+    "anilist": 162291,
+    "mal": 53911,
+    "kitsu": 47155,
+    "_cached_at": "2026-08-07T22:08:23.647888+00:00",
+    "_source": "anizip"
+  },
+  "arm_anilist_162291": {
+    "anilist": 162291,
+    "mal": 53911,
+    "kitsu": 47155,
+    "_cached_at": "2026-08-07T22:08:24.317481+00:00",
+    "_source": "arm"
+  },
+  "mal_63939": {
+    "mal": 63939,
+    "kitsu": 50663,
+    "_cached_at": "2026-08-07T22:08:28.399255+00:00",
+    "_source": "anizip"
+  },
+  "arm_mal_63939": {
+    "mal": 63939,
+    "kitsu": 50663,
+    "_cached_at": "2026-08-07T22:08:29.102504+00:00",
+    "_source": "arm"
   }
 }
