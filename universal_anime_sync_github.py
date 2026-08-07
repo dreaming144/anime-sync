@@ -1,10 +1,11 @@
 """
-Universal Anime Sync V3.5 - Concurrent enrichment + smart skip
+Universal Anime Sync V3.6 - SQLite primary storage
 - Manual overrides + unmatched report
 - Exports anime_pairings.csv with all IDs
 - Real pushers: AniList, Kitsu, SIMKL (MAL placeholder)
 - Conflict policies: last_write_wins | source_priority
-- Concurrent ID enrichment (ThreadPoolExecutor) + skip fully-resolved entries
+- Concurrent ID enrichment + skip fully-resolved entries
+- Primary store: sync.db (SQLite); JSON kept as backup/migration source
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -12,30 +13,125 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
+import sqlite3
 
-DB_PATH = Path("sync_db.json")
-CACHE_PATH = Path("id_cache.json")
+DB_PATH = Path("sync_db.json")          # legacy JSON (still written as backup)
+CACHE_PATH = Path("id_cache.json")      # legacy JSON (still written as backup)
+SQLITE_PATH = Path("sync.db")           # primary store
 CSV_PATH_DEFAULT = Path("anime_pairings.csv")
 UNMATCHED_PATH = Path("unmatched.csv")
 OVERRIDES_PATH = Path("manual_overrides.json")
 
-if DB_PATH.exists():
-    try:
-        db = json.loads(DB_PATH.read_text(encoding='utf-8'))
-        if "entries" not in db:
-            db = {"entries": db} if isinstance(db, dict) else {"entries": {}}
-    except (json.JSONDecodeError, FileNotFoundError, KeyError):
-        db = {"entries": {}, "id_cache": {}}
-else:
-    db = {"entries": {}, "id_cache": {}}
 
-if CACHE_PATH.exists():
+def _init_sqlite(conn):
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS entries (
+            canonical_key TEXT PRIMARY KEY,
+            data TEXT NOT NULL
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS id_cache (
+            cache_key TEXT PRIMARY KEY,
+            data TEXT NOT NULL
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS meta (
+            key TEXT PRIMARY KEY,
+            value TEXT
+        )
+    """)
+    conn.commit()
+
+
+def load_db():
+    """Load entries + id_cache from SQLite (migrating from JSON on first run)."""
+    conn = sqlite3.connect(SQLITE_PATH)
+    _init_sqlite(conn)
+
+    # Check if SQLite already has data
+    count = conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0]
+
+    if count == 0 and DB_PATH.exists():
+        # One-time migration from legacy JSON
+        print(f"-> Migrating {DB_PATH} → {SQLITE_PATH} ...")
+        try:
+            raw = json.loads(DB_PATH.read_text(encoding="utf-8"))
+            if "entries" not in raw:
+                raw = {"entries": raw if isinstance(raw, dict) else {}, "id_cache": {}}
+            entries = raw.get("entries", {})
+            cache = raw.get("id_cache", {})
+            # Also pull standalone id_cache.json if present
+            if CACHE_PATH.exists():
+                try:
+                    cache.update(json.loads(CACHE_PATH.read_text(encoding="utf-8")))
+                except (json.JSONDecodeError, OSError):
+                    pass
+            with conn:
+                for k, v in entries.items():
+                    conn.execute(
+                        "INSERT OR REPLACE INTO entries (canonical_key, data) VALUES (?, ?)",
+                        (k, json.dumps(v, ensure_ascii=False)),
+                    )
+                for k, v in cache.items():
+                    conn.execute(
+                        "INSERT OR REPLACE INTO id_cache (cache_key, data) VALUES (?, ?)",
+                        (k, json.dumps(v, ensure_ascii=False)),
+                    )
+            print(f"   Migrated {len(entries)} entries, {len(cache)} cache keys")
+        except Exception as e:
+            print(f"   Migration warning: {e}")
+
+    # Load into memory (same interface as before)
+    entries = {}
+    for row in conn.execute("SELECT canonical_key, data FROM entries"):
+        try:
+            entries[row[0]] = json.loads(row[1])
+        except json.JSONDecodeError:
+            continue
+    cache = {}
+    for row in conn.execute("SELECT cache_key, data FROM id_cache"):
+        try:
+            cache[row[0]] = json.loads(row[1])
+        except json.JSONDecodeError:
+            continue
+    conn.close()
+    return {"entries": entries, "id_cache": cache}, cache
+
+
+def save_db(db_obj, cache_obj):
+    """Persist in-memory db + id_cache to SQLite (and legacy JSON as backup)."""
+    conn = sqlite3.connect(SQLITE_PATH)
+    _init_sqlite(conn)
+    with conn:
+        conn.execute("DELETE FROM entries")
+        conn.execute("DELETE FROM id_cache")
+        for k, v in db_obj.get("entries", {}).items():
+            conn.execute(
+                "INSERT INTO entries (canonical_key, data) VALUES (?, ?)",
+                (k, json.dumps(v, ensure_ascii=False)),
+            )
+        for k, v in cache_obj.items():
+            conn.execute(
+                "INSERT INTO id_cache (cache_key, data) VALUES (?, ?)",
+                (k, json.dumps(v, ensure_ascii=False)),
+            )
+    conn.close()
+
+    # Keep JSON backups for easy inspection / rollback
     try:
-        id_cache = json.loads(CACHE_PATH.read_text(encoding='utf-8'))
-    except (json.JSONDecodeError, FileNotFoundError):
-        id_cache = {}
-else:
-    id_cache = db.get("id_cache", {})
+        DB_PATH.write_text(json.dumps(db_obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    except OSError:
+        pass
+    try:
+        CACHE_PATH.write_text(json.dumps(cache_obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    except OSError:
+        pass
+
+
+# Load at startup
+db, id_cache = load_db()
 
 # Load manual overrides
 if OVERRIDES_PATH.exists():
@@ -822,11 +918,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     print(e)
 
     db["id_cache"] = id_cache
-    DB_PATH.write_text(json.dumps(db, indent=2), encoding='utf-8')
-    try:
-        CACHE_PATH.write_text(json.dumps(id_cache, indent=2), encoding='utf-8')
-    except OSError:
-        pass
+    save_db(db, id_cache)
     
     anidb_count = sum(1 for e in db["entries"].values() if e["ids"].get("anidb"))
     imdb_count = sum(1 for e in db["entries"].values() if e["ids"].get("imdb"))

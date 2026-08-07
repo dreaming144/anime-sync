@@ -42,7 +42,7 @@ jobs:
       - name: Check existing files
         run: |
           echo "=== Existing files ==="
-          ls -lh sync_db.json id_cache.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
+          ls -lh sync.db sync_db.json id_cache.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
           echo ""
           echo "=== Overrides ==="
           cat manual_overrides.json || echo "No overrides yet"
@@ -100,7 +100,7 @@ jobs:
           # Ensure overrides file exists
           [ -f manual_overrides.json ] || echo '{}' > manual_overrides.json
           
-          git add sync_db.json id_cache.json anime_pairings.csv unmatched.csv manual_overrides.json || true
+          git add sync.db sync_db.json id_cache.json anime_pairings.csv unmatched.csv manual_overrides.json || true
           
           if git diff --staged --quiet; then
             echo "No changes"
@@ -113,6 +113,7 @@ jobs:
         with:
           name: sync-reports
           path: |
+            sync.db
             sync_db.json
             id_cache.json
             anime_pairings.csv
