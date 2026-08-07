@@ -1,5 +1,6 @@
 """
-Universal Anime Sync V3.7 - Robustness pass
+Universal Anime Sync V3.8 - Full bidirectional pushers
+- Real pushers: AniList, MAL, Kitsu, SIMKL
 - ID types normalized to str; MAL pagination; AniList scoreRaw
 - Kitsu user-id cached; username falls back to CONFIG
 - Atomic SQLite saves; lazy load (no import side effects)
@@ -658,11 +659,58 @@ def push_anilist(entry, state):
 
 
 def push_mal(entry, state):
-    """Placeholder — MAL write support not yet implemented.
-    Requires MAL_ACCESS_TOKEN (and usually a client id).
-    Endpoint: PUT https://api.myanimelist.net/v2/anime/{id}/my_list_status
+    """Create or update a MAL list entry via PUT /anime/{id}/my_list_status.
+
+    Requires MAL_ACCESS_TOKEN with write:users scope.
+    Body is application/x-www-form-urlencoded (not JSON).
     """
-    print(f"   -> PUSH MAL placeholder (not implemented): {entry['ids'].get('mal')} => {state}")
+    token = os.getenv("MAL_ACCESS_TOKEN")
+    if not token:
+        print("   -> PUSH MAL skipped (no MAL_ACCESS_TOKEN)")
+        return
+    mal_id = entry["ids"].get("mal")
+    if not mal_id:
+        return
+    try:
+        mal_id = int(mal_id)
+    except (ValueError, TypeError):
+        print(f"   -> PUSH MAL skipped (invalid mal id: {mal_id})")
+        return
+
+    status = REVERSE_STATUS["mal"].get(state["status"])
+    if not status:
+        print(f"   -> PUSH MAL skipped (unknown status: {state.get('status')})")
+        return
+
+    # MAL score is integer 0-10 (0 = unset)
+    score = int(round(float(state.get("score") or 0)))
+    if score < 0:
+        score = 0
+    if score > 10:
+        score = 10
+
+    payload = {
+        "status": status,
+        "num_watched_episodes": int(state.get("progress") or 0),
+        "score": score,
+    }
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    try:
+        r = requests.put(
+            f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
+            data=payload,
+            headers=headers,
+            timeout=15,
+        )
+        if r.ok:
+            print(f"   -> PUSH MAL {mal_id} => {state} [{r.status_code}]")
+        else:
+            print(f"   -> PUSH MAL failed {mal_id}: {r.status_code} {r.text[:200]}")
+    except requests.RequestException as e:
+        print(f"   -> PUSH MAL network error: {e}")
 
 
 def push_kitsu(entry, state):
