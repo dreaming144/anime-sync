@@ -1,12 +1,4 @@
 {
   "_comment": "Manual overrides for shows that APIs can't auto-pair. Key = any existing ID like kitsu_12345 or mal_12345. Value = full IDs to force. This file is checked FIRST before AniZip.",
-  "_how_to": "1. Open unmatched.csv 2. Find the show 3. Look up its IDs on anilist.co, myanimelist.net, anidb.net 4. Add entry here 5. Commit - next sync will use it",
-  "kitsu_45200_example": {
-    "mal": 58800,
-    "anilist": 180000,
-    "anidb": 18900,
-    "kitsu": "45200",
-    "title": "Example - New Seasonal Show - DELETE THIS EXAMPLE",
-    "comment": "This is example - delete it and add real ones from unmatched.csv"
-  }
+  "_how_to": "1. Open unmatched.csv 2. Find the show 3. Look up its IDs on anilist.co, myanimelist.net, anidb.net 4. Add entry here 5. Commit - next sync will use it"
 }

@@ -1,8 +1,9 @@
 """
-Universal Anime Sync V3.2 - With manual overrides + unmatched report
-- Adds manual_overrides.json support for shows APIs can't pair
-- Exports unmatched.csv for quick manual fixing
-- Still exports anime_pairings.csv with all IDs
+Universal Anime Sync V3.3 - Bidirectional push support
+- Manual overrides + unmatched report
+- Exports anime_pairings.csv with all IDs
+- Real pushers: AniList (SaveMediaListEntry), Kitsu (library-entries), SIMKL
+- MAL push still a placeholder
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -368,9 +369,174 @@ def push_simkl(entry, state):
         requests.post(f"https://api.simkl.com/sync/history?client_id={client_id}", json=hist, headers=headers, timeout=15)
     print(f"   -> PUSH SIMKL {ids} => {state} [{r.status_code}]")
 
-def push_anilist(entry, state): print(f"   -> PUSH AniList would: {entry['ids']} => {state}")
-def push_mal(entry, state): print(f"   -> PUSH MAL would: {entry['ids']} => {state}")
-def push_kitsu(entry, state): print(f"   -> PUSH Kitsu would: {entry['ids']} => {state}")
+def push_anilist(entry, state):
+    """Create or update an AniList media list entry via SaveMediaListEntry mutation."""
+    token = os.getenv("ANILIST_TOKEN")
+    if not token:
+        print("   -> PUSH AniList skipped (no ANILIST_TOKEN)")
+        return
+    media_id = entry["ids"].get("anilist")
+    if not media_id:
+        return
+    try:
+        media_id = int(media_id)
+    except (ValueError, TypeError):
+        print(f"   -> PUSH AniList skipped (invalid mediaId: {media_id})")
+        return
+
+    status = REVERSE_STATUS["anilist"].get(state["status"])
+    if not status:
+        print(f"   -> PUSH AniList skipped (unknown status: {state.get('status')})")
+        return
+
+    mutation = """
+    mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $score: Float) {
+      SaveMediaListEntry(mediaId: $mediaId, status: $status, progress: $progress, score: $score) {
+        id
+        status
+        progress
+        score
+      }
+    }
+    """
+    variables = {
+        "mediaId": media_id,
+        "status": status,
+        "progress": int(state.get("progress") or 0),
+        "score": float(state.get("score") or 0),
+    }
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    try:
+        r = requests.post(
+            "https://graphql.anilist.co",
+            json={"query": mutation, "variables": variables},
+            headers=headers,
+            timeout=15,
+        )
+        if r.ok and r.json().get("data", {}).get("SaveMediaListEntry"):
+            print(f"   -> PUSH AniList {media_id} => {state} [{r.status_code}]")
+        else:
+            err = r.text[:300] if r.text else r.status_code
+            print(f"   -> PUSH AniList failed {media_id}: {err}")
+    except requests.RequestException as e:
+        print(f"   -> PUSH AniList network error: {e}")
+
+
+def push_mal(entry, state):
+    """Placeholder — MAL write support not yet implemented.
+    Requires MAL_ACCESS_TOKEN (and usually a client id).
+    Endpoint: PUT https://api.myanimelist.net/v2/anime/{id}/my_list_status
+    """
+    print(f"   -> PUSH MAL placeholder (not implemented): {entry['ids'].get('mal')} => {state}")
+
+
+def push_kitsu(entry, state):
+    """Best-effort Kitsu library-entry update/create.
+    Full reliability needs the library-entry ID stored in the DB.
+    Requires KITSU_TOKEN (OAuth access token).
+    """
+    token = os.getenv("KITSU_TOKEN") or os.getenv("KITSU_ACCESS_TOKEN")
+    if not token:
+        print("   -> PUSH Kitsu skipped (no KITSU_TOKEN)")
+        return
+    kitsu_id = entry["ids"].get("kitsu")
+    if not kitsu_id:
+        return
+
+    status = REVERSE_STATUS["kitsu"].get(state["status"])
+    if not status:
+        return
+
+    # Kitsu expects ratingTwenty (0-20 scale). Our score is 0-10.
+    rating = None
+    score = state.get("score")
+    if score is not None and score > 0:
+        rating = int(float(score) * 2)
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/vnd.api+json",
+        "Accept": "application/vnd.api+json",
+    }
+
+    # Try to find existing library entry for this anime + current user
+    try:
+        # First resolve current user id
+        me = requests.get(
+            "https://kitsu.io/api/edge/users?filter[self]=true",
+            headers=headers,
+            timeout=15,
+        )
+        if not me.ok:
+            print(f"   -> PUSH Kitsu auth failed: {me.status_code}")
+            return
+        users = me.json().get("data") or []
+        if not users:
+            print("   -> PUSH Kitsu: could not resolve current user")
+            return
+        user_id = users[0]["id"]
+
+        # Look up library entry
+        lookup = requests.get(
+            f"https://kitsu.io/api/edge/library-entries"
+            f"?filter[userId]={user_id}&filter[animeId]={kitsu_id}&filter[kind]=anime",
+            headers=headers,
+            timeout=15,
+        )
+        existing = (lookup.json().get("data") or []) if lookup.ok else []
+
+        attrs = {
+            "status": status,
+            "progress": int(state.get("progress") or 0),
+        }
+        if rating is not None:
+            attrs["ratingTwenty"] = rating
+
+        if existing:
+            entry_id = existing[0]["id"]
+            payload = {
+                "data": {
+                    "type": "libraryEntries",
+                    "id": entry_id,
+                    "attributes": attrs,
+                }
+            }
+            r = requests.patch(
+                f"https://kitsu.io/api/edge/library-entries/{entry_id}",
+                json=payload,
+                headers=headers,
+                timeout=15,
+            )
+            action = "update"
+        else:
+            payload = {
+                "data": {
+                    "type": "libraryEntries",
+                    "attributes": attrs,
+                    "relationships": {
+                        "anime": {"data": {"type": "anime", "id": str(kitsu_id)}},
+                        "user": {"data": {"type": "users", "id": str(user_id)}},
+                    },
+                }
+            }
+            r = requests.post(
+                "https://kitsu.io/api/edge/library-entries",
+                json=payload,
+                headers=headers,
+                timeout=15,
+            )
+            action = "create"
+
+        if r.ok:
+            print(f"   -> PUSH Kitsu {action} {kitsu_id} => {state} [{r.status_code}]")
+        else:
+            print(f"   -> PUSH Kitsu {action} failed {kitsu_id}: {r.status_code} {r.text[:200]}")
+    except requests.RequestException as e:
+        print(f"   -> PUSH Kitsu network error: {e}")
 
 PUSHERS = {"anilist": push_anilist, "mal": push_mal, "kitsu": push_kitsu, "simkl": push_simkl}
 
