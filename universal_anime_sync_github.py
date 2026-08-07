@@ -112,19 +112,57 @@ def load_kitsu():
         print("-> Kitsu skipped"); return []
     print(f"-> Fetching Kitsu {username}...")
     try:
-        u = requests.get(f"https://kitsu.io/api/edge/users?filter[name]={username}", timeout=15).json()
+        u_resp = requests.get(f"https://kitsu.io/api/edge/users?filter[name]={username}", timeout=15)
+        u_resp.raise_for_status()
+        u = u_resp.json()
+        if not u.get("data"):
+            print(f"   Kitsu user {username} not found"); return []
         user_id = u["data"][0]["id"]
-        lib = requests.get(f"https://kitsu.io/api/edge/users/{user_id}/library-entries?filter[kind]=anime&page[limit]=500&include=anime", timeout=15).json()
-        id_map = {a["id"]: a["attributes"] for a in lib.get("included", []) if a["type"]=="anime"}
+        print(f"   Kitsu user ID: {user_id}")
+
         items=[]
-        for e in lib["data"]:
-            a = e["attributes"]
-            anime = id_map.get(e["relationships"]["anime"]["data"]["id"], {})
-            items.append({"platform":"kitsu","ids":{"kitsu": e["relationships"]["anime"]["data"]["id"], "mal": anime.get("idMal")},"state":{"status": STATUS_MAP["kitsu"].get(a["status"], "plantowatch"), "progress": a["progress"], "score": 0},"updated": datetime.fromisoformat(a["updatedAt"].replace("Z","+00:00"))})
+        url = f"https://kitsu.io/api/edge/users/{user_id}/library-entries?filter[kind]=anime&page[limit]=500&include=anime"
+        page=1
+        while url:
+            print(f"   Kitsu page {page} fetching...")
+            r = requests.get(url, timeout=30)
+            if not r.ok:
+                print(f"   Kitsu page {page} error {r.status_code}: {r.text[:200]}")
+                break
+            lib = r.json()
+            id_map = {a["id"]: a["attributes"] for a in lib.get("included", []) if a["type"]=="anime"}
+            for e in lib.get("data", []):
+                a = e["attributes"]
+                rel = e.get("relationships", {}).get("anime", {}).get("data")
+                if not rel: continue
+                anime_id = rel.get("id")
+                anime = id_map.get(anime_id, {})
+                # Try to get MAL ID from various fields
+                mal_id = None
+                if anime:
+                    mal_id = anime.get("idMal") or anime.get("id_mal")
+                items.append({
+                    "platform":"kitsu",
+                    "ids":{"kitsu": anime_id, "mal": mal_id},
+                    "state":{
+                        "status": STATUS_MAP["kitsu"].get(a.get("status"), "plantowatch"),
+                        "progress": a.get("progress", 0),
+                        "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0
+                    },
+                    "updated": datetime.fromisoformat(a["updatedAt"].replace("Z","+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc)
+                })
+            # pagination
+            url = lib.get("links", {}).get("next")
+            page+=1
+            if page>30: # safety 15000 entries
+                break
         print(f"   Kitsu: {len(items)} entries")
         return items
     except Exception as ex:
-        print(f"   Kitsu failed {ex}"); return []
+        import traceback
+        print(f"   Kitsu failed {ex}")
+        traceback.print_exc()
+        return []
 
 def push_simkl(entry, state):
     client_id = os.getenv("SIMKL_CLIENT_ID"); token = os.getenv("SIMKL_ACCESS_TOKEN")
