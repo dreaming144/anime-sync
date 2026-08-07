@@ -1,9 +1,9 @@
 """
-Universal Anime Sync V3.10 - IMDb / TVDB / TMDB enrichment
-- Offline Fribb anime-list-mini for bulk IMDb, TVDB, TMDB (+ cross IDs)
-- AniZip still fills external IDs when missing
-- ARM fallback for Kitsu-only; hard unmatched = no MAL and no AniList
-- Real pushers: AniList, MAL, Kitsu, SIMKL
+Universal Anime Sync V3.11 - Reliable offline IMDb/TVDB fill
+- apply_offline_ids_to_db() runs every sync (and export-only)
+- Fribb anime-list-mini auto-downloaded; fills imdb/tvdb/tmdb on all entries
+- Network enrich no longer required for external IDs to appear in CSV
+- ARM + AniZip still used for harder gaps
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -476,6 +476,35 @@ def fetch_arm(ids_dict, use_cache=True):
         return result
     except (requests.RequestException, ValueError, TypeError):
         return {}
+
+
+
+def apply_offline_ids_to_db():
+    """Fill missing imdb/tvdb/tmdb (and cross IDs) on every stored entry via Fribb.
+
+    Runs every sync — offline after first download, so it is cheap and reliable.
+    """
+    ensure_loaded()
+    load_fribb_index()
+    filled = {"imdb": 0, "tvdb": 0, "tmdb": 0, "other": 0}
+    for entry in db.get("entries", {}).values():
+        ids = entry.get("ids") or {}
+        fribb = fetch_fribb(ids)
+        if not fribb:
+            continue
+        for k in ("imdb", "tvdb", "tmdb", "mal", "anilist", "kitsu", "anidb"):
+            if fribb.get(k) and not ids.get(k):
+                ids[k] = fribb[k]
+                if k in filled:
+                    filled[k] += 1
+                else:
+                    filled["other"] += 1
+        entry["ids"] = ids
+    print(
+        f"-> Offline Fribb fill: +imdb={filled['imdb']} +tvdb={filled['tvdb']} "
+        f"+tmdb={filled['tmdb']} +other={filled['other']}"
+    )
+    return filled
 
 
 def is_fully_resolved(ids):
@@ -1135,6 +1164,8 @@ def should_accept_update(existing, item, policy=None):
 
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True):
     ensure_loaded()
+    # Always apply offline IMDb/TVDB/TMDB mappings (does not depend on network enrich skip logic)
+    apply_offline_ids_to_db()
     all_items=[]
     for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
         try: all_items.extend(loader())
@@ -1156,9 +1187,8 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     if v and not item["ids"].get(k):
                         item["ids"][k] = v
             merged = {**known_ids, **item["ids"]}
-            has_external = bool(merged.get("imdb") or merged.get("tvdb"))
-            # Skip only when core is resolved AND we already have at least one external ID
-            if is_fully_resolved(merged) and has_external:
+            # Core IDs enough to skip *network* enrich; offline Fribb already ran on DB
+            if is_fully_resolved(merged):
                 item["ids"] = merged
                 continue
             to_enrich.append(item)
@@ -1271,6 +1301,8 @@ if __name__ == "__main__":
     ensure_loaded()
 
     if args.export_only:
+        apply_offline_ids_to_db()
+        save_db(db, id_cache)
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
             export_unmatched(UNMATCHED_PATH)
