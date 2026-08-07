@@ -10220,26 +10220,26 @@
     },
     "mal_53802": {
       "ids": {
-        "anilist": 158559,
-        "mal": 53802,
+        "anilist": "158559",
+        "mal": "53802",
         "simkl": 2054506,
         "anidb": "17760",
-        "kitsu": "46842",
+        "kitsu": 46842,
         "imdb": "tt31141567",
         "tvdb": 428168,
         "tmdb": "216074"
       },
       "state": {
-        "status": "watching",
-        "progress": 2,
-        "score": 0
+        "status": "completed",
+        "progress": 24,
+        "score": 7
       },
-      "last_updated": "2026-01-23T11:53:39.282000+00:00",
+      "last_updated": "2026-08-07T16:33:23+00:00",
       "last_synced": {
-        "anilist": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "mal": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "kitsu": "4dcfc50c06c4196b43a56ac5d19f92ce",
-        "simkl": "4dcfc50c06c4196b43a56ac5d19f92ce"
+        "anilist": "50fae8e78433a7f86f94fd19c09b7e19",
+        "mal": "50fae8e78433a7f86f94fd19c09b7e19",
+        "kitsu": "50fae8e78433a7f86f94fd19c09b7e19",
+        "simkl": "50fae8e78433a7f86f94fd19c09b7e19"
       }
     },
     "mal_62144": {
@@ -10881,25 +10881,26 @@
     },
     "mal_59970": {
       "ids": {
-        "anilist": 182205,
-        "mal": 59970,
-        "kitsu": "49235",
-        "anidb": 18884,
+        "anilist": "182205",
+        "mal": "59970",
+        "kitsu": 49235,
+        "anidb": "18884",
         "imdb": "tt9054364",
         "tvdb": 352408,
-        "tmdb": "82684"
+        "tmdb": "82684",
+        "simkl": 2969868
       },
       "state": {
         "status": "watching",
-        "progress": 13,
+        "progress": 17,
         "score": 0
       },
-      "last_updated": "2026-07-05T13:26:42.836000+00:00",
+      "last_updated": "2026-08-07T16:33:55+00:00",
       "last_synced": {
-        "anilist": "3d6c1cd588d6e47ca510f8e98fa1fa71",
-        "simkl": "3d6c1cd588d6e47ca510f8e98fa1fa71",
-        "mal": "3d6c1cd588d6e47ca510f8e98fa1fa71",
-        "kitsu": "3d6c1cd588d6e47ca510f8e98fa1fa71"
+        "anilist": "addfa1de14f5b7945d8126845894af21",
+        "simkl": "addfa1de14f5b7945d8126845894af21",
+        "mal": "addfa1de14f5b7945d8126845894af21",
+        "kitsu": "addfa1de14f5b7945d8126845894af21"
       }
     },
     "mal_60560": {
@@ -17271,19 +17272,19 @@
         "mal": "10218",
         "simkl": 37137,
         "kitsu": 6084,
-        "anidb": 7991
+        "anidb": "7991"
       },
       "state": {
-        "status": "plantowatch",
+        "status": "watching",
         "progress": 0,
         "score": 0
       },
-      "last_updated": "2026-07-21T18:17:16.605654+00:00",
+      "last_updated": "2026-08-07T17:09:21.729537+00:00",
       "last_synced": {
-        "anilist": "576ee156b1e8b3da6e9c411a2fd276e4",
-        "mal": "576ee156b1e8b3da6e9c411a2fd276e4",
-        "kitsu": "576ee156b1e8b3da6e9c411a2fd276e4",
-        "simkl": "576ee156b1e8b3da6e9c411a2fd276e4"
+        "anilist": "5d1735a7e27f6cc806c8eb72e6ab4403",
+        "mal": "5d1735a7e27f6cc806c8eb72e6ab4403",
+        "kitsu": "5d1735a7e27f6cc806c8eb72e6ab4403",
+        "simkl": "5d1735a7e27f6cc806c8eb72e6ab4403"
       }
     },
     "mal_30458": {
