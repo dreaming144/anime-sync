@@ -1,9 +1,9 @@
 """
-Universal Anime Sync V3.3 - Bidirectional push support
+Universal Anime Sync V3.4 - Conflict resolution policies
 - Manual overrides + unmatched report
 - Exports anime_pairings.csv with all IDs
-- Real pushers: AniList (SaveMediaListEntry), Kitsu (library-entries), SIMKL
-- MAL push still a placeholder
+- Real pushers: AniList, Kitsu, SIMKL (MAL placeholder)
+- Conflict policies: last_write_wins (default) | source_priority
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -53,6 +53,12 @@ CONFIG = {
     "anilist_username": os.getenv("ANILIST_USERNAME", "Dreamstorm"),
     "mal_username": os.getenv("MAL_USERNAME", ""),
     "kitsu_username": os.getenv("KITSU_USERNAME", "Dreamst0rm"),
+    # Conflict resolution policy when two platforms disagree:
+    #   "last_write_wins"  - accept the entry with the newer updated timestamp (default)
+    #   "source_priority"  - accept the entry from the higher-ranked platform
+    "conflict_policy": os.getenv("CONFLICT_POLICY", "last_write_wins"),
+    # Used only when conflict_policy == "source_priority" (first = highest priority)
+    "source_priority": ["anilist", "mal", "kitsu", "simkl"],
 }
 
 STATUS_MAP = {
@@ -642,6 +648,41 @@ def export_unmatched(file_path=UNMATCHED_PATH):
     
     return file_path, len(unmatched)
 
+
+def should_accept_update(existing, item, policy=None):
+    """Decide whether the incoming item should overwrite the stored state.
+
+    Returns (accept: bool, reason: str)
+    """
+    policy = policy or CONFIG.get("conflict_policy", "last_write_wins")
+
+    if policy == "source_priority":
+        priority = CONFIG.get("source_priority", ["anilist", "mal", "kitsu", "simkl"])
+        # Find the platform that last wrote the stored state (best effort)
+        last_platform = None
+        for p in priority:
+            if existing.get("last_synced", {}).get(p):
+                last_platform = p
+                break
+        incoming_rank = priority.index(item["platform"]) if item["platform"] in priority else 999
+        stored_rank = priority.index(last_platform) if last_platform in priority else 999
+
+        if incoming_rank < stored_rank:
+            return True, f"source_priority ({item['platform']} > {last_platform})"
+        if incoming_rank > stored_rank:
+            return False, f"source_priority ({last_platform} > {item['platform']})"
+        # same rank → fall through to timestamp
+
+    # Default / fallback: last_write_wins
+    try:
+        last_updated = datetime.fromisoformat(existing["last_updated"])
+        if item["updated"] > last_updated:
+            return True, "newer timestamp"
+        return False, "older or equal timestamp"
+    except (ValueError, TypeError, KeyError):
+        return True, "missing timestamp - accept"
+
+
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True):
     all_items=[]
     for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
@@ -701,9 +742,9 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     existing["ids"][k] = v
             continue
         
-        last_updated = datetime.fromisoformat(existing["last_updated"])
-        if item["updated"] > last_updated:
-            print(f"[CHANGE] {key} newer on {item['platform']} - {item['state']}")
+        accept, reason = should_accept_update(existing, item)
+        if accept:
+            print(f"[CHANGE] {key} on {item['platform']} ({reason}) - {item['state']}")
             existing["state"] = item["state"]
             existing["last_updated"] = item["updated"].isoformat()
             for k, v in item["ids"].items():
@@ -716,16 +757,19 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                 try:
                     pusher(existing, item["state"])
                     existing["last_synced"][platform] = incoming_hash
-                    changes+=1
-                except Exception as e: print(f"Push to {platform} failed: {e}")
+                    changes += 1
+                except Exception as e:
+                    print(f"Push to {platform} failed: {e}")
         else:
+            # Incoming is older / lower priority → backfill the stored state to this platform if needed
             if existing["last_synced"].get(item["platform"]) != hash_state(existing["state"]):
-                print(f"[BACKFILL] {key} -> {item['platform']}")
+                print(f"[BACKFILL] {key} -> {item['platform']} (kept stored state: {reason})")
                 try:
                     PUSHERS[item["platform"]](existing, existing["state"])
                     existing["last_synced"][item["platform"]] = hash_state(existing["state"])
-                    changes+=1
-                except Exception as e: print(e)
+                    changes += 1
+                except Exception as e:
+                    print(e)
 
     db["id_cache"] = id_cache
     DB_PATH.write_text(json.dumps(db, indent=2), encoding='utf-8')
