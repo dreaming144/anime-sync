@@ -1,11 +1,9 @@
 """
-Universal Anime Sync V3.6 - SQLite primary storage
-- Manual overrides + unmatched report
-- Exports anime_pairings.csv with all IDs
-- Real pushers: AniList, Kitsu, SIMKL (MAL placeholder)
-- Conflict policies: last_write_wins | source_priority
-- Concurrent ID enrichment + skip fully-resolved entries
-- Primary store: sync.db (SQLite); JSON kept as backup/migration source
+Universal Anime Sync V3.7 - Robustness pass
+- ID types normalized to str; MAL pagination; AniList scoreRaw
+- Kitsu user-id cached; username falls back to CONFIG
+- Atomic SQLite saves; lazy load (no import side effects)
+- Conflict policies, concurrent enrich, smart skip
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -100,14 +98,23 @@ def load_db():
     return {"entries": entries, "id_cache": cache}, cache
 
 
-def save_db(db_obj, cache_obj):
-    """Persist in-memory db + id_cache to SQLite (and legacy JSON as backup)."""
-    conn = sqlite3.connect(SQLITE_PATH)
+def save_db(db_obj, cache_obj, write_json_backup=True):
+    """Persist in-memory db + id_cache to SQLite via atomic replace.
+
+    Writes to a temporary DB file, then os.replace() so a crash mid-write
+    never leaves an empty/corrupt primary store.
+    """
+    tmp_path = SQLITE_PATH.with_suffix(".db.tmp")
+    if tmp_path.exists():
+        tmp_path.unlink()
+    conn = sqlite3.connect(tmp_path)
     _init_sqlite(conn)
     with conn:
-        conn.execute("DELETE FROM entries")
-        conn.execute("DELETE FROM id_cache")
         for k, v in db_obj.get("entries", {}).items():
+            # Normalize IDs before persisting
+            if isinstance(v, dict) and "ids" in v:
+                v = dict(v)
+                v["ids"] = normalize_ids(v.get("ids") or {})
             conn.execute(
                 "INSERT INTO entries (canonical_key, data) VALUES (?, ?)",
                 (k, json.dumps(v, ensure_ascii=False)),
@@ -118,39 +125,59 @@ def save_db(db_obj, cache_obj):
                 (k, json.dumps(v, ensure_ascii=False)),
             )
     conn.close()
+    os.replace(tmp_path, SQLITE_PATH)
 
-    # Keep JSON backups for easy inspection / rollback
-    try:
-        DB_PATH.write_text(json.dumps(db_obj, indent=2, ensure_ascii=False), encoding="utf-8")
-    except OSError:
-        pass
-    try:
-        CACHE_PATH.write_text(json.dumps(cache_obj, indent=2, ensure_ascii=False), encoding="utf-8")
-    except OSError:
-        pass
+    if write_json_backup:
+        try:
+            DB_PATH.write_text(json.dumps(db_obj, indent=2, ensure_ascii=False), encoding="utf-8")
+        except OSError:
+            pass
+        try:
+            CACHE_PATH.write_text(json.dumps(cache_obj, indent=2, ensure_ascii=False), encoding="utf-8")
+        except OSError:
+            pass
 
 
-# Load at startup
-db, id_cache = load_db()
+# Lazy globals — populated by ensure_loaded() so importing this module is side-effect free
+db = {"entries": {}, "id_cache": {}}
+id_cache = {}
+manual_overrides = {}
+_loaded = False
+_kitsu_user_id = None  # cached for push_kitsu
 
-# Load manual overrides
-if OVERRIDES_PATH.exists():
-    try:
-        manual_overrides = json.loads(OVERRIDES_PATH.read_text(encoding='utf-8'))
-        print(f"Loaded {len(manual_overrides)} manual overrides from {OVERRIDES_PATH}")
-    except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"Failed to load overrides: {e}")
-        manual_overrides = {}
-else:
-    manual_overrides = {}
-    # Create empty file for user
-    OVERRIDES_PATH.write_text(json.dumps({}, indent=2), encoding='utf-8')
-    print(f"Created empty {OVERRIDES_PATH} - add manual pairings there")
+
+def ensure_loaded():
+    """Load DB, cache, and overrides once per process."""
+    global db, id_cache, manual_overrides, _loaded
+    if _loaded:
+        return
+    db, id_cache = load_db()
+    if OVERRIDES_PATH.exists():
+        try:
+            manual_overrides = json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
+            real = [k for k in manual_overrides if not k.startswith("_")]
+            print(f"Loaded {len(real)} manual overrides from {OVERRIDES_PATH}")
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            print(f"Failed to load overrides: {e}")
+            manual_overrides = {}
+    else:
+        manual_overrides = {
+            "_comment": "Manual overrides for shows that APIs can't auto-pair.",
+            "_how_to": "Key = any existing ID like kitsu_12345 or mal_12345. Value = full IDs to force.",
+        }
+        OVERRIDES_PATH.write_text(json.dumps(manual_overrides, indent=2), encoding="utf-8")
+        print(f"Created empty {OVERRIDES_PATH}")
+    # Normalize IDs already in the DB
+    for entry in db.get("entries", {}).values():
+        if "ids" in entry:
+            entry["ids"] = normalize_ids(entry["ids"])
+    _loaded = True
+
 
 CONFIG = {
-    "anilist_username": os.getenv("ANILIST_USERNAME", "Dreamstorm"),
+    "anilist_username": os.getenv("ANILIST_USERNAME", ""),
     "mal_username": os.getenv("MAL_USERNAME", ""),
-    "kitsu_username": os.getenv("KITSU_USERNAME", "Dreamst0rm"),
+    "kitsu_username": os.getenv("KITSU_USERNAME", ""),
     # Conflict resolution policy when two platforms disagree:
     #   "last_write_wins"  - accept the entry with the newer updated timestamp (default)
     #   "source_priority"  - accept the entry from the higher-ranked platform
@@ -176,6 +203,18 @@ def hash_state(state):
     # Using SHA256 for state change detection (non-cryptographic use)
     payload = f"{state['status']}|{state['progress']}|{state['score']}"
     return hashlib.sha256(payload.encode()).hexdigest()[:32]
+
+def normalize_ids(ids_dict):
+    """Force all known ID fields to str (or None). Prevents str/int key mismatches."""
+    if not ids_dict:
+        return {}
+    out = dict(ids_dict)
+    for k in ("mal", "anilist", "kitsu", "anidb", "simkl", "tvdb", "tmdb"):
+        if k in out and out[k] is not None and out[k] != "":
+            out[k] = str(out[k])
+    return out
+
+
 
 # ============== MANUAL OVERRIDES ==============
 def get_override_for_ids(ids_dict):
@@ -327,7 +366,7 @@ def enrich_ids(ids_dict, do_network=True):
     if override:
         enriched = {**ids_dict, **override}
         enriched["_source"] = "manual_override"
-        return enriched
+        return normalize_ids(enriched)
 
     enriched = {}
     for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "simkl", "title"]:
@@ -335,7 +374,7 @@ def enrich_ids(ids_dict, do_network=True):
             enriched[k] = ids_dict[k]
 
     if not do_network:
-        return enriched
+        return normalize_ids(enriched)
 
     anizip_result = None
     if enriched.get("anilist"):
@@ -357,7 +396,7 @@ def enrich_ids(ids_dict, do_network=True):
             if km.get(k) and not enriched.get(k):
                 enriched[k] = km[k]
 
-    return enriched
+    return normalize_ids(enriched)
 
 def get_canonical_key(ids):
     enriched = enrich_ids(ids, do_network=False)
@@ -378,18 +417,43 @@ def get_canonical_key(ids):
 
 # ============== LOADERS ==============
 def load_anilist():
-    print("-> Fetching AniList Dreamstorm...")
+    username = CONFIG.get("anilist_username") or os.getenv("ANILIST_USERNAME")
+    if not username:
+        print("-> AniList skipped (no ANILIST_USERNAME)"); return []
+    print(f"-> Fetching AniList {username}...")
+    # Note: MediaList only exposes `score` (user format). scoreRaw is mutation-only.
     query = """query ($userName: String) { MediaListCollection(userName: $userName, type: ANIME) { lists { entries { status progress score updatedAt media { id idMal title { romaji english native } } } } } }"""
     headers = {}
     token = os.getenv("ANILIST_TOKEN")
-    if token: headers["Authorization"] = f"Bearer {token}"
-    r = requests.post("https://graphql.anilist.co", json={"query": query, "variables": {"userName": CONFIG["anilist_username"]}}, headers=headers, timeout=30)
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    r = requests.post(
+        "https://graphql.anilist.co",
+        json={"query": query, "variables": {"userName": username}},
+        headers=headers,
+        timeout=30,
+    )
     r.raise_for_status()
-    items=[]
+    items = []
     for lst in r.json()["data"]["MediaListCollection"]["lists"]:
         for e in lst["entries"]:
             title = e["media"]["title"]["romaji"] or e["media"]["title"]["english"] or e["media"]["title"]["native"]
-            items.append({"platform":"anilist","ids":{"anilist": e["media"]["id"], "mal": e["media"]["idMal"], "title": title},"state":{"status": STATUS_MAP["anilist"].get(e["status"], "plantowatch"), "progress": e["progress"], "score": e["score"] or 0},"updated": datetime.fromtimestamp(e["updatedAt"], tz=timezone.utc) if e["updatedAt"] else datetime.now(timezone.utc), "title": title})
+            # score is in the user's preferred format (often 0-10 or 0-100).
+            # We store as-is; push_anilist converts 0-10 internal -> scoreRaw when writing.
+            score = e.get("score") or 0
+            if score > 10:  # likely 100-point scale
+                score = round(score / 10, 1)
+            items.append({
+                "platform": "anilist",
+                "ids": normalize_ids({"anilist": e["media"]["id"], "mal": e["media"]["idMal"], "title": title}),
+                "state": {
+                    "status": STATUS_MAP["anilist"].get(e["status"], "plantowatch"),
+                    "progress": e["progress"],
+                    "score": score,
+                },
+                "updated": datetime.fromtimestamp(e["updatedAt"], tz=timezone.utc) if e["updatedAt"] else datetime.now(timezone.utc),
+                "title": title,
+            })
     print(f"   AniList: {len(items)} entries")
     return items
 
@@ -425,26 +489,45 @@ def load_simkl():
 
 def load_mal():
     token = os.getenv("MAL_ACCESS_TOKEN")
-    if not token: 
+    if not token:
         print("-> MAL skipped (no token)"); return []
     print("-> Fetching MAL...")
     headers = {"Authorization": f"Bearer {token}"}
     url = "https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status,num_episodes&limit=1000&nsfw=true"
-    r = requests.get(url, headers=headers, timeout=30)
-    if not r.ok:
-        print(f"   MAL error: {r.text[:300]}"); return []
-    items=[]
-    for n in r.json().get("data", []):
-        ls = n["list_status"]
-        title = n["node"].get("title","")
-        items.append({"platform":"mal","ids":{"mal": n["node"]["id"], "title": title},"state":{"status": STATUS_MAP["mal"].get(ls["status"], "plantowatch"), "progress": ls["num_episodes_watched"], "score": ls["score"]},"updated": datetime.fromisoformat(ls["updated_at"].replace("Z","+00:00")), "title": title})
+    items = []
+    page = 1
+    while url:
+        r = requests.get(url, headers=headers, timeout=30)
+        if not r.ok:
+            print(f"   MAL error page {page}: {r.text[:300]}")
+            break
+        data = r.json()
+        for n in data.get("data", []):
+            ls = n["list_status"]
+            title = n["node"].get("title", "")
+            items.append({
+                "platform": "mal",
+                "ids": normalize_ids({"mal": n["node"]["id"], "title": title}),
+                "state": {
+                    "status": STATUS_MAP["mal"].get(ls["status"], "plantowatch"),
+                    "progress": ls["num_episodes_watched"],
+                    "score": ls["score"],
+                },
+                "updated": datetime.fromisoformat(ls["updated_at"].replace("Z", "+00:00")),
+                "title": title,
+            })
+        url = (data.get("paging") or {}).get("next")
+        page += 1
+        if url:
+            print(f"   MAL page {page}...")
+            time.sleep(0.3)
     print(f"   MAL: {len(items)} entries")
     return items
 
 def load_kitsu():
-    username = os.getenv("KITSU_USERNAME")
-    if not username: 
-        print("-> Kitsu skipped"); return []
+    username = CONFIG.get("kitsu_username") or os.getenv("KITSU_USERNAME")
+    if not username:
+        print("-> Kitsu skipped (no KITSU_USERNAME)"); return []
     print(f"-> Fetching Kitsu {username}...")
     try:
         u_resp = requests.get(f"https://kitsu.io/api/edge/users?filter[name]={username}", timeout=15)
@@ -475,11 +558,15 @@ def load_kitsu():
                 mal_id = anime.get("idMal") or anime.get("id_mal") if anime else None
                 title = anime.get("canonicalTitle") if anime else ""
                 items.append({
-                    "platform":"kitsu",
-                    "ids":{"kitsu": anime_id, "mal": mal_id, "title": title},
-                    "state":{"status": STATUS_MAP["kitsu"].get(a.get("status"), "plantowatch"), "progress": a.get("progress", 0), "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0},
-                    "updated": datetime.fromisoformat(a["updatedAt"].replace("Z","+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc),
-                    "title": title
+                    "platform": "kitsu",
+                    "ids": normalize_ids({"kitsu": anime_id, "mal": mal_id, "title": title}),
+                    "state": {
+                        "status": STATUS_MAP["kitsu"].get(a.get("status"), "plantowatch"),
+                        "progress": a.get("progress", 0),
+                        "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0,
+                    },
+                    "updated": datetime.fromisoformat(a["updatedAt"].replace("Z", "+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc),
+                    "title": title,
                 })
             url = lib.get("links", {}).get("next")
             page+=1
@@ -530,20 +617,24 @@ def push_anilist(entry, state):
         return
 
     mutation = """
-    mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $score: Float) {
-      SaveMediaListEntry(mediaId: $mediaId, status: $status, progress: $progress, score: $score) {
+    mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int) {
+      SaveMediaListEntry(mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw) {
         id
         status
         progress
         score
+        scoreRaw
       }
     }
     """
+    # Internal score is 0-10; AniList scoreRaw is 0-100
+    score_10 = float(state.get("score") or 0)
+    score_raw = int(round(score_10 * 10)) if score_10 > 0 else 0
     variables = {
         "mediaId": media_id,
         "status": status,
         "progress": int(state.get("progress") or 0),
-        "score": float(state.get("score") or 0),
+        "scoreRaw": score_raw,
     }
     headers = {
         "Authorization": f"Bearer {token}",
@@ -603,22 +694,24 @@ def push_kitsu(entry, state):
         "Accept": "application/vnd.api+json",
     }
 
-    # Try to find existing library entry for this anime + current user
+    global _kitsu_user_id
     try:
-        # First resolve current user id
-        me = requests.get(
-            "https://kitsu.io/api/edge/users?filter[self]=true",
-            headers=headers,
-            timeout=15,
-        )
-        if not me.ok:
-            print(f"   -> PUSH Kitsu auth failed: {me.status_code}")
-            return
-        users = me.json().get("data") or []
-        if not users:
-            print("   -> PUSH Kitsu: could not resolve current user")
-            return
-        user_id = users[0]["id"]
+        # Resolve current user id once per process
+        if not _kitsu_user_id:
+            me = requests.get(
+                "https://kitsu.io/api/edge/users?filter[self]=true",
+                headers=headers,
+                timeout=15,
+            )
+            if not me.ok:
+                print(f"   -> PUSH Kitsu auth failed: {me.status_code}")
+                return
+            users = me.json().get("data") or []
+            if not users:
+                print("   -> PUSH Kitsu: could not resolve current user")
+                return
+            _kitsu_user_id = users[0]["id"]
+        user_id = _kitsu_user_id
 
         # Look up library entry
         lookup = requests.get(
@@ -818,6 +911,7 @@ def should_accept_update(existing, item, policy=None):
 
 
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True):
+    ensure_loaded()
     all_items=[]
     for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
         try: all_items.extend(loader())
@@ -937,24 +1031,31 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         export_unmatched(UNMATCHED_PATH)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--once", action="store_true")
-    parser.add_argument("--no-enrich", action="store_true")
-    parser.add_argument("--enrich-all", action="store_true")
-    parser.add_argument("--export-csv", action="store_true")
+    parser = argparse.ArgumentParser(description="Universal Anime Sync")
+    parser.add_argument("--no-enrich", action="store_true", help="Skip network ID enrichment")
+    parser.add_argument("--enrich-all", action="store_true", help="Clear ID cache and re-enrich everything")
+    parser.add_argument("--export-csv", action="store_true", help="Export anime_pairings.csv after sync")
     parser.add_argument("--export-csv-file", default="anime_pairings.csv")
-    parser.add_argument("--export-only", action="store_true")
+    parser.add_argument("--export-only", action="store_true", help="Only export CSVs, no fetch/sync")
     parser.add_argument("--no-unmatched", action="store_true", help="Skip unmatched report")
+    parser.add_argument("--no-json-backup", action="store_true", help="Skip writing legacy JSON backups")
     args = parser.parse_args()
-    
+
+    ensure_loaded()
+
     if args.export_only:
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
             export_unmatched(UNMATCHED_PATH)
         sys.exit(0)
-    
+
     if args.enrich_all:
         id_cache.clear()
-    
-    run_once(enrich_new=not args.no_enrich, export_csv_flag=args.export_csv, csv_file=Path(args.export_csv_file), export_unmatched_flag=not args.no_unmatched)
+
+    run_once(
+        enrich_new=not args.no_enrich,
+        export_csv_flag=args.export_csv,
+        csv_file=Path(args.export_csv_file),
+        export_unmatched_flag=not args.no_unmatched,
+    )
     
