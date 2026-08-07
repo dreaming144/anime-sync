@@ -18,18 +18,18 @@ OVERRIDES_PATH = Path("manual_overrides.json")
 
 if DB_PATH.exists():
     try:
-        db = json.loads(DB_PATH.read_text())
+        db = json.loads(DB_PATH.read_text(encoding='utf-8'))
         if "entries" not in db:
             db = {"entries": db} if isinstance(db, dict) else {"entries": {}}
-    except:
+    except (json.JSONDecodeError, FileNotFoundError, KeyError):
         db = {"entries": {}, "id_cache": {}}
 else:
     db = {"entries": {}, "id_cache": {}}
 
 if CACHE_PATH.exists():
     try:
-        id_cache = json.loads(CACHE_PATH.read_text())
-    except:
+        id_cache = json.loads(CACHE_PATH.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, FileNotFoundError):
         id_cache = {}
 else:
     id_cache = db.get("id_cache", {})
@@ -37,15 +37,15 @@ else:
 # Load manual overrides
 if OVERRIDES_PATH.exists():
     try:
-        manual_overrides = json.loads(OVERRIDES_PATH.read_text())
+        manual_overrides = json.loads(OVERRIDES_PATH.read_text(encoding='utf-8'))
         print(f"Loaded {len(manual_overrides)} manual overrides from {OVERRIDES_PATH}")
-    except Exception as e:
+    except (json.JSONDecodeError, FileNotFoundError) as e:
         print(f"Failed to load overrides: {e}")
         manual_overrides = {}
 else:
     manual_overrides = {}
     # Create empty file for user
-    OVERRIDES_PATH.write_text(json.dumps({}, indent=2))
+    OVERRIDES_PATH.write_text(json.dumps({}, indent=2), encoding='utf-8')
     print(f"Created empty {OVERRIDES_PATH} - add manual pairings there")
 
 CONFIG = {
@@ -68,7 +68,9 @@ REVERSE_STATUS = {
 }
 
 def hash_state(state):
-    return hashlib.md5(f"{state['status']}|{state['progress']}|{state['score']}".encode()).hexdigest()
+    # Using SHA256 for state change detection (non-cryptographic use)
+    payload = f"{state['status']}|{state['progress']}|{state['score']}"
+    return hashlib.sha256(payload.encode()).hexdigest()[:32]
 
 # ============== MANUAL OVERRIDES ==============
 def get_override_for_ids(ids_dict):
@@ -98,7 +100,7 @@ def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
             age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached.get("_cached_at", "2000-01-01T00:00:00+00:00"))).days
             if age < 30:
                 return cached
-        except:
+        except (ValueError, TypeError):
             pass
 
     url = None
@@ -134,7 +136,7 @@ def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
         if cache_key:
             id_cache[cache_key] = result
         return result
-    except Exception:
+    except requests.RequestException:
         return None
 
 def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
@@ -145,7 +147,7 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
             age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached.get("_cached_at", "2000-01-01T00:00:00+00:00"))).days
             if age < 30 and cached.get("_source") == "kitsu_mappings":
                 return cached
-        except:
+        except (ValueError, TypeError):
             pass
 
     try:
@@ -162,7 +164,7 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
             elif site == "anidb":
                 try:
                     result["anidb"] = int(ext_id)
-                except:
+                except (ValueError, TypeError):
                     result["anidb"] = ext_id
             elif site.startswith("imdb"):
                 result["imdb"] = ext_id if str(ext_id).startswith("tt") else f"tt{ext_id}"
@@ -175,7 +177,7 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
         if cache_key:
             id_cache[cache_key] = result
         return result
-    except Exception:
+    except requests.RequestException:
         return {}
 
 def enrich_ids(ids_dict, do_network=True):
@@ -344,9 +346,12 @@ def load_kitsu():
                 break
         print(f"   Kitsu: {len(items)} entries (ALL pages)")
         return items
+    except requests.RequestException as ex:
+        print(f"   Kitsu network error: {ex}")
+        return []
     except Exception as ex:
         import traceback
-        print(f"   Kitsu failed {ex}")
+        print(f"   Kitsu unexpected error: {ex}")
         traceback.print_exc()
         return []
 
@@ -466,7 +471,7 @@ def export_unmatched(file_path=UNMATCHED_PATH):
                 "title": u["title"],
                 "comment": f"Fill in IDs for {u['title']} - {u['reason']}"
             }
-        template_path.write_text(json.dumps(template, indent=2))
+        template_path.write_text(json.dumps(template, indent=2), encoding='utf-8')
         print(f"Template for manual fixes: {template_path}")
     
     return file_path, len(unmatched)
@@ -557,10 +562,10 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                 except Exception as e: print(e)
 
     db["id_cache"] = id_cache
-    DB_PATH.write_text(json.dumps(db, indent=2))
+    DB_PATH.write_text(json.dumps(db, indent=2), encoding='utf-8')
     try:
-        CACHE_PATH.write_text(json.dumps(id_cache, indent=2))
-    except:
+        CACHE_PATH.write_text(json.dumps(id_cache, indent=2), encoding='utf-8')
+    except OSError:
         pass
     
     anidb_count = sum(1 for e in db["entries"].values() if e["ids"].get("anidb"))
