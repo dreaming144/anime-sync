@@ -1,4 +1,4 @@
-name: Universal Anime Sync V3.2 with Overrides
+name: Universal Anime Sync V3.7
 
 on:
   schedule:
@@ -54,14 +54,15 @@ jobs:
           SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
           SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
           ANILIST_TOKEN: ${{ secrets.ANILIST_TOKEN }}
+          KITSU_TOKEN: ${{ secrets.KITSU_TOKEN }}
           MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
         run: |
           if [ "${{ inputs.export_only }}" = "true" ]; then
             python universal_anime_sync_github.py --export-only
           elif [ "${{ inputs.enrich_all }}" = "true" ]; then
-            python universal_anime_sync_github.py --once --enrich-all --export-csv
+            python universal_anime_sync_github.py --enrich-all --export-csv
           else
-            python universal_anime_sync_github.py --once --export-csv
+            python universal_anime_sync_github.py --export-csv
           fi
 
       - name: Show reports
