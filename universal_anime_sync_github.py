@@ -1,12 +1,14 @@
 """
-Universal Anime Sync V3.4 - Conflict resolution policies
+Universal Anime Sync V3.5 - Concurrent enrichment + smart skip
 - Manual overrides + unmatched report
 - Exports anime_pairings.csv with all IDs
 - Real pushers: AniList, Kitsu, SIMKL (MAL placeholder)
-- Conflict policies: last_write_wins (default) | source_priority
+- Conflict policies: last_write_wins | source_priority
+- Concurrent ID enrichment (ThreadPoolExecutor) + skip fully-resolved entries
 """
 
 import requests, json, os, hashlib, argparse, time, csv
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
@@ -186,6 +188,42 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
         return result
     except requests.RequestException:
         return {}
+
+
+def is_fully_resolved(ids):
+    """True when the entry has the core IDs we consider complete enough to skip network enrichment."""
+    has_core = bool(ids.get("mal") or ids.get("anilist"))
+    has_secondary = bool(ids.get("anidb") or ids.get("kitsu"))
+    return has_core and has_secondary
+
+
+def enrich_ids_batch(items_needing_enrich, max_workers=4):
+    """Enrich multiple items concurrently with a small thread pool.
+    Returns a list of (original_item, enriched_ids) in the same order as input.
+    """
+    if not items_needing_enrich:
+        return []
+
+    results = [None] * len(items_needing_enrich)
+
+    def _work(idx_item):
+        idx, item = idx_item
+        try:
+            enriched = enrich_ids(item["ids"], do_network=True)
+            return idx, enriched
+        except Exception as e:
+            print(f"   Enrich error for {item.get('ids')}: {e}")
+            return idx, item["ids"]
+
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = [pool.submit(_work, (i, it)) for i, it in enumerate(items_needing_enrich)]
+        for fut in as_completed(futures):
+            idx, enriched = fut.result()
+            results[idx] = enriched
+            # Light pacing so we don't hammer the APIs even with concurrency
+            time.sleep(0.05)
+
+    return results
 
 def enrich_ids(ids_dict, do_network=True):
     # 0. Manual overrides first - highest priority
@@ -692,26 +730,38 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     changes=0
     enriched_count=0
 
-    for item in all_items:
-        if enrich_new:
-            needs_enrich = not item["ids"].get("anidb") or not item["ids"].get("mal") or not item["ids"].get("anilist")
+    # --- Smarter enrichment pass (skip fully-resolved, concurrent for the rest) ---
+    if enrich_new:
+        to_enrich = []
+        for item in all_items:
             key_preview = get_canonical_key(item["ids"])
-            if not db["entries"].get(key_preview):
-                needs_enrich = True
-            
-            if needs_enrich:
-                enriched_ids = enrich_ids(item["ids"], do_network=True)
+            already_known = key_preview and db["entries"].get(key_preview)
+            if already_known and is_fully_resolved(already_known.get("ids", {})):
+                # Copy known IDs forward so we keep coverage
+                for k, v in already_known["ids"].items():
+                    if v and not item["ids"].get(k):
+                        item["ids"][k] = v
+                continue
+            if is_fully_resolved(item["ids"]) and already_known:
+                continue
+            to_enrich.append(item)
+
+        if to_enrich:
+            print(f"-> Enriching {len(to_enrich)} items concurrently (skipping {len(all_items) - len(to_enrich)} already resolved)...")
+            enriched_list = enrich_ids_batch(to_enrich, max_workers=4)
+            for item, enriched_ids in zip(to_enrich, enriched_list):
+                if not enriched_ids:
+                    continue
                 for k, v in enriched_ids.items():
                     if v and not k.startswith("_"):
                         if not item["ids"].get(k):
                             item["ids"][k] = v
-                    # Keep source tracking
                     if k == "_source":
                         item["ids"]["_source"] = v
                 enriched_count += 1
-                if enriched_count % 10 == 0:
-                    print(f"   Enriched {enriched_count}/{len(all_items)}...")
+            print(f"   Enriched {enriched_count} items")
 
+    for item in all_items:
         key = get_canonical_key(item["ids"])
         if not key: 
             if item["ids"].get("mal"):
