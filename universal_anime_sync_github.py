@@ -1,9 +1,9 @@
 """
-Universal Anime Sync V3.9 - Better ID matching
-- ARM (relations.yuna.moe) enrichment fallback for Kitsu-only entries
-- Unmatched report = hard gaps only (missing both MAL and AniList)
+Universal Anime Sync V3.10 - IMDb / TVDB / TMDB enrichment
+- Offline Fribb anime-list-mini for bulk IMDb, TVDB, TMDB (+ cross IDs)
+- AniZip still fills external IDs when missing
+- ARM fallback for Kitsu-only; hard unmatched = no MAL and no AniList
 - Real pushers: AniList, MAL, Kitsu, SIMKL
-- Concurrent enrich, conflict policies, SQLite primary store
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -16,6 +16,8 @@ import sqlite3
 DB_PATH = Path("sync_db.json")          # legacy JSON (still written as backup)
 CACHE_PATH = Path("id_cache.json")      # legacy JSON (still written as backup)
 SQLITE_PATH = Path("sync.db")           # primary store
+FRIBB_PATH = Path("anime-list-mini.json")  # offline MAL/AniList→IMDb/TVDB/TMDB
+FRIBB_URL = "https://raw.githubusercontent.com/Fribb/anime-lists/master/anime-list-mini.json"
 CSV_PATH_DEFAULT = Path("anime_pairings.csv")
 UNMATCHED_PATH = Path("unmatched.csv")
 OVERRIDES_PATH = Path("manual_overrides.json")
@@ -236,6 +238,96 @@ def get_override_for_ids(ids_dict):
     return None
 
 # ============== ID PAIRING ==============
+
+_fribb_index = None  # mal/anilist/kitsu/anidb -> external ids
+
+
+def _normalize_imdb(val):
+    """Normalize IMDb id to ttXXXXXXX string."""
+    if val is None or val == "":
+        return None
+    if isinstance(val, list):
+        val = val[0] if val else None
+    if val is None:
+        return None
+    s = str(val).strip()
+    if not s:
+        return None
+    if s.isdigit():
+        return f"tt{s}"
+    if not s.startswith("tt"):
+        return f"tt{s}"
+    return s
+
+
+def _normalize_tmdb(val):
+    """Fribb stores themoviedb_id as int or {tv: id}/{movie: id}."""
+    if val is None or val == "":
+        return None
+    if isinstance(val, dict):
+        return str(val.get("tv") or val.get("movie") or next(iter(val.values()), "") or "") or None
+    return str(val)
+
+
+def load_fribb_index(force=False):
+    """Load Fribb anime-list-mini into memory indexes (download once if missing)."""
+    global _fribb_index
+    if _fribb_index is not None and not force:
+        return _fribb_index
+
+    if not FRIBB_PATH.exists():
+        print(f"-> Downloading offline mapping DB ({FRIBB_URL}) ...")
+        try:
+            r = requests.get(FRIBB_URL, timeout=120)
+            r.raise_for_status()
+            FRIBB_PATH.write_bytes(r.content)
+            print(f"   Saved {FRIBB_PATH} ({len(r.content)//1024} KB)")
+        except requests.RequestException as e:
+            print(f"   Fribb download failed: {e}")
+            _fribb_index = {}
+            return _fribb_index
+
+    try:
+        data = json.loads(FRIBB_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"   Fribb load failed: {e}")
+        _fribb_index = {}
+        return _fribb_index
+
+    idx = {"mal": {}, "anilist": {}, "kitsu": {}, "anidb": {}}
+    for row in data:
+        ext = {
+            "imdb": _normalize_imdb(row.get("imdb_id")),
+            "tvdb": str(row["tvdb_id"]) if row.get("tvdb_id") not in (None, "") else None,
+            "tmdb": _normalize_tmdb(row.get("themoviedb_id")),
+            "mal": str(row["mal_id"]) if row.get("mal_id") not in (None, "") else None,
+            "anilist": str(row["anilist_id"]) if row.get("anilist_id") not in (None, "") else None,
+            "kitsu": str(row["kitsu_id"]) if row.get("kitsu_id") not in (None, "") else None,
+            "anidb": str(row["anidb_id"]) if row.get("anidb_id") not in (None, "") else None,
+            "_source": "fribb",
+        }
+        ext = {k: v for k, v in ext.items() if v}
+        for key_name, index_name in (("mal_id", "mal"), ("anilist_id", "anilist"), ("kitsu_id", "kitsu"), ("anidb_id", "anidb")):
+            vid = row.get(key_name)
+            if vid not in (None, ""):
+                idx[index_name][str(vid)] = ext
+    _fribb_index = idx
+    print(f"   Offline index: mal={len(idx['mal'])} anilist={len(idx['anilist'])} kitsu={len(idx['kitsu'])}")
+    return _fribb_index
+
+
+def fetch_fribb(ids_dict):
+    """Lookup IMDb/TVDB/TMDB (and fill other IDs) from offline Fribb list."""
+    idx = load_fribb_index()
+    if not idx:
+        return {}
+    for source in ("mal", "anilist", "kitsu", "anidb"):
+        vid = ids_dict.get(source)
+        if vid and str(vid) in idx.get(source, {}):
+            return dict(idx[source][str(vid)])
+    return {}
+
+
 def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
     cache_key = f"anilist_{anilist_id}" if anilist_id else f"mal_{mal_id}" if mal_id else None
     if use_cache and cache_key and cache_key in id_cache:
@@ -434,21 +526,39 @@ def enrich_ids(ids_dict, do_network=True):
         if ids_dict.get(k):
             enriched[k] = ids_dict[k]
 
+    # Offline Fribb pass (IMDb / TVDB / TMDB + cross IDs) — no network if file cached
+    fribb = fetch_fribb(enriched)
+    if fribb:
+        for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb"]:
+            if fribb.get(k) and not enriched.get(k):
+                enriched[k] = fribb[k]
+
     if not do_network:
         return normalize_ids(enriched)
 
     anizip_result = None
-    if enriched.get("anilist"):
+    # Call AniZip when missing core OR external (imdb/tvdb) IDs
+    needs_anizip = (
+        not enriched.get("anidb")
+        or not enriched.get("imdb")
+        or not enriched.get("tvdb")
+        or not enriched.get("mal")
+        or not enriched.get("anilist")
+    )
+    if needs_anizip and enriched.get("anilist"):
         anizip_result = fetch_anizip(anilist_id=enriched["anilist"])
         time.sleep(0.25)
-    if not anizip_result and enriched.get("mal"):
+    if needs_anizip and not anizip_result and enriched.get("mal"):
         anizip_result = fetch_anizip(mal_id=enriched["mal"])
         time.sleep(0.25)
     
     if anizip_result:
         for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "title"]:
             if anizip_result.get(k) and not enriched.get(k):
-                enriched[k] = anizip_result[k]
+                val = anizip_result[k]
+                if k == "imdb":
+                    val = _normalize_imdb(val)
+                enriched[k] = val
 
     if enriched.get("kitsu") and (not enriched.get("anidb") or not enriched.get("mal") or not enriched.get("imdb")):
         km = fetch_kitsu_mappings(str(enriched["kitsu"]))
@@ -1039,13 +1149,17 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         for item in all_items:
             key_preview = get_canonical_key(item["ids"])
             already_known = key_preview and db["entries"].get(key_preview)
-            if already_known and is_fully_resolved(already_known.get("ids", {})):
-                # Copy known IDs forward so we keep coverage
-                for k, v in already_known["ids"].items():
+            known_ids = already_known.get("ids", {}) if already_known else {}
+            # Copy known IDs forward so we keep coverage
+            if already_known:
+                for k, v in known_ids.items():
                     if v and not item["ids"].get(k):
                         item["ids"][k] = v
-                continue
-            if is_fully_resolved(item["ids"]) and already_known:
+            merged = {**known_ids, **item["ids"]}
+            has_external = bool(merged.get("imdb") or merged.get("tvdb"))
+            # Skip only when core is resolved AND we already have at least one external ID
+            if is_fully_resolved(merged) and has_external:
+                item["ids"] = merged
                 continue
             to_enrich.append(item)
 

@@ -1,0 +1,8 @@
+anime-list-mini.json
+sync.db
+sync_db.json
+id_cache.json
+anime_pairings.csv
+unmatched.csv
+__pycache__/
+*.bak
