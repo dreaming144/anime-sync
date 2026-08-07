@@ -1,30 +1,23 @@
-name: Universal Anime Sync
+name: Universal Anime Sync V3.2 with Overrides
 
 on:
   schedule:
-    # Runs every 2 hours - adjust as needed
-    # GitHub cron is UTC
     - cron: '0 */2 * * *'
   workflow_dispatch:
     inputs:
       enrich_all:
-        description: 'Force re-enrich all IDs via AniZip (slow)'
+        description: 'Force re-enrich all IDs'
         required: false
         default: 'false'
         type: choice
-        options:
-          - 'false'
-          - 'true'
-      no_enrich:
-        description: 'Skip AniZip enrichment (fastest)'
+        options: ['false','true']
+      export_only:
+        description: 'Only export CSVs, no fetch'
         required: false
         default: 'false'
         type: choice
-        options:
-          - 'false'
-          - 'true'
+        options: ['false','true']
 
-# Prevent overlapping runs that could corrupt DB
 concurrency:
   group: anime-sync
   cancel-in-progress: false
@@ -33,87 +26,97 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # needed to commit sync_db.json back
+      contents: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          # Use PAT or default GITHUB_TOKEN, fetch full history for commit
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install deps
-        run: |
-          pip install requests
+      - run: pip install requests
 
-      - name: Restore DB if exists (from repo)
+      - name: Check existing files
         run: |
-          ls -lh sync_db.json id_cache.json 2>&1 || echo "No existing DB - first run will create baseline"
+          echo "=== Existing files ==="
+          ls -lh sync_db.json id_cache.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
+          echo ""
+          echo "=== Overrides ==="
+          cat manual_overrides.json || echo "No overrides yet"
 
-      - name: Run Universal Sync
+      - name: Run Sync
         env:
-          # Required
           ANILIST_USERNAME: ${{ secrets.ANILIST_USERNAME }}
           KITSU_USERNAME: ${{ secrets.KITSU_USERNAME }}
           SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
           SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
-          
-          # Optional - add when you have them
           ANILIST_TOKEN: ${{ secrets.ANILIST_TOKEN }}
           MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
-          MAL_USERNAME: ${{ secrets.MAL_USERNAME }}
-          
-          # For rate limit safety
-          PYTHONUNBUFFERED: '1'
         run: |
-          if [ "${{ inputs.enrich_all }}" = "true" ]; then
-            echo "Force enriching all IDs via AniZip..."
-            python universal_anime_sync_github.py --once --enrich-all
-          elif [ "${{ inputs.no_enrich }}" = "true" ]; then
-            echo "Skipping enrichment (fast mode)..."
-            python universal_anime_sync_github.py --once --no-enrich
+          if [ "${{ inputs.export_only }}" = "true" ]; then
+            python universal_anime_sync_github.py --export-only
+          elif [ "${{ inputs.enrich_all }}" = "true" ]; then
+            python universal_anime_sync_github.py --once --enrich-all --export-csv
           else
-            echo "Normal run with smart caching..."
-            python universal_anime_sync_github.py --once
+            python universal_anime_sync_github.py --once --export-csv
           fi
 
-      - name: Show summary
+      - name: Show reports
         run: |
-          echo "=== DB Stats ==="
-          cat sync_db.json | python -c "import json,sys; db=json.load(sys.stdin); print(f\"Unique shows: {len(db.get('entries',{}))}\"); entries=db.get('entries',{}).values(); print(f\"With MAL: {sum(1 for e in entries if e.get('ids',{}).get('mal'))}\"); print(f\"With AniDB: {sum(1 for e in entries if e.get('ids',{}).get('anidb'))}\"); print(f\"With IMDB: {sum(1 for e in entries if e.get('ids',{}).get('imdb'))}\")"
+          echo "=== anime_pairings.csv preview ==="
+          head -n 15 anime_pairings.csv || true
           echo ""
-          echo "=== ID Cache Stats ==="
-          wc -l id_cache.json || echo "No cache yet"
-          ls -lh *.json
+          echo "=== unmatched.csv (needs manual fix) ==="
+          cat unmatched.csv || echo "No unmatched - all paired!"
+          echo ""
+          echo "=== Coverage ==="
+          python -c "
+          import csv, json
+          try:
+              rows=list(csv.DictReader(open('anime_pairings.csv')))
+              print(f'Total shows: {len(rows)}')
+              print(f'MAL: {sum(1 for r in rows if r[\"mal_id\"])}')
+              print(f'AniDB: {sum(1 for r in rows if r[\"anidb_id\"])}')
+              print(f'IMDB: {sum(1 for r in rows if r[\"imdb_id\"])}')
+              print(f'Manual overrides: {sum(1 for r in rows if r[\"source\"]==\"manual_override\")}')
+          except Exception as e:
+              print(e)
+          try:
+              u=list(csv.DictReader(open('unmatched.csv')))
+              print(f'Unmatched needing attention: {len(u)}')
+          except:
+              print('No unmatched file')
+          "
 
-      - name: Commit DB and ID cache back to repo
+      - name: Commit all
         run: |
           git config user.name "anime-sync-bot"
           git config user.email "anime-sync-bot@github.com"
-          
-          # Pull latest to avoid conflict if another run pushed
           git pull --rebase --autostash || true
           
-          git add sync_db.json id_cache.json || true
+          # Ensure overrides file exists
+          [ -f manual_overrides.json ] || echo '{}' > manual_overrides.json
+          
+          git add sync_db.json id_cache.json anime_pairings.csv unmatched.csv manual_overrides.json || true
           
           if git diff --staged --quiet; then
-            echo "No DB changes to commit"
+            echo "No changes"
           else
-            echo "Committing updated DB..."
-            git commit -m "chore: update sync DB $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
+            git commit -m "chore: sync $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
             git push
           fi
 
-      - name: Upload DB as artifact (backup)
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: sync-databases
+          name: sync-reports
           path: |
             sync_db.json
             id_cache.json
+            anime_pairings.csv
+            unmatched.csv
+            manual_overrides.json
+            manual_overrides_template.json
           retention-days: 30
