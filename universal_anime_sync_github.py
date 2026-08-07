@@ -1,10 +1,9 @@
 """
-Universal Anime Sync V3.8 - Full bidirectional pushers
+Universal Anime Sync V3.9 - Better ID matching
+- ARM (relations.yuna.moe) enrichment fallback for Kitsu-only entries
+- Unmatched report = hard gaps only (missing both MAL and AniList)
 - Real pushers: AniList, MAL, Kitsu, SIMKL
-- ID types normalized to str; MAL pagination; AniList scoreRaw
-- Kitsu user-id cached; username falls back to CONFIG
-- Atomic SQLite saves; lazy load (no import side effects)
-- Conflict policies, concurrent enrich, smart skip
+- Concurrent enrich, conflict policies, SQLite primary store
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -326,6 +325,67 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
         return {}
 
 
+
+def fetch_arm(ids_dict, use_cache=True):
+    """Lookup cross-IDs via ARM (relations.yuna.moe) — free, no key.
+
+    Accepts any of: anilist, mal/myanimelist, kitsu, anidb.
+    Returns a normalized dict of ids or {}.
+    """
+    # Prefer the most reliable source present
+    query = None
+    cache_key = None
+    if ids_dict.get("anilist"):
+        query = {"anilist": int(ids_dict["anilist"]) if str(ids_dict["anilist"]).isdigit() else ids_dict["anilist"]}
+        cache_key = f"arm_anilist_{ids_dict['anilist']}"
+    elif ids_dict.get("mal"):
+        query = {"myanimelist": int(ids_dict["mal"]) if str(ids_dict["mal"]).isdigit() else ids_dict["mal"]}
+        cache_key = f"arm_mal_{ids_dict['mal']}"
+    elif ids_dict.get("kitsu"):
+        query = {"kitsu": int(ids_dict["kitsu"]) if str(ids_dict["kitsu"]).isdigit() else ids_dict["kitsu"]}
+        cache_key = f"arm_kitsu_{ids_dict['kitsu']}"
+    elif ids_dict.get("anidb"):
+        query = {"anidb": int(ids_dict["anidb"]) if str(ids_dict["anidb"]).isdigit() else ids_dict["anidb"]}
+        cache_key = f"arm_anidb_{ids_dict['anidb']}"
+    else:
+        return {}
+
+    if use_cache and cache_key and cache_key in id_cache:
+        cached = id_cache[cache_key]
+        try:
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached.get("_cached_at", "2000-01-01T00:00:00+00:00"))).days
+            if age < 30:
+                return cached
+        except (ValueError, TypeError):
+            pass
+
+    try:
+        r = requests.post(
+            "https://relations.yuna.moe/api/ids",
+            json=query,
+            timeout=15,
+        )
+        if not r.ok:
+            return {}
+        data = r.json()
+        if not data or not isinstance(data, dict):
+            return {}
+        result = {
+            "anilist": data.get("anilist"),
+            "mal": data.get("myanimelist") or data.get("mal"),
+            "kitsu": data.get("kitsu"),
+            "anidb": data.get("anidb"),
+            "_cached_at": datetime.now(timezone.utc).isoformat(),
+            "_source": "arm",
+        }
+        result = {k: v for k, v in result.items() if v is not None and v != ""}
+        if cache_key and len(result) > 2:  # more than just _cached_at/_source
+            id_cache[cache_key] = result
+        return result
+    except (requests.RequestException, ValueError, TypeError):
+        return {}
+
+
 def is_fully_resolved(ids):
     """True when the entry has the core IDs we consider complete enough to skip network enrichment."""
     has_core = bool(ids.get("mal") or ids.get("anilist"))
@@ -396,6 +456,17 @@ def enrich_ids(ids_dict, do_network=True):
         for k in ["mal", "anidb", "imdb", "tvdb", "tmdb", "anilist"]:
             if km.get(k) and not enriched.get(k):
                 enriched[k] = km[k]
+
+    # ARM fallback — especially good for Kitsu-only / isolated entries
+    if not enriched.get("mal") or not enriched.get("anilist") or not enriched.get("anidb"):
+        arm = fetch_arm(enriched, use_cache=True)
+        time.sleep(0.1)
+        if arm:
+            for k in ["mal", "anilist", "kitsu", "anidb"]:
+                if arm.get(k) and not enriched.get(k):
+                    enriched[k] = arm[k]
+            if arm.get("_source"):
+                enriched.setdefault("_source", arm["_source"])
 
     return normalize_ids(enriched)
 
@@ -872,15 +943,9 @@ def export_unmatched(file_path=UNMATCHED_PATH):
             missing.append("anidb")
         # IMDB missing is normal, don't count as unmatched unless it's a movie
         # Only flag as unmatched if missing core pairing
-        if (not ids.get("mal") and not ids.get("anilist")) or (not ids.get("anidb") and (ids.get("mal") or ids.get("anilist"))):
-            reason = ""
-            if not ids.get("mal") and not ids.get("anilist"):
-                reason = "isolated - only has " + ",".join([k for k in ["kitsu","simkl"] if ids.get(k)]) + " - needs manual pairing"
-            elif not ids.get("anidb"):
-                reason = "no anidb mapping yet (too new or not in anizip)"
-            else:
-                reason = "partial pairing"
-            
+        if not ids.get("mal") and not ids.get("anilist"):
+            has = [k for k in ["kitsu", "simkl", "anidb"] if ids.get(k)]
+            reason = "isolated - only has " + (",".join(has) if has else "nothing") + " - needs manual pairing"
             unmatched.append({
                 "title": ids.get("title") or data.get("title") or "",
                 "canonical_key": key,
