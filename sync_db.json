@@ -18380,20 +18380,20 @@
         "kitsu": "50766",
         "tvdb": "467005",
         "tmdb": "298831",
-        "title": "Buchigire Reijou wa Houfuku o Chikaimashita. Madousho no Chikara de Sokoku o Tatakitsubushimasu",
+        "title": "Buchigire Reijou wa Houfuku wo Chikaimashita.: Madousho no Chikara de Sokoku wo Tataki Tsubushimasu",
         "imdb": "tt39551287"
       },
       "state": {
-        "status": "watching",
-        "progress": 5,
+        "status": "plantowatch",
+        "progress": 4,
         "score": 0
       },
-      "last_updated": "2026-08-07T18:36:39+00:00",
+      "last_updated": "2026-08-10T09:19:11+00:00",
       "last_synced": {
-        "anilist": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "simkl": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "mal": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "kitsu": "01e7506cd5be8fac0ff4b5838d570fe6"
+        "anilist": "fd53403addf4b45287654b81bab874b5",
+        "simkl": "fd53403addf4b45287654b81bab874b5",
+        "mal": "fd53403addf4b45287654b81bab874b5",
+        "kitsu": "fd53403addf4b45287654b81bab874b5"
       }
     },
     "mal_48760": {
