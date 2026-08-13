@@ -18385,15 +18385,15 @@
       },
       "state": {
         "status": "plantowatch",
-        "progress": 5,
+        "progress": 6,
         "score": 0
       },
-      "last_updated": "2026-08-13T12:44:25+00:00",
+      "last_updated": "2026-08-13T13:06:45+00:00",
       "last_synced": {
-        "anilist": "4badb14a4d6d9eee808bf962a7359c8d",
-        "simkl": "4badb14a4d6d9eee808bf962a7359c8d",
-        "mal": "4badb14a4d6d9eee808bf962a7359c8d",
-        "kitsu": "4badb14a4d6d9eee808bf962a7359c8d"
+        "anilist": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "simkl": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "mal": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "kitsu": "3c72b3a2a81f435e7f6637c73ab2b7ec"
       }
     },
     "mal_48760": {
