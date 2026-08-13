@@ -10668,21 +10668,21 @@
         "anidb": "18989",
         "kitsu": "49337",
         "tvdb": "456730",
-        "title": "Shinjite Ita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakama-tachi o Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!",
+        "title": "Shinjiteita Nakamatachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakamatachi wo Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!",
         "imdb": "tt36593026",
         "tmdb": "278635"
       },
       "state": {
-        "status": "completed",
-        "progress": 12,
+        "status": "watching",
+        "progress": 5,
         "score": 0
       },
-      "last_updated": "2026-07-21T18:17:34+00:00",
+      "last_updated": "2026-08-13T12:22:09+00:00",
       "last_synced": {
-        "anilist": "0a946c7b73a5f539c95c86af2cae57c3",
-        "simkl": "0a946c7b73a5f539c95c86af2cae57c3",
-        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
-        "kitsu": "0a946c7b73a5f539c95c86af2cae57c3"
+        "anilist": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "simkl": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "mal": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "kitsu": "01e7506cd5be8fac0ff4b5838d570fe6"
       }
     },
     "mal_57888": {
@@ -18385,15 +18385,15 @@
       },
       "state": {
         "status": "plantowatch",
-        "progress": 4,
+        "progress": 5,
         "score": 0
       },
-      "last_updated": "2026-08-10T09:19:11+00:00",
+      "last_updated": "2026-08-13T12:44:25+00:00",
       "last_synced": {
-        "anilist": "fd53403addf4b45287654b81bab874b5",
-        "simkl": "fd53403addf4b45287654b81bab874b5",
-        "mal": "fd53403addf4b45287654b81bab874b5",
-        "kitsu": "fd53403addf4b45287654b81bab874b5"
+        "anilist": "4badb14a4d6d9eee808bf962a7359c8d",
+        "simkl": "4badb14a4d6d9eee808bf962a7359c8d",
+        "mal": "4badb14a4d6d9eee808bf962a7359c8d",
+        "kitsu": "4badb14a4d6d9eee808bf962a7359c8d"
       }
     },
     "mal_48760": {
