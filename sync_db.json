@@ -6965,7 +6965,8 @@
         "tvdb": "72454",
         "tmdb": "30983",
         "kitsu": "210",
-        "anidb": "266"
+        "anidb": "266",
+        "title": "Meitantei Conan"
       },
       "state": {
         "status": "plantowatch",
@@ -6978,7 +6979,8 @@
         "mal": "63fc67f631226a8bdf7091da756ae00a",
         "kitsu": "71cf5963078a8550cb1a5d8da171ec5f",
         "simkl": "63fc67f631226a8bdf7091da756ae00a"
-      }
+      },
+      "title": "Meitantei Conan"
     },
     "mal_918": {
       "ids": {
@@ -11097,21 +11099,21 @@
         "anidb": "18989",
         "kitsu": "49337",
         "tvdb": "456730",
-        "title": "Shinjite Ita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakama-tachi o Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!",
+        "title": "Shinjiteita Nakamatachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakamatachi wo Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!",
         "imdb": "tt36593026",
         "tmdb": "278635"
       },
       "state": {
-        "status": "completed",
-        "progress": 12,
+        "status": "watching",
+        "progress": 5,
         "score": 0
       },
-      "last_updated": "2026-07-21T18:17:34+00:00",
+      "last_updated": "2026-08-13T12:22:09+00:00",
       "last_synced": {
-        "anilist": "0a946c7b73a5f539c95c86af2cae57c3",
-        "simkl": "0a946c7b73a5f539c95c86af2cae57c3",
-        "mal": "13678ebd6c64f1e1046bf150f9b1f1a9",
-        "kitsu": "0a946c7b73a5f539c95c86af2cae57c3"
+        "anilist": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "simkl": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "mal": "01e7506cd5be8fac0ff4b5838d570fe6",
+        "kitsu": "01e7506cd5be8fac0ff4b5838d570fe6"
       },
       "title": "Shinjite Ita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift \"Mugen Gacha\" de Level 9999 no Nakama-tachi o Te ni Irete Moto Party Member to Sekai ni Fukushuu & \"Zamaa!\" Shimasu!"
     },
@@ -19122,20 +19124,20 @@
         "kitsu": "50766",
         "tvdb": "467005",
         "tmdb": "298831",
-        "title": "Buchigire Reijou wa Houfuku o Chikaimashita. Madousho no Chikara de Sokoku o Tatakitsubushimasu",
+        "title": "Buchigire Reijou wa Houfuku wo Chikaimashita.: Madousho no Chikara de Sokoku wo Tataki Tsubushimasu",
         "imdb": "tt39551287"
       },
       "state": {
-        "status": "watching",
-        "progress": 5,
+        "status": "plantowatch",
+        "progress": 6,
         "score": 0
       },
-      "last_updated": "2026-08-07T18:36:39+00:00",
+      "last_updated": "2026-08-13T13:06:45+00:00",
       "last_synced": {
-        "anilist": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "simkl": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "mal": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "kitsu": "01e7506cd5be8fac0ff4b5838d570fe6"
+        "anilist": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "simkl": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "mal": "3c72b3a2a81f435e7f6637c73ab2b7ec",
+        "kitsu": "3c72b3a2a81f435e7f6637c73ab2b7ec"
       },
       "title": "Buchigire Reijou wa Houfuku o Chikaimashita. Madousho no Chikara de Sokoku o Tatakitsubushimasu"
     },
@@ -19611,7 +19613,8 @@
     "kitsu_7926": {
       "ids": {
         "kitsu": "7926",
-        "mal": null
+        "mal": null,
+        "title": "Avatar: The Last Airbender Book 3: Fire"
       },
       "state": {
         "status": "completed",
@@ -19621,7 +19624,8 @@
       "last_updated": "2018-03-01T04:47:06.350000+00:00",
       "last_synced": {
         "kitsu": "14d49e68fedadb9a80ef02f401e17b58"
-      }
+      },
+      "title": "Avatar: The Last Airbender Book 3: Fire"
     },
     "kitsu_3505": {
       "ids": {
@@ -19646,7 +19650,8 @@
     "kitsu_7937": {
       "ids": {
         "kitsu": "7937",
-        "mal": null
+        "mal": null,
+        "title": "Avatar: The Last Airbender Book 2: Earth"
       },
       "state": {
         "status": "completed",
@@ -19656,7 +19661,8 @@
       "last_updated": "2018-03-01T04:47:14.900000+00:00",
       "last_synced": {
         "kitsu": "7943fd2d85e42c6eaa15d46b7e68fbb6"
-      }
+      },
+      "title": "Avatar: The Last Airbender Book 2: Earth"
     },
     "kitsu_12566": {
       "ids": {
@@ -19820,7 +19826,8 @@
     "kitsu_7936": {
       "ids": {
         "kitsu": "7936",
-        "mal": null
+        "mal": null,
+        "title": "Avatar: The Last Airbender Book 1: Water"
       },
       "state": {
         "status": "completed",
@@ -19830,7 +19837,8 @@
       "last_updated": "2018-03-01T05:07:19.550000+00:00",
       "last_synced": {
         "kitsu": "7943fd2d85e42c6eaa15d46b7e68fbb6"
-      }
+      },
+      "title": "Avatar: The Last Airbender Book 1: Water"
     },
     "kitsu_10083": {
       "ids": {
@@ -20314,7 +20322,8 @@
     "kitsu_8077": {
       "ids": {
         "kitsu": "8077",
-        "mal": null
+        "mal": null,
+        "title": "The Legend of Korra Book 3: Change"
       },
       "state": {
         "status": "completed",
@@ -20324,7 +20333,8 @@
       "last_updated": "2018-03-01T05:10:56.520000+00:00",
       "last_synced": {
         "kitsu": "ff78eefcddc335fb866995ee030e7adf"
-      }
+      },
+      "title": "The Legend of Korra Book 3: Change"
     },
     "kitsu_482": {
       "ids": {
@@ -20468,7 +20478,8 @@
     "kitsu_10735": {
       "ids": {
         "kitsu": "10735",
-        "mal": null
+        "mal": null,
+        "title": "Steven Universe"
       },
       "state": {
         "status": "completed",
@@ -20478,7 +20489,8 @@
       "last_updated": "2018-03-01T05:11:54.283000+00:00",
       "last_synced": {
         "kitsu": "46276bbde1aba9393613eb9d234d5344"
-      }
+      },
+      "title": "Steven Universe"
     },
     "kitsu_7442": {
       "ids": {
@@ -20503,7 +20515,8 @@
     "kitsu_8706": {
       "ids": {
         "kitsu": "8706",
-        "mal": null
+        "mal": null,
+        "title": "The Legend of Korra Book 4: Balance"
       },
       "state": {
         "status": "completed",
@@ -20513,7 +20526,8 @@
       "last_updated": "2018-03-01T05:12:09.461000+00:00",
       "last_synced": {
         "kitsu": "ff78eefcddc335fb866995ee030e7adf"
-      }
+      },
+      "title": "The Legend of Korra Book 4: Balance"
     },
     "kitsu_24": {
       "ids": {
@@ -20755,7 +20769,8 @@
     "kitsu_7928": {
       "ids": {
         "kitsu": "7928",
-        "mal": null
+        "mal": null,
+        "title": "Teen Titans"
       },
       "state": {
         "status": "completed",
@@ -20765,7 +20780,8 @@
       "last_updated": "2018-03-01T05:14:10.332000+00:00",
       "last_synced": {
         "kitsu": "4e6233aace340815dcfe201c4c6f6df3"
-      }
+      },
+      "title": "Teen Titans"
     },
     "kitsu_540": {
       "ids": {
@@ -29324,13 +29340,16 @@
         "title": "Meitantei Conan"
       },
       "state": {
-        "status": "plantowatch",
-        "progress": 1,
+        "status": "watching",
+        "progress": 1209,
         "score": 0
       },
-      "last_updated": "2026-07-21T07:30:18+00:00",
+      "last_updated": "2026-08-14T07:38:07+00:00",
       "last_synced": {
-        "simkl": "71cf5963078a8550cb1a5d8da171ec5f"
+        "simkl": "7718ceb0e331e7f98dc38cf75ca29054",
+        "anilist": "7718ceb0e331e7f98dc38cf75ca29054",
+        "mal": "7718ceb0e331e7f98dc38cf75ca29054",
+        "kitsu": "7718ceb0e331e7f98dc38cf75ca29054"
       },
       "title": "Meitantei Conan"
     },
