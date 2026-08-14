@@ -190,9 +190,9 @@ Clevatess II: Majuu no Ou to Itsuwari no Yuusha Denshou,kitsu_50154,62513,198946
 Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha,mal_59205,59205,178869,49061,18730,tt32991344,451793,258348,2505908,watching,12,0,2026-08-07T18:36:30+00:00,
 Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha,kitsu_49061,59205,178869,49061,18730,tt32991344,451793,258348,,watching,8,0,2026-01-24T22:34:14.362000+00:00,
 Code Geass: Boukoku no Akito,anilist_7508,,7508,,,,,,40276,plantowatch,0,0,2026-07-21T18:17:16.605824+00:00,
-Code Geass: Boukoku no Akito,anidb_7508,,,,7508,tt0994314,79525,31724,40276,plantowatch,0,0,2026-08-07T21:10:41.801080+00:00,arm
-Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita,mal_8888,8888,8888,5518,7508,,,,40276,plantowatch,0,0,2026-06-30T13:44:57+00:00,
-Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita,kitsu_5518,8888,8888,5518,,,,,,plantowatch,0,0,2026-06-30T11:53:34.109000+00:00,
+Code Geass: Boukoku no Akito,anidb_7508,8888,8888,5518,7508,tt0994314,79525,31724,40276,plantowatch,0,0,2026-08-07T21:10:41.801080+00:00,manual_override
+Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita,mal_8888,8888,8888,5518,7508,,,,40276,plantowatch,0,0,2026-06-30T13:44:57+00:00,manual_override
+Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita,kitsu_5518,8888,8888,5518,7508,,,,,plantowatch,0,0,2026-06-30T11:53:34.109000+00:00,manual_override
 Code Geass: Dakkan no Roze,mal_56835,56835,126830,43855,15910,tt13592980,443905,255107,1495179,plantowatch,0,0,2026-08-07T21:10:41.801546+00:00,
 Code Geass: Dakkan no Rozé,kitsu_43855,56835,126830,43855,15910,tt13592980,443905,255107,,plantowatch,0,0,2026-01-23T11:33:16.349000+00:00,
 Code Geass: Fukkatsu no Lelouch,mal_34437,34437,97880,12767,12566,tt6344664,79525,553837,638613,plantowatch,0,0,2026-08-07T21:10:41.801321+00:00,
@@ -478,10 +478,10 @@ InuYasha,mal_249,249,249,224,144,tt0290223,71361,35610,39260,plantowatch,8,0,202
 InuYasha,kitsu_224,249,249,224,144,tt0290223,71361,35610,,watching,8,0,2025-02-15T18:43:15.920000+00:00,
 Isekai Cheat Magician,mal_37744,37744,101547,42319,14038,tt10431262,360708,90215,805807,completed,12,0,2026-07-05T13:37:45+00:00,
 Isekai Cheat Magician,kitsu_42319,37744,101547,42319,14038,tt10431262,360708,90215,,completed,12,0,2025-02-15T18:43:00.740000+00:00,
-"Isekai de Cheat Skill o Te ni Shita Ore wa, Genjitsu Sekai o mo Musou Suru: Level Up wa Jinsei o Kaeta",mal_56906,56906,170110,50637,18241,tt27417996,423653,208493,2275410,plantowatch,0,0,2026-08-07T21:10:41.801770+00:00,
+"Isekai de Cheat Skill o Te ni Shita Ore wa, Genjitsu Sekai o mo Musou Suru: Level Up wa Jinsei o Kaeta",mal_56906,56906,170110,48138,18241,tt27417996,423653,208493,2275410,plantowatch,0,0,2026-08-07T21:10:41.801770+00:00,manual_override
 "Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta",mal_52830,52830,153845,46370,17580,tt27417996,423653,208493,1977640,completed,13,0,2025-03-02T19:21:43+00:00,
 "Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta",kitsu_46370,52830,153845,46370,17580,tt27417996,423653,208493,,completed,13,0,2025-02-15T18:43:02.553000+00:00,
-"Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta 2nd Season",kitsu_48138,,,48138,,,,,,plantowatch,0,0,2026-01-24T22:41:09.159000+00:00,
+"Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta 2nd Season",kitsu_48138,56906,170110,48138,18241,,,,,plantowatch,0,0,2026-01-24T22:41:09.159000+00:00,manual_override
 Isekai de Mofumofu Nadenade Suru Tame ni Ganbattemasu.,mal_52359,52359,152072,46242,17504,tt30689225,422186,205672,1948876,plantowatch,0,0,2026-08-07T21:10:41.801677+00:00,
 Isekai de Mofumofu Nadenade suru Tame ni Ganbattemasu.,kitsu_46242,52359,152072,46242,17504,tt30643982,422186,205672,,plantowatch,0,0,2024-05-30T07:54:28.174000+00:00,
 Isekai Maou to Shoukan Shoujo no Dorei Majutsu,mal_37210,37210,101004,41133,13757,tt8438524,347425,80563,759893,completed,12,0,2026-07-05T13:37:43+00:00,
@@ -492,9 +492,9 @@ Isekai Meikyuu de Harem wo,mal_44524,44524,15918,43911,15918,tt13628870,393301,1
 Isekai Meikyuu de Harem wo,kitsu_43911,44524,,43911,15918,tt13628870,393301,114477,,completed,12,0,2025-02-15T18:43:43.222000+00:00,
 Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku,mal_59130,59130,178433,49057,18702,tt32731400,451504,280038,2498864,plantowatch,1,0,2026-07-03T04:20:26+00:00,
 Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku,kitsu_49057,59130,178433,49057,18702,tt32731400,451504,280038,,plantowatch,1,0,2026-01-23T11:34:56.088000+00:00,
-Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,mal_60253,60253,183960,49923,18970,,,,2629434,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,
-Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,kitsu_49923,,,49923,,,,,,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,
-Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,anilist_183960,60253,183960,49923,18970,,,,,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,
+Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,mal_60253,60253,183960,49923,18970,,,,2629434,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,manual_override
+Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,kitsu_49923,60253,183960,49923,18970,,,,,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,manual_override
+Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku,anilist_183960,60253,183960,49923,18970,,,,,plantowatch,1,0,2026-01-23T11:53:41.749000+00:00,manual_override
 Isekai Nonbiri Nouka,mal_51462,51462,146850,46016,17290,tt19223420,418367,196285,1879750,completed,12,6,2026-06-30T11:05:26+00:00,
 Isekai Nonbiri Nouka,kitsu_46016,51462,146850,46016,17290,tt19223420,418367,196285,,completed,12,0,2025-02-15T18:43:03.437000+00:00,
 Isekai Nonbiri Nouka 2,mal_62146,62146,197824,50117,19506,tt19223420,418367,196285,2849414,completed,12,0,2026-07-21T18:20:19+00:00,
@@ -523,7 +523,7 @@ Itou Junji: Collection,mal_36124,36124,99940,13717,13385,tt7814574,335237,75775,
 Itou Junji: Collection,kitsu_13717,36124,99940,13717,13385,tt7814574,335237,75775,,completed,12,0,2025-02-15T18:43:00.486000+00:00,
 Izure Saikyou no Renkinjutsushi?,mal_58822,58822,177506,48842,18620,tt33478787,449884,261298,2460014,completed,12,0,2026-01-23T11:53:10.537000+00:00,
 Izure Saikyou no Renkinjutsushi?,kitsu_48842,58822,177506,48842,18620,tt33478787,449884,261298,,completed,12,0,2026-01-23T11:53:10.537000+00:00,
-"Jack-of-All-Trades, Party of None",kitsu_50423,,,50423,,,,,,watching,11,0,2026-06-30T11:49:43.927000+00:00,
+"Jack-of-All-Trades, Party of None",kitsu_50423,61128,187264,50423,19190,,,,,watching,11,0,2026-06-30T11:49:43.927000+00:00,manual_override
 Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou,mal_52619,52619,153360,46311,17557,tt28100731,423121,207564,1968312,completed,12,0,2025-09-06T12:23:35+00:00,
 Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou,kitsu_46311,52619,153360,46311,17557,tt28100731,423121,207564,,completed,12,0,2025-02-15T18:42:57.306000+00:00,
 Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season,mal_56700,56700,169440,47968,18204,tt28100731,423121,207564,2260548,completed,12,0,2026-01-26T14:06:33+00:00,
@@ -816,8 +816,8 @@ MASHLE,mal_52211,52211,151801,46229,17478,tt21209804,421737,204832,1944030,compl
 Mashle,kitsu_46229,52211,151801,46229,17478,tt21209804,421737,204832,,completed,12,0,2025-02-15T18:43:02.477000+00:00,
 Mashle: Shinkakusha Kouho Senbatsu Shiken Hen,mal_55813,55813,166610,47671,18088,tt21209804,421737,204832,2199482,plantowatch,0,0,2026-08-07T21:10:41.801747+00:00,
 Mashle: Shinkakusha Kouho Senbatsu Shiken-hen,kitsu_47671,55813,166610,47671,18088,tt21209804,421737,204832,,plantowatch,0,0,2025-02-15T18:43:49.603000+00:00,
-"Mata Korosarete Shimatta no Desu ne, Tantei-sama",mal_62964,62964,202381,50554,19722,tt39122702,470519,312293,2936722,plantowatch,0,0,2026-08-07T21:10:41.801936+00:00,
-"Mata Korosarete Shimatta no desu ne, Tantei-sama",kitsu_50554,,,50554,,,,,,plantowatch,0,0,2026-06-30T12:01:42.453000+00:00,
+"Mata Korosarete Shimatta no Desu ne, Tantei-sama",mal_62964,62964,202381,50554,19722,tt39122702,470519,312293,2936722,plantowatch,0,0,2026-08-07T21:10:41.801936+00:00,manual_override
+"Mata Korosarete Shimatta no desu ne, Tantei-sama",kitsu_50554,62964,202381,50554,19722,,,,,plantowatch,0,0,2026-06-30T12:01:42.453000+00:00,manual_override
 Mato Seihei no Slave,mal_50392,50392,141821,45512,16982,tt16156736,412656,139060,1781532,plantowatch,0,0,2026-08-07T21:10:41.801631+00:00,
 Mato Seihei no Slave,kitsu_45512,50392,141821,45512,16982,tt16156736,412656,139060,,plantowatch,0,0,2024-05-30T07:53:52.587000+00:00,
 "Megami ""Isekai Tensei Nani ni Naritai desu ka"" Ore ""Yuusha no Rokkotsu de""",kitsu_50642,63376,206951,50642,19862,tt40547960,473229,312522,,watching,2,0,2026-06-30T12:14:53.097000+00:00,
@@ -1136,8 +1136,8 @@ Saikyou Onmyouji no Isekai Tenseiki,mal_50932,50932,144553,45813,17159,tt2580928
 Saikyou Onmyouji no Isekai Tenseiki,kitsu_45813,50932,144553,45813,17159,tt25809288,415378,156563,,completed,13,0,2025-02-15T18:43:02.343000+00:00,
 "Saikyou Tank no Meikyuu Kouryaku: Tairyoku 9999 no Rare Skill-mochi Tank, Yuusha Party wo Tsuihou Sareru",mal_56845,56845,169935,48059,18229,tt30643971,440481,236532,2272654,completed,12,0,2025-03-02T19:26:59+00:00,
 "Saikyou Tank no Meikyuu Kouryaku: Tairyoku 9999 no Rare Skill-mochi Tank, Yuusha Party wo Tsuihou sareru",kitsu_48059,56845,169935,48059,18229,tt30643971,440481,236532,,completed,12,0,2025-02-15T18:43:04.314000+00:00,
-"Saioshi no Gikei Mederu Tame, Nagaikishimasu!",kitsu_50484,,,50484,,,,,,watching,1,0,2026-01-23T11:53:06.886000+00:00,
-"Saioshi no Gikei o Mederu Tame, Nagaiki Shimasu!",mal_61969,61969,19809,50484,19809,,,,2985074,completed,12,0,2026-08-07T18:36:41+00:00,
+"Saioshi no Gikei Mederu Tame, Nagaikishimasu!",kitsu_50484,61969,199446,50484,,,,,,watching,1,0,2026-01-23T11:53:06.886000+00:00,manual_override
+"Saioshi no Gikei o Mederu Tame, Nagaiki Shimasu!",mal_61969,61969,199446,50484,19809,,,,2985074,completed,12,0,2026-08-07T18:36:41+00:00,manual_override
 Salaryman ga Isekai ni Ittara Shitennou ni Natta Hanashi,mal_59349,59349,179689,49065,18768,tt33021990,452426,259559,2520726,completed,12,0,2026-07-21T18:20:16+00:00,
 Salaryman ga Isekai ni Ittara Shitennou ni Natta Hanashi,kitsu_49065,59349,179689,49065,18768,tt33021990,452426,259559,,watching,1,0,2026-07-05T13:26:23.598000+00:00,
 Samurai Champloo,mal_205,205,205,181,1543,tt0423731,79089,1063,38839,plantowatch,0,0,2026-08-07T21:10:41.801014+00:00,
@@ -1279,8 +1279,8 @@ Sousou no Frieren,mal_52991,52991,154587,46474,17617,tt22248376,424536,209867,19
 Sousou no Frieren,mal_59978,59978,182255,49240,18886,tt22248376,424536,209867,2595284,completed,10,0,2026-08-07T18:36:33+00:00,
 Sousou no Frieren,kitsu_46474,52991,154587,46474,17617,tt22248376,424536,209867,,watching,28,0,2026-07-05T13:41:50.809000+00:00,
 Sousou no Frieren 2nd Season,kitsu_49240,59978,182255,49240,18886,tt22248376,424536,209867,,watching,1,0,2026-01-23T11:53:40.069000+00:00,
-Souzai Saishuka no Isekai Ryokouki,kitsu_49927,,,49927,,,,,,watching,12,0,2026-01-24T22:34:14.884000+00:00,
-Sozai Saishuka no Isekai Ryokouki,mal_61174,61174,187663,49927,19204,tt37430949,461265,284442,2733782,watching,12,0,2026-07-05T13:27:26+00:00,
+Souzai Saishuka no Isekai Ryokouki,kitsu_49927,61174,187663,49927,19204,,,,,watching,12,0,2026-01-24T22:34:14.884000+00:00,manual_override
+Sozai Saishuka no Isekai Ryokouki,mal_61174,61174,187663,49927,19204,tt37430949,461265,284442,2733782,watching,12,0,2026-07-05T13:27:26+00:00,manual_override
 Spy x Family,mal_50265,50265,140960,45398,16947,tt13706018,405920,120089,1766469,plantowatch,7,0,2026-07-06T13:45:24+00:00,
 Spy x Family,mal_50602,50602,142838,45619,17061,tt13706018,405920,120089,1809622,completed,13,0,2026-08-07T18:36:06+00:00,
 Spy x Family,mal_59027,59027,177937,48939,18677,tt13706018,405920,120089,2487518,watching,13,0,2026-08-07T18:36:29+00:00,
@@ -1491,7 +1491,7 @@ Yuuki Yuuna wa Yuusha de Aru,mal_25519,25519,20800,8638,10750,tt3981902,284263,7
 Yuuki Yuuna wa Yuusha de Aru,kitsu_8638,25519,20800,8638,10750,tt3981902,284263,71493,,plantowatch,0,0,2026-06-30T11:38:28.595000+00:00,
 "Yuusha Party ni Kawaii Ko ga Ita node, Kokuhaku Shite Mita.",mal_61983,61983,195515,50437,19440,tt38037498,465505,295366,2830466,plantowatch,0,0,2026-08-07T21:10:41.801919+00:00,
 "Yuusha Party ni Kawaii Ko ga Ita node, Kokuhaku shitemita.",kitsu_50437,61983,195515,50437,19440,tt38037498,465505,295366,,plantowatch,0,0,2026-01-24T22:34:18.444000+00:00,
-Yuusha Party o Oidasareta Kiyoubinbou,mal_61128,61128,187264,,19190,tt38648925,460903,285166,2729522,watching,12,0,2026-07-09T09:58:29+00:00,
+Yuusha Party o Oidasareta Kiyoubinbou,mal_61128,61128,187264,50423,19190,tt38648925,460903,285166,2729522,watching,12,0,2026-07-09T09:58:29+00:00,manual_override
 "Yuusha Party wo Tsuihou Sareta Beast Tamer, Saikyoushu no Nekomimi Shoujo to Deau",mal_52046,52046,150695,46171,17444,tt21345944,421092,203780,1927206,completed,13,0,2025-03-02T19:21:45+00:00,
 "Yuusha Party wo Tsuihou sareta Beast Tamer, Saikyoushu no Nekomimi Shoujo to Deau",kitsu_46171,52046,150695,46171,17444,tt21345944,421092,203780,,completed,13,0,2025-02-15T18:43:02.422000+00:00,
 "Yuusha Party wo Tsuihou Sareta Shiro Madoushi, S Rank Boukensha ni Hirowareru: Kono Shiro Madoushi ga Kikakugaisugiru",mal_59424,59424,179885,49896,18782,tt36592820,452713,284771,2527126,completed,12,0,2026-08-14T11:46:52.045000+00:00,
