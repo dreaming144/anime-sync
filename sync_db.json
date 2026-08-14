@@ -9209,7 +9209,10 @@
         "simkl": "1839336",
         "kitsu": "45830",
         "anidb": "17175",
-        "title": "BASTARD!!: Ankoku no Hakaishin (ONA)"
+        "title": "BASTARD!!: Ankoku no Hakaishin (ONA)",
+        "imdb": "tt17736234",
+        "tvdb": "415677",
+        "tmdb": "156898"
       },
       "state": {
         "status": "watching",
@@ -15842,7 +15845,8 @@
         "title": "A Kite",
         "kitsu": "8123",
         "tvdb": "85301",
-        "tmdb": "46419"
+        "tmdb": "46419",
+        "imdb": "tt0296295"
       },
       "state": {
         "status": "plantowatch",
@@ -15919,7 +15923,8 @@
         "anidb": "3619",
         "imdb": "tt0930902",
         "tmdb": "53064",
-        "title": "Shoujo Tsubaki"
+        "title": "Shoujo Tsubaki",
+        "tvdb": "258961"
       },
       "state": {
         "status": "plantowatch",
@@ -19516,7 +19521,8 @@
         "tmdb": "[372058]",
         "anilist": "21519",
         "anidb": "11829",
-        "title": "Kimi no Na wa."
+        "title": "Kimi no Na wa.",
+        "simkl": "543146"
       },
       "state": {
         "status": "plantowatch",
@@ -19559,7 +19565,8 @@
         "tmdb": "[129]",
         "anilist": "199",
         "anidb": "112",
-        "title": "Sen to Chihiro no Kamikakushi"
+        "title": "Sen to Chihiro no Kamikakushi",
+        "simkl": "39079"
       },
       "state": {
         "status": "completed",
@@ -19580,7 +19587,8 @@
         "tmdb": "[378064]",
         "anilist": "20954",
         "anidb": "10937",
-        "title": "Koe no Katachi"
+        "title": "Koe no Katachi",
+        "simkl": "436948"
       },
       "state": {
         "status": "plantowatch",
@@ -19667,7 +19675,8 @@
         "tmdb": "[128]",
         "anilist": "164",
         "anidb": "7",
-        "title": "Mononoke Hime"
+        "title": "Mononoke Hime",
+        "simkl": "36228"
       },
       "state": {
         "status": "completed",
@@ -19898,7 +19907,8 @@
         "tmdb": "[4935]",
         "anilist": "431",
         "anidb": "1218",
-        "title": "Howl no Ugoku Shiro"
+        "title": "Howl no Ugoku Shiro",
+        "simkl": "36368"
       },
       "state": {
         "status": "completed",
@@ -20420,7 +20430,8 @@
         "tmdb": "[81]",
         "anilist": "572",
         "anidb": "275",
-        "title": "Kaze no Tani no Nausicaä"
+        "title": "Kaze no Tani no Nausicaä",
+        "simkl": "36223"
       },
       "state": {
         "status": "completed",
@@ -20480,7 +20491,8 @@
         "tmdb": "[8392]",
         "anilist": "523",
         "anidb": "303",
-        "title": "Tonari no Totoro"
+        "title": "Tonari no Totoro",
+        "simkl": "41612"
       },
       "state": {
         "status": "completed",
@@ -20711,7 +20723,8 @@
         "tmdb": "[10515]",
         "anilist": "513",
         "anidb": "331",
-        "title": "Tenkuu no Shiro Laputa"
+        "title": "Tenkuu no Shiro Laputa",
+        "simkl": "41683"
       },
       "state": {
         "status": "completed",
@@ -20732,7 +20745,8 @@
         "tmdb": "[12477]",
         "anilist": "578",
         "anidb": "332",
-        "title": "Hotaru no Haka"
+        "title": "Hotaru no Haka",
+        "simkl": "40605"
       },
       "state": {
         "status": "completed",
@@ -20775,7 +20789,8 @@
         "tmdb": "[16859]",
         "anilist": "512",
         "anidb": "286",
-        "title": "Majo no Takkyuubin"
+        "title": "Majo no Takkyuubin",
+        "simkl": "40068"
       },
       "state": {
         "status": "completed",
@@ -20967,7 +20982,8 @@
         "tmdb": "[37797]",
         "anilist": "585",
         "anidb": "336",
-        "title": "Mimi wo Sumaseba"
+        "title": "Mimi wo Sumaseba",
+        "simkl": "38494"
       },
       "state": {
         "status": "completed",
@@ -21736,7 +21752,8 @@
         "tmdb": "[304023]",
         "anilist": "13391",
         "anidb": "9088",
-        "title": "Rakuen Tsuihou"
+        "title": "Rakuen Tsuihou",
+        "simkl": "47928"
       },
       "state": {
         "status": "completed",
@@ -22211,7 +22228,8 @@
         "tmdb": "[350499]",
         "anilist": "21266",
         "anidb": "10966",
-        "title": "Pokemon Movie 18: Ring no Choumajin Hoopa"
+        "title": "Pokemon Movie 18: Ring no Choumajin Hoopa",
+        "simkl": "447618"
       },
       "state": {
         "status": "completed",
@@ -23571,7 +23589,8 @@
         "mal": "49164",
         "anilist": "135429",
         "anidb": "16378",
-        "title": "Make My Day"
+        "title": "Make My Day",
+        "simkl": "1658239"
       },
       "state": {
         "status": "watching",
@@ -24500,7 +24519,8 @@
         "tmdb": "[37933]",
         "anilist": "1829",
         "anidb": "4193",
-        "title": "Ged Senki"
+        "title": "Ged Senki",
+        "simkl": "36691"
       },
       "state": {
         "status": "completed",
@@ -24607,7 +24627,8 @@
         "mal": "54851",
         "anilist": "163138",
         "anidb": "17942",
-        "title": "Yakitori"
+        "title": "Yakitori",
+        "simkl": "2125694"
       },
       "state": {
         "status": "plantowatch",
@@ -25376,7 +25397,8 @@
         "tmdb": "[916224]",
         "anilist": "142770",
         "anidb": "17041",
-        "title": "Suzume no Tojimari"
+        "title": "Suzume no Tojimari",
+        "simkl": "1807454"
       },
       "state": {
         "status": "completed",
@@ -26998,7 +27020,8 @@
         "tmdb": "[149]",
         "anilist": "47",
         "anidb": "28",
-        "title": "Akira"
+        "title": "Akira",
+        "simkl": "40079"
       },
       "state": {
         "status": "completed",
@@ -27041,7 +27064,8 @@
         "tmdb": "[14945]",
         "anilist": "1140",
         "anidb": "3385",
-        "title": "Giniro no Kami no Agito"
+        "title": "Giniro no Kami no Agito",
+        "simkl": "41100"
       },
       "state": {
         "status": "completed",
@@ -28858,7 +28882,8 @@
         "tmdb": "[15916]",
         "anilist": "885",
         "anidb": "318",
-        "title": "Tenshi no Tamago"
+        "title": "Tenshi no Tamago",
+        "simkl": "37100"
       },
       "state": {
         "status": "plantowatch",
@@ -28900,7 +28925,8 @@
         "imdb": "tt0930902",
         "tmdb": "[53064]",
         "anidb": "3619",
-        "title": "Chika Gentou Gekiga: Shoujo Tsubaki"
+        "title": "Chika Gentou Gekiga: Shoujo Tsubaki",
+        "simkl": "38962"
       },
       "state": {
         "status": "plantowatch",
@@ -29027,7 +29053,8 @@
         "tmdb": "[51739]",
         "anilist": "7711",
         "anidb": "7258",
-        "title": "Karigurashi no Arrietty"
+        "title": "Karigurashi no Arrietty",
+        "simkl": "37552"
       },
       "state": {
         "status": "completed",
@@ -29202,7 +29229,8 @@
         "tmdb": "97825",
         "anilist": "20697",
         "anidb": "10566",
-        "title": "Kara no Kyoukai Movie: Mirai Fukuin - Extra Chorus"
+        "title": "Kara no Kyoukai Movie: Mirai Fukuin - Extra Chorus",
+        "simkl": "49886"
       },
       "state": {
         "status": "plantowatch",
@@ -29611,7 +29639,8 @@
         "tmdb": "[476292]",
         "anilist": "99457",
         "anidb": "13262",
-        "title": "Sayonara no Asa ni Yakusoku no Hana wo Kazarou"
+        "title": "Sayonara no Asa ni Yakusoku no Hana wo Kazarou",
+        "simkl": "699043"
       },
       "state": {
         "status": "plantowatch",
@@ -29654,7 +29683,8 @@
         "tmdb": "[597419]",
         "anilist": "107864",
         "anidb": "13784",
-        "title": "Ta ga Tame no Alchemist"
+        "title": "Ta ga Tame no Alchemist",
+        "simkl": "763237"
       },
       "state": {
         "status": "completed",
@@ -30306,7 +30336,8 @@
         "mal": "49573",
         "anilist": "137663",
         "anidb": "16582",
-        "title": "Ya She"
+        "title": "Ya She",
+        "simkl": "1721829"
       },
       "state": {
         "status": "plantowatch",
@@ -30467,7 +30498,8 @@
         "tmdb": "[959646]",
         "anilist": "140337",
         "anidb": "16911",
-        "title": "Zombieland Saga Movie: Yumeginga Paradise"
+        "title": "Zombieland Saga Movie: Yumeginga Paradise",
+        "simkl": "1754475"
       },
       "state": {
         "status": "plantowatch",
@@ -30840,7 +30872,8 @@
         "tmdb": "246862",
         "anilist": "151799",
         "anidb": "17493",
-        "title": "New Panty & Stocking with Garterbelt"
+        "title": "New Panty & Stocking with Garterbelt",
+        "imdb": "['']"
       },
       "state": {
         "status": "completed",
@@ -31123,7 +31156,8 @@
         "mal": "55809",
         "anilist": "137653",
         "anidb": "18237",
-        "title": "Xian Ni"
+        "title": "Xian Ni",
+        "simkl": "2275520"
       },
       "state": {
         "status": "dropped",
@@ -31956,7 +31990,8 @@
         "imdb": "tt33175825",
         "tmdb": "[1333100]",
         "anidb": "18820",
-        "title": "Shingeki no Kyojin Movie: Kanketsu-hen - The Last Attack"
+        "title": "Shingeki no Kyojin Movie: Kanketsu-hen - The Last Attack",
+        "simkl": "2544548"
       },
       "state": {
         "status": "plantowatch",
@@ -32415,7 +32450,8 @@
         "mal": "60572",
         "anilist": "191974",
         "anidb": "19323",
-        "title": "Kun Tun Tianxia Zhi Zhang Men Guilai"
+        "title": "Kun Tun Tianxia Zhi Zhang Men Guilai",
+        "simkl": "2768832"
       },
       "state": {
         "status": "watching",
@@ -32936,7 +32972,8 @@
         "title": "Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku",
         "anilist": "183960",
         "anidb": "18970",
-        "_source": "manual_override"
+        "_source": "manual_override",
+        "simkl": "2629434"
       },
       "state": {
         "status": "plantowatch",
@@ -32977,7 +33014,8 @@
         "mal": "61203",
         "anilist": "187924",
         "anidb": "19213",
-        "title": "Kono Subarashii Sekai ni Shukufuku wo! 4"
+        "title": "Kono Subarashii Sekai ni Shukufuku wo! 4",
+        "simkl": "2735124"
       },
       "state": {
         "status": "plantowatch",
@@ -33329,7 +33367,8 @@
         "tmdb": "[1363974]",
         "anilist": "182206",
         "anidb": "18885",
-        "title": "Tensei shitara Slime Datta Ken Movie 2: Soukai no Namida-hen"
+        "title": "Tensei shitara Slime Datta Ken Movie 2: Soukai no Namida-hen",
+        "simkl": "2704960"
       },
       "state": {
         "status": "plantowatch",
@@ -33730,7 +33769,8 @@
         "mal": "719",
         "anilist": "719",
         "anidb": "793",
-        "title": "Ai no Kusabi"
+        "title": "Ai no Kusabi",
+        "simkl": "1503519"
       },
       "state": {
         "status": "watching",
@@ -33817,7 +33857,8 @@
         "tmdb": "[21453]",
         "anilist": "1107",
         "anidb": "1040",
-        "title": "Youjuu Toshi"
+        "title": "Youjuu Toshi",
+        "simkl": "38559"
       },
       "state": {
         "status": "completed",
@@ -33902,7 +33943,8 @@
         "mal": "1908",
         "anilist": "1908",
         "anidb": "799",
-        "title": "Lesson XX"
+        "title": "Lesson XX",
+        "simkl": "40610"
       },
       "state": {
         "status": "completed",
@@ -33965,7 +34007,8 @@
         "mal": "6509",
         "anilist": "6509",
         "anidb": "2723",
-        "title": "Kiteretsu Daihyakka"
+        "title": "Kiteretsu Daihyakka",
+        "simkl": "39291"
       },
       "state": {
         "status": "plantowatch",
@@ -34094,7 +34137,8 @@
         "tmdb": "[61695]",
         "anilist": "9940",
         "anidb": "8087",
-        "title": "Mai no Mahou to Katei no Hi"
+        "title": "Mai no Mahou to Katei no Hi",
+        "simkl": "41172"
       },
       "state": {
         "status": "plantowatch",
@@ -35171,7 +35215,8 @@
         "tmdb": "[1310387]",
         "anilist": "178707",
         "anidb": "18720",
-        "title": "Mahouka Koukou no Rettousei Movie: Yotsuba Keishou-hen"
+        "title": "Mahouka Koukou no Rettousei Movie: Yotsuba Keishou-hen",
+        "simkl": "2502792"
       },
       "state": {
         "status": "plantowatch",
@@ -35359,7 +35404,8 @@
         "mal": "63433",
         "anilist": "210375",
         "anidb": "19994",
-        "title": "Daikenja Riddle no Jikan Gyakkou"
+        "title": "Daikenja Riddle no Jikan Gyakkou",
+        "simkl": "3071770"
       },
       "state": {
         "status": "plantowatch",
@@ -35812,7 +35858,8 @@
         "anilist": "183960",
         "title": "Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku",
         "anidb": "18970",
-        "_source": "manual_override"
+        "_source": "manual_override",
+        "simkl": "2629434"
       },
       "state": {
         "status": "plantowatch",
@@ -35853,7 +35900,8 @@
         "mal": "61203",
         "anilist": "187924",
         "title": "Kono Subarashii Sekai ni Shukufuku wo! 4",
-        "anidb": "19213"
+        "anidb": "19213",
+        "simkl": "2735124"
       },
       "state": {
         "status": "plantowatch",
@@ -36062,7 +36110,8 @@
         "mal": "3194",
         "title": "Ningyohime Marina no Bouken",
         "anilist": "3194",
-        "anidb": "3497"
+        "anidb": "3497",
+        "simkl": "39164"
       },
       "state": {
         "status": "completed",
@@ -36079,130 +36128,130 @@
   "id_cache": {
     "arm_kitsu_7926": {
       "kitsu": 7926,
-      "_cached_at": "2026-08-14T12:48:14.577286+00:00",
+      "_cached_at": "2026-08-14T17:15:59.764557+00:00",
       "_source": "arm_v2"
     },
     "kitsu_7926": {
       "kitsu": "7926",
-      "_cached_at": "2026-08-14T12:48:14.711888+00:00",
+      "_cached_at": "2026-08-14T17:16:00.090934+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/3"
     },
     "arm_kitsu_7937": {
       "kitsu": 7937,
-      "_cached_at": "2026-08-14T12:48:15.387153+00:00",
+      "_cached_at": "2026-08-14T17:16:00.806093+00:00",
       "_source": "arm_v2"
     },
     "kitsu_7937": {
       "kitsu": "7937",
-      "_cached_at": "2026-08-14T12:48:15.525152+00:00",
+      "_cached_at": "2026-08-14T17:16:00.996087+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/2"
     },
     "arm_kitsu_7936": {
       "kitsu": 7936,
-      "_cached_at": "2026-08-14T12:48:16.188236+00:00",
+      "_cached_at": "2026-08-14T17:16:01.730046+00:00",
       "_source": "arm_v2"
     },
     "kitsu_7936": {
       "kitsu": "7936",
-      "_cached_at": "2026-08-14T12:48:16.312677+00:00",
+      "_cached_at": "2026-08-14T17:16:01.990506+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "74852/1"
     },
     "arm_kitsu_8077": {
       "kitsu": 8077,
-      "_cached_at": "2026-08-14T12:48:16.979707+00:00",
+      "_cached_at": "2026-08-14T17:16:02.701446+00:00",
       "_source": "arm_v2"
     },
     "kitsu_8077": {
       "kitsu": "8077",
-      "_cached_at": "2026-08-14T12:48:17.144195+00:00",
+      "_cached_at": "2026-08-14T17:16:02.939396+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "251085/3"
     },
     "arm_kitsu_10735": {
       "kitsu": 10735,
-      "_cached_at": "2026-08-14T12:48:17.778372+00:00",
+      "_cached_at": "2026-08-14T17:16:03.823281+00:00",
       "_source": "arm_v2"
     },
     "kitsu_10735": {
       "kitsu": "10735",
-      "_cached_at": "2026-08-14T12:48:17.906495+00:00",
+      "_cached_at": "2026-08-14T17:16:04.038468+00:00",
       "_source": "kitsu_mappings"
     },
     "arm_kitsu_8706": {
       "kitsu": 8706,
-      "_cached_at": "2026-08-14T12:48:18.558897+00:00",
+      "_cached_at": "2026-08-14T17:16:04.755397+00:00",
       "_source": "arm_v2"
     },
     "kitsu_8706": {
       "kitsu": "8706",
-      "_cached_at": "2026-08-14T12:48:18.686131+00:00",
+      "_cached_at": "2026-08-14T17:16:05.532684+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "251085/4"
     },
     "arm_kitsu_7928": {
       "kitsu": 7928,
-      "_cached_at": "2026-08-14T12:48:19.552246+00:00",
+      "_cached_at": "2026-08-14T17:16:06.088933+00:00",
       "_source": "arm_v2"
     },
     "kitsu_7928": {
       "kitsu": "7928",
-      "_cached_at": "2026-08-14T12:48:19.691224+00:00",
+      "_cached_at": "2026-08-14T17:16:06.454583+00:00",
       "_source": "kitsu_mappings",
       "tvdb": "71503/1"
     },
     "arm_anilist_139097": {
       "anilist": 139097,
       "mal": 42731,
-      "_cached_at": "2026-08-14T12:48:20.087408+00:00",
+      "_cached_at": "2026-08-14T17:16:06.874239+00:00",
       "_source": "arm_batch"
     },
     "arm_anilist_126169": {
       "anilist": 126169,
       "mal": 41075,
-      "_cached_at": "2026-08-14T12:48:20.087404+00:00",
+      "_cached_at": "2026-08-14T17:16:06.874236+00:00",
       "_source": "arm_batch"
     },
     "arm_anilist_148289": {
       "anilist": 148289,
       "mal": 55673,
-      "_cached_at": "2026-08-14T12:48:20.087401+00:00",
+      "_cached_at": "2026-08-14T17:16:06.874234+00:00",
       "_source": "arm_batch"
     },
     "arm_mal_59019": {
       "mal": 59019,
-      "_cached_at": "2026-08-14T12:48:20.087411+00:00",
+      "_cached_at": "2026-08-14T17:16:06.874241+00:00",
       "_source": "arm_batch"
     },
-    "anilist_126169": {
-      "anilist": 126169,
-      "mal": 41075,
-      "_cached_at": "2026-08-14T12:48:20.582728+00:00",
+    "anilist_139097": {
+      "anilist": 139097,
+      "mal": 42731,
+      "_cached_at": "2026-08-14T17:16:07.321084+00:00",
       "_source": "anizip"
     },
     "anilist_148289": {
       "anilist": 148289,
       "mal": 55673,
-      "_cached_at": "2026-08-14T12:48:20.590579+00:00",
+      "_cached_at": "2026-08-14T17:16:07.342597+00:00",
       "_source": "anizip"
     },
-    "anilist_139097": {
-      "anilist": 139097,
-      "mal": 42731,
-      "_cached_at": "2026-08-14T12:48:20.623848+00:00",
+    "anilist_126169": {
+      "anilist": 126169,
+      "mal": 41075,
+      "_cached_at": "2026-08-14T17:16:07.386715+00:00",
       "_source": "anizip"
     },
     "anilist_191452": {
       "anilist": 191452,
       "mal": 61583,
-      "_cached_at": "2026-08-14T12:48:20.984186+00:00",
+      "_cached_at": "2026-08-14T17:16:07.505924+00:00",
       "_source": "anizip"
     },
     "mal_59019": {
       "mal": 59019,
-      "_cached_at": "2026-08-14T12:48:21.324868+00:00",
+      "_cached_at": "2026-08-14T17:16:08.012441+00:00",
       "_source": "anizip"
     }
   }
