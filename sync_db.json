@@ -530,7 +530,7 @@
         "tvdb": "80421/1",
         "tmdb": "34121",
         "title": "Baccano!",
-        "simkl": 40672
+        "simkl": "40672"
       },
       "state": {
         "status": "completed",
@@ -634,7 +634,7 @@
         "tvdb": "219181/1",
         "tmdb": "39218",
         "title": "Mahou Shoujo Madoka★Magica",
-        "simkl": 36433
+        "simkl": "36433"
       },
       "state": {
         "status": "completed",
@@ -11066,7 +11066,8 @@
       "ids": {
         "anilist": "191452",
         "mal": "61583",
-        "title": "Immoral Game Master The Animation"
+        "title": "Immoral Game Master The Animation",
+        "_source": "arm_v1"
       },
       "state": {
         "status": "watching",
@@ -14114,7 +14115,7 @@
         "tvdb": "289907",
         "tmdb": "62484",
         "title": "Punch Line",
-        "simkl": 441592
+        "simkl": "441592"
       },
       "state": {
         "status": "completed",
@@ -14654,7 +14655,7 @@
         "tmdb": "65933",
         "title": "Endride",
         "imdb": "tt5877116",
-        "simkl": 554578
+        "simkl": "554578"
       },
       "state": {
         "status": "completed",
@@ -14931,22 +14932,22 @@
       "ids": {
         "anilist": "11977",
         "mal": "11977",
-        "simkl": "38910",
+        "simkl": 38910,
         "kitsu": "6636",
         "anidb": "8778",
-        "title": "Mahou Shoujo Madoka★Magica Movie 1: Hajimari no Monogatari"
+        "title": "Gekijouban Mahou Shoujo Madoka Magica"
       },
       "state": {
         "status": "completed",
-        "progress": 1,
+        "progress": 3,
         "score": 8
       },
-      "last_updated": "2026-08-14T11:45:04.883000+00:00",
+      "last_updated": "2026-08-14T11:54:56+00:00",
       "last_synced": {
-        "anilist": "66d8fcd4dcefb75478b5a9593f9e6115",
-        "mal": "66d8fcd4dcefb75478b5a9593f9e6115",
-        "kitsu": "66d8fcd4dcefb75478b5a9593f9e6115",
-        "simkl": "66d8fcd4dcefb75478b5a9593f9e6115"
+        "anilist": "7f62ece8b5cceaf8fd17fb576f8e977a",
+        "mal": "7f62ece8b5cceaf8fd17fb576f8e977a",
+        "kitsu": "7f62ece8b5cceaf8fd17fb576f8e977a",
+        "simkl": "7f62ece8b5cceaf8fd17fb576f8e977a"
       },
       "title": "Mahou Shoujo Madoka☆Magica: Hajimari no Monogatari"
     },
@@ -16504,7 +16505,7 @@
         "tmdb": "26453",
         "title": "Trigun",
         "imdb": "tt0251439",
-        "simkl": 40856
+        "simkl": "40856"
       },
       "state": {
         "status": "completed",
@@ -17828,15 +17829,15 @@
       },
       "state": {
         "status": "watching",
-        "progress": 5,
+        "progress": 7,
         "score": 0
       },
-      "last_updated": "2026-08-14T11:45:19.197000+00:00",
+      "last_updated": "2026-08-14T11:54:51.011000+00:00",
       "last_synced": {
-        "anilist": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "mal": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "kitsu": "01e7506cd5be8fac0ff4b5838d570fe6",
-        "simkl": "01e7506cd5be8fac0ff4b5838d570fe6"
+        "anilist": "2b4d358ba28d0551836de63e697ab6e6",
+        "mal": "2b4d358ba28d0551836de63e697ab6e6",
+        "kitsu": "2b4d358ba28d0551836de63e697ab6e6",
+        "simkl": "2b4d358ba28d0551836de63e697ab6e6"
       },
       "title": "Mushoku Tensei III: Isekai Ittara Honki Dasu"
     },
@@ -18128,25 +18129,25 @@
       "ids": {
         "anilist": "200769",
         "mal": "62825",
-        "simkl": "2908912",
+        "simkl": 2908912,
         "kitsu": "50275",
         "anidb": "19667",
         "imdb": "tt41154853",
         "tvdb": "469451",
         "tmdb": "303460",
-        "title": "Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo?"
+        "title": "Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii Desu yo?"
       },
       "state": {
-        "status": "watching",
-        "progress": 3,
+        "status": "completed",
+        "progress": 12,
         "score": 0
       },
-      "last_updated": "2026-08-14T11:45:44.980000+00:00",
+      "last_updated": "2026-08-14T11:55:03+00:00",
       "last_synced": {
-        "anilist": "b2dadd4889a33b00d443c489343a6291",
-        "simkl": "b2dadd4889a33b00d443c489343a6291",
-        "kitsu": "b2dadd4889a33b00d443c489343a6291",
-        "mal": "b2dadd4889a33b00d443c489343a6291"
+        "anilist": "0a946c7b73a5f539c95c86af2cae57c3",
+        "simkl": "0a946c7b73a5f539c95c86af2cae57c3",
+        "kitsu": "0a946c7b73a5f539c95c86af2cae57c3",
+        "mal": "0a946c7b73a5f539c95c86af2cae57c3"
       },
       "title": "Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo?"
     },
@@ -18889,7 +18890,8 @@
         "mal": "8888",
         "kitsu": "5518",
         "anidb": "7508",
-        "title": "Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita"
+        "title": "Code Geass: Boukoku no Akito 1 - Yokuryuu wa Maiorita",
+        "simkl": 40276
       },
       "state": {
         "status": "plantowatch",
@@ -19137,7 +19139,7 @@
         "tvdb": "359274",
         "tmdb": "88803",
         "title": "Vinland Saga Season 2",
-        "simkl": 1681241
+        "simkl": "1681241"
       },
       "state": {
         "status": "plantowatch",
