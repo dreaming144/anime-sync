@@ -8,3 +8,5 @@ __pycache__/
 
 # Optional local-only
 .env
+
+anime-offline-database-minified.json

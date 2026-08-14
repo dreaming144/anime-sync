@@ -38,14 +38,17 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      # Fribb offline list changes rarely — stable key, restore+save only on miss
-      - name: Restore Fribb offline mappings
-        id: cache-fribb
+      # Offline dumps (Fribb mappings + Manami titles). Python refreshes if >7 days old.
+      - name: Restore offline mapping caches
+        id: cache-offline
         uses: actions/cache/restore@v4
         with:
-          path: anime-list-mini.json
-          key: anime-sync-fribb-v1
+          path: |
+            anime-list-mini.json
+            anime-offline-database-minified.json
+          key: anime-sync-offline-v2
           restore-keys: |
+            anime-sync-offline-
             anime-sync-fribb-
 
       # State cache is fallback only when git does not already have sync.db
@@ -77,7 +80,7 @@ jobs:
       - name: Check existing files
         run: |
           echo "=== Existing files ==="
-          ls -lh sync.db sync_db.json id_cache.json anime-list-mini.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
+          ls -lh sync.db sync_db.json id_cache.json anime-list-mini.json anime-offline-database-minified.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
           echo ""
           echo "=== Cache status ==="
           echo "Fribb cache-hit: ${{ steps.cache-fribb.outputs.cache-hit }}"
@@ -171,12 +174,14 @@ jobs:
             id_cache.json
           key: anime-sync-state-${{ github.run_id }}
 
-      - name: Save Fribb cache
-        if: success() && steps.cache-fribb.outputs.cache-hit != 'true'
+      - name: Save offline mapping caches
+        if: success()
         uses: actions/cache/save@v4
         with:
-          path: anime-list-mini.json
-          key: anime-sync-fribb-v1
+          path: |
+            anime-list-mini.json
+            anime-offline-database-minified.json
+          key: anime-sync-offline-v2-${{ github.run_id }}
 
       - uses: actions/upload-artifact@v4
         with:

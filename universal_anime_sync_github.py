@@ -1,9 +1,9 @@
 """
-Universal Anime Sync V3.12 - Fix DB persistence + titles
-- apply_offline_ids_to_db() runs every sync (and export-only)
-- Fribb anime-list-mini auto-downloaded; fills imdb/tvdb/tmdb on all entries
-- Network enrich no longer required for external IDs to appear in CSV
-- ARM + AniZip still used for harder gaps
+Universal Anime Sync V3.13 - Automated offline DB sync
+- Fribb anime-list-mini: auto-download + refresh when stale (IMDb/TVDB/TMDB)
+- Manami anime-offline-database: auto-download + refresh for title backfill
+- apply_offline_ids_to_db + apply_offline_titles_to_db every sync
+- ARM + AniZip + Kitsu mappings for remaining gaps
 """
 
 import requests, json, os, hashlib, argparse, time, csv
@@ -18,6 +18,13 @@ CACHE_PATH = Path("id_cache.json")      # legacy JSON (still written as backup)
 SQLITE_PATH = Path("sync.db")           # primary store
 FRIBB_PATH = Path("anime-list-mini.json")  # offline MAL/AniList→IMDb/TVDB/TMDB
 FRIBB_URL = "https://raw.githubusercontent.com/Fribb/anime-lists/master/anime-list-mini.json"
+MANAMI_PATH = Path("anime-offline-database-minified.json")  # titles + cross IDs
+MANAMI_URL = (
+    "https://github.com/manami-project/anime-offline-database/releases/download/"
+    "latest/anime-offline-database-minified.json"
+)
+# Refresh offline dumps if older than this (seconds). 7 days.
+OFFLINE_MAX_AGE_SEC = 7 * 24 * 3600
 CSV_PATH_DEFAULT = Path("anime_pairings.csv")
 UNMATCHED_PATH = Path("unmatched.csv")
 OVERRIDES_PATH = Path("manual_overrides.json")
@@ -243,6 +250,7 @@ def get_override_for_ids(ids_dict):
 # ============== ID PAIRING ==============
 
 _fribb_index = None  # mal/anilist/kitsu/anidb -> external ids
+_manami_title_index = None  # {mal|anilist|kitsu} -> title
 
 
 def _normalize_imdb(val):
@@ -277,23 +285,47 @@ def _normalize_tmdb(val):
     return s if s and s != "None" else None
 
 
+
+def ensure_offline_file(path, url, label, max_age_sec=OFFLINE_MAX_AGE_SEC, force=False):
+    """Download offline JSON if missing or older than max_age_sec.
+
+    Returns True if a file is present and usable afterward.
+    """
+    path = Path(path)
+    need = force or not path.exists()
+    if not need and path.exists():
+        age = time.time() - path.stat().st_mtime
+        if age > max_age_sec:
+            need = True
+            print(f"-> {label} is {age/86400:.1f}d old (>{max_age_sec/86400:.0f}d) — refreshing")
+    if not need:
+        return True
+    print(f"-> Downloading {label} ({url}) ...")
+    try:
+        r = requests.get(url, timeout=180, allow_redirects=True)
+        r.raise_for_status()
+        tmp = path.with_suffix(path.suffix + ".tmp")
+        tmp.write_bytes(r.content)
+        tmp.replace(path)
+        print(f"   Saved {path.name} ({len(r.content)//1024} KB)")
+        return True
+    except requests.RequestException as e:
+        if path.exists():
+            print(f"   {label} download failed ({e}); using existing file")
+            return True
+        print(f"   {label} download failed: {e}")
+        return False
+
+
 def load_fribb_index(force=False):
     """Load Fribb anime-list-mini into memory indexes (download once if missing)."""
     global _fribb_index
     if _fribb_index is not None and not force:
         return _fribb_index
 
-    if not FRIBB_PATH.exists():
-        print(f"-> Downloading offline mapping DB ({FRIBB_URL}) ...")
-        try:
-            r = requests.get(FRIBB_URL, timeout=120)
-            r.raise_for_status()
-            FRIBB_PATH.write_bytes(r.content)
-            print(f"   Saved {FRIBB_PATH} ({len(r.content)//1024} KB)")
-        except requests.RequestException as e:
-            print(f"   Fribb download failed: {e}")
-            _fribb_index = {}
-            return _fribb_index
+    if not ensure_offline_file(FRIBB_PATH, FRIBB_URL, "Fribb anime-list-mini", force=force):
+        _fribb_index = {}
+        return _fribb_index
 
     try:
         data = json.loads(FRIBB_PATH.read_text(encoding="utf-8"))
@@ -570,6 +602,77 @@ def fetch_arm_batch(ids_list, use_cache=True):
 
     return results
 
+
+
+
+def load_manami_title_index(force=False):
+    """Load manami offline DB into {mal|anilist|kitsu id -> title} indexes."""
+    global _manami_title_index
+    if _manami_title_index is not None and not force:
+        return _manami_title_index
+
+    if not ensure_offline_file(MANAMI_PATH, MANAMI_URL, "Manami anime-offline-database", force=force):
+        _manami_title_index = {"mal": {}, "anilist": {}, "kitsu": {}}
+        return _manami_title_index
+
+    try:
+        raw = json.loads(MANAMI_PATH.read_text(encoding="utf-8"))
+        data = raw if isinstance(raw, list) else (raw.get("data") or [])
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"   Manami load failed: {e}")
+        _manami_title_index = {"mal": {}, "anilist": {}, "kitsu": {}}
+        return _manami_title_index
+
+    idx = {"mal": {}, "anilist": {}, "kitsu": {}}
+    for e in data:
+        title = e.get("title") or ""
+        if not title:
+            continue
+        for src in e.get("sources") or []:
+            s = str(src)
+            if "myanimelist.net/anime/" in s:
+                idx["mal"][s.rstrip("/").split("/")[-1]] = title
+            elif "anilist.co/anime/" in s:
+                idx["anilist"][s.rstrip("/").split("/")[-1]] = title
+            elif "kitsu.app/anime/" in s or "kitsu.io/anime/" in s:
+                idx["kitsu"][s.rstrip("/").split("/")[-1]] = title
+    _manami_title_index = idx
+    print(
+        f"   Manami titles: mal={len(idx['mal'])} anilist={len(idx['anilist'])} kitsu={len(idx['kitsu'])}"
+    )
+    return _manami_title_index
+
+
+def apply_offline_titles_to_db():
+    """Fill blank entry titles from Manami offline DB (no live API calls)."""
+    ensure_loaded()
+    idx = load_manami_title_index()
+    filled = 0
+    entries = db.get("entries") or {}
+    for key, data in list(entries.items()):
+        ids = dict(data.get("ids") or {})
+        if ids.get("title") or data.get("title"):
+            continue
+        title = None
+        if ids.get("mal"):
+            title = idx["mal"].get(str(ids["mal"]))
+        if not title and ids.get("anilist"):
+            title = idx["anilist"].get(str(ids["anilist"]))
+        if not title and ids.get("kitsu"):
+            title = idx["kitsu"].get(str(ids["kitsu"]))
+        if not title:
+            continue
+        ids["title"] = title
+        data["ids"] = ids
+        data["title"] = title
+        entries[key] = data
+        filled += 1
+    if filled:
+        db["entries"] = entries
+        print(f"   Offline titles applied: {filled}")
+    else:
+        print("   Offline titles: nothing to fill")
+    return filled
 
 
 def apply_offline_ids_to_db():
@@ -1535,8 +1638,9 @@ def should_accept_update(existing, item, policy=None):
 
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
     ensure_loaded()
-    # Always apply offline IMDb/TVDB/TMDB mappings (does not depend on network enrich skip logic)
+    # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
     apply_offline_ids_to_db()
+    apply_offline_titles_to_db()
     all_items=[]
     for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
         try: all_items.extend(loader())
@@ -1685,6 +1789,7 @@ if __name__ == "__main__":
 
     if args.export_only:
         apply_offline_ids_to_db()
+        apply_offline_titles_to_db()
         save_db(db, id_cache, write_json_backup=not args.no_json_backup)
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
