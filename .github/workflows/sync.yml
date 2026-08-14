@@ -1,4 +1,4 @@
-name: Universal Anime Sync V3.7
+name: Universal Anime Sync V3.12
 
 on:
   schedule:
@@ -45,8 +45,10 @@ jobs:
             sync_db.json
             id_cache.json
             anime-list-mini.json
-          key: anime-sync-db-${{ github.run_id }}
+          # Stable key so every run restores the latest saved state
+          key: anime-sync-db-v2
           restore-keys: |
+            anime-sync-db-v2
             anime-sync-db-
 
       - run: pip install requests
@@ -113,7 +115,9 @@ jobs:
           # Ensure overrides file exists
           [ -f manual_overrides.json ] || echo '{}' > manual_overrides.json
           
-          git add sync.db sync_db.json id_cache.json anime_pairings.csv unmatched.csv manual_overrides.json || true
+          # Force-add state files even if briefly gitignored
+          git add -f sync.db sync_db.json id_cache.json 2>/dev/null || true
+          git add anime_pairings.csv unmatched.csv manual_overrides.json || true
           
           if git diff --staged --quiet; then
             echo "No changes"

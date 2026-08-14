@@ -1,5 +1,5 @@
 """
-Universal Anime Sync V3.11 - Reliable offline IMDb/TVDB fill
+Universal Anime Sync V3.12 - Fix DB persistence + titles
 - apply_offline_ids_to_db() runs every sync (and export-only)
 - Fribb anime-list-mini auto-downloaded; fills imdb/tvdb/tmdb on all entries
 - Network enrich no longer required for external IDs to appear in CSV
@@ -146,6 +146,7 @@ id_cache = {}
 manual_overrides = {}
 _loaded = False
 _kitsu_user_id = None  # cached for push_kitsu
+_push_skip_logged = set()  # log missing-token skips once per platform
 
 
 def ensure_loaded():
@@ -816,7 +817,9 @@ def push_anilist(entry, state):
     """Create or update an AniList media list entry via SaveMediaListEntry mutation."""
     token = os.getenv("ANILIST_TOKEN")
     if not token:
-        print("   -> PUSH AniList skipped (no ANILIST_TOKEN)")
+        if "anilist" not in _push_skip_logged:
+            print("   -> PUSH AniList skipped (no ANILIST_TOKEN) [silencing further]")
+            _push_skip_logged.add("anilist")
         return
     media_id = entry["ids"].get("anilist")
     if not media_id:
@@ -881,7 +884,9 @@ def push_mal(entry, state):
     """
     token = os.getenv("MAL_ACCESS_TOKEN")
     if not token:
-        print("   -> PUSH MAL skipped (no MAL_ACCESS_TOKEN)")
+        if "mal" not in _push_skip_logged:
+            print("   -> PUSH MAL skipped (no MAL_ACCESS_TOKEN) [silencing further]")
+            _push_skip_logged.add("mal")
         return
     mal_id = entry["ids"].get("mal")
     if not mal_id:
@@ -935,7 +940,9 @@ def push_kitsu(entry, state):
     """
     token = os.getenv("KITSU_TOKEN") or os.getenv("KITSU_ACCESS_TOKEN")
     if not token:
-        print("   -> PUSH Kitsu skipped (no KITSU_TOKEN)")
+        if "kitsu" not in _push_skip_logged:
+            print("   -> PUSH Kitsu skipped (no KITSU_TOKEN) [silencing further]")
+            _push_skip_logged.add("kitsu")
         return
     kitsu_id = entry["ids"].get("kitsu")
     if not kitsu_id:
@@ -1229,18 +1236,26 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         incoming_hash = hash_state(item["state"])
         
         if not existing:
+            title = item.get("title") or (item.get("ids") or {}).get("title") or ""
+            ids = dict(item["ids"])
+            if title and not ids.get("title"):
+                ids["title"] = title
             db["entries"][key] = {
-                "ids": item["ids"], 
-                "state": item["state"], 
-                "last_updated": item["updated"].isoformat(), 
+                "ids": ids,
+                "state": item["state"],
+                "last_updated": item["updated"].isoformat(),
                 "last_synced": {item["platform"]: incoming_hash},
-                "title": item.get("title","")
+                "title": title,
             }
             continue
         
-        # Propagate title if missing in DB
-        if not existing.get("title") and item.get("title"):
-            existing["title"] = item["title"]
+        # Propagate title if missing in DB (both entry-level and ids.title for CSV export)
+        incoming_title = item.get("title") or (item.get("ids") or {}).get("title")
+        if incoming_title:
+            if not existing.get("title"):
+                existing["title"] = incoming_title
+            if not (existing.get("ids") or {}).get("title"):
+                existing.setdefault("ids", {})["title"] = incoming_title
 
         if existing["last_synced"].get(item["platform"]) == incoming_hash:
             for k, v in item["ids"].items():

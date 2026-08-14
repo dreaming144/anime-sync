@@ -1,8 +1,10 @@
+# Large offline mapping DB (auto-downloaded at runtime)
 anime-list-mini.json
-sync.db
-sync_db.json
-id_cache.json
-# anime_pairings.csv
-# unmatched.csv
+
+# Python
 __pycache__/
 *.bak
+*.pyc
+
+# Optional local-only
+.env
