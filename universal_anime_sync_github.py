@@ -264,9 +264,14 @@ def _normalize_tmdb(val):
     """Fribb stores themoviedb_id as int or {tv: id}/{movie: id}."""
     if val is None or val == "":
         return None
+    if isinstance(val, list):
+        val = val[0] if val else None
     if isinstance(val, dict):
-        return str(val.get("tv") or val.get("movie") or next(iter(val.values()), "") or "") or None
-    return str(val)
+        val = val.get("tv") or val.get("movie") or next(iter(val.values()), None)
+    if val is None:
+        return None
+    s = str(val).strip()
+    return s if s and s != "None" else None
 
 
 def load_fribb_index(force=False):
@@ -1162,7 +1167,7 @@ def should_accept_update(existing, item, policy=None):
         return True, "missing timestamp - accept"
 
 
-def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True):
+def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB mappings (does not depend on network enrich skip logic)
     apply_offline_ids_to_db()
@@ -1233,6 +1238,10 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
             }
             continue
         
+        # Propagate title if missing in DB
+        if not existing.get("title") and item.get("title"):
+            existing["title"] = item["title"]
+
         if existing["last_synced"].get(item["platform"]) == incoming_hash:
             for k, v in item["ids"].items():
                 if v and not existing["ids"].get(k):
@@ -1269,7 +1278,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     print(e)
 
     db["id_cache"] = id_cache
-    save_db(db, id_cache)
+    save_db(db, id_cache, write_json_backup=write_json_backup)
     
     anidb_count = sum(1 for e in db["entries"].values() if e["ids"].get("anidb"))
     imdb_count = sum(1 for e in db["entries"].values() if e["ids"].get("imdb"))
@@ -1302,7 +1311,7 @@ if __name__ == "__main__":
 
     if args.export_only:
         apply_offline_ids_to_db()
-        save_db(db, id_cache)
+        save_db(db, id_cache, write_json_backup=not args.no_json_backup)
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
             export_unmatched(UNMATCHED_PATH)
@@ -1316,5 +1325,6 @@ if __name__ == "__main__":
         export_csv_flag=args.export_csv,
         csv_file=Path(args.export_csv_file),
         export_unmatched_flag=not args.no_unmatched,
+        write_json_backup=not args.no_json_backup,
     )
     
