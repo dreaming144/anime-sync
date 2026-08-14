@@ -426,64 +426,149 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
 
 
 
-def fetch_arm(ids_dict, use_cache=True):
-    """Lookup cross-IDs via ARM (relations.yuna.moe) — free, no key.
+def _arm_pick_source(ids_dict):
+    """Choose best ARM query key from a partial ids dict. Prefer MAL/AniList over Kitsu/AniDB."""
+    if ids_dict.get("anilist") is not None and str(ids_dict.get("anilist")).strip() != "":
+        return "anilist", ids_dict["anilist"], f"arm_anilist_{ids_dict['anilist']}"
+    if ids_dict.get("mal") is not None and str(ids_dict.get("mal")).strip() != "":
+        return "myanimelist", ids_dict["mal"], f"arm_mal_{ids_dict['mal']}"
+    if ids_dict.get("kitsu") is not None and str(ids_dict.get("kitsu")).strip() != "":
+        return "kitsu", ids_dict["kitsu"], f"arm_kitsu_{ids_dict['kitsu']}"
+    if ids_dict.get("anidb") is not None and str(ids_dict.get("anidb")).strip() != "":
+        return "anidb", ids_dict["anidb"], f"arm_anidb_{ids_dict['anidb']}"
+    return None, None, None
 
-    Accepts any of: anilist, mal/myanimelist, kitsu, anidb.
-    Returns a normalized dict of ids or {}.
+
+def _arm_normalize_entry(data, source_tag="arm"):
+    """Map ARM v1/v2 response fields into our id schema."""
+    if not data or not isinstance(data, dict):
+        return {}
+    result = {
+        "anilist": data.get("anilist"),
+        "mal": data.get("myanimelist") if data.get("myanimelist") is not None else data.get("mal"),
+        "kitsu": data.get("kitsu"),
+        "anidb": data.get("anidb"),
+        "simkl": data.get("simkl") or data.get("animecountdown"),
+        "imdb": _normalize_imdb(data.get("imdb")) if data.get("imdb") else None,
+        "tvdb": data.get("thetvdb") if data.get("thetvdb") is not None else data.get("tvdb"),
+        "tmdb": data.get("themoviedb") if data.get("themoviedb") is not None else data.get("tmdb"),
+        "_cached_at": datetime.now(timezone.utc).isoformat(),
+        "_source": source_tag,
+    }
+    return {k: v for k, v in result.items() if v is not None and v != ""}
+
+
+def fetch_arm(ids_dict, use_cache=True):
+    """Lookup cross-IDs via ARM v2 (relations.yuna.moe).
+
+    Prefers GET /api/v2/ids for SIMKL/IMDB/TVDB/TMDB + core IDs.
+    Falls back to POST /api/ids (v1) if v2 fails.
     """
-    # Prefer the most reliable source present
-    query = None
-    cache_key = None
-    if ids_dict.get("anilist"):
-        query = {"anilist": int(ids_dict["anilist"]) if str(ids_dict["anilist"]).isdigit() else ids_dict["anilist"]}
-        cache_key = f"arm_anilist_{ids_dict['anilist']}"
-    elif ids_dict.get("mal"):
-        query = {"myanimelist": int(ids_dict["mal"]) if str(ids_dict["mal"]).isdigit() else ids_dict["mal"]}
-        cache_key = f"arm_mal_{ids_dict['mal']}"
-    elif ids_dict.get("kitsu"):
-        query = {"kitsu": int(ids_dict["kitsu"]) if str(ids_dict["kitsu"]).isdigit() else ids_dict["kitsu"]}
-        cache_key = f"arm_kitsu_{ids_dict['kitsu']}"
-    elif ids_dict.get("anidb"):
-        query = {"anidb": int(ids_dict["anidb"]) if str(ids_dict["anidb"]).isdigit() else ids_dict["anidb"]}
-        cache_key = f"arm_anidb_{ids_dict['anidb']}"
-    else:
+    source, raw_id, cache_key = _arm_pick_source(ids_dict)
+    if not source:
         return {}
 
     if use_cache and cache_key and cache_key in id_cache:
         cached = id_cache[cache_key]
         try:
-            age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached.get("_cached_at", "2000-01-01T00:00:00+00:00"))).days
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(
+                cached.get("_cached_at", "2000-01-01T00:00:00+00:00")
+            )).days
             if age < 30:
                 return cached
         except (ValueError, TypeError):
             pass
 
+    id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
+    result = {}
     try:
-        r = requests.post(
-            "https://relations.yuna.moe/api/ids",
-            json=query,
+        r = requests.get(
+            "https://relations.yuna.moe/api/v2/ids",
+            params={"source": source, "id": id_param},
             timeout=15,
         )
-        if not r.ok:
-            return {}
-        data = r.json()
-        if not data or not isinstance(data, dict):
-            return {}
-        result = {
-            "anilist": data.get("anilist"),
-            "mal": data.get("myanimelist") or data.get("mal"),
-            "kitsu": data.get("kitsu"),
-            "anidb": data.get("anidb"),
-            "_cached_at": datetime.now(timezone.utc).isoformat(),
-            "_source": "arm",
-        }
-        result = {k: v for k, v in result.items() if v is not None and v != ""}
-        if cache_key and len(result) > 2:  # more than just _cached_at/_source
-            id_cache[cache_key] = result
-        return result
-    except (requests.RequestException, ValueError, TypeError):
-        return {}
+        if r.ok:
+            result = _arm_normalize_entry(r.json(), source_tag="arm_v2")
+    except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+        result = {}
+
+    if not result or (not result.get("mal") and not result.get("anilist") and source in ("kitsu", "anidb")):
+        # v1 often enough for core four; also used when v2 returns sparse
+        try:
+            body = {source: id_param}
+            r = requests.post("https://relations.yuna.moe/api/ids", json=body, timeout=15)
+            if r.ok:
+                v1 = _arm_normalize_entry(r.json(), source_tag="arm_v1")
+                for k, v in v1.items():
+                    if k.startswith("_"):
+                        continue
+                    if v and not result.get(k):
+                        result[k] = v
+                if not result.get("_source"):
+                    result["_source"] = "arm_v1"
+                result["_cached_at"] = datetime.now(timezone.utc).isoformat()
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+            pass
+
+    if cache_key and len([k for k in result if not k.startswith("_")]) >= 1:
+        id_cache[cache_key] = result
+    return result
+
+
+def fetch_arm_batch(ids_list, use_cache=True):
+    """Batch ARM v1 lookups. ids_list is a list of ids dicts; returns list of result dicts (same length).
+
+    Uses POST /api/ids with an array body. Cached entries are reused.
+    """
+    results = [{} for _ in ids_list]
+    to_fetch = []  # (index, body_obj, cache_key)
+
+    for i, ids_dict in enumerate(ids_list):
+        source, raw_id, cache_key = _arm_pick_source(ids_dict or {})
+        if not source:
+            continue
+        if use_cache and cache_key and cache_key in id_cache:
+            cached = id_cache[cache_key]
+            try:
+                age = (datetime.now(timezone.utc) - datetime.fromisoformat(
+                    cached.get("_cached_at", "2000-01-01T00:00:00+00:00")
+                )).days
+                if age < 30:
+                    results[i] = cached
+                    continue
+            except (ValueError, TypeError):
+                pass
+        id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
+        to_fetch.append((i, {source: id_param}, cache_key))
+
+    # Chunk to keep payloads reasonable
+    chunk_size = 50
+    for start in range(0, len(to_fetch), chunk_size):
+        chunk = to_fetch[start:start + chunk_size]
+        bodies = [b for _, b, _ in chunk]
+        try:
+            r = requests.post(
+                "https://relations.yuna.moe/api/ids",
+                json=bodies,
+                timeout=30,
+            )
+            if not r.ok:
+                continue
+            payload = r.json()
+            if not isinstance(payload, list):
+                payload = [payload]
+            for (idx, _body, cache_key), data in zip(chunk, payload):
+                if not data:
+                    continue
+                norm = _arm_normalize_entry(data, source_tag="arm_batch")
+                results[idx] = norm
+                if cache_key and norm:
+                    id_cache[cache_key] = norm
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+            continue
+        time.sleep(0.15)
+
+    return results
 
 
 
@@ -523,11 +608,21 @@ def is_fully_resolved(ids):
 
 
 def enrich_ids_batch(items_needing_enrich, max_workers=4):
-    """Enrich multiple items concurrently with a small thread pool.
-    Returns a list of (original_item, enriched_ids) in the same order as input.
+    """Enrich multiple items: ARM batch pre-warm, then concurrent Kitsu/AniZip fill.
+
+    Returns a list of enriched id dicts in the same order as input.
     """
     if not items_needing_enrich:
         return []
+
+    # Pre-warm id_cache with one batched ARM v1 call (chunked inside fetch_arm_batch)
+    try:
+        seed_ids = [it.get("ids") or {} for it in items_needing_enrich]
+        arm_hits = fetch_arm_batch(seed_ids, use_cache=True)
+        hit_n = sum(1 for h in arm_hits if h and (h.get("mal") or h.get("anilist")))
+        print(f"   ARM batch: {hit_n}/{len(seed_ids)} filled core MAL/AniList from cache/API")
+    except Exception as e:
+        print(f"   ARM batch pre-warm skipped: {e}")
 
     results = [None] * len(items_needing_enrich)
 
@@ -545,7 +640,6 @@ def enrich_ids_batch(items_needing_enrich, max_workers=4):
         for fut in as_completed(futures):
             idx, enriched = fut.result()
             results[idx] = enriched
-            # Light pacing so we don't hammer the APIs even with concurrency
             time.sleep(0.05)
 
     return results
@@ -573,22 +667,58 @@ def enrich_ids(ids_dict, do_network=True):
     if not do_network:
         return normalize_ids(enriched)
 
-    anizip_result = None
-    # Call AniZip when missing core OR external (imdb/tvdb) IDs
+    # 1) ARM v2 (core + SIMKL/IMDB/TVDB/TMDB) when any core ID is missing or externals empty
+    needs_arm = (
+        not enriched.get("mal")
+        or not enriched.get("anilist")
+        or not enriched.get("anidb")
+        or not enriched.get("kitsu")
+        or not enriched.get("imdb")
+        or not enriched.get("tvdb")
+        or not enriched.get("simkl")
+    )
+    if needs_arm and (enriched.get("mal") or enriched.get("anilist") or enriched.get("kitsu") or enriched.get("anidb")):
+        arm = fetch_arm(enriched, use_cache=True)
+        time.sleep(0.05)
+        if arm:
+            for k in ["mal", "anilist", "kitsu", "anidb", "simkl", "imdb", "tvdb", "tmdb"]:
+                if arm.get(k) and not enriched.get(k):
+                    enriched[k] = arm[k]
+            if arm.get("_source"):
+                enriched.setdefault("_source", arm["_source"])
+
+    # 2) Kitsu mappings — strong for seasonal titles ARM has not indexed yet
+    if enriched.get("kitsu") and (
+        not enriched.get("mal")
+        or not enriched.get("anilist")
+        or not enriched.get("anidb")
+        or not enriched.get("imdb")
+    ):
+        km = fetch_kitsu_mappings(str(enriched["kitsu"]))
+        time.sleep(0.2)
+        for k in ["mal", "anilist", "anidb", "imdb", "tvdb", "tmdb"]:
+            if km.get(k) and not enriched.get(k):
+                enriched[k] = km[k]
+        if km.get("_source"):
+            enriched.setdefault("_source", km["_source"])
+
+    # 3) AniZip for remaining gaps (title + externals)
     needs_anizip = (
         not enriched.get("anidb")
         or not enriched.get("imdb")
         or not enriched.get("tvdb")
         or not enriched.get("mal")
         or not enriched.get("anilist")
+        or not enriched.get("title")
     )
+    anizip_result = None
     if needs_anizip and enriched.get("anilist"):
         anizip_result = fetch_anizip(anilist_id=enriched["anilist"])
-        time.sleep(0.25)
+        time.sleep(0.2)
     if needs_anizip and not anizip_result and enriched.get("mal"):
         anizip_result = fetch_anizip(mal_id=enriched["mal"])
-        time.sleep(0.25)
-    
+        time.sleep(0.2)
+
     if anizip_result:
         for k in ["mal", "anilist", "kitsu", "anidb", "imdb", "tvdb", "tmdb", "title"]:
             if anizip_result.get(k) and not enriched.get(k):
@@ -596,24 +726,6 @@ def enrich_ids(ids_dict, do_network=True):
                 if k == "imdb":
                     val = _normalize_imdb(val)
                 enriched[k] = val
-
-    if enriched.get("kitsu") and (not enriched.get("anidb") or not enriched.get("mal") or not enriched.get("imdb")):
-        km = fetch_kitsu_mappings(str(enriched["kitsu"]))
-        time.sleep(0.25)
-        for k in ["mal", "anidb", "imdb", "tvdb", "tmdb", "anilist"]:
-            if km.get(k) and not enriched.get(k):
-                enriched[k] = km[k]
-
-    # ARM fallback — especially good for Kitsu-only / isolated entries
-    if not enriched.get("mal") or not enriched.get("anilist") or not enriched.get("anidb"):
-        arm = fetch_arm(enriched, use_cache=True)
-        time.sleep(0.1)
-        if arm:
-            for k in ["mal", "anilist", "kitsu", "anidb"]:
-                if arm.get(k) and not enriched.get(k):
-                    enriched[k] = arm[k]
-            if arm.get("_source"):
-                enriched.setdefault("_source", arm["_source"])
 
     return normalize_ids(enriched)
 
