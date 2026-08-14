@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
+import re
 import sqlite3
 
 DB_PATH = Path("sync_db.json")          # legacy JSON (still written as backup)
@@ -606,10 +607,92 @@ def fetch_arm_batch(ids_list, use_cache=True):
 
 
 def load_manami_title_index(force=False):
-    """Load manami offline DB into {mal|anilist|kitsu id -> title} indexes."""
+    """Load manami offline DB into id -> detail dict indexes (title, year, format, …)."""
     global _manami_title_index
     if _manami_title_index is not None and not force:
         return _manami_title_index
+
+    if not ensure_offline_file(MANAMI_PATH, MANAMI_URL, "Manami anime-offline-database", force=force):
+        _manami_title_index = {"mal": {}, "anilist": {}, "kitsu": {}}
+        return _manami_title_index
+
+    try:
+        raw = json.loads(MANAMI_PATH.read_text(encoding="utf-8"))
+        data = raw if isinstance(raw, list) else (raw.get("data") or [])
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"   Manami load failed: {e}")
+        _manami_title_index = {"mal": {}, "anilist": {}, "kitsu": {}}
+        return _manami_title_index
+
+    def _pick_english(title, synonyms):
+        en_hints = {
+            "the","a","an","of","and","or","to","in","on","for","with","from",
+            "season","part","movie","series","story","attack","titan","cowboy",
+            "bebop","hero","academia","piece","demon","slayer","sword","art",
+        }
+        best, best_score = None, -10
+        for s in synonyms or []:
+            if not s or not isinstance(s, str):
+                continue
+            s = s.strip()
+            if s == title or len(s) < 5 or not s.isascii():
+                continue
+            if re.fullmatch(r"[A-Z0-9]{2,6}", s):
+                continue
+            if re.search(r"[àèéìòùáéíóúäöüßñç]", s, re.I):
+                continue
+            tokens = re.findall(r"[A-Za-z]+", s.lower())
+            if not tokens:
+                continue
+            score = sum(3 for t in tokens if t in en_hints) + min(len(tokens), 6)
+            if " " in s:
+                score += 2
+            if score > best_score:
+                best_score, best = score, s
+        return best
+
+    def _pick_native(synonyms):
+        cjk = None
+        for s in synonyms or []:
+            if not s:
+                continue
+            if re.search(r"[\u3040-\u30ff]", s):
+                return s
+            if re.search(r"[\u4e00-\u9fff]", s) and not cjk:
+                cjk = s
+        return cjk
+
+    idx = {"mal": {}, "anilist": {}, "kitsu": {}}
+    for e in data:
+        title = e.get("title") or ""
+        if not title:
+            continue
+        syn = e.get("synonyms") or []
+        details = {
+            "title": title,
+            "title_romaji": title,
+            "title_english": _pick_english(title, syn),
+            "title_native": _pick_native(syn),
+            "year": (e.get("animeSeason") or {}).get("year"),
+            "season": (e.get("animeSeason") or {}).get("season"),
+            "format": e.get("type"),
+            "episodes": e.get("episodes"),
+        }
+        for src in e.get("sources") or []:
+            s = str(src)
+            if "myanimelist.net/anime/" in s:
+                idx["mal"][s.rstrip("/").split("/")[-1]] = details
+            elif "anilist.co/anime/" in s:
+                idx["anilist"][s.rstrip("/").split("/")[-1]] = details
+            elif "kitsu.app/anime/" in s or "kitsu.io/anime/" in s:
+                idx["kitsu"][s.rstrip("/").split("/")[-1]] = details
+    _manami_title_index = idx
+    print(
+        f"   Manami titles: mal={len(idx['mal'])} anilist={len(idx['anilist'])} kitsu={len(idx['kitsu'])}"
+    )
+    return _manami_title_index
+
+
 
     if not ensure_offline_file(MANAMI_PATH, MANAMI_URL, "Manami anime-offline-database", force=force):
         _manami_title_index = {"mal": {}, "anilist": {}, "kitsu": {}}
@@ -644,35 +727,59 @@ def load_manami_title_index(force=False):
 
 
 def apply_offline_titles_to_db():
-    """Fill blank entry titles from Manami offline DB (no live API calls)."""
+    """Fill blank titles and title details from Manami offline DB (no live API)."""
     ensure_loaded()
     idx = load_manami_title_index()
     filled = 0
+    detail_filled = 0
     entries = db.get("entries") or {}
+    detail_fields = (
+        "title", "title_english", "title_romaji", "title_native",
+        "year", "season", "format", "episodes",
+    )
     for key, data in list(entries.items()):
         ids = dict(data.get("ids") or {})
-        if ids.get("title") or data.get("title"):
-            continue
-        title = None
+        det = None
         if ids.get("mal"):
-            title = idx["mal"].get(str(ids["mal"]))
-        if not title and ids.get("anilist"):
-            title = idx["anilist"].get(str(ids["anilist"]))
-        if not title and ids.get("kitsu"):
-            title = idx["kitsu"].get(str(ids["kitsu"]))
-        if not title:
+            det = idx["mal"].get(str(ids["mal"]))
+        if not det and ids.get("anilist"):
+            det = idx["anilist"].get(str(ids["anilist"]))
+        if not det and ids.get("kitsu"):
+            det = idx["kitsu"].get(str(ids["kitsu"]))
+        if not det:
             continue
-        ids["title"] = title
-        data["ids"] = ids
-        data["title"] = title
-        entries[key] = data
-        filled += 1
+        changed = False
+        for field in detail_fields:
+            val = det.get(field)
+            if val is None or val == "":
+                continue
+            if not ids.get(field):
+                ids[field] = val
+                changed = True
+            if not data.get(field):
+                data[field] = val
+                changed = True
+        if det.get("title"):
+            if not data.get("title"):
+                data["title"] = det["title"]
+                changed = True
+            if not ids.get("title"):
+                ids["title"] = det["title"]
+                changed = True
+        if changed:
+            data["ids"] = ids
+            entries[key] = data
+            filled += 1
+            if det.get("year") or det.get("format"):
+                detail_filled += 1
     if filled:
         db["entries"] = entries
-        print(f"   Offline titles applied: {filled}")
+        print(f"   Offline titles/details applied: {filled} (with meta≈{detail_filled})")
     else:
         print("   Offline titles: nothing to fill")
     return filled
+
+
 
 
 def apply_offline_ids_to_db():
@@ -1481,9 +1588,11 @@ def export_csv(file_path=CSV_PATH_DEFAULT, fill_titles=True, max_title_fetches=4
         return
 
     fieldnames = [
-        "title", "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id",
-        "imdb_id", "tvdb_id", "tmdb_id", "simkl_id", "status", "progress", "score",
-        "last_updated", "source",
+        "title", "title_english", "title_romaji", "title_native",
+        "year", "season", "format", "episodes",
+        "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id",
+        "imdb_id", "tvdb_id", "tmdb_id", "simkl_id",
+        "status", "progress", "score", "last_updated", "source",
     ]
 
     filled = 0
@@ -1504,6 +1613,13 @@ def export_csv(file_path=CSV_PATH_DEFAULT, fill_titles=True, max_title_fetches=4
                 entries[key] = data
         rows.append({
             "title": title,
+            "title_english": ids.get("title_english") or data.get("title_english") or "",
+            "title_romaji": ids.get("title_romaji") or data.get("title_romaji") or title,
+            "title_native": ids.get("title_native") or data.get("title_native") or "",
+            "year": ids.get("year") or data.get("year") or "",
+            "season": ids.get("season") or data.get("season") or "",
+            "format": ids.get("format") or data.get("format") or "",
+            "episodes": ids.get("episodes") or data.get("episodes") or "",
             "canonical_key": key,
             "mal_id": ids.get("mal") or "",
             "anilist_id": ids.get("anilist") or "",
