@@ -85,6 +85,8 @@ jobs:
           SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
           ANILIST_TOKEN: ${{ secrets.ANILIST_TOKEN }}
           KITSU_TOKEN: ${{ secrets.KITSU_TOKEN }}
+          KITSU_EMAIL: ${{ secrets.KITSU_EMAIL }}
+          KITSU_PASSWORD: ${{ secrets.KITSU_PASSWORD }}
           MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
         run: |
           if [ "${{ inputs.export_only }}" = "true" ]; then

@@ -146,6 +146,7 @@ id_cache = {}
 manual_overrides = {}
 _loaded = False
 _kitsu_user_id = None  # cached for push_kitsu
+_kitsu_access_token = None  # filled by ensure_kitsu_token()
 _push_skip_logged = set()  # log missing-token skips once per platform
 
 
@@ -933,15 +934,61 @@ def push_mal(entry, state):
         print(f"   -> PUSH MAL network error: {e}")
 
 
+
+def ensure_kitsu_token():
+    """Return a Kitsu OAuth access token.
+
+    Prefer KITSU_TOKEN / KITSU_ACCESS_TOKEN if set.
+    Otherwise obtain one via password grant using KITSU_EMAIL + KITSU_PASSWORD
+    (or KITSU_USERNAME as the login id).
+    """
+    global _kitsu_access_token
+    existing = os.getenv("KITSU_TOKEN") or os.getenv("KITSU_ACCESS_TOKEN")
+    if existing:
+        return existing
+    if "_kitsu_access_token" in globals() and _kitsu_access_token:
+        return _kitsu_access_token
+
+    email = os.getenv("KITSU_EMAIL") or os.getenv("KITSU_USERNAME")
+    password = os.getenv("KITSU_PASSWORD")
+    if not email or not password:
+        return None
+
+    try:
+        r = requests.post(
+            "https://kitsu.io/api/oauth/token",
+            data={
+                "grant_type": "password",
+                "username": email,
+                "password": password,
+            },
+            headers={"Accept": "application/json"},
+            timeout=20,
+        )
+        if not r.ok:
+            print(f"   -> Kitsu OAuth failed: {r.status_code} {r.text[:200]}")
+            return None
+        token = (r.json() or {}).get("access_token")
+        if token:
+            _kitsu_access_token = token
+            # Make available to any code reading env later in this process
+            os.environ["KITSU_TOKEN"] = token
+            print("   -> Kitsu OAuth token obtained via password grant")
+        return token
+    except requests.RequestException as e:
+        print(f"   -> Kitsu OAuth network error: {e}")
+        return None
+
+
 def push_kitsu(entry, state):
     """Best-effort Kitsu library-entry update/create.
     Full reliability needs the library-entry ID stored in the DB.
-    Requires KITSU_TOKEN (OAuth access token).
+    Requires KITSU_TOKEN, or KITSU_EMAIL/USERNAME + KITSU_PASSWORD for password grant.
     """
-    token = os.getenv("KITSU_TOKEN") or os.getenv("KITSU_ACCESS_TOKEN")
+    token = ensure_kitsu_token()
     if not token:
         if "kitsu" not in _push_skip_logged:
-            print("   -> PUSH Kitsu skipped (no KITSU_TOKEN) [silencing further]")
+            print("   -> PUSH Kitsu skipped (no KITSU_TOKEN / email+password) [silencing further]")
             _push_skip_logged.add("kitsu")
         return
     kitsu_id = entry["ids"].get("kitsu")
