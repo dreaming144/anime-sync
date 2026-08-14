@@ -37,6 +37,18 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Cache sync database
+        uses: actions/cache@v4
+        with:
+          path: |
+            sync.db
+            sync_db.json
+            id_cache.json
+            anime-list-mini.json
+          key: anime-sync-db-${{ github.run_id }}
+          restore-keys: |
+            anime-sync-db-
+
       - run: pip install requests
 
       - name: Check existing files
