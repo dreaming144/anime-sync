@@ -1316,37 +1316,120 @@ def push_kitsu(entry, state):
 
 PUSHERS = {"anilist": push_anilist, "mal": push_mal, "kitsu": push_kitsu, "simkl": push_simkl}
 
-def export_csv(file_path=CSV_PATH_DEFAULT):
+
+def resolve_title(ids, existing_title=None):
+    """Best-effort title from local data, then AniList / Jikan / Kitsu APIs."""
+    if existing_title:
+        return existing_title
+    if ids.get("title"):
+        return ids["title"]
+
+    # AniList GraphQL
+    if ids.get("anilist"):
+        try:
+            q = "query ($id: Int) { Media(id: $id, type: ANIME) { title { romaji english native } } }"
+            r = requests.post(
+                "https://graphql.anilist.co",
+                json={"query": q, "variables": {"id": int(ids["anilist"])}},
+                timeout=12,
+            )
+            if r.ok:
+                t = (((r.json().get("data") or {}).get("Media") or {}).get("title") or {})
+                title = t.get("english") or t.get("romaji") or t.get("native")
+                if title:
+                    return title
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+            pass
+
+    # Jikan (MAL)
+    if ids.get("mal"):
+        try:
+            r = requests.get(f"https://api.jikan.moe/v4/anime/{int(ids['mal'])}", timeout=12)
+            if r.ok:
+                data = (r.json().get("data") or {})
+                title = data.get("title_english") or data.get("title") or data.get("title_japanese")
+                if title:
+                    return title
+            time.sleep(0.35)  # Jikan soft rate limit
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+            pass
+
+    # Kitsu
+    if ids.get("kitsu"):
+        try:
+            r = requests.get(f"https://kitsu.io/api/edge/anime/{ids['kitsu']}", timeout=12)
+            if r.ok:
+                attrs = ((r.json().get("data") or {}).get("attributes") or {})
+                titles = attrs.get("titles") or {}
+                title = attrs.get("canonicalTitle") or titles.get("en") or titles.get("en_jp")
+                if title:
+                    return title
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
+            pass
+
+    return ""
+
+
+def export_csv(file_path=CSV_PATH_DEFAULT, fill_titles=True, max_title_fetches=400):
+    """Export pairings CSV. Optionally backfill blank titles via AniList/Jikan/Kitsu."""
     entries = db.get("entries", {})
     if not entries:
         print("No entries to export")
         return
-    
-    fieldnames = ["title", "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id", "imdb_id", "tvdb_id", "tmdb_id", "simkl_id", "status", "progress", "score", "last_updated", "source"]
-    
-    with open(file_path, 'w', newline='', encoding='utf-8') as f:
+
+    fieldnames = [
+        "title", "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id",
+        "imdb_id", "tvdb_id", "tmdb_id", "simkl_id", "status", "progress", "score",
+        "last_updated", "source",
+    ]
+
+    filled = 0
+    fetched = 0
+    rows = []
+    for key, data in entries.items():
+        ids = dict(data.get("ids") or {})
+        state = data.get("state") or {}
+        title = ids.get("title") or data.get("title") or ""
+        if fill_titles and not title and fetched < max_title_fetches:
+            title = resolve_title(ids, None) or ""
+            fetched += 1
+            if title:
+                filled += 1
+                ids["title"] = title
+                data["title"] = title
+                data["ids"] = ids
+                entries[key] = data
+        rows.append({
+            "title": title,
+            "canonical_key": key,
+            "mal_id": ids.get("mal") or "",
+            "anilist_id": ids.get("anilist") or "",
+            "kitsu_id": ids.get("kitsu") or "",
+            "anidb_id": ids.get("anidb") or "",
+            "imdb_id": ids.get("imdb") or "",
+            "tvdb_id": ids.get("tvdb") or "",
+            "tmdb_id": ids.get("tmdb") or "",
+            "simkl_id": ids.get("simkl") or "",
+            "status": state.get("status") or "",
+            "progress": state.get("progress") or 0,
+            "score": state.get("score") or 0,
+            "last_updated": data.get("last_updated") or "",
+            "source": ids.get("_source") or "",
+        })
+
+    rows.sort(key=lambda r: (r.get("title") or "").lower())
+
+    with open(file_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        for key, data in sorted(entries.items(), key=lambda x: (x[1].get("ids",{}).get("title","") or "").lower()):
-            ids = data.get("ids", {})
-            state = data.get("state", {})
-            writer.writerow({
-                "title": ids.get("title") or data.get("title") or "",
-                "canonical_key": key,
-                "mal_id": ids.get("mal") or "",
-                "anilist_id": ids.get("anilist") or "",
-                "kitsu_id": ids.get("kitsu") or "",
-                "anidb_id": ids.get("anidb") or "",
-                "imdb_id": ids.get("imdb") or "",
-                "tvdb_id": ids.get("tvdb") or "",
-                "tmdb_id": ids.get("tmdb") or "",
-                "simkl_id": ids.get("simkl") or "",
-                "status": state.get("status") or "",
-                "progress": state.get("progress") or 0,
-                "score": state.get("score") or 0,
-                "last_updated": data.get("last_updated") or "",
-                "source": ids.get("_source") or ""
-            })
+        writer.writerows(rows)
+
+    if filled:
+        try:
+            safe_save_db()
+        except Exception:
+            pass
+        print(f"   Titles backfilled: {filled} (fetched up to {fetched})")
     print(f"CSV exported to {file_path} - {len(entries)} rows")
     return file_path
 
@@ -1370,8 +1453,11 @@ def export_unmatched(file_path=UNMATCHED_PATH):
         if not ids.get("mal") and not ids.get("anilist"):
             has = [k for k in ["kitsu", "simkl", "anidb"] if ids.get(k)]
             reason = "isolated - only has " + (",".join(has) if has else "nothing") + " - needs manual pairing"
+            title = ids.get("title") or data.get("title") or ""
+            if not title:
+                title = resolve_title(ids) or ""
             unmatched.append({
-                "title": ids.get("title") or data.get("title") or "",
+                "title": title,
                 "canonical_key": key,
                 "mal_id": ids.get("mal") or "",
                 "anilist_id": ids.get("anilist") or "",
