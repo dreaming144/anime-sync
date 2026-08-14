@@ -63,7 +63,16 @@ jobs:
             anime-sync-state-
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          pip install requests
+          # gh CLI used to persist rotated MAL refresh tokens into Actions secrets
+          (command -v gh >/dev/null) || {
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+            sudo apt-get update -qq && sudo apt-get install -y -qq gh
+          }
+          gh --version || true
+
 
       - name: Check existing files
         run: |
@@ -88,6 +97,11 @@ jobs:
           KITSU_EMAIL: ${{ secrets.KITSU_EMAIL }}
           KITSU_PASSWORD: ${{ secrets.KITSU_PASSWORD }}
           MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
+          MAL_REFRESH_TOKEN: ${{ secrets.MAL_REFRESH_TOKEN }}
+          MAL_CLIENT_ID: ${{ secrets.MAL_CLIENT_ID }}
+          MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
+          SECRETS_WRITE_TOKEN: ${{ secrets.SECRETS_WRITE_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           if [ "${{ inputs.export_only }}" = "true" ]; then
             python universal_anime_sync_github.py --export-only
