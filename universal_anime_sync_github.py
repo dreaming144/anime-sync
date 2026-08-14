@@ -843,7 +843,6 @@ def push_anilist(entry, state):
         status
         progress
         score
-        scoreRaw
       }
     }
     """
