@@ -1,4 +1,53 @@
 {
   "_comment": "Manual overrides for shows that APIs can't auto-pair. Key = any existing ID like kitsu_12345 or mal_12345. Value = full IDs to force. This file is checked FIRST before AniZip.",
-  "_how_to": "1. Open unmatched.csv 2. Find the show 3. Look up its IDs on anilist.co, myanimelist.net, anidb.net 4. Add entry here 5. Commit - next sync will use it"
+  "_how_to": "1. Open unmatched.csv 2. Find the show 3. Look up its IDs on anilist.co, myanimelist.net, anidb.net 4. Add entry here 5. Commit - next sync will use it",
+  "kitsu_50423": {
+    "mal": "61128",
+    "anilist": "187264",
+    "anidb": "19190",
+    "kitsu": "50423",
+    "title": "Jack-of-All-Trades, Party of None"
+  },
+  "kitsu_49927": {
+    "mal": "61174",
+    "anilist": "187663",
+    "anidb": "19204",
+    "kitsu": "49927",
+    "title": "Souzai Saishuka no Isekai Ryokouki"
+  },
+  "kitsu_50484": {
+    "mal": "61969",
+    "anilist": "199446",
+    "kitsu": "50484",
+    "title": "Saioshi no Gikei Mederu Tame, Nagaikishimasu!"
+  },
+  "kitsu_49923": {
+    "mal": "60253",
+    "anilist": "183960",
+    "anidb": "18970",
+    "kitsu": "49923",
+    "title": "Isekai Munchkin: HP 1 no Mama de Saikyou Saisoku Dungeon Kouryaku"
+  },
+  "kitsu_48138": {
+    "mal": "56906",
+    "anilist": "170110",
+    "anidb": "18241",
+    "kitsu": "48138",
+    "title": "Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu Sekai wo mo Musou Suru: Level Up wa Jinsei wo Kaeta 2nd Season"
+  },
+  "kitsu_50554": {
+    "mal": "62964",
+    "anilist": "202381",
+    "anidb": "19722",
+    "kitsu": "50554",
+    "title": "Mata Korosarete Shimatta no desu ne, Tantei-sama"
+  },
+  "anidb_7508": {
+    "mal": "8888",
+    "anilist": "8888",
+    "anidb": "7508",
+    "kitsu": "5518",
+    "title": "Code Geass: Boukoku no Akito",
+    "comment": "AniDB series umbrella -> first film on MAL/AniList (franchise is 5 movies)"
+  }
 }
