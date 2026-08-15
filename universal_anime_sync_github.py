@@ -172,6 +172,8 @@ def _service_key(url):
         return "jikan"
     if "anizip" in host:
         return "anizip"
+    if "animeapi" in host or "nattadasu" in host:
+        return "animeapi"
     if "github" in host:
         return "github"
     return host or "unknown"
@@ -186,6 +188,7 @@ def get_circuit(url, failure_threshold=5, recovery_timeout=60.0):
         "mal": (5, 60.0),
         "kitsu": (5, 60.0),
         "arm": (5, 45.0),
+        "animeapi": (5, 60.0),
         "simkl": (5, 60.0),
     }
     ft, rt = defaults.get(key, (failure_threshold, recovery_timeout))
@@ -333,6 +336,7 @@ BULKHEAD_LIMITS = {
     "arm": 4,
     "jikan": 1,   # strict rate limit
     "anizip": 2,
+    "animeapi": 2,
     "github": 2,
 }
 
@@ -847,14 +851,181 @@ def _arm_normalize_entry(data, source_tag="arm"):
     return {k: v for k, v in result.items() if v is not None and v != ""}
 
 
-def fetch_arm(ids_dict, use_cache=True):
-    """Lookup cross-IDs via ARM v2 (relations.yuna.moe).
+def _arm_is_sparse(result, ids_dict=None):
+    """True when result lacks useful externals we still need."""
+    if not result:
+        return True
+    ids_dict = ids_dict or {}
+    has_core = bool(result.get("mal") or result.get("anilist"))
+    # Sparse if missing several high-value externals that input also lacks
+    wanted = ("simkl", "imdb", "tvdb", "anidb", "kitsu")
+    missing_wanted = sum(
+        1 for k in wanted
+        if not result.get(k) and not ids_dict.get(k)
+    )
+    # Only core echo of query id with almost nothing else
+    real = [k for k in result if not k.startswith("_") and result.get(k)]
+    if len(real) <= 2 and not result.get("simkl") and not result.get("imdb"):
+        return True
+    if has_core and missing_wanted >= 3:
+        return True
+    if not has_core:
+        return True
+    return False
 
-    Prefers GET /api/v2/ids for SIMKL/IMDB/TVDB/TMDB + core IDs.
-    Falls back to POST /api/ids (v1) if v2 fails.
+
+def _arm_source_candidates(ids_dict):
+    """Ordered list of (source, id, cache_key) to try for sparse retry."""
+    order = [
+        ("anilist", "anilist", "arm_anilist_"),
+        ("myanimelist", "mal", "arm_mal_"),
+        ("kitsu", "kitsu", "arm_kitsu_"),
+        ("anidb", "anidb", "arm_anidb_"),
+    ]
+    out = []
+    seen = set()
+    # Prefer primary pick first
+    primary = _arm_pick_source(ids_dict)
+    if primary[0]:
+        out.append(primary)
+        seen.add(primary[0])
+    for source, field, prefix in order:
+        if source in seen:
+            continue
+        val = ids_dict.get(field)
+        if val is not None and str(val).strip() != "":
+            out.append((source, val, f"{prefix}{val}"))
+            seen.add(source)
+    return out
+
+
+def fetch_arm(ids_dict, use_cache=True):
+    """Lookup cross-IDs via ARM v2 with sparse external retry.
+
+    1) Primary source via GET /api/v2/ids
+    2) If sparse, try alternate sources present on the entry
+    3) POST /api/ids (v1) merge for remaining core gaps
     """
-    source, raw_id, cache_key = _arm_pick_source(ids_dict)
-    if not source:
+    candidates = _arm_source_candidates(ids_dict or {})
+    if not candidates:
+        return {}
+
+    primary_key = candidates[0][2]
+
+    if use_cache and primary_key and primary_key in id_cache:
+        cached = id_cache[primary_key]
+        try:
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(
+                cached.get("_cached_at", "2000-01-01T00:00:00+00:00")
+            )).days
+            # Only trust rich cache hits; sparse ones expire faster (3d)
+            sparse_cached = _arm_is_sparse(cached, ids_dict)
+            max_age = 3 if sparse_cached else 30
+            if age < max_age and not sparse_cached:
+                return cached
+            if age < max_age and sparse_cached:
+                # Re-query but keep cached as baseline
+                pass
+            elif age >= max_age:
+                pass
+            else:
+                return cached
+        except (ValueError, TypeError):
+            pass
+
+    result = {}
+    tried = set()
+    for source, raw_id, cache_key in candidates:
+        if source in tried:
+            continue
+        tried.add(source)
+        id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
+        try:
+            r = request_with_retries(
+                "GET",
+                "https://relations.yuna.moe/api/v2/ids",
+                params={"source": source, "id": id_param},
+                timeout=15,
+            )
+            if r.ok:
+                piece = _arm_normalize_entry(r.json(), source_tag=f"arm_v2:{source}")
+                for k, v in piece.items():
+                    if k.startswith("_"):
+                        continue
+                    if v and not result.get(k):
+                        result[k] = v
+                if piece.get("_source"):
+                    result["_source"] = piece["_source"]
+        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError, CircuitOpenError, TimeoutError):
+            pass
+
+        # Stop early if we have core + at least one external
+        if result.get("mal") and result.get("anilist") and (
+            result.get("simkl") or result.get("imdb") or result.get("tvdb")
+        ):
+            break
+        # Continue while still sparse
+        if not _arm_is_sparse(result, ids_dict):
+            break
+        time.sleep(0.05)
+
+    # v1 fallback for core four when still weak
+    if _arm_is_sparse(result, ids_dict) or (
+        not result.get("mal") and not result.get("anilist")
+    ):
+        for source, raw_id, _ck in candidates[:2]:
+            id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
+            try:
+                body = {source: id_param}
+                r = request_with_retries(
+                    "POST", "https://relations.yuna.moe/api/ids", json=body, timeout=15
+                )
+                if r.ok:
+                    v1 = _arm_normalize_entry(r.json(), source_tag="arm_v1")
+                    for k, v in v1.items():
+                        if k.startswith("_"):
+                            continue
+                        if v and not result.get(k):
+                            result[k] = v
+                    if not result.get("_source"):
+                        result["_source"] = "arm_v1"
+            except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError, CircuitOpenError, TimeoutError):
+                pass
+            time.sleep(0.05)
+
+    if result:
+        result["_cached_at"] = datetime.now(timezone.utc).isoformat()
+        # Cache under every candidate key we have an id for
+        if not _arm_is_sparse(result, ids_dict):
+            for _s, _id, ck in candidates:
+                if ck:
+                    id_cache[ck] = result
+        elif primary_key:
+            # Still cache sparse briefly so we don't hammer
+            id_cache[primary_key] = result
+    return result
+
+
+def fetch_animeapi(ids_dict, use_cache=True):
+    """Alternative metadata provider: animeapi.my.id (nattadasu fork).
+
+    Broader platform coverage than ARM for some titles (IMDb, Trakt, Notify, …).
+    Public, no auth. Use when ARM is sparse on externals.
+    """
+    ids_dict = ids_dict or {}
+    # Prefer MAL path, then AniList
+    path = None
+    cache_key = None
+    if ids_dict.get("mal"):
+        path = f"myanimelist/{ids_dict['mal']}"
+        cache_key = f"animeapi_mal_{ids_dict['mal']}"
+    elif ids_dict.get("anilist"):
+        path = f"anilist/{ids_dict['anilist']}"
+        cache_key = f"animeapi_anilist_{ids_dict['anilist']}"
+    elif ids_dict.get("kitsu"):
+        path = f"kitsu/{ids_dict['kitsu']}"
+        cache_key = f"animeapi_kitsu_{ids_dict['kitsu']}"
+    else:
         return {}
 
     if use_cache and cache_key and cache_key in id_cache:
@@ -868,38 +1039,36 @@ def fetch_arm(ids_dict, use_cache=True):
         except (ValueError, TypeError):
             pass
 
-    id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
-    result = {}
     try:
         r = request_with_retries(
             "GET",
-            "https://relations.yuna.moe/api/v2/ids",
-            params={"source": source, "id": id_param},
+            f"https://animeapi.my.id/{path}",
             timeout=15,
+            use_circuit=True,
         )
-        if r.ok:
-            result = _arm_normalize_entry(r.json(), source_tag="arm_v2")
-    except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
-        result = {}
+        if not r.ok:
+            return {}
+        data = r.json() if r.content else {}
+    except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError, CircuitOpenError, TimeoutError):
+        return {}
 
-    if not result or (not result.get("mal") and not result.get("anilist") and source in ("kitsu", "anidb")):
-        # v1 often enough for core four; also used when v2 returns sparse
-        try:
-            body = {source: id_param}
-            r = request_with_retries("POST", "https://relations.yuna.moe/api/ids", json=body, timeout=15)
-            if r.ok:
-                v1 = _arm_normalize_entry(r.json(), source_tag="arm_v1")
-                for k, v in v1.items():
-                    if k.startswith("_"):
-                        continue
-                    if v and not result.get(k):
-                        result[k] = v
-                if not result.get("_source"):
-                    result["_source"] = "arm_v1"
-                result["_cached_at"] = datetime.now(timezone.utc).isoformat()
-        except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError):
-            pass
+    if not isinstance(data, dict):
+        return {}
 
+    result = {
+        "mal": data.get("myanimelist") or data.get("mal"),
+        "anilist": data.get("anilist"),
+        "kitsu": data.get("kitsu"),
+        "anidb": data.get("anidb"),
+        "simkl": data.get("simkl"),
+        "imdb": _normalize_imdb(data.get("imdb")) if data.get("imdb") else None,
+        "tvdb": data.get("thetvdb") or data.get("tvdb"),
+        "tmdb": data.get("themoviedb") or data.get("tmdb"),
+        "title": data.get("title"),
+        "_cached_at": datetime.now(timezone.utc).isoformat(),
+        "_source": "animeapi",
+    }
+    result = {k: v for k, v in result.items() if v is not None and v != ""}
     if cache_key and len([k for k in result if not k.startswith("_")]) >= 1:
         id_cache[cache_key] = result
     return result
@@ -1254,6 +1423,17 @@ def enrich_ids(ids_dict, do_network=True):
                     enriched[k] = arm[k]
             if arm.get("_source"):
                 enriched.setdefault("_source", arm["_source"])
+        # Alternative provider when ARM still sparse on externals
+        still_sparse = not enriched.get("simkl") or not enriched.get("imdb") or not enriched.get("tvdb")
+        if still_sparse and (enriched.get("mal") or enriched.get("anilist") or enriched.get("kitsu")):
+            alt = fetch_animeapi(enriched, use_cache=True)
+            time.sleep(0.05)
+            if alt:
+                for k in ["mal", "anilist", "kitsu", "anidb", "simkl", "imdb", "tvdb", "tmdb", "title"]:
+                    if alt.get(k) and not enriched.get(k):
+                        enriched[k] = alt[k]
+                if alt.get("_source") and not enriched.get("_source"):
+                    enriched["_source"] = alt["_source"]
 
     # 2) Kitsu mappings — strong for seasonal titles ARM has not indexed yet
     if enriched.get("kitsu") and (
@@ -2299,17 +2479,30 @@ def fill_missing_simkl_ids(max_lookups=200):
     for key, data in missing:
         ids = dict(data.get("ids") or {})
         simkl = None
-        # 1) ARM
+        # 1) ARM (multi-source sparse retry)
         try:
             arm = fetch_arm(ids, use_cache=True)
-            if arm and arm.get("simkl"):
-                simkl = str(arm["simkl"])
+            if arm:
+                if arm.get("simkl"):
+                    simkl = str(arm["simkl"])
                 for f in ("imdb", "tvdb", "tmdb", "anidb", "mal", "anilist", "kitsu"):
                     if arm.get(f) and not ids.get(f):
                         ids[f] = arm[f]
         except Exception:
             pass
-        # 2) SIMKL official id search
+        # 2) animeapi.my.id alternative mappings
+        if not simkl:
+            try:
+                alt = fetch_animeapi(ids, use_cache=True)
+                if alt:
+                    if alt.get("simkl"):
+                        simkl = str(alt["simkl"])
+                    for f in ("imdb", "tvdb", "tmdb", "anidb", "mal", "anilist", "kitsu", "title"):
+                        if alt.get(f) and not ids.get(f):
+                            ids[f] = alt[f]
+            except Exception:
+                pass
+        # 3) SIMKL official id search
         if not simkl:
             simkl = _simkl_id_lookup(ids)
         if not simkl:

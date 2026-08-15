@@ -8,7 +8,8 @@ Runs on a GitHub Actions schedule (every 2 hours), with optional manual runs.
 
 - Two-way status/progress/score sync with configurable conflict policy
 - Offline ID enrichment (Fribb) + title metadata (Manami)
-- ARM / Kitsu mappings for cross-IDs (MAL, AniList, AniDB, IMDb, TVDB, …)
+- ARM multi-source sparse retry + **animeapi.my.id** fallback for cross-IDs
+- Kitsu mappings for seasonal titles ARM has not indexed
 - Deduped canonical rows (`mal_{id}` preferred)
 - Western cartoons tagged `media_type=western` with TVDB/IMDb (excluded from hard-unmatched)
 - Resilience: retries, **circuit breakers** (with metrics), **bulkheads**
@@ -59,7 +60,9 @@ Suggested follow-ups when you return to this project:
 ### Data quality
 5. **Kitsu mapping bulkhead for western** — auto-pull TVDB from Kitsu mappings for any future non-anime entries
 6. **Override UI/workflow** — `workflow_dispatch` input to append one override without editing JSON
-7. **SIMKL coverage** — ~~optional enrichment~~ **done**: `fill_missing_simkl_ids()` via ARM + SIMKL search/id (needs `SIMKL_CLIENT_ID`)
+7. **SIMKL coverage** — ~~optional enrichment~~ **done**: ARM sparse-retry + animeapi + SIMKL search/id
+8. **Sparse external retry** — ~~done~~: try all known sources on ARM when result lacks SIMKL/IMDb/TVDB
+9. **Alt metadata providers** — ~~animeapi.my.id integrated~~; optional later: ids.moe (needs key), notify.moe
 
 ### Product / UX
 8. **Daemon mode** (roadmap) — long-running local process vs Actions-only
