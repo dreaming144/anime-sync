@@ -187,14 +187,14 @@ def push_kitsu(entry, state, dates=None):
         )
         existing = (lookup.json().get("data") or []) if lookup.ok else []
 
-        from anime_sync.dates import parse_date, to_kitsu_dt
+        from anime_sync.dates import parse_date, sanitize_dates_for_push, to_kitsu_dt
         attrs = {
             "status": status,
             "progress": int(state.get("progress") or 0),
         }
         if rating is not None:
             attrs["ratingTwenty"] = rating
-        dates = dates or entry.get("dates") or {}
+        dates = sanitize_dates_for_push(dates or entry.get("dates") or {})
         started = to_kitsu_dt(parse_date(dates.get("started_at")))
         finished = to_kitsu_dt(parse_date(dates.get("completed_at")))
         if started:

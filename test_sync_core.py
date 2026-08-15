@@ -70,5 +70,21 @@ class TestDedupe(unittest.TestCase):
                 del db["entries"][k]
 
 
+
+class TestInvalidDates(unittest.TestCase):
+    def test_rejects_bad_values(self):
+        from anime_sync.dates import parse_date, sanitize_dates_for_push, merge_platform_dates
+        self.assertIsNone(parse_date("2020-02-30"))
+        self.assertIsNone(parse_date("1899-01-01"))
+        self.assertIsNone(parse_date("not-a-date"))
+        clean = sanitize_dates_for_push({"started_at": "bogus", "completed_at": "2020-05-01"})
+        self.assertNotIn("started_at", clean)
+        self.assertEqual(clean.get("completed_at"), "2020-05-01")
+        m = merge_platform_dates(None, "mal", {"started_at": "2022-01-01", "completed_at": "2020-01-01"})
+        # inverted pair: completed cleared
+        self.assertEqual(m.get("started_at"), "2022-01-01")
+        self.assertIsNone(m.get("completed_at"))
+
+
 if __name__ == "__main__":
     unittest.main()

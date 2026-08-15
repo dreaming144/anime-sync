@@ -39,7 +39,7 @@ from anime_sync.platforms import (
 )
 from anime_sync.storage import db, ensure_loaded, id_cache, save_db
 from anime_sync.stats import write_watch_stats
-from anime_sync.dates import merge_platform_dates, dates_need_push
+from anime_sync.dates import merge_platform_dates, dates_need_push, sanitize_dates_for_push
 
 CONFIG = {
     "anilist_username": os.getenv("ANILIST_USERNAME", ""),
@@ -216,7 +216,7 @@ def propagate_oldest_dates(write=True):
                 n += 1
                 continue
             try:
-                pusher(entry, state, dates=dates)
+                pusher(entry, state, dates=sanitize_dates_for_push(dates))
                 # mark platform source as having canonical dates to avoid loops
                 sources[platform] = {
                     **snap,
@@ -375,7 +375,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                         existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                         changes += 1
                         continue
-                    PUSHERS[item["platform"]](existing, existing["state"], dates=existing.get("dates"))
+                    PUSHERS[item["platform"]](existing, existing["state"], dates=sanitize_dates_for_push(existing.get("dates")))
                     existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                     changes += 1
                 except Exception as e:

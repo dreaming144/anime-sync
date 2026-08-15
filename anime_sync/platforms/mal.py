@@ -233,7 +233,7 @@ def push_mal(entry, state, dates=None):
         print(f"   -> PUSH MAL skipped (unknown status: {state.get('status')})")
         return
 
-    from anime_sync.dates import parse_date, to_mal_date, older
+    from anime_sync.dates import parse_date, sanitize_dates_for_push, to_mal_date, older
 
     score = int(round(float(state.get("score") or 0)))
     score = max(0, min(10, score))
@@ -250,11 +250,12 @@ def push_mal(entry, state, dates=None):
     if nrr > 0:
         body["num_times_rewatched"] = nrr
 
-    dates = dates or entry.get("dates") or {}
-    sources = (dates.get("sources") or {}) if isinstance(dates, dict) else {}
+    raw_dates = dates or entry.get("dates") or {}
+    sources = (raw_dates.get("sources") or {}) if isinstance(raw_dates, dict) else {}
     mal_snap = sources.get("mal") or {}
+    dates = sanitize_dates_for_push(raw_dates)
 
-    # Canonical oldest dates
+    # Canonical oldest dates (already validated)
     canon_start = parse_date(dates.get("started_at"))
     canon_finish = parse_date(dates.get("completed_at"))
     # What MAL already has (from last load)

@@ -82,7 +82,7 @@ def push_anilist(entry, state, dates=None):
         print(f"   -> PUSH AniList skipped (unknown status: {state.get('status')})")
         return
 
-    from anime_sync.dates import parse_date, to_fuzzy
+    from anime_sync.dates import parse_date, sanitize_dates_for_push, to_fuzzy
 
     mutation = """
     mutation (
@@ -118,7 +118,7 @@ def push_anilist(entry, state, dates=None):
         "progress": int(state.get("progress") or 0),
         "scoreRaw": score_raw if score_raw > 0 else None,
     }
-    dates = dates or entry.get("dates") or {}
+    dates = sanitize_dates_for_push(dates or entry.get("dates") or {})
     started = to_fuzzy(parse_date(dates.get("started_at")))
     completed = to_fuzzy(parse_date(dates.get("completed_at")))
     if started:
