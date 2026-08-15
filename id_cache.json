@@ -126,5 +126,46 @@
     "mal": 59019,
     "_cached_at": "2026-08-14T12:48:21.324868+00:00",
     "_source": "anizip"
+  },
+  "arm_anilist_235": {
+    "anilist": 235,
+    "mal": 235,
+    "kitsu": 210,
+    "anidb": 266,
+    "_cached_at": "2026-08-15T02:45:06.075364+00:00",
+    "_source": "arm_batch"
+  },
+  "arm_mal_2359": {
+    "mal": 2359,
+    "_cached_at": "2026-08-15T02:45:06.075387+00:00",
+    "_source": "arm_batch"
+  },
+  "arm_mal_235": {
+    "anilist": 235,
+    "mal": 235,
+    "kitsu": 210,
+    "anidb": 266,
+    "_cached_at": "2026-08-15T02:45:06.075394+00:00",
+    "_source": "arm_batch"
+  },
+  "arm_kitsu_210": {
+    "anilist": 235,
+    "mal": 235,
+    "kitsu": 210,
+    "anidb": 266,
+    "_cached_at": "2026-08-15T02:45:06.075399+00:00",
+    "_source": "arm_batch"
+  },
+  "anilist_2359": {
+    "anilist": 2359,
+    "mal": 2359,
+    "_cached_at": "2026-08-15T02:45:07.071718+00:00",
+    "_source": "anizip"
+  },
+  "mal_2359": {
+    "anilist": 2359,
+    "mal": 2359,
+    "_cached_at": "2026-08-15T02:45:07.100907+00:00",
+    "_source": "anizip"
   }
 }
