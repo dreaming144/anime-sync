@@ -1,4 +1,4 @@
-name: Universal Anime Sync V3.12
+name: Universal Anime Sync V3.13
 
 on:
   schedule:
@@ -38,7 +38,8 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      # Offline dumps (Fribb mappings + Manami titles). Python refreshes if >7 days old.
+      # Offline dumps (Fribb + Manami). Stable key — do not version per run_id.
+      # Python still refreshes files if >7 days old on disk.
       - name: Restore offline mapping caches
         id: cache-offline
         uses: actions/cache/restore@v4
@@ -46,8 +47,10 @@ jobs:
           path: |
             anime-list-mini.json
             anime-offline-database-minified.json
-          key: anime-sync-offline-v2
+          key: anime-sync-offline-v3
           restore-keys: |
+            anime-sync-offline-v3
+            anime-sync-offline-v2
             anime-sync-offline-
             anime-sync-fribb-
 
@@ -83,7 +86,7 @@ jobs:
           ls -lh sync.db sync_db.json id_cache.json anime-list-mini.json anime-offline-database-minified.json manual_overrides.json anime_pairings.csv unmatched.csv 2>&1 || true
           echo ""
           echo "=== Cache status ==="
-          echo "Fribb cache-hit: ${{ steps.cache-fribb.outputs.cache-hit }}"
+          echo "Offline cache-hit: ${{ steps.cache-offline.outputs.cache-hit }}"
           echo "State cache-hit: ${{ steps.cache-state.outputs.cache-hit }}"
           echo ""
           echo "=== Overrides ==="
@@ -174,14 +177,15 @@ jobs:
             id_cache.json
           key: anime-sync-state-${{ github.run_id }}
 
+      # Only save offline dumps when restore missed (stable key cannot be overwritten)
       - name: Save offline mapping caches
-        if: success()
+        if: success() && steps.cache-offline.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: |
             anime-list-mini.json
             anime-offline-database-minified.json
-          key: anime-sync-offline-v2-${{ github.run_id }}
+          key: anime-sync-offline-v3
 
       - uses: actions/upload-artifact@v4
         with:
