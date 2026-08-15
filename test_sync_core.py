@@ -23,7 +23,7 @@ class TestArmSparse(unittest.TestCase):
         self.assertTrue(u._arm_is_sparse({}))
 
     def test_rich_not_sparse(self):
-        rich = {"mal": 1, "anilist": 1, "simkl": 9, "imdb": "tt1"}
+        rich = {"mal": 1, "anilist": 1, "simkl": 9, "imdb": "tt1", "tvdb": 1, "kitsu": 1, "anidb": 1}
         self.assertFalse(u._arm_is_sparse(rich, {}))
 
 
