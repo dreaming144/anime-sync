@@ -1,0 +1,98 @@
+name: SIMKL Play-Stat Diagnostic (Read Only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      media_type:
+        description: SIMKL library to inspect. The anime sync normally uses Anime.
+        required: true
+        default: anime
+        type: choice
+        options:
+          - anime
+          - shows
+          - movies
+      title_contains:
+        description: Optional title substring to investigate (for example, Cowboy Bebop). Leave blank for a rewatch-session inventory.
+        required: false
+        default: ''
+        type: string
+      date_from:
+        description: Inclusive history date used with SIMKL rewatch retrieval (YYYY-MM-DD). Use an early date for a full historical inventory.
+        required: true
+        default: '2000-01-01'
+        type: string
+
+# This workflow is deliberately manual-only. It is a diagnostic, not part of
+# the scheduled synchronization loop, and must never cause history writes.
+
+permissions:
+  contents: read
+
+concurrency:
+  group: simkl-play-stat-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    name: Read-only SIMKL diagnostic
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependency
+        run: pip install requests
+
+      - name: Run read-only diagnostic
+        env:
+          SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+          SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
+          DIAGNOSTIC_MEDIA_TYPE: ${{ inputs.media_type }}
+          DIAGNOSTIC_TITLE_CONTAINS: ${{ inputs.title_contains }}
+          DIAGNOSTIC_DATE_FROM: ${{ inputs.date_from }}
+        run: |
+          set -euo pipefail
+          args=(
+            --type "$DIAGNOSTIC_MEDIA_TYPE"
+            --date-from "$DIAGNOSTIC_DATE_FROM"
+            --md-out simkl_play_stats.md
+            --csv-out simkl_play_stats.csv
+            --json-out simkl_play_stats.json
+          )
+          if [ -n "$DIAGNOSTIC_TITLE_CONTAINS" ]; then
+            args+=(--title-contains "$DIAGNOSTIC_TITLE_CONTAINS")
+          fi
+          python scripts/simkl_play_stats_diagnostic.py "${args[@]}"
+
+      - name: Add mobile-friendly summary
+        if: always()
+        run: |
+          {
+            echo "## SIMKL Play-Stat Diagnostic — Read Only"
+            echo ""
+            echo "> This manual Preview run uses GET \`/sync/all-items\` only. It cannot change SIMKL list status, watch history, or rewatch sessions."
+            echo ""
+            if [ -f simkl_play_stats.md ]; then
+              cat simkl_play_stats.md
+            else
+              echo "The diagnostic did not produce a report. Check the failed step above for the credential or API error."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostic reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: simkl-play-stat-diagnostic
+          path: |
+            simkl_play_stats.md
+            simkl_play_stats.csv
+            simkl_play_stats.json
+          retention-days: 30
+          if-no-files-found: warn

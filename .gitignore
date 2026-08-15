@@ -13,3 +13,8 @@ anime-offline-database-minified.json
 
 watch_history_stats.json
 watch_history_stats.md
+
+# Read-only SIMKL play-stat diagnostic reports (workflow artifacts / local inspection)
+simkl_play_stats.json
+simkl_play_stats.csv
+simkl_play_stats.md
