@@ -198,5 +198,6 @@ jobs:
             unmatched.csv
             manual_overrides.json
             manual_overrides_template.json
+            circuit_metrics.json
           retention-days: 30
           if-no-files-found: warn

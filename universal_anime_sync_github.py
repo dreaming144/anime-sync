@@ -37,6 +37,10 @@ class CircuitBreaker:
 
     OPEN after `failure_threshold` consecutive failures; stays open for
     `recovery_timeout` seconds, then allows a trial request (HALF_OPEN).
+
+    Metrics (reset only on process start):
+      calls, successes, failures, short_circuits, state_transitions,
+      last_failure_at, last_success_at, last_open_at, open_count
     """
 
     CLOSED = "closed"
@@ -49,51 +53,96 @@ class CircuitBreaker:
         self.recovery_timeout = recovery_timeout
         self.half_open_max = half_open_max
         self.state = self.CLOSED
-        self.failures = 0
-        self.successes = 0
-        self.opened_at = 0.0
+        self.consecutive_failures = 0
         self.half_open_trials = 0
+        self.opened_at = 0.0
+        # ---- metrics ----
+        self.calls = 0
+        self.successes = 0
+        self.failures = 0
+        self.short_circuits = 0
+        self.open_count = 0
+        self.half_open_count = 0
+        self.close_count = 0
+        self.last_failure_at = 0.0
+        self.last_success_at = 0.0
+        self.last_open_at = 0.0
+        self.last_close_at = 0.0
 
     def allow(self):
+        self.calls += 1
         if self.state == self.CLOSED:
             return True
         if self.state == self.OPEN:
             if time.time() - self.opened_at >= self.recovery_timeout:
                 self.state = self.HALF_OPEN
                 self.half_open_trials = 0
+                self.half_open_count += 1
                 print(f"   circuit {self.name}: OPEN → HALF_OPEN (trial)")
                 return True
+            self.short_circuits += 1
             return False
         # HALF_OPEN
         if self.half_open_trials < self.half_open_max:
             self.half_open_trials += 1
             return True
+        self.short_circuits += 1
         return False
 
     def record_success(self):
+        self.successes += 1
+        self.last_success_at = time.time()
+        self.consecutive_failures = 0
         if self.state == self.HALF_OPEN:
-            self.successes += 1
             self.state = self.CLOSED
-            self.failures = 0
-            self.successes = 0
+            self.close_count += 1
+            self.last_close_at = time.time()
             print(f"   circuit {self.name}: HALF_OPEN → CLOSED (recovered)")
-            return
-        self.failures = 0
 
     def record_failure(self):
         self.failures += 1
+        self.consecutive_failures += 1
+        self.last_failure_at = time.time()
         if self.state == self.HALF_OPEN:
             self.state = self.OPEN
             self.opened_at = time.time()
+            self.open_count += 1
+            self.last_open_at = self.opened_at
             print(f"   circuit {self.name}: HALF_OPEN → OPEN (trial failed)")
             return
-        if self.failures >= self.failure_threshold and self.state != self.OPEN:
+        if self.consecutive_failures >= self.failure_threshold and self.state != self.OPEN:
             self.state = self.OPEN
             self.opened_at = time.time()
+            self.open_count += 1
+            self.last_open_at = self.opened_at
             print(
                 f"   circuit {self.name}: CLOSED → OPEN "
-                f"after {self.failures} failures (pause {self.recovery_timeout:.0f}s)"
+                f"after {self.consecutive_failures} failures "
+                f"(pause {self.recovery_timeout:.0f}s)"
             )
+
+    def metrics(self):
+        """Snapshot of counters + derived rates for logging/export."""
+        total = max(self.calls, 1)
+        return {
+            "name": self.name,
+            "state": self.state,
+            "calls": self.calls,
+            "successes": self.successes,
+            "failures": self.failures,
+            "short_circuits": self.short_circuits,
+            "success_rate": round(self.successes / total, 4),
+            "failure_rate": round(self.failures / total, 4),
+            "open_count": self.open_count,
+            "half_open_count": self.half_open_count,
+            "close_count": self.close_count,
+            "consecutive_failures": self.consecutive_failures,
+            "opened_at": self.opened_at or None,
+            "last_failure_at": self.last_failure_at or None,
+            "last_success_at": self.last_success_at or None,
+            "failure_threshold": self.failure_threshold,
+            "recovery_timeout": self.recovery_timeout,
+        }
 
 
 class CircuitOpenError(RuntimeError):
@@ -217,15 +266,23 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
 
 
 def circuit_status():
-    """Return a snapshot of all circuit breaker states (for logging)."""
-    return {
-        name: {
-            "state": b.state,
-            "failures": b.failures,
-            "opened_at": b.opened_at,
-        }
-        for name, b in _circuit_breakers.items()
+    """Return a full metrics snapshot for every circuit breaker."""
+    return {name: b.metrics() for name, b in _circuit_breakers.items()}
+
+
+def write_circuit_metrics(path="circuit_metrics.json"):
+    """Persist circuit + bulkhead metrics for Actions artifacts / debugging."""
+    payload = {
+        "circuits": circuit_status(),
+        "bulkheads": bulkhead_status() if "_bulkheads" in dir() or True else {},
+        "written_at": datetime.now(timezone.utc).isoformat(),
     }
+    try:
+        payload["bulkheads"] = bulkhead_status()
+    except Exception:
+        payload["bulkheads"] = {}
+    Path(path).write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return payload
 
 
 class Bulkhead:
@@ -2330,14 +2387,24 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     print(f"Done. {len(all_items)} total fetched, {len(db['entries'])} unique shows, {changes} pushes.")
     _cs = circuit_status()
     if _cs:
-        print("   Circuits: " + ", ".join(f"{k}={v['state']}" for k, v in _cs.items()))
+        print(
+            "   Circuits: "
+            + ", ".join(
+                f"{k}={v['state']}(ok={v['successes']}/fail={v['failures']}/skip={v['short_circuits']})"
+                for k, v in _cs.items()
+            )
+        )
     _bh = bulkhead_status()
     if _bh:
         print(
             "   Bulkheads: "
             + ", ".join(f"{k}={v['total']}calls/{v['rejected']}rej" for k, v in _bh.items())
         )
-    print(f"ID Coverage: MAL:{mal_count} AniList:{anilist_count} Kitsu:{kitsu_count} AniDB:{anidb_count} IMDB:{imdb_count} (manual overrides: {manual_count})")
+    try:
+        write_circuit_metrics("circuit_metrics.json")
+        print("   Wrote circuit_metrics.json")
+    except Exception as e:
+        print(f"   circuit metrics write skipped: {e}")
 
     if export_csv_flag:
         export_csv(csv_file)
