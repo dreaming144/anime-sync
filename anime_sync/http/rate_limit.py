@@ -1,9 +1,12 @@
 """Adaptive per-service rate limiting with 429 feedback."""
 from __future__ import annotations
 
+import json
+import os
 import random
 import threading
 import time
+from pathlib import Path
 from email.utils import parsedate_to_datetime
 
 from .util import service_key as _service_key
@@ -231,6 +234,7 @@ RATE_LIMITS = {
 
 
 def get_rate_limiter(url):
+    ensure_rate_limits_loaded()
     key = _service_key(url)
     if key not in _rate_limiters:
         cfg = RATE_LIMITS.get(key, {"min_interval": 0.2, "per_minute": 120})
@@ -257,3 +261,113 @@ def rate_limiter_status():
 def reset_rate_limiters():
     """Tests only."""
     _rate_limiters.clear()
+
+
+# ---------------------------------------------------------------------------
+# Distributed (cross-run) rate-limit state — mirrors circuit_state.json
+# ---------------------------------------------------------------------------
+RATE_LIMIT_STATE_PATH = os.getenv("RATE_LIMIT_STATE_PATH", "rate_limit_state.json")
+_rate_state_loaded = False
+
+
+def load_rate_limit_state(path: str | None = None) -> dict:
+    """Restore adaptive intervals from disk so 429 backoff survives Actions runs."""
+    global _rate_state_loaded
+    path = path or RATE_LIMIT_STATE_PATH
+    p = Path(path)
+    if not p.is_file():
+        _rate_state_loaded = True
+        return {}
+    try:
+        raw = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"   rate state load skipped: {e}")
+        _rate_state_loaded = True
+        return {}
+
+    limiters = raw.get("limiters") or {}
+    now = time.time()
+    restored = 0
+    for name, snap in limiters.items():
+        if not isinstance(snap, dict):
+            continue
+        if name not in _rate_limiters:
+            base = float(snap.get("base_interval") or RATE_LIMITS.get(name, {}).get("min_interval", 0.2))
+            pm = snap.get("base_per_minute") or RATE_LIMITS.get(name, {}).get("per_minute", 120)
+            max_i = float(snap.get("max_interval") or max(base * 16, 30.0))
+            _rate_limiters[name] = RateLimiter(name, min_interval=base, per_minute=pm, max_interval=max_i)
+
+        rl = _rate_limiters[name]
+        try:
+            saved_interval = float(snap.get("min_interval") or rl.base_interval)
+            # Decay toward base if the last throttle was long ago (>1h)
+            last_t = float(snap.get("last_throttle_at") or 0)
+            if last_t and (now - last_t) > 3600:
+                # Soft recovery: halfway between saved and base
+                saved_interval = (saved_interval + rl.base_interval) / 2.0
+            rl.min_interval = min(rl.max_interval, max(rl.base_interval, saved_interval))
+            if snap.get("per_minute") is not None:
+                rl.per_minute = max(5, int(snap["per_minute"]))
+            if snap.get("base_per_minute") is not None:
+                rl.base_per_minute = int(snap["base_per_minute"])
+            rl.throttle_events = int(snap.get("throttle_events") or 0)
+            rl.recover_events = int(snap.get("recover_events") or 0)
+            rl.consecutive_throttles = int(snap.get("consecutive_throttles") or 0)
+            if last_t:
+                rl.last_throttle_at = last_t
+            restored += 1
+            if rl.min_interval > rl.base_interval + 0.05:
+                print(
+                    f"   rate {name}: restored interval "
+                    f"{rl.min_interval:.2f}s (base {rl.base_interval:.2f}s)"
+                )
+        except (TypeError, ValueError) as e:
+            print(f"   rate {name}: restore skip ({e})")
+
+    if restored:
+        print(f"   Rate limits: restored {restored} limiter(s) from {path}")
+    _rate_state_loaded = True
+    return limiters
+
+
+def save_rate_limit_state(path: str | None = None) -> str | None:
+    """Persist current adaptive intervals for the next process/run."""
+    path = path or RATE_LIMIT_STATE_PATH
+    limiters = {}
+    for name, rl in _rate_limiters.items():
+        limiters[name] = {
+            "min_interval": rl.min_interval,
+            "base_interval": rl.base_interval,
+            "max_interval": rl.max_interval,
+            "per_minute": rl.per_minute,
+            "base_per_minute": rl.base_per_minute,
+            "throttle_events": rl.throttle_events,
+            "recover_events": rl.recover_events,
+            "consecutive_throttles": rl.consecutive_throttles,
+            "last_throttle_at": rl.last_throttle_at or None,
+            "total": rl.total,
+            "waits": rl.waits,
+        }
+    payload = {"version": 1, "updated_at": time.time(), "limiters": limiters}
+    p = Path(path)
+    tmp = p.with_suffix(p.suffix + ".tmp")
+    try:
+        tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        os.replace(tmp, p)
+        print(f"   Rate limits: saved {len(limiters)} limiter(s) → {path}")
+        return path
+    except OSError as e:
+        print(f"   rate state save failed: {e}")
+        try:
+            if tmp.exists():
+                tmp.unlink()
+        except OSError:
+            pass
+        return None
+
+
+def ensure_rate_limits_loaded(path: str | None = None) -> None:
+    global _rate_state_loaded
+    if _rate_state_loaded:
+        return
+    load_rate_limit_state(path)

@@ -72,6 +72,8 @@ jobs:
             echo ""
             if [ -f show_report.md ]; then
               cat show_report.md
+            conflict_report.csv
+            rate_limit_state.json
               echo ""
             fi
             if [ -f job_summary.md ]; then
@@ -98,9 +100,12 @@ jobs:
             unmatched.csv
             circuit_metrics.json
             circuit_state.json
+            rate_limit_state.json
             push_report.csv
             job_summary.md
             show_report.md
+            conflict_report.csv
+            rate_limit_state.json
             watch_history_stats.md
             watch_history_stats.json
           retention-days: 30

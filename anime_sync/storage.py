@@ -188,3 +188,54 @@ def ensure_loaded():
     _loaded = True
 
 
+
+
+def apply_manual_override(
+    *,
+    key: str | None = None,
+    title: str | None = None,
+    mal: str | None = None,
+    anilist: str | None = None,
+    kitsu: str | None = None,
+    simkl: str | None = None,
+    imdb: str | None = None,
+    tvdb: str | None = None,
+) -> dict:
+    """Append/update one manual override and persist to manual_overrides.json.
+
+    `key` is the lookup key (usually lowercase title or existing override key).
+    If only title is given, key defaults to title.lower().strip().
+    """
+    global manual_overrides
+    ensure_loaded()
+    key = (key or title or "").strip()
+    if not key:
+        raise ValueError("override requires --override-key or --override-title")
+    # Prefer stable non-lowercase display key if title given
+    store_key = key
+    entry = dict(manual_overrides.get(store_key) or manual_overrides.get(store_key.lower()) or {})
+    if title:
+        entry["title"] = title
+    for field, val in (
+        ("mal", mal),
+        ("anilist", anilist),
+        ("kitsu", kitsu),
+        ("simkl", simkl),
+        ("imdb", imdb),
+        ("tvdb", tvdb),
+    ):
+        if val is not None and str(val).strip() != "":
+            entry[field] = str(val).strip()
+    if not any(entry.get(f) for f in ("mal", "anilist", "kitsu", "simkl", "imdb", "tvdb")):
+        raise ValueError("override needs at least one id field")
+    # Remove old case variant
+    for k in list(manual_overrides.keys()):
+        if k.lower() == store_key.lower() and k != store_key:
+            del manual_overrides[k]
+    manual_overrides[store_key] = entry
+    # Persist
+    import json
+    serializable = {k: v for k, v in manual_overrides.items()}
+    OVERRIDES_PATH.write_text(json.dumps(serializable, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"-> Manual override saved: {store_key!r} → {entry}")
+    return entry

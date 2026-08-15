@@ -29,6 +29,8 @@ from anime_sync.http import (
     write_circuit_metrics,
     load_circuit_state,
     save_circuit_state,
+    save_rate_limit_state,
+    ensure_rate_limits_loaded,
     ensure_circuits_loaded,
 )
 from anime_sync.ids import dedupe_entries, get_canonical_key, hash_state, normalize_ids
@@ -59,8 +61,53 @@ CONFIG = {
 
 DRY_RUN = False
 _push_report_rows = []
+_conflict_rows = []
+
+def record_conflict(key, existing, item, accepted, reason):
+    """Record a platform-state disagreement for conflict_report.csv."""
+    _conflict_rows.append({
+        "key": key,
+        "title": (existing.get("title") or item.get("title")
+                  or (existing.get("ids") or {}).get("title")
+                  or (item.get("ids") or {}).get("title") or ""),
+        "incoming_platform": item.get("platform") or "",
+        "accepted": str(bool(accepted)).lower(),
+        "reason": reason,
+        "stored_status": (existing.get("state") or {}).get("status") or "",
+        "incoming_status": (item.get("state") or {}).get("status") or "",
+        "stored_progress": (existing.get("state") or {}).get("progress") or "",
+        "incoming_progress": (item.get("state") or {}).get("progress") or "",
+        "stored_updated": existing.get("last_updated") or "",
+        "incoming_updated": (
+            item["updated"].isoformat() if hasattr(item.get("updated"), "isoformat")
+            else str(item.get("updated") or "")
+        ),
+        "policy": CONFIG.get("conflict_policy", "last_write_wins"),
+        "mal": (existing.get("ids") or {}).get("mal") or (item.get("ids") or {}).get("mal") or "",
+        "anilist": (existing.get("ids") or {}).get("anilist") or (item.get("ids") or {}).get("anilist") or "",
+    })
+
+
+def write_conflict_report(path="conflict_report.csv"):
+    if not _conflict_rows:
+        print("   Conflict report: no disagreements this run")
+        return None
+    fields = [
+        "key", "title", "incoming_platform", "accepted", "reason",
+        "stored_status", "incoming_status", "stored_progress", "incoming_progress",
+        "stored_updated", "incoming_updated", "policy", "mal", "anilist",
+    ]
+    import csv
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(_conflict_rows)
+    print(f"   Conflict report: {len(_conflict_rows)} rows → {path}")
+    return path
+
 
 def should_accept_update(existing, item, policy=None):
+
     """Decide whether the incoming item should overwrite the stored state.
 
     Returns (accept: bool, reason: str)
@@ -416,7 +463,11 @@ def propagate_oldest_dates(write=True):
     return n
 
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
+    global _conflict_rows, _push_report_rows
+    _conflict_rows = []
+    _push_report_rows = []
     ensure_circuits_loaded()
+    ensure_rate_limits_loaded()
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
     apply_offline_ids_to_db()
@@ -526,6 +577,9 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
             continue
         
         accept, reason = should_accept_update(existing, item)
+        # Log whenever stored vs incoming state differ (accepted or not)
+        if (existing.get("state") or {}) != (item.get("state") or {}):
+            record_conflict(key, existing, item, accept, reason)
         if accept:
             print(f"[CHANGE] {key} on {item['platform']} ({reason}) - {item['state']}")
             existing["state"] = item["state"]
@@ -586,6 +640,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     
     print(f"Done. {len(all_items)} total fetched, {len(db['entries'])} unique shows, {changes} pushes.")
     write_push_report()
+    write_conflict_report()
     write_job_summary()
     _cs = circuit_status()
     if _cs:
@@ -614,6 +669,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     try:
         write_circuit_metrics("circuit_metrics.json")
         save_circuit_state()
+        save_rate_limit_state()
         print("   Wrote circuit_metrics.json")
     except Exception as e:
         print(f"   circuit metrics write skipped: {e}")

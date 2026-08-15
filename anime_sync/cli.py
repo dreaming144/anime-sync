@@ -14,7 +14,7 @@ from anime_sync.enrich import (
     fill_missing_simkl_ids,
 )
 from anime_sync.ids import dedupe_entries
-from anime_sync.storage import db, ensure_loaded, id_cache, save_db
+from anime_sync.storage import apply_manual_override, db, ensure_loaded, id_cache, save_db
 import anime_sync.sync as sync_mod
 from anime_sync.sync import propagate_oldest_dates, run_once
 
@@ -35,6 +35,20 @@ def main(argv=None):
         action="store_true",
         help="After loading DB, only propagate oldest started/completed dates to platforms",
     )
+    # Single manual override (workflow_dispatch friendly)
+    parser.add_argument("--override-key", default="", help="Override lookup key (defaults to title)")
+    parser.add_argument("--override-title", default="", help="Title for manual override")
+    parser.add_argument("--override-mal", default="", help="MAL id")
+    parser.add_argument("--override-anilist", default="", help="AniList id")
+    parser.add_argument("--override-kitsu", default="", help="Kitsu id")
+    parser.add_argument("--override-simkl", default="", help="SIMKL id")
+    parser.add_argument("--override-imdb", default="", help="IMDb id")
+    parser.add_argument("--override-tvdb", default="", help="TVDB id")
+    parser.add_argument(
+        "--override-only",
+        action="store_true",
+        help="Only apply override and exit (no full sync)",
+    )
     args = parser.parse_args(argv)
 
     if args.dry_run or args.no_push:
@@ -42,6 +56,21 @@ def main(argv=None):
         print("-> DRY-RUN / no-push: remote list writes disabled")
 
     ensure_loaded()
+
+    if any([args.override_key, args.override_title, args.override_mal, args.override_anilist,
+            args.override_kitsu, args.override_simkl, args.override_imdb, args.override_tvdb]):
+        apply_manual_override(
+            key=args.override_key or None,
+            title=args.override_title or None,
+            mal=args.override_mal or None,
+            anilist=args.override_anilist or None,
+            kitsu=args.override_kitsu or None,
+            simkl=args.override_simkl or None,
+            imdb=args.override_imdb or None,
+            tvdb=args.override_tvdb or None,
+        )
+        if args.override_only:
+            return 0
 
     if args.export_only:
         apply_offline_ids_to_db()

@@ -21,6 +21,9 @@ from .circuit import (
 )
 from .client import request_with_retries, write_circuit_metrics
 from .rate_limit import (
+    ensure_rate_limits_loaded,
+    load_rate_limit_state,
+    save_rate_limit_state,
     RATE_LIMITS,
     RateLimiter,
     compute_backoff,
@@ -54,6 +57,9 @@ __all__ = [
     "get_rate_limiter",
     "rate_limiter_status",
     "reset_rate_limiters",
+    "save_rate_limit_state",
+    "load_rate_limit_state",
+    "ensure_rate_limits_loaded",
     "parse_retry_after",
     "compute_backoff",
     "request_with_retries",

@@ -1,4 +1,5 @@
 # anime-sync
+[![Universal Anime Sync](https://github.com/dreaming144/anime-sync/actions/workflows/sync.yml/badge.svg)](https://github.com/dreaming144/anime-sync/actions/workflows/sync.yml)
 
 Universal bidirectional anime list sync across **AniList**, **MyAnimeList**, **Kitsu**, and **SIMKL**.
 
@@ -70,11 +71,16 @@ Optional secret: `IDS_MOE_API_KEY` for ids.moe mappings.
 - Optional `IDS_MOE_API_KEY` / `fetch_ids_moe`
 
 ### Still open
-1. **Failure alerts** — email/Slack on workflow failure (Actions already has a failure step)
-2. **Override via workflow_dispatch** — append one override without editing JSON
-3. **Conflict report CSV** — where platforms disagreed and which policy won
-4. **README badge** — last workflow status shield
-5. **Daemon mode** — long-running local process (later)
+1. **Daemon mode** — long-running local process (later)
+2. **Slack/email webhooks** — optional external notify beyond Actions summary + optional issue
+
+### Done (roadmap 1–5)
+1. **File-backed rate-limit state** — `rate_limit_state.json` (survives Actions runs)
+2. **SIMKL write spacing** — `SIMKL_WRITE_INTERVAL` default 1.0s on POST/PUT/DELETE
+3. **Failure alerts** — rich step summary + optional `vars.SYNC_FAIL_OPEN_ISSUE`
+4. **Conflict report CSV** — `conflict_report.csv` when platforms disagree
+5. **Override via workflow_dispatch** — title + MAL/AniList/SIMKL inputs
+6. **README badge** — workflow status shield
 
 ### Not planned near-term
 - Full async rewrite (`httpx`/`aiohttp`) — rate limits dominate; stay on `requests` + thread pools

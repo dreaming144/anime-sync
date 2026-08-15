@@ -8,7 +8,14 @@ import requests
 
 from .bulkhead import bulkhead_status, get_bulkhead
 from .circuit import CircuitOpenError, circuit_status, get_circuit, save_circuit_state, ensure_circuits_loaded
-from .rate_limit import compute_backoff, get_rate_limiter, parse_retry_after, rate_limiter_status
+from .rate_limit import (
+    compute_backoff,
+    ensure_rate_limits_loaded,
+    get_rate_limiter,
+    parse_retry_after,
+    rate_limiter_status,
+    save_rate_limit_state,
+)
 from .util import service_key as _service_key
 
 def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, use_rate_limit=True, **kwargs):
@@ -41,6 +48,14 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
         for attempt in range(max_retries):
             if limiter:
                 limiter.acquire()
+            # SIMKL community guidance: ~1 write/sec (POST/PUT/DELETE)
+            if method.upper() in ("POST", "PUT", "PATCH", "DELETE"):
+                from anime_sync.http.util import service_key as _sk
+                if _sk(url) == "simkl":
+                    import time as _time
+                    extra = float(__import__("os").getenv("SIMKL_WRITE_INTERVAL", "1.0"))
+                    if extra > 0:
+                        _time.sleep(extra)
             try:
                 last = requests.request(method, url, timeout=timeout, **kwargs)
             except requests.RequestException as e:
@@ -141,6 +156,7 @@ def write_circuit_metrics(path="circuit_metrics.json"):
     Path(path).write_text(json.dumps(payload, indent=2), encoding="utf-8")
     try:
         save_circuit_state()
+        save_rate_limit_state()
     except Exception:
         pass
     return payload

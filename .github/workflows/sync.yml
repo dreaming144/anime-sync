@@ -29,6 +29,32 @@ on:
         default: 'false'
         type: choice
         options: ['false','true']
+      override_title:
+        description: 'Optional: title for a one-shot manual override'
+        required: false
+        default: ''
+        type: string
+      override_mal:
+        description: 'Optional: MAL id for override'
+        required: false
+        default: ''
+        type: string
+      override_anilist:
+        description: 'Optional: AniList id for override'
+        required: false
+        default: ''
+        type: string
+      override_simkl:
+        description: 'Optional: SIMKL id for override'
+        required: false
+        default: ''
+        type: string
+      override_only:
+        description: 'Only apply override (skip full sync)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false','true']
 
 concurrency:
   group: anime-sync
@@ -77,6 +103,7 @@ jobs:
             sync.db
             id_cache.json
             circuit_state.json
+            rate_limit_state.json
           key: anime-sync-state-${{ github.run_id }}
           restore-keys: |
             anime-sync-state-
@@ -125,6 +152,23 @@ jobs:
           EXTRA=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then EXTRA="$EXTRA --dry-run"; fi
           if [ "${{ inputs.no_push }}" = "true" ]; then EXTRA="$EXTRA --no-push"; fi
+          # One-shot manual override from workflow_dispatch
+          if [ -n "${{ inputs.override_title }}" ]; then
+            EXTRA="$EXTRA --override-title $(printf %q "${{ inputs.override_title }}")"
+          fi
+          if [ -n "${{ inputs.override_mal }}" ]; then
+            EXTRA="$EXTRA --override-mal ${{ inputs.override_mal }}"
+          fi
+          if [ -n "${{ inputs.override_anilist }}" ]; then
+            EXTRA="$EXTRA --override-anilist ${{ inputs.override_anilist }}"
+          fi
+          if [ -n "${{ inputs.override_simkl }}" ]; then
+            EXTRA="$EXTRA --override-simkl ${{ inputs.override_simkl }}"
+          fi
+          if [ "${{ inputs.override_only }}" = "true" ]; then
+            python -m anime_sync --override-only --no-json-backup $EXTRA
+            exit 0
+          fi
           # JSON backup is large; keep SQLite in git, JSON as artifact only
           if [ "${{ inputs.export_only }}" = "true" ]; then
             python -m anime_sync --export-only --no-json-backup $EXTRA
@@ -184,6 +228,14 @@ jobs:
               head -n 30 push_report.csv
               echo '```'
             fi
+            if [ -f conflict_report.csv ]; then
+              echo ""
+              echo "## Conflict report (head)"
+              echo ""
+              echo '```'
+              head -n 25 conflict_report.csv
+              echo '```'
+            fi
             if [ -f watch_history_stats.md ]; then
               echo ""
               head -n 40 watch_history_stats.md
@@ -199,7 +251,7 @@ jobs:
           [ -f manual_overrides.json ] || echo '{}' > manual_overrides.json
 
           # Git is source of truth for the DB
-          git add -f sync.db id_cache.json circuit_state.json 2>/dev/null || true
+          git add -f sync.db id_cache.json circuit_state.json rate_limit_state.json 2>/dev/null || true
           # JSON backup optional — skip if unchanged noise is high; still track when present
           # sync_db.json is artifact-only (avoid repo bloat)
           git add anime_pairings.csv unmatched.csv manual_overrides.json || true
@@ -255,6 +307,21 @@ jobs:
 
       - name: Notify on failure
         if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "::error::Universal Anime Sync failed. Check logs, circuit_metrics.json, and secrets."
-          if [ -f job_summary.md ]; then cat job_summary.md; fi
+          {
+            echo "## Sync failed"
+            echo ""
+            echo "- Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "- Branch: `${{ github.ref_name }}`"
+            echo "- Actor: ${{ github.actor }}"
+            echo ""
+            if [ -f show_report.md ]; then cat show_report.md; echo ""; fi
+            if [ -f job_summary.md ]; then cat job_summary.md; fi
+          } >> "$GITHUB_STEP_SUMMARY" || true
+          # Create a GitHub issue when SYNC_FAIL_OPEN_ISSUE=true (optional secret flag via vars)
+          if [ "${{ vars.SYNC_FAIL_OPEN_ISSUE }}" = "true" ]; then
+            gh issue create               --title "Anime sync failed (${{ github.run_id }})"               --body "Workflow run failed: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"               || true
+          fi
