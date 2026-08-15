@@ -102,6 +102,7 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
 
 def fetch_ids_moe(ids_dict, use_cache=True):
     """Optional ids.moe mapping (requires IDS_MOE_API_KEY for non-trivial use).
+import json
 
     Public endpoints are limited; when key is set, query by MAL/AniList.
     """

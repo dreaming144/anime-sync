@@ -23,6 +23,7 @@ UNMATCHED_PATH = Path("unmatched.csv")
 
 def resolve_title(ids, existing_title=None):
     """Best-effort title from local data, then AniList / Jikan / Kitsu APIs."""
+import time
     if existing_title:
         return existing_title
     if ids.get("title"):

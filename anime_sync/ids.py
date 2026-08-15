@@ -10,6 +10,7 @@ def hash_state(state):
 
 def normalize_ids(ids_dict):
     """Force all known ID fields to str (or None). Prevents str/int key mismatches."""
+import hashlib
     if not ids_dict:
         return {}
     out = dict(ids_dict)
