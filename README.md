@@ -173,3 +173,21 @@ python scripts/watch_history_stats.py
 ```
 
 Each normal sync also writes these files and embeds a short summary in `job_summary.md`.
+
+
+## Oldest watch-date sync
+
+Each full sync:
+
+1. Loads **started / completed** dates from AniList, MAL, Kitsu, and SIMKL (`last_watched` as a completed hint).
+2. Keeps the **oldest** `started_at` and `completed_at` per show in `sync.db`.
+3. Propagates those dates to platforms that support writes:
+   - **AniList** — `startedAt` / `completedAt` (FuzzyDate)
+   - **MAL** — `start_date` / `finish_date`
+   - **Kitsu** — `startedAt` / `finishedAt`
+   - **SIMKL** — list status only (history posts for completed titles stay skipped to avoid rewatches)
+
+```bash
+python -m anime_sync --sync-dates-only          # load + propagate dates
+python -m anime_sync --dry-run --sync-dates-only # plan only
+```

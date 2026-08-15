@@ -56,6 +56,10 @@ def load_kitsu():
                         "progress": a.get("progress", 0),
                         "score": a.get("ratingTwenty", 0) // 2 if a.get("ratingTwenty") else 0,
                     },
+                    "dates": {
+                        "started_at": a.get("startedAt"),
+                        "completed_at": a.get("finishedAt"),
+                    },
                     "updated": datetime.fromisoformat(a["updatedAt"].replace("Z", "+00:00")) if a.get("updatedAt") else datetime.now(timezone.utc),
                     "title": title,
                 })
@@ -122,7 +126,7 @@ def ensure_kitsu_token():
 
 
 
-def push_kitsu(entry, state):
+def push_kitsu(entry, state, dates=None):
     """Best-effort Kitsu library-entry update/create.
     Full reliability needs the library-entry ID stored in the DB.
     Requires KITSU_TOKEN, or KITSU_EMAIL/USERNAME + KITSU_PASSWORD for password grant.
@@ -183,12 +187,20 @@ def push_kitsu(entry, state):
         )
         existing = (lookup.json().get("data") or []) if lookup.ok else []
 
+        from anime_sync.dates import parse_date, to_kitsu_dt
         attrs = {
             "status": status,
             "progress": int(state.get("progress") or 0),
         }
         if rating is not None:
             attrs["ratingTwenty"] = rating
+        dates = dates or entry.get("dates") or {}
+        started = to_kitsu_dt(parse_date(dates.get("started_at")))
+        finished = to_kitsu_dt(parse_date(dates.get("completed_at")))
+        if started:
+            attrs["startedAt"] = started
+        if finished:
+            attrs["finishedAt"] = finished
 
         if existing:
             entry_id = existing[0]["id"]

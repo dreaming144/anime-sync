@@ -35,6 +35,11 @@ def load_simkl():
             "platform":"simkl",
             "ids":{"simkl": ids_obj.get("simkl") or ids_obj.get("simkl_id"), "mal": ids_obj.get("mal"), "anilist": ids_obj.get("anilist") or ids_obj.get("anilist_id"), "anidb": ids_obj.get("anidb"), "title": title},
             "state":{"status": STATUS_MAP["simkl"].get(status_raw, "plantowatch"), "progress": entry.get("watched_episodes_count") or entry.get("watched_episodes") or show_obj.get("watched_episodes_count",0), "score": entry.get("user_rating") or show_obj.get("user_rating") or 0},
+            "dates": {
+                "last_watched_at": last,
+                # SIMKL list rows don't expose started_at; use last_watched as completed hint when completed
+                "completed_at": last if STATUS_MAP["simkl"].get(status_raw) == "completed" else None,
+            },
             "updated": datetime.fromisoformat(last.replace("Z","+00:00")) if last else datetime.now(timezone.utc),
             "title": title
         })
@@ -43,7 +48,7 @@ def load_simkl():
 
 
 
-def push_simkl(entry, state):
+def push_simkl(entry, state, dates=None):
     """Push list status to SIMKL; only write episode history for in-progress watches.
 
     Important: re-POSTing /sync/history for already-completed titles creates

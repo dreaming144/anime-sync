@@ -39,6 +39,7 @@ from anime_sync.platforms import (
 )
 from anime_sync.storage import db, ensure_loaded, id_cache, save_db
 from anime_sync.stats import write_watch_stats
+from anime_sync.dates import merge_platform_dates, dates_need_push
 
 CONFIG = {
     "anilist_username": os.getenv("ANILIST_USERNAME", ""),
@@ -180,6 +181,55 @@ def write_job_summary(path="job_summary.md"):
 
 
 
+
+def propagate_oldest_dates(write=True):
+    """For each entry, push canonical oldest started/completed dates to every known platform.
+
+    Skips platforms that already hold the oldest date. Uses list/status update APIs
+    with date fields only — does not create SIMKL rewatch sessions.
+    """
+    ensure_loaded()
+    n = 0
+    for key, entry in list((db.get("entries") or {}).items()):
+        dates = entry.get("dates") or {}
+        if not dates.get("started_at") and not dates.get("completed_at"):
+            continue
+        sources = dates.get("sources") or {}
+        ids = entry.get("ids") or {}
+        state = entry.get("state") or {}
+        for platform, pusher in PUSHERS.items():
+            # need an id for that platform
+            if platform == "anilist" and not ids.get("anilist"):
+                continue
+            if platform == "mal" and not ids.get("mal"):
+                continue
+            if platform == "kitsu" and not ids.get("kitsu"):
+                continue
+            if platform == "simkl" and not (ids.get("simkl") or ids.get("mal") or ids.get("anilist")):
+                continue
+            snap = sources.get(platform) or {}
+            if not dates_need_push(snap, dates):
+                continue
+            print(f"[DATES] {key} -> {platform} started={dates.get('started_at')} completed={dates.get('completed_at')}")
+            record_push(platform, ids, state, action="dates", detail=f"oldest start={dates.get('started_at')} end={dates.get('completed_at')}")
+            if DRY_RUN or not write:
+                n += 1
+                continue
+            try:
+                pusher(entry, state, dates=dates)
+                # mark platform source as having canonical dates to avoid loops
+                sources[platform] = {
+                    **snap,
+                    **{k: dates[k] for k in ("started_at", "completed_at") if dates.get(k)},
+                }
+                entry["dates"] = {**dates, "sources": sources}
+                n += 1
+            except Exception as e:
+                record_push(platform, ids, state, action="error", detail=str(e)[:120])
+                print(f"   date push {platform} failed: {e}")
+    print(f"   Date propagation: {n} platform updates")
+    return n
+
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
@@ -253,6 +303,12 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
 
         existing = db["entries"].get(key)
         incoming_hash = hash_state(item["state"])
+        # Always fold platform watch dates into entry; keep oldest started/completed
+        if existing is not None:
+            existing["dates"] = merge_platform_dates(
+                existing.get("dates"), item["platform"], item.get("dates")
+            )
+
         
         if not existing:
             title = item.get("title") or (item.get("ids") or {}).get("title") or ""
@@ -262,6 +318,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
             db["entries"][key] = {
                 "ids": ids,
                 "state": item["state"],
+                "dates": merge_platform_dates(None, item["platform"], item.get("dates")),
                 "last_updated": item["updated"].isoformat(),
                 "last_synced": {item["platform"]: incoming_hash},
                 "title": title,
@@ -318,7 +375,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                         existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                         changes += 1
                         continue
-                    PUSHERS[item["platform"]](existing, existing["state"])
+                    PUSHERS[item["platform"]](existing, existing["state"], dates=existing.get("dates"))
                     existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                     changes += 1
                 except Exception as e:
@@ -326,6 +383,11 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     print(e)
 
     db["id_cache"] = id_cache
+    # Propagate oldest started/completed dates across platforms
+    try:
+        propagate_oldest_dates(write=not DRY_RUN)
+    except Exception as e:
+        print(f"   Date propagation error: {e}")
     dedupe_entries()
     save_db(db, id_cache, write_json_backup=write_json_backup)
     

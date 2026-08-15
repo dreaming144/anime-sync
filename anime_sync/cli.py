@@ -16,7 +16,7 @@ from anime_sync.enrich import (
 from anime_sync.ids import dedupe_entries
 from anime_sync.storage import db, ensure_loaded, id_cache, save_db
 import anime_sync.sync as sync_mod
-from anime_sync.sync import run_once
+from anime_sync.sync import propagate_oldest_dates, run_once
 
 
 def main(argv=None):
@@ -30,6 +30,11 @@ def main(argv=None):
     parser.add_argument("--no-json-backup", action="store_true", help="Skip writing legacy JSON backups")
     parser.add_argument("--dry-run", action="store_true", help="Plan pushes but do not write to remote lists")
     parser.add_argument("--no-push", action="store_true", help="Fetch/enrich only; skip all remote pushes")
+    parser.add_argument(
+        "--sync-dates-only",
+        action="store_true",
+        help="After loading DB, only propagate oldest started/completed dates to platforms",
+    )
     args = parser.parse_args(argv)
 
     if args.dry_run or args.no_push:
@@ -47,6 +52,17 @@ def main(argv=None):
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
             export_unmatched(UNMATCHED_PATH)
+        return 0
+
+    if args.sync_dates_only:
+        # Collect dates from a normal load first unless DB already has dates
+        run_once(
+            enrich_new=False,
+            export_csv_flag=False,
+            export_unmatched_flag=False,
+            write_json_backup=not args.no_json_backup,
+        )
+        # run_once already calls propagate_oldest_dates; done
         return 0
 
     if args.enrich_all:

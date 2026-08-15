@@ -15,7 +15,7 @@ def load_anilist():
         print("-> AniList skipped (no ANILIST_USERNAME)"); return []
     print(f"-> Fetching AniList {username}...")
     # Note: MediaList only exposes `score` (user format). scoreRaw is mutation-only.
-    query = """query ($userName: String) { MediaListCollection(userName: $userName, type: ANIME) { lists { entries { status progress score updatedAt media { id idMal title { romaji english native } } } } } }"""
+    query = """query ($userName: String) { MediaListCollection(userName: $userName, type: ANIME) { lists { entries { status progress score updatedAt startedAt { year month day } completedAt { year month day } media { id idMal title { romaji english native } } } } } }"""
     headers = {}
     token = os.getenv("ANILIST_TOKEN")
     if token:
@@ -45,6 +45,10 @@ def load_anilist():
                     "progress": e["progress"],
                     "score": score,
                 },
+                "dates": {
+                    "started_at": e.get("startedAt"),
+                    "completed_at": e.get("completedAt"),
+                },
                 "updated": datetime.fromtimestamp(e["updatedAt"], tz=timezone.utc) if e["updatedAt"] else datetime.now(timezone.utc),
                 "title": title,
             })
@@ -52,8 +56,12 @@ def load_anilist():
     return items
 
 
-def push_anilist(entry, state):
-    """Create or update an AniList media list entry via SaveMediaListEntry mutation."""
+def push_anilist(entry, state, dates=None):
+    """Create or update an AniList media list entry via SaveMediaListEntry mutation.
+
+    Optional dates: {"started_at": "YYYY-MM-DD", "completed_at": "YYYY-MM-DD"}
+    propagated as FuzzyDateInput without creating rewatch counters.
+    """
     token = os.getenv("ANILIST_TOKEN")
     if not token:
         if "anilist" not in _push_skip_logged:
@@ -74,45 +82,59 @@ def push_anilist(entry, state):
         print(f"   -> PUSH AniList skipped (unknown status: {state.get('status')})")
         return
 
+    from anime_sync.dates import parse_date, to_fuzzy
+
     mutation = """
-    mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int) {
-      SaveMediaListEntry(mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw) {
+    mutation (
+      $mediaId: Int
+      $status: MediaListStatus
+      $progress: Int
+      $scoreRaw: Int
+      $startedAt: FuzzyDateInput
+      $completedAt: FuzzyDateInput
+    ) {
+      SaveMediaListEntry(
+        mediaId: $mediaId
+        status: $status
+        progress: $progress
+        scoreRaw: $scoreRaw
+        startedAt: $startedAt
+        completedAt: $completedAt
+      ) {
         id
         status
         progress
         score
+        startedAt { year month day }
+        completedAt { year month day }
       }
     }
     """
-    # Internal score is 0-10; AniList scoreRaw is 0-100
     score_10 = float(state.get("score") or 0)
-    score_raw = int(round(score_10 * 10)) if score_10 > 0 else 0
+    score_raw = int(round(score_10 * 10)) if score_10 else 0
     variables = {
         "mediaId": media_id,
         "status": status,
         "progress": int(state.get("progress") or 0),
-        "scoreRaw": score_raw,
+        "scoreRaw": score_raw if score_raw > 0 else None,
     }
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-    }
-    try:
-        r = request_with_retries(
-            "POST",
-            "https://graphql.anilist.co",
-            json={"query": mutation, "variables": variables},
-            headers=headers,
-            timeout=15,
-        )
-        if r.ok and r.json().get("data", {}).get("SaveMediaListEntry"):
-            print(f"   -> PUSH AniList {media_id} => {state} [{r.status_code}]")
-        else:
-            err = r.text[:300] if r.text else r.status_code
-            print(f"   -> PUSH AniList failed {media_id}: {err}")
-    except requests.RequestException as e:
-        print(f"   -> PUSH AniList network error: {e}")
+    dates = dates or entry.get("dates") or {}
+    started = to_fuzzy(parse_date(dates.get("started_at")))
+    completed = to_fuzzy(parse_date(dates.get("completed_at")))
+    if started:
+        variables["startedAt"] = started
+    if completed:
+        variables["completedAt"] = completed
+    # Drop nulls so we don't clear existing score unintentionally with scoreRaw null
+    variables = {k: v for k, v in variables.items() if v is not None}
 
+    r = request_with_retries(
+        "POST",
+        "https://graphql.anilist.co",
+        json={"query": mutation, "variables": variables},
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        timeout=20,
+    )
+    print(f"   -> PUSH AniList media={media_id} => {state} dates={ {k: variables.get(k) for k in ('startedAt','completedAt') if k in variables} } [{r.status_code}]")
 
 

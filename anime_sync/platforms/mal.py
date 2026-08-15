@@ -137,7 +137,7 @@ def load_mal():
         print("-> MAL skipped (no token)"); return []
     print("-> Fetching MAL...")
     headers = {"Authorization": f"Bearer {token}"}
-    url = "https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status,num_episodes&limit=1000&nsfw=true"
+    url = "https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status{status,score,num_episodes_watched,is_rewatching,start_date,finish_date,updated_at},num_episodes&limit=1000&nsfw=true"
     items = []
     page = 1
     while url:
@@ -160,6 +160,10 @@ def load_mal():
                     "progress": ls["num_episodes_watched"],
                     "score": ls["score"],
                 },
+                "dates": {
+                    "started_at": ls.get("start_date"),
+                    "completed_at": ls.get("finish_date"),
+                },
                 "updated": datetime.fromisoformat(ls["updated_at"].replace("Z", "+00:00")),
                 "title": title,
             })
@@ -172,11 +176,11 @@ def load_mal():
     return items
 
 
-def push_mal(entry, state):
+def push_mal(entry, state, dates=None):
     """Create or update a MAL list entry via PUT /anime/{id}/my_list_status.
 
-    Requires MAL_ACCESS_TOKEN with write:users scope.
-    Body is application/x-www-form-urlencoded (not JSON).
+    Optional dates (started_at / completed_at as YYYY-MM-DD) set start_date / finish_date.
+    Does not touch rewatch counters.
     """
     token = ensure_mal_token()
     if not token:
@@ -198,37 +202,37 @@ def push_mal(entry, state):
         print(f"   -> PUSH MAL skipped (unknown status: {state.get('status')})")
         return
 
-    # MAL score is integer 0-10 (0 = unset)
+    from anime_sync.dates import parse_date, to_mal_date
+
     score = int(round(float(state.get("score") or 0)))
     if score < 0:
         score = 0
     if score > 10:
         score = 10
 
-    payload = {
+    body = {
         "status": status,
         "num_watched_episodes": int(state.get("progress") or 0),
         "score": score,
     }
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/x-www-form-urlencoded",
-    }
-    try:
-        r = request_with_retries(
-            "PUT",
-            f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
-            data=payload,
-            headers=headers,
-            timeout=15,
-        )
-        if r.ok:
-            print(f"   -> PUSH MAL {mal_id} => {state} [{r.status_code}]")
-        else:
-            print(f"   -> PUSH MAL failed {mal_id}: {r.status_code} {r.text[:200]}")
-    except requests.RequestException as e:
-        print(f"   -> PUSH MAL network error: {e}")
+    dates = dates or entry.get("dates") or {}
+    start_d = to_mal_date(parse_date(dates.get("started_at")))
+    finish_d = to_mal_date(parse_date(dates.get("completed_at")))
+    if start_d:
+        body["start_date"] = start_d
+    if finish_d:
+        body["finish_date"] = finish_d
 
-
+    r = request_with_retries(
+        "PUT",
+        f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data=body,
+        timeout=20,
+    )
+    print(f"   -> PUSH MAL {mal_id} => {state} dates={{start:{start_d},finish:{finish_d}}} [{r.status_code}]")
 
 
