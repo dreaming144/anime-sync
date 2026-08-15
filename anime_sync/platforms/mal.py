@@ -6,8 +6,11 @@ from datetime import datetime, timezone
 from anime_sync.http import request_with_retries, CircuitOpenError
 from anime_sync.platforms.common import _push_skip_logged
 from anime_sync.platforms.status import REVERSE_STATUS, STATUS_MAP
+from anime_sync.ids import normalize_ids
 
 import requests
+
+_mal_token_refreshed = False
 
 def _persist_mal_secrets(access_token, refresh_token=None):
     """Best-effort write updated MAL tokens back to GitHub Actions secrets via gh CLI."""

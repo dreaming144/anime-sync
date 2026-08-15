@@ -79,7 +79,8 @@ def _normalize_tmdb(val):
 
 
 def get_canonical_key(ids):
-    enriched = enrich_ids(ids, do_network=False)
+    from anime_sync.enrich import enrich_ids as _enrich_ids
+    enriched = _enrich_ids(ids, do_network=False)
     # Network enrich deliberately skipped here (hot path); run enrich_ids_batch instead
 
     if enriched.get("mal"):

@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from anime_sync.http import request_with_retries, CircuitOpenError
 from anime_sync.platforms.common import _push_skip_logged
 from anime_sync.platforms.status import REVERSE_STATUS, STATUS_MAP
+from anime_sync.ids import normalize_ids
 
 import requests
 
