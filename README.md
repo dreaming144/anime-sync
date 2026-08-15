@@ -56,6 +56,7 @@ Optional secret: `IDS_MOE_API_KEY` for ids.moe mappings.
 ## Next Steps
 
 ### Done recently
+- **Phase 5 modularization** — `sync.py`, `export.py`, `cli.py`; `python -m anime_sync`
 - **Phase 4 modularization** — `anime_sync/platforms/` (load+push per service)
 - **Phase 3 modularization** — `anime_sync/enrich/` (offline, ARM, providers, core)
 - **Phase 2 modularization** — `anime_sync/storage.py`, `anime_sync/ids.py`
@@ -122,7 +123,7 @@ main.py              # thin: from anime_sync.cli import main
 | **2** | Extract `storage.py` + `ids.py` | Low | **Done** — SQLite/JSON + normalize/canonical/dedupe |
 | **3** | Extract `enrich/` offline + ARM | Medium | **Done** — offline, arm, providers, core |
 | **4** | Extract `platforms/*` loaders/pushers | Medium | **Done** — anilist/mal/kitsu/simkl + status maps |
-| **5** | Extract `sync.py` + `export.py` + `cli.py` | Medium | Actions entrypoint = `python -m anime_sync` or `main.py` |
+| **5** | Extract `sync.py` + `export.py` + `cli.py` | Medium | **Done** — `python -m anime_sync` / thin `universal_anime_sync_github.py` |
 | **6** | Delete monolith shim after one green weekly enrich + two scheduled syncs | Low | Deprecate single-file path |
 
 ### Rules while splitting
