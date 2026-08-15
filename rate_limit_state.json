@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": 1786776343.6683474,
+  "updated_at": 1786782424.2446551,
   "limiters": {
     "arm": {
       "min_interval": 0.12,
@@ -12,8 +12,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 97,
-      "waits": 44
+      "total": 90,
+      "waits": 55
     },
     "animeapi": {
       "min_interval": 0.25,
@@ -25,7 +25,7 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 18,
+      "total": 0,
       "waits": 0
     },
     "simkl": {
@@ -38,8 +38,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 492,
-      "waits": 0
+      "total": 461,
+      "waits": 1
     },
     "anilist": {
       "min_interval": 2.1,
@@ -51,8 +51,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 19,
-      "waits": 4
+      "total": 10,
+      "waits": 1
     },
     "mal": {
       "min_interval": 0.35,
@@ -64,7 +64,7 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 8,
+      "total": 2,
       "waits": 0
     },
     "kitsu": {
@@ -77,8 +77,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 15,
-      "waits": 8
+      "total": 7,
+      "waits": 4
     },
     "api.ani.zip": {
       "min_interval": 0.2,
@@ -90,8 +90,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 6,
-      "waits": 2
+      "total": 0,
+      "waits": 0
     }
   }
 }
