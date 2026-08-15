@@ -15,9 +15,6 @@ import sys
 import re
 import sqlite3
 
-DB_PATH = Path("sync_db.json")          # legacy JSON (still written as backup)
-CACHE_PATH = Path("id_cache.json")      # legacy JSON (still written as backup)
-SQLITE_PATH = Path("sync.db")           # primary store
 FRIBB_PATH = Path("anime-list-mini.json")  # offline MAL/AniList→IMDb/TVDB/TMDB
 FRIBB_URL = "https://raw.githubusercontent.com/Fribb/anime-lists/master/anime-list-mini.json"
 MANAMI_PATH = Path("anime-offline-database-minified.json")  # titles + cross IDs
@@ -33,7 +30,6 @@ DRY_RUN = False
 _push_report_rows = []
 
 UNMATCHED_PATH = Path("unmatched.csv")
-OVERRIDES_PATH = Path("manual_overrides.json")
 
 
 
@@ -62,161 +58,32 @@ from anime_sync.http import (  # noqa: E402
     write_circuit_metrics,
 )
 
+# ---------------------------------------------------------------------------
+# Storage + IDs — extracted Phase 2
+# ---------------------------------------------------------------------------
+from anime_sync.storage import (  # noqa: E402
+    CACHE_PATH,
+    DB_PATH,
+    OVERRIDES_PATH,
+    SQLITE_PATH,
+    _loaded,
+    db,
+    ensure_loaded,
+    id_cache,
+    load_db,
+    manual_overrides,
+    save_db,
+)
+from anime_sync.ids import (  # noqa: E402
+    _normalize_imdb,
+    _normalize_tmdb,
+    dedupe_entries,
+    get_canonical_key,
+    get_override_for_ids,
+    hash_state,
+    normalize_ids,
+)
 
-def _init_sqlite(conn):
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS entries (
-            canonical_key TEXT PRIMARY KEY,
-            data TEXT NOT NULL
-        )
-    """)
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS id_cache (
-            cache_key TEXT PRIMARY KEY,
-            data TEXT NOT NULL
-        )
-    """)
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS meta (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )
-    """)
-    conn.commit()
-
-
-def load_db():
-    """Load entries + id_cache from SQLite (migrating from JSON on first run)."""
-    conn = sqlite3.connect(SQLITE_PATH)
-    _init_sqlite(conn)
-
-    # Check if SQLite already has data
-    count = conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0]
-
-    if count == 0 and DB_PATH.exists():
-        # One-time migration from legacy JSON
-        print(f"-> Migrating {DB_PATH} → {SQLITE_PATH} ...")
-        try:
-            raw = json.loads(DB_PATH.read_text(encoding="utf-8"))
-            if "entries" not in raw:
-                raw = {"entries": raw if isinstance(raw, dict) else {}, "id_cache": {}}
-            entries = raw.get("entries", {})
-            cache = raw.get("id_cache", {})
-            # Also pull standalone id_cache.json if present
-            if CACHE_PATH.exists():
-                try:
-                    cache.update(json.loads(CACHE_PATH.read_text(encoding="utf-8")))
-                except (json.JSONDecodeError, OSError):
-                    pass
-            with conn:
-                for k, v in entries.items():
-                    conn.execute(
-                        "INSERT OR REPLACE INTO entries (canonical_key, data) VALUES (?, ?)",
-                        (k, json.dumps(v, ensure_ascii=False)),
-                    )
-                for k, v in cache.items():
-                    conn.execute(
-                        "INSERT OR REPLACE INTO id_cache (cache_key, data) VALUES (?, ?)",
-                        (k, json.dumps(v, ensure_ascii=False)),
-                    )
-            print(f"   Migrated {len(entries)} entries, {len(cache)} cache keys")
-        except Exception as e:
-            print(f"   Migration warning: {e}")
-
-    # Load into memory (same interface as before)
-    entries = {}
-    for row in conn.execute("SELECT canonical_key, data FROM entries"):
-        try:
-            entries[row[0]] = json.loads(row[1])
-        except json.JSONDecodeError:
-            continue
-    cache = {}
-    for row in conn.execute("SELECT cache_key, data FROM id_cache"):
-        try:
-            cache[row[0]] = json.loads(row[1])
-        except json.JSONDecodeError:
-            continue
-    conn.close()
-    return {"entries": entries, "id_cache": cache}, cache
-
-
-def save_db(db_obj, cache_obj, write_json_backup=True):
-    """Persist in-memory db + id_cache to SQLite via atomic replace.
-
-    Writes to a temporary DB file, then os.replace() so a crash mid-write
-    never leaves an empty/corrupt primary store.
-    """
-    tmp_path = SQLITE_PATH.with_suffix(".db.tmp")
-    if tmp_path.exists():
-        tmp_path.unlink()
-    conn = sqlite3.connect(tmp_path)
-    _init_sqlite(conn)
-    with conn:
-        for k, v in db_obj.get("entries", {}).items():
-            # Normalize IDs before persisting
-            if isinstance(v, dict) and "ids" in v:
-                v = dict(v)
-                v["ids"] = normalize_ids(v.get("ids") or {})
-            conn.execute(
-                "INSERT INTO entries (canonical_key, data) VALUES (?, ?)",
-                (k, json.dumps(v, ensure_ascii=False)),
-            )
-        for k, v in cache_obj.items():
-            conn.execute(
-                "INSERT INTO id_cache (cache_key, data) VALUES (?, ?)",
-                (k, json.dumps(v, ensure_ascii=False)),
-            )
-    conn.close()
-    os.replace(tmp_path, SQLITE_PATH)
-
-    if write_json_backup:
-        try:
-            DB_PATH.write_text(json.dumps(db_obj, indent=2, ensure_ascii=False), encoding="utf-8")
-        except OSError:
-            pass
-        try:
-            CACHE_PATH.write_text(json.dumps(cache_obj, indent=2, ensure_ascii=False), encoding="utf-8")
-        except OSError:
-            pass
-
-
-# Lazy globals — populated by ensure_loaded() so importing this module is side-effect free
-db = {"entries": {}, "id_cache": {}}
-id_cache = {}
-manual_overrides = {}
-_loaded = False
-_kitsu_user_id = None  # cached for push_kitsu
-_kitsu_access_token = None  # filled by ensure_kitsu_token()
-_mal_token_refreshed = False  # ensure we only refresh once per process
-_push_skip_logged = set()  # log missing-token skips once per platform
-
-
-def ensure_loaded():
-    """Load DB, cache, and overrides once per process."""
-    global db, id_cache, manual_overrides, _loaded
-    if _loaded:
-        return
-    db, id_cache = load_db()
-    if OVERRIDES_PATH.exists():
-        try:
-            manual_overrides = json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
-            real = [k for k in manual_overrides if not k.startswith("_")]
-            print(f"Loaded {len(real)} manual overrides from {OVERRIDES_PATH}")
-        except (json.JSONDecodeError, FileNotFoundError) as e:
-            print(f"Failed to load overrides: {e}")
-            manual_overrides = {}
-    else:
-        manual_overrides = {
-            "_comment": "Manual overrides for shows that APIs can't auto-pair.",
-            "_how_to": "Key = any existing ID like kitsu_12345 or mal_12345. Value = full IDs to force.",
-        }
-        OVERRIDES_PATH.write_text(json.dumps(manual_overrides, indent=2), encoding="utf-8")
-        print(f"Created empty {OVERRIDES_PATH}")
-    # Normalize IDs already in the DB
-    for entry in db.get("entries", {}).values():
-        if "ids" in entry:
-            entry["ids"] = normalize_ids(entry["ids"])
-    _loaded = True
 
 
 CONFIG = {
@@ -243,81 +110,6 @@ REVERSE_STATUS = {
     "kitsu": {"watching": "current", "completed": "completed", "plantowatch": "planned", "dropped": "dropped", "on_hold": "on_hold"},
     "simkl": {"watching": "watching", "completed": "completed", "plantowatch": "plantowatch", "dropped": "dropped", "on_hold": "hold"}
 }
-
-def hash_state(state):
-    # Using SHA256 for state change detection (non-cryptographic use)
-    payload = f"{state['status']}|{state['progress']}|{state['score']}"
-    return hashlib.sha256(payload.encode()).hexdigest()[:32]
-
-def normalize_ids(ids_dict):
-    """Force all known ID fields to str (or None). Prevents str/int key mismatches."""
-    if not ids_dict:
-        return {}
-    out = dict(ids_dict)
-    for k in ("mal", "anilist", "kitsu", "anidb", "simkl", "tvdb", "tmdb"):
-        if k in out and out[k] is not None and out[k] != "":
-            out[k] = str(out[k])
-    return out
-
-
-
-# ============== MANUAL OVERRIDES ==============
-def get_override_for_ids(ids_dict):
-    """Check if any ID in ids_dict has a manual override"""
-    possible_keys = []
-    for k in ["mal", "anilist", "kitsu", "anidb", "simkl"]:
-        if ids_dict.get(k):
-            possible_keys.append(f"{k}_{ids_dict[k]}")
-            # also try just the numeric id as key
-            possible_keys.append(str(ids_dict[k]))
-    
-    for key in possible_keys:
-        if key in manual_overrides:
-            return manual_overrides[key]
-        # case-insensitive
-        if key.lower() in manual_overrides:
-            return manual_overrides[key.lower()]
-    
-    return None
-
-# ============== ID PAIRING ==============
-
-_fribb_index = None  # mal/anilist/kitsu/anidb -> external ids
-_manami_title_index = None  # {mal|anilist|kitsu} -> title
-
-
-def _normalize_imdb(val):
-    """Normalize IMDb id to ttXXXXXXX string."""
-    if val is None or val == "":
-        return None
-    if isinstance(val, list):
-        val = val[0] if val else None
-    if val is None:
-        return None
-    s = str(val).strip()
-    if not s:
-        return None
-    if s.isdigit():
-        return f"tt{s}"
-    if not s.startswith("tt"):
-        return f"tt{s}"
-    return s
-
-
-def _normalize_tmdb(val):
-    """Fribb stores themoviedb_id as int or {tv: id}/{movie: id}."""
-    if val is None or val == "":
-        return None
-    if isinstance(val, list):
-        val = val[0] if val else None
-    if isinstance(val, dict):
-        val = val.get("tv") or val.get("movie") or next(iter(val.values()), None)
-    if val is None:
-        return None
-    s = str(val).strip()
-    return s if s and s != "None" else None
-
-
 
 def ensure_offline_file(path, url, label, max_age_sec=OFFLINE_MAX_AGE_SEC, force=False):
     """Download offline JSON if missing or older than max_age_sec.
@@ -1219,23 +1011,6 @@ def enrich_ids(ids_dict, do_network=True):
 
     return normalize_ids(enriched)
 
-def get_canonical_key(ids):
-    enriched = enrich_ids(ids, do_network=False)
-    # Network enrich deliberately skipped here (hot path); run enrich_ids_batch instead
-
-    if enriched.get("mal"):
-        return f"mal_{enriched['mal']}"
-    if enriched.get("anilist"):
-        return f"anilist_{enriched['anilist']}"
-    if enriched.get("anidb"):
-        return f"anidb_{enriched['anidb']}"
-    if enriched.get("kitsu"):
-        return f"kitsu_{enriched['kitsu']}"
-    if enriched.get("simkl"):
-        return f"simkl_{enriched['simkl']}"
-    return None
-
-# ============== LOADERS ==============
 def load_anilist():
     username = CONFIG.get("anilist_username") or os.getenv("ANILIST_USERNAME")
     if not username:
@@ -2051,125 +1826,6 @@ def should_accept_update(existing, item, policy=None):
         return False, "older or equal timestamp"
     except (ValueError, TypeError, KeyError):
         return True, "missing timestamp - accept"
-
-
-
-def dedupe_entries():
-    """Merge entries that share the same MAL or AniList id into one canonical key.
-
-    Prefer mal_{id} as canonical when MAL is known. State fields use the newer
-    last_updated timestamp on conflict.
-    """
-    ensure_loaded()
-    entries = db.get("entries") or {}
-    if not entries:
-        return 0
-
-    def _ts(s):
-        if not s:
-            return datetime.min.replace(tzinfo=timezone.utc)
-        try:
-            return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
-        except Exception:
-            return datetime.min.replace(tzinfo=timezone.utc)
-
-    def _merge_ids(a, b):
-        out = dict(a or {})
-        for k, v in (b or {}).items():
-            if v in (None, "", []):
-                continue
-            if out.get(k) in (None, "", []):
-                out[k] = v
-        return out
-
-    def _canon(ids):
-        if ids.get("mal"):
-            return f"mal_{ids['mal']}"
-        if ids.get("anilist"):
-            return f"anilist_{ids['anilist']}"
-        if ids.get("anidb"):
-            return f"anidb_{ids['anidb']}"
-        if ids.get("kitsu"):
-            return f"kitsu_{ids['kitsu']}"
-        if ids.get("simkl"):
-            return f"simkl_{ids['simkl']}"
-        return None
-
-    parent = {k: k for k in entries}
-
-    def find(x):
-        while parent[x] != x:
-            parent[x] = parent[parent[x]]
-            x = parent[x]
-        return x
-
-    def union(a, b):
-        ra, rb = find(a), find(b)
-        if ra != rb:
-            parent[rb] = ra
-
-    by_mal, by_al = {}, {}
-    for k, d in entries.items():
-        ids = d.get("ids") or {}
-        if ids.get("mal"):
-            by_mal.setdefault(str(ids["mal"]), []).append(k)
-        if ids.get("anilist"):
-            by_al.setdefault(str(ids["anilist"]), []).append(k)
-    for keys in list(by_mal.values()) + list(by_al.values()):
-        if len(keys) < 2:
-            continue
-        for k in keys[1:]:
-            union(keys[0], k)
-
-    groups = {}
-    for k in entries:
-        groups.setdefault(find(k), []).append(k)
-
-    merged = {}
-    removed = 0
-    for keys in groups.values():
-        keys_sorted = sorted(keys, key=lambda k: _ts(entries[k].get("last_updated")), reverse=True)
-        base = dict(entries[keys_sorted[0]])
-        base_ids = dict(base.get("ids") or {})
-        base_state = dict(base.get("state") or {})
-        base_ts = _ts(base.get("last_updated"))
-        for k in keys_sorted[1:]:
-            d = entries[k]
-            base_ids = _merge_ids(base_ids, d.get("ids"))
-            ts = _ts(d.get("last_updated"))
-            if ts > base_ts:
-                st = dict(d.get("state") or {})
-                for sk, sv in st.items():
-                    if sv not in (None, ""):
-                        base_state[sk] = sv
-                base_ts = ts
-                base["last_updated"] = d.get("last_updated")
-            else:
-                st = dict(d.get("state") or {})
-                for sk, sv in st.items():
-                    if sv not in (None, "") and base_state.get(sk) in (None, ""):
-                        base_state[sk] = sv
-            for fld in ("title", "title_english", "title_romaji", "title_native", "year", "season", "format", "episodes"):
-                if d.get(fld) and not base.get(fld):
-                    base[fld] = d[fld]
-        base["ids"] = base_ids
-        base["state"] = base_state
-        if base_ids.get("title"):
-            base["title"] = base_ids["title"]
-        new_key = _canon(base_ids) or keys_sorted[0]
-        if new_key in merged:
-            existing = merged[new_key]
-            existing["ids"] = _merge_ids(existing.get("ids"), base_ids)
-            merged[new_key] = existing
-            removed += len(keys)
-        else:
-            merged[new_key] = base
-            removed += len(keys) - 1
-
-    if removed:
-        db["entries"] = merged
-        print(f"   Dedupe: {len(entries)} → {len(merged)} (removed {removed} duplicate rows)")
-    return removed
 
 
 

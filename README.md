@@ -56,6 +56,7 @@ Optional secret: `IDS_MOE_API_KEY` for ids.moe mappings.
 ## Next Steps
 
 ### Done recently
+- **Phase 2 modularization** — `anime_sync/storage.py`, `anime_sync/ids.py`
 - **Phase 1 modularization** — `anime_sync/http/` (rate limit, circuit, bulkhead, client); monolith is a facade
 - Adaptive rate limiting (interval multiplies on 429, decays on success)
 - All HTTP via `request_with_retries` (rate limit → bulkhead → circuit → retry)
@@ -116,7 +117,7 @@ main.py              # thin: from anime_sync.cli import main
 |-------|--------|------|----------------|
 | **0** | Keep monolith; tests green | None | ~~Current~~ → Phase 1 done |
 | **1** | Extract `http/` (rate limit, circuit, bulkhead, `request_with_retries`) | Low | **Done** (`anime_sync/http/`); monolith re-exports |
-| **2** | Extract `storage.py` + `ids.py` | Low | DB load/save + dedupe unchanged |
+| **2** | Extract `storage.py` + `ids.py` | Low | **Done** — SQLite/JSON + normalize/canonical/dedupe |
 | **3** | Extract `enrich/` offline + ARM | Medium | Offline fill + ARM parity |
 | **4** | Extract `platforms/*` loaders/pushers | Medium | Load/push parity; dry-run OK |
 | **5** | Extract `sync.py` + `export.py` + `cli.py` | Medium | Actions entrypoint = `python -m anime_sync` or `main.py` |
