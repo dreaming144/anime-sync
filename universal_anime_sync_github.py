@@ -8,6 +8,7 @@ Universal Anime Sync V3.13 - Automated offline DB sync
 
 import requests, json, os, hashlib, argparse, time, csv
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
@@ -197,8 +198,116 @@ def get_circuit(url, failure_threshold=5, recovery_timeout=60.0):
     return _circuit_breakers[key]
 
 
-def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, **kwargs):
-    """HTTP helper with bulkhead isolation + circuit breaker + 429/503 backoff.
+
+class RateLimiter:
+    """Token-bucket style limiter: min spacing between calls + optional per-minute budget.
+
+    Used proactively (before request) so we rarely hit 429s.
+    """
+
+    def __init__(self, name, min_interval=0.0, per_minute=None):
+        self.name = name
+        self.min_interval = float(min_interval)
+        self.per_minute = int(per_minute) if per_minute else None
+        self._lock = threading.Lock()
+        self._last = 0.0
+        self._window_start = 0.0
+        self._window_count = 0
+        self.waits = 0
+        self.total = 0
+
+    def acquire(self):
+        with self._lock:
+            now = time.time()
+            wait = 0.0
+            if self.min_interval > 0 and self._last > 0:
+                wait = max(wait, self.min_interval - (now - self._last))
+            if self.per_minute:
+                if now - self._window_start >= 60.0:
+                    self._window_start = now
+                    self._window_count = 0
+                if self._window_count >= self.per_minute:
+                    wait = max(wait, 60.0 - (now - self._window_start) + 0.05)
+            if wait > 0:
+                self.waits += 1
+                time.sleep(wait)
+                now = time.time()
+                if self.per_minute and now - self._window_start >= 60.0:
+                    self._window_start = now
+                    self._window_count = 0
+            self._last = time.time()
+            self._window_count += 1
+            self.total += 1
+
+    def note_headers(self, headers):
+        """Slow down if upstream reports low remaining quota (AniList etc.)."""
+        if not headers:
+            return
+        remaining = headers.get("X-RateLimit-Remaining") or headers.get("x-ratelimit-remaining")
+        limit = headers.get("X-RateLimit-Limit") or headers.get("x-ratelimit-limit")
+        try:
+            if remaining is not None and str(remaining).isdigit():
+                rem = int(remaining)
+                if rem <= 2:
+                    # pause until safer
+                    reset = headers.get("X-RateLimit-Reset") or headers.get("x-ratelimit-reset")
+                    if reset and str(reset).isdigit():
+                        wait = max(1, int(reset) - int(time.time()) + 1)
+                        wait = min(wait, 90)
+                    else:
+                        wait = 15
+                    print(f"   rate {self.name}: remaining={rem}; pause {wait}s")
+                    time.sleep(wait)
+                elif rem <= 5 and limit and str(limit).isdigit() and int(limit) <= 90:
+                    time.sleep(1.0)
+        except (TypeError, ValueError):
+            pass
+
+
+_rate_limiters = {}
+
+# Conservative published / observed limits (Aug 2026)
+# AniList: docs say 90/min, currently degraded to ~30/min — use 25/min + 2s spacing
+# Jikan: 3/sec, 60/min → 0.4s min interval
+# MAL official: no strict public number; be polite ~1.5/s
+# Kitsu: undocumented; ~2/s safe
+# SIMKL: community defaults ~10 GET/s, 1 write/s — we use 0.15s GET spacing
+# ARM / animeapi / anizip: polite public scrapers
+RATE_LIMITS = {
+    "anilist": {"min_interval": 2.1, "per_minute": 25},   # degraded AniList
+    "jikan": {"min_interval": 0.4, "per_minute": 55},
+    "mal": {"min_interval": 0.35, "per_minute": 90},
+    "kitsu": {"min_interval": 0.5, "per_minute": 60},
+    "simkl": {"min_interval": 0.2, "per_minute": 120},
+    "arm": {"min_interval": 0.12, "per_minute": 200},
+    "animeapi": {"min_interval": 0.25, "per_minute": 100},
+    "anizip": {"min_interval": 0.3, "per_minute": 80},
+    "github": {"min_interval": 0.5, "per_minute": 60},
+}
+
+
+def get_rate_limiter(url):
+    key = _service_key(url)
+    if key not in _rate_limiters:
+        cfg = RATE_LIMITS.get(key, {"min_interval": 0.2, "per_minute": 120})
+        _rate_limiters[key] = RateLimiter(key, **cfg)
+    return _rate_limiters[key]
+
+
+def rate_limiter_status():
+    return {
+        name: {
+            "total": r.total,
+            "waits": r.waits,
+            "min_interval": r.min_interval,
+            "per_minute": r.per_minute,
+        }
+        for name, r in _rate_limiters.items()
+    }
+
+
+def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, use_rate_limit=True, **kwargs):
+    """HTTP helper: rate limit → bulkhead → circuit → request + 429 backoff.
 
     kwargs passed to requests.request (headers, json, data, params, timeout, ...).
     Returns the final Response (may still be non-OK after retries exhausted).
@@ -213,11 +322,14 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
             f"(retry after {breaker.recovery_timeout:.0f}s)"
         )
 
+    limiter = get_rate_limiter(url) if use_rate_limit else None
     bulkhead_ctx = get_bulkhead(url) if use_bulkhead else None
 
     def _run():
         last = None
         for attempt in range(max_retries):
+            if limiter:
+                limiter.acquire()
             try:
                 last = requests.request(method, url, timeout=timeout, **kwargs)
             except requests.RequestException as e:
@@ -230,6 +342,12 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
                 time.sleep(wait)
                 continue
 
+            if limiter and last is not None:
+                try:
+                    limiter.note_headers(last.headers)
+                except Exception:
+                    pass
+
             if last.status_code in (401, 404):
                 if breaker:
                     breaker.record_success()
@@ -241,12 +359,16 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
                 if attempt >= max_retries - 1:
                     return last
                 retry_after = last.headers.get("Retry-After")
-                if retry_after and str(retry_after).isdigit():
-                    wait = int(retry_after) + 1
+                reset = last.headers.get("X-RateLimit-Reset") or last.headers.get("x-ratelimit-reset")
+                if retry_after and str(retry_after).replace(".", "", 1).isdigit():
+                    wait = float(retry_after) + 1
+                elif reset and str(reset).isdigit():
+                    wait = max(5, int(reset) - int(time.time()) + 2)
                 else:
                     wait = min(120, base_sleep * (2 ** attempt) * 2)
+                wait = min(max(wait, 2), 180)
                 print(
-                    f"   API {last.status_code} {url[:60]} — backoff {wait}s "
+                    f"   API {last.status_code} {url[:60]} — backoff {wait:.0f}s "
                     f"(attempt {attempt+1}/{max_retries})"
                 )
                 time.sleep(wait)
@@ -277,13 +399,18 @@ def write_circuit_metrics(path="circuit_metrics.json"):
     """Persist circuit + bulkhead metrics for Actions artifacts / debugging."""
     payload = {
         "circuits": circuit_status(),
-        "bulkheads": bulkhead_status() if "_bulkheads" in dir() or True else {},
+        "bulkheads": {},
+        "rate_limiters": {},
         "written_at": datetime.now(timezone.utc).isoformat(),
     }
     try:
         payload["bulkheads"] = bulkhead_status()
     except Exception:
-        payload["bulkheads"] = {}
+        pass
+    try:
+        payload["rate_limiters"] = rate_limiter_status()
+    except Exception:
+        pass
     Path(path).write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return payload
 
@@ -329,14 +456,14 @@ _bulkheads = {}
 
 # Max concurrent HTTP calls per upstream (bulkhead sizes)
 BULKHEAD_LIMITS = {
-    "anilist": 3,
+    "anilist": 1,   # degraded ~30/min — serialize
     "mal": 2,
     "kitsu": 2,
     "simkl": 2,
-    "arm": 4,
-    "jikan": 1,   # strict rate limit
-    "anizip": 2,
-    "animeapi": 2,
+    "arm": 3,
+    "jikan": 1,   # 3/sec hard limit
+    "anizip": 1,
+    "animeapi": 1,
     "github": 2,
 }
 
@@ -385,7 +512,7 @@ class BulkheadPool:
 
 # Subsystem pools — loaders / enrichment / pushes cannot steal each other's threads
 POOL_LOAD = BulkheadPool("load", max_workers=4)      # one worker per platform loader
-POOL_ENRICH = BulkheadPool("enrich", max_workers=4)  # ARM/Kitsu/AniZip fill
+POOL_ENRICH = BulkheadPool("enrich", max_workers=2)  # keep under AniList/Jikan budgets
 POOL_PUSH = BulkheadPool("push", max_workers=3)      # outbound list updates
 
 
@@ -2677,6 +2804,15 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         print(
             "   Bulkheads: "
             + ", ".join(f"{k}={v['total']}calls/{v['rejected']}rej" for k, v in _bh.items())
+        )
+    _rl = rate_limiter_status()
+    if _rl:
+        print(
+            "   RateLimits: "
+            + ", ".join(
+                f"{k}={v['total']}req/{v['waits']}waits"
+                for k, v in _rl.items()
+            )
         )
     try:
         write_circuit_metrics("circuit_metrics.json")
