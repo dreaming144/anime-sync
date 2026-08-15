@@ -1,0 +1,170 @@
+name: Prune Actions history (30 days)
+
+on:
+  schedule:
+    # Weekly Sunday 06:00 UTC
+    - cron: '0 6 * * 0'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Delete completed runs/artifacts older than this many days'
+        required: false
+        default: '30'
+      dry_run:
+        description: 'List only; do not delete'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: prune-actions
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prune old workflow runs and artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DAYS: ${{ inputs.days || '30' }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          DAYS="${DAYS:-30}"
+          DRY_RUN="${DRY_RUN:-false}"
+          echo "Repo=$REPO days=$DAYS dry_run=$DRY_RUN"
+
+          python3 << 'PY'
+          import json, os, time, urllib.error, urllib.request
+          from datetime import datetime, timezone, timedelta
+
+          TOKEN = os.environ["GH_TOKEN"]
+          REPO = os.environ["REPO"]
+          DAYS = int(os.environ.get("DAYS") or "30")
+          DRY = (os.environ.get("DRY_RUN") or "false").lower() == "true"
+          CUTOFF = datetime.now(timezone.utc) - timedelta(days=DAYS)
+          print(f"Cutoff: {CUTOFF.isoformat()} (keep newer)")
+
+          def api(method, path):
+              req = urllib.request.Request(
+                  f"https://api.github.com{path}",
+                  method=method,
+                  headers={
+                      "Authorization": f"Bearer {TOKEN}",
+                      "Accept": "application/vnd.github+json",
+                      "X-GitHub-Api-Version": "2022-11-28",
+                      "User-Agent": "anime-sync-prune",
+                  },
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as r:
+                      body = r.read()
+                      return r.status, json.loads(body) if body else {}
+              except urllib.error.HTTPError as e:
+                  return e.code, {"error": e.read().decode("utf-8", "replace")[:400]}
+
+          def list_pages(path_prefix):
+              page = 1
+              while page <= 30:
+                  sep = "&" if "?" in path_prefix else "?"
+                  status, data = api("GET", f"{path_prefix}{sep}per_page=100&page={page}")
+                  if status != 200:
+                      print(f"list error {path_prefix}: {status} {data}")
+                      return
+                  if isinstance(data, list):
+                      items = data
+                  elif "workflow_runs" in data:
+                      items = data["workflow_runs"]
+                  elif "artifacts" in data:
+                      items = data["artifacts"]
+                  else:
+                      items = []
+                  if not items:
+                      return
+                  for item in items:
+                      yield item
+                  if len(items) < 100:
+                      return
+                  page += 1
+
+          # --- Runs ---
+          del_runs = kept_runs = fail_runs = 0
+          for run in list_pages(f"/repos/{REPO}/actions/runs?status=completed"):
+              # Never delete this prune workflow's runs from the last day (safety)
+              created = datetime.fromisoformat(run["created_at"].replace("Z", "+00:00"))
+              if created >= CUTOFF:
+                  kept_runs += 1
+                  continue
+              rid = run["id"]
+              name = run.get("name") or run.get("display_title") or ""
+              if DRY:
+                  print(f"DRY run would delete {rid} {created.date()} {name[:60]}")
+                  del_runs += 1
+                  continue
+              status, resp = api("DELETE", f"/repos/{REPO}/actions/runs/{rid}")
+              if status in (204, 200):
+                  del_runs += 1
+              else:
+                  fail_runs += 1
+                  print(f"run delete fail {rid}: {status} {resp}")
+              time.sleep(0.15)
+          print(f"Runs: deleted/would_delete={del_runs} kept_recent={kept_runs} failed={fail_runs}")
+
+          # --- Artifacts ---
+          del_arts = kept_arts = fail_arts = 0
+          for art in list_pages(f"/repos/{REPO}/actions/artifacts"):
+              created = datetime.fromisoformat(art["created_at"].replace("Z", "+00:00"))
+              expired = bool(art.get("expired"))
+              if not expired and created >= CUTOFF:
+                  kept_arts += 1
+                  continue
+              aid = art["id"]
+              if DRY:
+                  print(f"DRY artifact would delete {aid} {created.date()} {art.get('name')}")
+                  del_arts += 1
+                  continue
+              status, resp = api("DELETE", f"/repos/{REPO}/actions/artifacts/{aid}")
+              if status in (204, 200):
+                  del_arts += 1
+              else:
+                  fail_arts += 1
+                  print(f"artifact delete fail {aid}: {status} {resp}")
+              time.sleep(0.12)
+          print(f"Artifacts: deleted/would_delete={del_arts} kept_recent={kept_arts} failed={fail_arts}")
+
+          # --- Per-run_id caches (optional hygiene; stable offline-v3 kept) ---
+          status, data = api("GET", f"/repos/{REPO}/actions/caches?per_page=100")
+          caches = (data.get("actions_caches") if status == 200 else None) or []
+          del_c = 0
+          for c in caches:
+              key = c.get("key") or ""
+              cid = c.get("id")
+              drop = False
+              if key.startswith("anime-sync-offline-v2-"):
+                  drop = True
+              elif key.startswith("anime-sync-state-"):
+                  drop = True
+              if key in ("anime-sync-offline-v3",) or key.startswith("setup-python"):
+                  drop = False
+              if not drop:
+                  continue
+              if DRY:
+                  print(f"DRY cache would delete {cid} {key[:70]}")
+                  del_c += 1
+                  continue
+              st, resp = api("DELETE", f"/repos/{REPO}/actions/caches/{cid}")
+              if st in (204, 200):
+                  del_c += 1
+              else:
+                  print(f"cache delete fail {cid}: {st} {resp}")
+              time.sleep(0.12)
+          print(f"Caches: deleted/would_delete={del_c} listed={len(caches)}")
+          print("DONE")
+          PY
