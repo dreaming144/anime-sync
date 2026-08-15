@@ -142,3 +142,22 @@ Only when you need clearer ownership (e.g. testing one platform in isolation) or
 ---
 
 *Bot commits use `[skip ci]` for routine sync pushes to avoid nested runs.*
+
+
+## SIMKL rewatch cleanup
+
+Inventory (and optionally remove) Pro/VIP **rewatch sessions**, keeping the canonical/oldest watch.
+
+```bash
+# Dry-run inventory (writes simkl_rewatches.json / .csv)
+SIMKL_CLIENT_ID=... SIMKL_ACCESS_TOKEN=... \
+  python scripts/simkl_rewatch_cleanup.py --type anime
+
+# Best-effort API removal of rewatch sessions only
+SIMKL_CLIENT_ID=... SIMKL_ACCESS_TOKEN=... \
+  python scripts/simkl_rewatch_cleanup.py --type anime --execute
+```
+
+Or run the **SIMKL rewatch cleanup** workflow (`workflow_dispatch`). Default is inventory-only; set `execute=true` to attempt removals.
+
+**Note:** Status sync already avoids creating new rewatches on completed titles (`push_simkl` history skip). Cleanup targets sessions that already exist.

@@ -1,0 +1,55 @@
+name: SIMKL rewatch cleanup
+
+on:
+  workflow_dispatch:
+    inputs:
+      media_type:
+        description: anime | shows | movies
+        required: true
+        default: anime
+        type: choice
+        options: [anime, shows, movies]
+      execute:
+        description: Attempt API removal (false = inventory only)
+        required: true
+        default: false
+        type: boolean
+      limit:
+        description: Max sessions to remove when execute=true (0 = all)
+        required: false
+        default: "0"
+        type: string
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install requests
+      - name: Run cleanup script
+        env:
+          SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+          SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
+        run: |
+          EXTRA=""
+          if [ "${{ inputs.execute }}" = "true" ]; then
+            EXTRA="--execute --limit ${{ inputs.limit }}"
+          fi
+          python scripts/simkl_rewatch_cleanup.py \
+            --type "${{ inputs.media_type }}" \
+            --json-out simkl_rewatches.json \
+            --csv-out simkl_rewatches.csv \
+            $EXTRA
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: simkl-rewatch-report
+          path: |
+            simkl_rewatches.json
+            simkl_rewatches.csv
+          if-no-files-found: warn
