@@ -55,29 +55,83 @@ Optional secret: `IDS_MOE_API_KEY` for ids.moe mappings.
 
 ## Next Steps
 
-Suggested follow-ups when you return to this project:
+### Done recently
+- Adaptive rate limiting (interval multiplies on 429, decays on success)
+- All HTTP via `request_with_retries` (rate limit → bulkhead → circuit → retry)
+- `--dry-run` / `--no-push`, `push_report.csv`, `job_summary.md`
+- Weekly enrich workflow; stop committing `sync_db.json` every run
+- Unit tests (`test_sync_core.py`); branch protection on `main`
+- Optional `IDS_MOE_API_KEY` / `fetch_ids_moe`
 
-### Reliability & ops
-1. **Branch protection** on `main` (require PR or restrict bot-only pushes if desired)
-2. **Alert on failure** — GitHub Actions email/Slack when the sync workflow fails
-3. **RateLimiter module** — token-bucket per API (complements breaker + bulkhead)
-4. **Prune dry-run check** — monthly manual run with `dry_run=true` to confirm 30-day cleanup
-
-### Data quality
-5. **Kitsu mapping bulkhead for western** — auto-pull TVDB from Kitsu mappings for any future non-anime entries
-6. **Override UI/workflow** — `workflow_dispatch` input to append one override without editing JSON
-7. **SIMKL coverage** — ~~optional enrichment~~ **done**: ARM sparse-retry + animeapi + SIMKL search/id
-8. **Sparse external retry** — ~~done~~: try all known sources on ARM when result lacks SIMKL/IMDb/TVDB
-9. **Alt metadata providers** — ~~animeapi.my.id integrated~~; optional later: ids.moe (needs key), notify.moe
-
-### Product / UX
-8. **Daemon mode** (roadmap) — long-running local process vs Actions-only
-9. **Conflict report** — CSV of entries where platforms disagreed and which policy won
-10. **README badge** — last workflow status shield on this file
+### Still open
+1. **Failure alerts** — email/Slack on workflow failure (Actions already has a failure step)
+2. **Override via workflow_dispatch** — append one override without editing JSON
+3. **Conflict report CSV** — where platforms disagreed and which policy won
+4. **README badge** — last workflow status shield
+5. **Daemon mode** — long-running local process (later)
 
 ### Not planned near-term
-- Resilience4j (Java-only; Python stack already covers breaker/bulkhead/retry)
+- Full async rewrite (`httpx`/`aiohttp`) — rate limits dominate; stay on `requests` + thread pools
+- Resilience4j (Java-only)
 - Fake MAL/AniList IDs for western cartoons
+
+---
+
+## Modularization roadmap
+
+`universal_anime_sync_github.py` is ~3k lines. Split is optional and should be **incremental** so Actions keeps working.
+
+### Target layout
+
+```text
+anime_sync/
+  __init__.py
+  config.py          # CONFIG, paths, env
+  http/
+    client.py        # request_with_retries
+    rate_limit.py    # RateLimiter (adaptive)
+    circuit.py       # CircuitBreaker
+    bulkhead.py      # Bulkhead + pools
+  storage.py         # SQLite load/save, ensure_loaded
+  ids.py             # normalize_ids, get_canonical_key, dedupe
+  enrich/
+    offline.py       # Fribb, Manami
+    arm.py           # ARM v2 + sparse retry
+    providers.py     # AniZip, Kitsu mappings, animeapi, ids.moe
+  platforms/
+    anilist.py       # load + push
+    mal.py
+    kitsu.py
+    simkl.py
+  sync.py            # run_once, conflict policy
+  export.py          # CSV, unmatched, push_report, job_summary
+  cli.py             # argparse entry
+main.py              # thin: from anime_sync.cli import main
+```
+
+### Phased plan
+
+| Phase | Scope | Risk | Exit criteria |
+|-------|--------|------|----------------|
+| **0** | Keep monolith; tests green | None | Current state |
+| **1** | Extract `http/` (rate limit, circuit, bulkhead, `request_with_retries`) | Low | All HTTP still works; unit tests import from package |
+| **2** | Extract `storage.py` + `ids.py` | Low | DB load/save + dedupe unchanged |
+| **3** | Extract `enrich/` offline + ARM | Medium | Offline fill + ARM parity |
+| **4** | Extract `platforms/*` loaders/pushers | Medium | Load/push parity; dry-run OK |
+| **5** | Extract `sync.py` + `export.py` + `cli.py` | Medium | Actions entrypoint = `python -m anime_sync` or `main.py` |
+| **6** | Delete monolith shim after one green weekly enrich + two scheduled syncs | Low | Deprecate single-file path |
+
+### Rules while splitting
+
+1. **One phase per PR/commit**; keep a thin `universal_anime_sync_github.py` that re-exports until Actions switches.
+2. **No behavior change** in a pure extract commit (move code only).
+3. Keep **global `db` / `id_cache`** behind storage helpers before introducing explicit context objects.
+4. Preserve **env-based secrets** and workflow CLI flags (`--dry-run`, `--no-json-backup`, etc.).
+5. Run `python -m unittest test_sync_core.py` and a local `--dry-run --export-csv` after each phase.
+
+### When to start
+
+Only when you need clearer ownership (e.g. testing one platform in isolation) or the file becomes painful to review. Until then Phase 0 is intentional.
 
 ---
 
