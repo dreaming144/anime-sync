@@ -32,34 +32,193 @@ OVERRIDES_PATH = Path("manual_overrides.json")
 
 
 
-def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, **kwargs):
-    """HTTP helper with exponential backoff on 429/503 and Retry-After support.
+class CircuitBreaker:
+    """Per-service circuit breaker: CLOSED → OPEN → HALF_OPEN → CLOSED.
+
+    OPEN after `failure_threshold` consecutive failures; stays open for
+    `recovery_timeout` seconds, then allows a trial request (HALF_OPEN).
+    """
+
+    CLOSED = "closed"
+    OPEN = "open"
+    HALF_OPEN = "half_open"
+
+    def __init__(self, name, failure_threshold=5, recovery_timeout=60.0, half_open_max=2):
+        self.name = name
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.half_open_max = half_open_max
+        self.state = self.CLOSED
+        self.failures = 0
+        self.successes = 0
+        self.opened_at = 0.0
+        self.half_open_trials = 0
+
+    def allow(self):
+        if self.state == self.CLOSED:
+            return True
+        if self.state == self.OPEN:
+            if time.time() - self.opened_at >= self.recovery_timeout:
+                self.state = self.HALF_OPEN
+                self.half_open_trials = 0
+                print(f"   circuit {self.name}: OPEN → HALF_OPEN (trial)")
+                return True
+            return False
+        # HALF_OPEN
+        if self.half_open_trials < self.half_open_max:
+            self.half_open_trials += 1
+            return True
+        return False
+
+    def record_success(self):
+        if self.state == self.HALF_OPEN:
+            self.successes += 1
+            self.state = self.CLOSED
+            self.failures = 0
+            self.successes = 0
+            print(f"   circuit {self.name}: HALF_OPEN → CLOSED (recovered)")
+            return
+        self.failures = 0
+
+    def record_failure(self):
+        self.failures += 1
+        if self.state == self.HALF_OPEN:
+            self.state = self.OPEN
+            self.opened_at = time.time()
+            print(f"   circuit {self.name}: HALF_OPEN → OPEN (trial failed)")
+            return
+        if self.failures >= self.failure_threshold and self.state != self.OPEN:
+            self.state = self.OPEN
+            self.opened_at = time.time()
+            print(
+                f"   circuit {self.name}: CLOSED → OPEN "
+                f"after {self.failures} failures (pause {self.recovery_timeout:.0f}s)"
+            )
+
+
+class CircuitOpenError(RuntimeError):
+    """Raised when a circuit breaker is OPEN and requests are short-circuited."""
+
+
+_circuit_breakers = {}
+
+
+def _service_key(url):
+    try:
+        from urllib.parse import urlparse
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return "unknown"
+    if "anilist" in host:
+        return "anilist"
+    if "myanimelist" in host:
+        return "mal"
+    if "kitsu" in host:
+        return "kitsu"
+    if "simkl" in host:
+        return "simkl"
+    if "yuna.moe" in host or "haglund" in host:
+        return "arm"
+    if "jikan" in host:
+        return "jikan"
+    if "anizip" in host:
+        return "anizip"
+    if "github" in host:
+        return "github"
+    return host or "unknown"
+
+
+def get_circuit(url, failure_threshold=5, recovery_timeout=60.0):
+    key = _service_key(url)
+    # Service-specific defaults
+    defaults = {
+        "anilist": (5, 90.0),
+        "jikan": (3, 120.0),
+        "mal": (5, 60.0),
+        "kitsu": (5, 60.0),
+        "arm": (5, 45.0),
+        "simkl": (5, 60.0),
+    }
+    ft, rt = defaults.get(key, (failure_threshold, recovery_timeout))
+    if key not in _circuit_breakers:
+        _circuit_breakers[key] = CircuitBreaker(key, failure_threshold=ft, recovery_timeout=rt)
+    return _circuit_breakers[key]
+
+
+def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, **kwargs):
+    """HTTP helper with circuit breaker + exponential backoff on 429/503.
 
     kwargs passed to requests.request (headers, json, data, params, timeout, ...).
     Returns the final Response (may still be non-OK after retries exhausted).
+    Raises CircuitOpenError if the service circuit is OPEN.
     """
     timeout = kwargs.pop("timeout", 30)
+    breaker = get_circuit(url) if use_circuit else None
+    if breaker and not breaker.allow():
+        raise CircuitOpenError(
+            f"circuit open for {_service_key(url)} "
+            f"(retry after {breaker.recovery_timeout:.0f}s)"
+        )
+
     last = None
     for attempt in range(max_retries):
         try:
             last = requests.request(method, url, timeout=timeout, **kwargs)
         except requests.RequestException as e:
+            if breaker:
+                breaker.record_failure()
             if attempt >= max_retries - 1:
                 raise
             wait = base_sleep * (2 ** attempt)
             print(f"   network error {e}; retry in {wait:.1f}s")
             time.sleep(wait)
             continue
-        if last.status_code not in (429, 503):
+
+        # Hard auth errors — don't trip breaker into long open, but count as failure once
+        if last.status_code in (401, 404):
+            if breaker:
+                breaker.record_success()  # service is up; request was validly rejected
             return last
-        retry_after = last.headers.get("Retry-After")
-        if retry_after and str(retry_after).isdigit():
-            wait = int(retry_after) + 1
-        else:
-            wait = min(120, base_sleep * (2 ** attempt) * 2)
-        print(f"   API {last.status_code} {url[:60]} — backoff {wait}s (attempt {attempt+1}/{max_retries})")
-        time.sleep(wait)
+
+        if last.status_code in (429, 503, 502, 500):
+            if breaker:
+                breaker.record_failure()
+            if attempt >= max_retries - 1:
+                return last
+            retry_after = last.headers.get("Retry-After")
+            if retry_after and str(retry_after).isdigit():
+                wait = int(retry_after) + 1
+            else:
+                wait = min(120, base_sleep * (2 ** attempt) * 2)
+            print(
+                f"   API {last.status_code} {url[:60]} — backoff {wait}s "
+                f"(attempt {attempt+1}/{max_retries})"
+            )
+            time.sleep(wait)
+            continue
+
+        if last.ok or last.status_code < 500:
+            if breaker:
+                breaker.record_success()
+            return last
+
+        if breaker:
+            breaker.record_failure()
+        return last
+
     return last
+
+
+def circuit_status():
+    """Return a snapshot of all circuit breaker states (for logging)."""
+    return {
+        name: {
+            "state": b.state,
+            "failures": b.failures,
+            "opened_at": b.opened_at,
+        }
+        for name, b in _circuit_breakers.items()
+    }
 
 
 def _init_sqlite(conn):
@@ -1038,7 +1197,10 @@ def load_simkl():
         print("-> SIMKL skipped (no secrets)"); return []
     print("-> Fetching SIMKL...")
     headers = {"Authorization": f"Bearer {token}", "simkl-api-key": client_id}
-    r = requests.get(f"https://api.simkl.com/sync/all-items/anime?client_id={client_id}", headers=headers, timeout=30)
+    try:
+        r = request_with_retries("GET", f"https://api.simkl.com/sync/all-items/anime?client_id={client_id}", headers=headers, timeout=30)
+    except CircuitOpenError as e:
+        print(f"-> SIMKL skipped: {e}"); return []
     if not r.ok: 
         print(f"   SIMKL error {r.status_code}"); return []
     data = r.json()
@@ -1187,7 +1349,10 @@ def load_mal():
     items = []
     page = 1
     while url:
-        r = requests.get(url, headers=headers, timeout=30)
+        try:
+            r = request_with_retries("GET", url, headers=headers, timeout=30)
+        except CircuitOpenError as e:
+            print(f"   MAL skipped: {e}"); break
         if not r.ok:
             print(f"   MAL error page {page}: {r.text[:300]}")
             break
@@ -1233,7 +1398,10 @@ def load_kitsu():
         page=1
         while url:
             print(f"   Kitsu page {page} fetching...")
-            r = requests.get(url, timeout=30)
+            try:
+                r = request_with_retries("GET", url, timeout=30)
+            except CircuitOpenError as e:
+                print(f"   Kitsu skipped: {e}"); break
             if not r.ok:
                 print(f"   Kitsu page {page} error {r.status_code}: {r.text[:200]}")
                 break
