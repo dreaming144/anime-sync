@@ -8,7 +8,7 @@ import requests
 
 from .bulkhead import bulkhead_status, get_bulkhead
 from .circuit import CircuitOpenError, circuit_status, get_circuit, save_circuit_state, ensure_circuits_loaded
-from .rate_limit import get_rate_limiter, rate_limiter_status
+from .rate_limit import compute_backoff, get_rate_limiter, parse_retry_after, rate_limiter_status
 from .util import service_key as _service_key
 
 def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, use_rate_limit=True, **kwargs):
@@ -67,28 +67,34 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
             if last.status_code in (429, 503, 502, 500):
                 if breaker:
                     breaker.record_failure(error=f"HTTP {last.status_code}")
-                retry_after = last.headers.get("Retry-After")
+                retry_hdr = last.headers.get("Retry-After") or last.headers.get("retry-after")
+                retry_s = parse_retry_after(retry_hdr) if last.status_code == 429 else 0.0
                 if limiter:
                     try:
-                        limiter.record_throttle(
+                        # Adjust adaptive spacing; sleep is done below once
+                        suggested = limiter.record_throttle(
                             last.status_code,
-                            retry_after if last.status_code == 429 else None,
+                            retry_hdr if last.status_code == 429 else None,
                         )
+                        if suggested and suggested > retry_s:
+                            retry_s = suggested
                     except Exception:
                         pass
                 if attempt >= max_retries - 1:
                     return last
                 reset = last.headers.get("X-RateLimit-Reset") or last.headers.get("x-ratelimit-reset")
-                if retry_after and str(retry_after).replace(".", "", 1).isdigit():
-                    wait = float(retry_after) + 1
-                elif reset and str(reset).isdigit():
-                    wait = max(5, int(reset) - int(time.time()) + 2)
-                else:
-                    wait = min(120, base_sleep * (2 ** attempt) * 2)
-                wait = min(max(wait, 2), 180)
+                reset_epoch = int(reset) if reset and str(reset).isdigit() else None
+                wait = compute_backoff(
+                    attempt,
+                    base_sleep=base_sleep,
+                    retry_after=retry_s,
+                    reset_epoch=reset_epoch,
+                    status_code=last.status_code,
+                )
                 print(
-                    f"   API {last.status_code} {url[:60]} — backoff {wait:.0f}s "
-                    f"(attempt {attempt+1}/{max_retries})"
+                    f"   API {last.status_code} {url[:60]} — adaptive backoff {wait:.1f}s "
+                    f"(attempt {attempt+1}/{max_retries}"
+                    f"{'; retry-after=' + str(retry_hdr) if retry_hdr else ''})"
                 )
                 time.sleep(wait)
                 continue

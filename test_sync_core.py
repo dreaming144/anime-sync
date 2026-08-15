@@ -109,5 +109,37 @@ class TestFormatError(unittest.TestCase):
         self.assertIn("hint=retry-later", s)
 
 
+
+class TestAdaptiveBackoff(unittest.TestCase):
+    def test_parse_retry_after_seconds(self):
+        from anime_sync.http.rate_limit import parse_retry_after
+        self.assertAlmostEqual(parse_retry_after("12"), 12.0)
+        self.assertAlmostEqual(parse_retry_after("3.5"), 3.5)
+        self.assertEqual(parse_retry_after(None), 0.0)
+        self.assertEqual(parse_retry_after("not-a-date"), 0.0)
+
+    def test_compute_backoff_respects_retry_after(self):
+        from anime_sync.http.rate_limit import compute_backoff
+        w = compute_backoff(0, retry_after=10.0, min_wait=1.0, max_wait=60.0)
+        self.assertGreaterEqual(w, 10.0)
+        self.assertLessEqual(w, 12.0)
+
+    def test_throttle_raises_interval(self):
+        from anime_sync.http.rate_limit import RateLimiter
+        rl = RateLimiter("t", min_interval=0.2, per_minute=100, max_interval=8.0)
+        rl.record_throttle(429, retry_after=None)
+        self.assertGreaterEqual(rl.min_interval, 0.39)
+        rl.record_throttle(429)
+        self.assertGreater(rl.min_interval, 0.39)
+        self.assertEqual(rl.consecutive_throttles, 2)
+
+    def test_success_resets_consecutive(self):
+        from anime_sync.http.rate_limit import RateLimiter
+        rl = RateLimiter("t", min_interval=0.2, max_interval=8.0)
+        rl.record_throttle(429)
+        rl.record_success()
+        self.assertEqual(rl.consecutive_throttles, 0)
+
+
 if __name__ == "__main__":
     unittest.main()

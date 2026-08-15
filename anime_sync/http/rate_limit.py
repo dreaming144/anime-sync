@@ -1,25 +1,30 @@
-"""Adaptive per-service rate limiting."""
+"""Adaptive per-service rate limiting with 429 feedback."""
+from __future__ import annotations
+
+import random
 import threading
 import time
+from email.utils import parsedate_to_datetime
 
 from .util import service_key as _service_key
+
 
 class RateLimiter:
     """Adaptive rate limiter: base spacing + per-minute budget, adjusts on feedback.
 
     - Starts at base min_interval / per_minute
-    - On 429/503: multiplies current interval (up to max_interval)
-    - On sustained success: slowly decays interval toward base
-    - Honors X-RateLimit-* headers when present
+    - On 429/503: multiplies interval (exponential, capped); tracks consecutive throttles
+    - On sustained success: decays interval toward base
+    - Honors X-RateLimit-* and Retry-After when present
     """
 
     def __init__(self, name, min_interval=0.0, per_minute=None, max_interval=None):
         self.name = name
         self.base_interval = float(min_interval)
-        self.min_interval = float(min_interval)  # current adaptive interval
+        self.min_interval = float(min_interval)
         self.per_minute = int(per_minute) if per_minute else None
         self.base_per_minute = self.per_minute
-        self.max_interval = float(max_interval) if max_interval else max(self.base_interval * 8, 8.0)
+        self.max_interval = float(max_interval) if max_interval else max(self.base_interval * 16, 30.0)
         self._lock = threading.Lock()
         self._last = 0.0
         self._window_start = 0.0
@@ -29,6 +34,9 @@ class RateLimiter:
         self.success_streak = 0
         self.throttle_events = 0
         self.recover_events = 0
+        self.consecutive_throttles = 0
+        self.last_throttle_at = 0.0
+        self.last_retry_after = 0.0
 
     def acquire(self):
         with self._lock:
@@ -54,25 +62,21 @@ class RateLimiter:
             self.total += 1
 
     def record_success(self):
-        """Call after a healthy 2xx/4xx-client response; gradually speed up."""
+        """Call after a healthy response; gradually speed up."""
         with self._lock:
             self.success_streak += 1
-            # Every 8 successes, ease interval 15% toward base
+            self.consecutive_throttles = 0
             if self.success_streak >= 8 and self.min_interval > self.base_interval + 0.01:
                 old = self.min_interval
-                self.min_interval = max(
-                    self.base_interval,
-                    self.min_interval * 0.85,
-                )
+                self.min_interval = max(self.base_interval, self.min_interval * 0.85)
                 if self.base_per_minute:
-                    # restore budget slowly
                     self.per_minute = min(
                         self.base_per_minute,
-                        int((self.per_minute or self.base_per_minute) * 1.1) or self.base_per_minute,
+                        int((self.per_minute or self.base_per_minute) * 1.1)
+                        or self.base_per_minute,
                     )
                 self.success_streak = 0
                 self.recover_events += 1
-                # Log at most every other recover to reduce noise
                 if old - self.min_interval > 0.05 and self.recover_events % 2 == 1:
                     print(
                         f"   rate {self.name}: recover interval "
@@ -80,31 +84,39 @@ class RateLimiter:
                     )
 
     def record_throttle(self, status_code=429, retry_after=None):
-        """Call on 429/503 — back off hard."""
+        """Call on 429/503 — raise spacing; does NOT sleep (caller backs off).
+
+        Returns suggested wait seconds (0 if none from Retry-After).
+        """
+        extra = parse_retry_after(retry_after)
         with self._lock:
             self.success_streak = 0
             self.throttle_events += 1
+            self.consecutive_throttles += 1
+            self.last_throttle_at = time.time()
+            self.last_retry_after = extra
             old = self.min_interval
-            factor = 2.0 if status_code == 429 else 1.5
-            self.min_interval = min(self.max_interval, max(self.base_interval, self.min_interval * factor))
+            # Stronger multiplier on consecutive 429s
+            if status_code == 429:
+                factor = min(4.0, 2.0 * (1.25 ** (self.consecutive_throttles - 1)))
+            else:
+                factor = 1.5
+            self.min_interval = min(
+                self.max_interval,
+                max(self.base_interval, self.min_interval * factor),
+            )
             if self.per_minute and self.base_per_minute:
                 self.per_minute = max(5, int(self.per_minute * 0.5))
-            extra = 0.0
-            if retry_after is not None:
-                try:
-                    extra = float(retry_after)
-                except (TypeError, ValueError):
-                    extra = 0.0
             print(
                 f"   rate {self.name}: throttle ({status_code}) "
+                f"#{self.consecutive_throttles} "
                 f"interval {old:.2f}s → {self.min_interval:.2f}s"
-                + (f" +wait {extra:.0f}s" if extra else "")
+                + (f" retry-after={extra:.0f}s" if extra else "")
             )
-            if extra > 0:
-                time.sleep(min(extra, 120))
+        return extra
 
     def note_headers(self, headers):
-        """Slow down if upstream reports low remaining quota (AniList etc.)."""
+        """Slow down if upstream reports low remaining quota."""
         if not headers:
             return
         remaining = headers.get("X-RateLimit-Remaining") or headers.get("x-ratelimit-remaining")
@@ -114,12 +126,11 @@ class RateLimiter:
                 rem = int(remaining)
                 if rem <= 2:
                     reset = headers.get("X-RateLimit-Reset") or headers.get("x-ratelimit-reset")
+                    wait = 15.0
                     if reset and str(reset).isdigit():
-                        wait = max(1, int(reset) - int(time.time()) + 1)
-                        wait = min(wait, 90)
-                    else:
-                        wait = 15
-                    print(f"   rate {self.name}: remaining={rem}; pause {wait}s")
+                        wait = max(1.0, float(int(reset) - int(time.time()) + 1))
+                        wait = min(wait, 90.0)
+                    print(f"   rate {self.name}: remaining={rem}; pause {wait:.0f}s")
                     with self._lock:
                         self.min_interval = min(
                             self.max_interval,
@@ -138,21 +149,79 @@ class RateLimiter:
         except (TypeError, ValueError):
             pass
 
+    def metrics(self):
+        return {
+            "min_interval": round(self.min_interval, 3),
+            "base_interval": self.base_interval,
+            "max_interval": self.max_interval,
+            "per_minute": self.per_minute,
+            "total": self.total,
+            "waits": self.waits,
+            "throttle_events": self.throttle_events,
+            "recover_events": self.recover_events,
+            "consecutive_throttles": self.consecutive_throttles,
+            "success_streak": self.success_streak,
+        }
+
+
+def parse_retry_after(value) -> float:
+    """Parse Retry-After as seconds (int/float) or HTTP-date. Returns 0 if unknown."""
+    if value is None or value is False:
+        return 0.0
+    s = str(value).strip()
+    if not s:
+        return 0.0
+    try:
+        return max(0.0, float(s))
+    except ValueError:
+        pass
+    try:
+        dt = parsedate_to_datetime(s)
+        if dt is not None:
+            return max(0.0, dt.timestamp() - time.time())
+    except (TypeError, ValueError, OverflowError):
+        pass
+    return 0.0
+
+
+def compute_backoff(
+    attempt: int,
+    *,
+    base_sleep: float = 1.0,
+    retry_after: float = 0.0,
+    reset_epoch: int | None = None,
+    status_code: int = 429,
+    max_wait: float = 180.0,
+    min_wait: float = 2.0,
+) -> float:
+    """Adaptive wait for 429/5xx: prefer Retry-After, else exp backoff + full jitter.
+
+    full jitter: random.uniform(0, min(cap, base * 2^attempt))
+    """
+    if retry_after > 0:
+        return min(max(retry_after + random.uniform(0.1, 1.0), min_wait), max_wait)
+    if reset_epoch is not None:
+        try:
+            until = float(reset_epoch) - time.time() + 1.0
+            if until > 0:
+                return min(max(until, min_wait), max_wait)
+        except (TypeError, ValueError):
+            pass
+    # Exponential with full jitter (AWS-style)
+    cap = min(max_wait, base_sleep * (2 ** attempt) * (2.0 if status_code == 429 else 1.5))
+    wait = random.uniform(min_wait, max(min_wait, cap))
+    return min(wait, max_wait)
+
 
 _rate_limiters = {}
 
 # Conservative published / observed limits (Aug 2026)
-# AniList: docs say 90/min, currently degraded to ~30/min — use 25/min + 2s spacing
-# Jikan: 3/sec, 60/min → 0.4s min interval
-# MAL official: no strict public number; be polite ~1.5/s
-# Kitsu: undocumented; ~2/s safe
-# SIMKL: community defaults ~10 GET/s, 1 write/s — we use 0.15s GET spacing
-# ARM / animeapi / anizip: polite public scrapers
 RATE_LIMITS = {
-    "anilist": {"min_interval": 2.1, "per_minute": 25},   # degraded AniList
+    "anilist": {"min_interval": 2.1, "per_minute": 25},
     "jikan": {"min_interval": 0.4, "per_minute": 55},
     "mal": {"min_interval": 0.35, "per_minute": 90},
     "kitsu": {"min_interval": 0.5, "per_minute": 60},
+    # SIMKL: community ~10 GET/s, 1 write/s — stay conservative
     "simkl": {"min_interval": 0.2, "per_minute": 120},
     "arm": {"min_interval": 0.12, "per_minute": 200},
     "animeapi": {"min_interval": 0.25, "per_minute": 100},
@@ -179,8 +248,12 @@ def rate_limiter_status():
             "per_minute": r.per_minute,
             "throttle_events": r.throttle_events,
             "recover_events": r.recover_events,
+            "consecutive_throttles": r.consecutive_throttles,
         }
         for name, r in _rate_limiters.items()
     }
 
 
+def reset_rate_limiters():
+    """Tests only."""
+    _rate_limiters.clear()

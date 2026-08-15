@@ -23,8 +23,11 @@ from .client import request_with_retries, write_circuit_metrics
 from .rate_limit import (
     RATE_LIMITS,
     RateLimiter,
+    compute_backoff,
     get_rate_limiter,
+    parse_retry_after,
     rate_limiter_status,
+    reset_rate_limiters,
 )
 from .util import _service_key, service_key
 
@@ -50,6 +53,9 @@ __all__ = [
     "load_circuit_state",
     "get_rate_limiter",
     "rate_limiter_status",
+    "reset_rate_limiters",
+    "parse_retry_after",
+    "compute_backoff",
     "request_with_retries",
     "service_key",
     "write_circuit_metrics",
