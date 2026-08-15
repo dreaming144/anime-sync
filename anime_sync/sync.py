@@ -123,16 +123,20 @@ def format_error(exc, *, response=None, limit=240) -> str:
         except Exception:
             pass
 
-    # Circuit / timeout hints
-    low = msg.lower()
-    if "circuit open" in low:
+    # Circuit / timeout / auth hints (scan message + status + body)
+    blob = " ".join(parts).lower()
+    if "circuit open" in blob:
         parts.append("hint=wait-for-circuit-recovery")
-    elif "429" in low or "rate" in low:
+    elif "429" in blob or "rate limit" in blob or "rate_limit" in blob:
         parts.append("hint=rate-limited")
-    elif "timeout" in low:
+    elif "timeout" in blob or "timed out" in blob:
         parts.append("hint=retry-later")
-    elif "401" in low or "unauthorized" in low:
+    elif "401" in blob or "403" in blob or "unauthorized" in blob or "forbidden" in blob:
         parts.append("hint=check-token")
+    elif "404" in blob or "not found" in blob:
+        parts.append("hint=missing-id-or-entry")
+    elif "500" in blob or "502" in blob or "503" in blob:
+        parts.append("hint=upstream-outage")
 
     detail = " | ".join(parts)
     return detail[:limit]
