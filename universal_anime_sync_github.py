@@ -145,12 +145,13 @@ def get_circuit(url, failure_threshold=5, recovery_timeout=60.0):
     return _circuit_breakers[key]
 
 
-def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, **kwargs):
-    """HTTP helper with circuit breaker + exponential backoff on 429/503.
+def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, **kwargs):
+    """HTTP helper with bulkhead isolation + circuit breaker + 429/503 backoff.
 
     kwargs passed to requests.request (headers, json, data, params, timeout, ...).
     Returns the final Response (may still be non-OK after retries exhausted).
     Raises CircuitOpenError if the service circuit is OPEN.
+    Raises TimeoutError if the bulkhead cannot acquire a slot.
     """
     timeout = kwargs.pop("timeout", 30)
     breaker = get_circuit(url) if use_circuit else None
@@ -160,53 +161,59 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
             f"(retry after {breaker.recovery_timeout:.0f}s)"
         )
 
-    last = None
-    for attempt in range(max_retries):
-        try:
-            last = requests.request(method, url, timeout=timeout, **kwargs)
-        except requests.RequestException as e:
-            if breaker:
-                breaker.record_failure()
-            if attempt >= max_retries - 1:
-                raise
-            wait = base_sleep * (2 ** attempt)
-            print(f"   network error {e}; retry in {wait:.1f}s")
-            time.sleep(wait)
-            continue
+    bulkhead_ctx = get_bulkhead(url) if use_bulkhead else None
 
-        # Hard auth errors — don't trip breaker into long open, but count as failure once
-        if last.status_code in (401, 404):
-            if breaker:
-                breaker.record_success()  # service is up; request was validly rejected
-            return last
+    def _run():
+        last = None
+        for attempt in range(max_retries):
+            try:
+                last = requests.request(method, url, timeout=timeout, **kwargs)
+            except requests.RequestException as e:
+                if breaker:
+                    breaker.record_failure()
+                if attempt >= max_retries - 1:
+                    raise
+                wait = base_sleep * (2 ** attempt)
+                print(f"   network error {e}; retry in {wait:.1f}s")
+                time.sleep(wait)
+                continue
 
-        if last.status_code in (429, 503, 502, 500):
-            if breaker:
-                breaker.record_failure()
-            if attempt >= max_retries - 1:
+            if last.status_code in (401, 404):
+                if breaker:
+                    breaker.record_success()
                 return last
-            retry_after = last.headers.get("Retry-After")
-            if retry_after and str(retry_after).isdigit():
-                wait = int(retry_after) + 1
-            else:
-                wait = min(120, base_sleep * (2 ** attempt) * 2)
-            print(
-                f"   API {last.status_code} {url[:60]} — backoff {wait}s "
-                f"(attempt {attempt+1}/{max_retries})"
-            )
-            time.sleep(wait)
-            continue
 
-        if last.ok or last.status_code < 500:
+            if last.status_code in (429, 503, 502, 500):
+                if breaker:
+                    breaker.record_failure()
+                if attempt >= max_retries - 1:
+                    return last
+                retry_after = last.headers.get("Retry-After")
+                if retry_after and str(retry_after).isdigit():
+                    wait = int(retry_after) + 1
+                else:
+                    wait = min(120, base_sleep * (2 ** attempt) * 2)
+                print(
+                    f"   API {last.status_code} {url[:60]} — backoff {wait}s "
+                    f"(attempt {attempt+1}/{max_retries})"
+                )
+                time.sleep(wait)
+                continue
+
+            if last.ok or last.status_code < 500:
+                if breaker:
+                    breaker.record_success()
+                return last
+
             if breaker:
-                breaker.record_success()
+                breaker.record_failure()
             return last
-
-        if breaker:
-            breaker.record_failure()
         return last
 
-    return last
+    if bulkhead_ctx is not None:
+        with bulkhead_ctx:
+            return _run()
+    return _run()
 
 
 def circuit_status():
@@ -219,6 +226,108 @@ def circuit_status():
         }
         for name, b in _circuit_breakers.items()
     }
+
+
+class Bulkhead:
+    """Limit concurrent in-flight calls per service (resource isolation).
+
+    Prevents one slow/failing API from consuming all worker threads.
+    """
+
+    def __init__(self, name, max_concurrent=3, acquire_timeout=30.0):
+        self.name = name
+        self.max_concurrent = max_concurrent
+        self.acquire_timeout = acquire_timeout
+        self._sem = __import__("threading").Semaphore(max_concurrent)
+        self.in_flight = 0
+        self.rejected = 0
+        self.total = 0
+        self._lock = __import__("threading").Lock()
+
+    def __enter__(self):
+        ok = self._sem.acquire(timeout=self.acquire_timeout)
+        if not ok:
+            with self._lock:
+                self.rejected += 1
+            raise TimeoutError(
+                f"bulkhead {self.name}: no slot within {self.acquire_timeout:.0f}s "
+                f"(max_concurrent={self.max_concurrent})"
+            )
+        with self._lock:
+            self.in_flight += 1
+            self.total += 1
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        with self._lock:
+            self.in_flight = max(0, self.in_flight - 1)
+        self._sem.release()
+        return False
+
+
+_bulkheads = {}
+
+# Max concurrent HTTP calls per upstream (bulkhead sizes)
+BULKHEAD_LIMITS = {
+    "anilist": 3,
+    "mal": 2,
+    "kitsu": 2,
+    "simkl": 2,
+    "arm": 4,
+    "jikan": 1,   # strict rate limit
+    "anizip": 2,
+    "github": 2,
+}
+
+
+def get_bulkhead(url):
+    key = _service_key(url)
+    if key not in _bulkheads:
+        limit = BULKHEAD_LIMITS.get(key, 3)
+        _bulkheads[key] = Bulkhead(key, max_concurrent=limit)
+    return _bulkheads[key]
+
+
+def bulkhead_status():
+    return {
+        name: {
+            "max": b.max_concurrent,
+            "in_flight": b.in_flight,
+            "total": b.total,
+            "rejected": b.rejected,
+        }
+        for name, b in _bulkheads.items()
+    }
+
+
+class BulkheadPool:
+    """Named thread-pool bulkhead for isolating whole subsystems (load vs enrich vs push)."""
+
+    def __init__(self, name, max_workers):
+        self.name = name
+        self.max_workers = max_workers
+        self._executor = None
+
+    def executor(self):
+        if self._executor is None:
+            self._executor = ThreadPoolExecutor(
+                max_workers=self.max_workers,
+                thread_name_prefix=f"bh-{self.name}",
+            )
+        return self._executor
+
+    def shutdown(self, wait=True):
+        if self._executor is not None:
+            self._executor.shutdown(wait=wait)
+            self._executor = None
+
+
+# Subsystem pools — loaders / enrichment / pushes cannot steal each other's threads
+POOL_LOAD = BulkheadPool("load", max_workers=4)      # one worker per platform loader
+POOL_ENRICH = BulkheadPool("enrich", max_workers=4)  # ARM/Kitsu/AniZip fill
+POOL_PUSH = BulkheadPool("push", max_workers=3)      # outbound list updates
+
+
 
 
 def _init_sqlite(conn):
@@ -1037,12 +1146,12 @@ def enrich_ids_batch(items_needing_enrich, max_workers=4):
             print(f"   Enrich error for {item.get('ids')}: {e}")
             return idx, item["ids"]
 
-    with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        futures = [pool.submit(_work, (i, it)) for i, it in enumerate(items_needing_enrich)]
-        for fut in as_completed(futures):
-            idx, enriched = fut.result()
-            results[idx] = enriched
-            time.sleep(0.05)
+    pool = POOL_ENRICH.executor()
+    futures = [pool.submit(_work, (i, it)) for i, it in enumerate(items_needing_enrich)]
+    for fut in as_completed(futures):
+        idx, enriched = fut.result()
+        results[idx] = enriched
+        time.sleep(0.05)
 
     return results
 
@@ -2083,9 +2192,20 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     apply_offline_ids_to_db()
     apply_offline_titles_to_db()
     all_items=[]
-    for loader in [load_anilist, load_simkl, load_mal, load_kitsu]:
-        try: all_items.extend(loader())
-        except Exception as e: print(f"Loader {loader.__name__} failed: {e}")
+    # Bulkhead: each platform loader runs in the isolated load pool
+    load_pool = POOL_LOAD.executor()
+    loader_futs = {
+        load_pool.submit(loader): loader.__name__
+        for loader in (load_anilist, load_simkl, load_mal, load_kitsu)
+    }
+    for fut in as_completed(loader_futs):
+        name = loader_futs[fut]
+        try:
+            items = fut.result()
+            all_items.extend(items or [])
+            print(f"   loader {name}: {len(items or [])} items")
+        except Exception as e:
+            print(f"Loader {name} failed: {e}")
 
     changes=0
     enriched_count=0
@@ -2208,6 +2328,15 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     manual_count = sum(1 for e in db["entries"].values() if e["ids"].get("_source") == "manual_override")
     
     print(f"Done. {len(all_items)} total fetched, {len(db['entries'])} unique shows, {changes} pushes.")
+    _cs = circuit_status()
+    if _cs:
+        print("   Circuits: " + ", ".join(f"{k}={v['state']}" for k, v in _cs.items()))
+    _bh = bulkhead_status()
+    if _bh:
+        print(
+            "   Bulkheads: "
+            + ", ".join(f"{k}={v['total']}calls/{v['rejected']}rej" for k, v in _bh.items())
+        )
     print(f"ID Coverage: MAL:{mal_count} AniList:{anilist_count} Kitsu:{kitsu_count} AniDB:{anidb_count} IMDB:{imdb_count} (manual overrides: {manual_count})")
 
     if export_csv_flag:
