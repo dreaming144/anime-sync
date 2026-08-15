@@ -22,9 +22,14 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
     timeout = kwargs.pop("timeout", 30)
     breaker = get_circuit(url) if use_circuit else None
     if breaker and not breaker.allow():
+        remaining = 0.0
+        if breaker.opened_at:
+            remaining = max(0.0, breaker.recovery_timeout - (time.time() - breaker.opened_at))
+        err_bit = f"; last_error={breaker.last_error[:80]!r}" if breaker.last_error else ""
         raise CircuitOpenError(
             f"circuit open for {_service_key(url)} "
-            f"(retry after {breaker.recovery_timeout:.0f}s)"
+            f"(retry after {remaining:.0f}s; cooldown={breaker.recovery_timeout:.0f}s{err_bit})",
+            circuit=breaker,
         )
 
     limiter = get_rate_limiter(url) if use_rate_limit else None
@@ -39,7 +44,7 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
                 last = requests.request(method, url, timeout=timeout, **kwargs)
             except requests.RequestException as e:
                 if breaker:
-                    breaker.record_failure()
+                    breaker.record_failure(error=str(e))
                 if attempt >= max_retries - 1:
                     raise
                 wait = base_sleep * (2 ** attempt)
@@ -60,7 +65,7 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
 
             if last.status_code in (429, 503, 502, 500):
                 if breaker:
-                    breaker.record_failure()
+                    breaker.record_failure(error=f"HTTP {last.status_code}")
                 retry_after = last.headers.get("Retry-After")
                 if limiter:
                     try:
@@ -98,7 +103,7 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
                 return last
 
             if breaker:
-                breaker.record_failure()
+                breaker.record_failure(error=f"HTTP {last.status_code}")
             return last
         return last
 

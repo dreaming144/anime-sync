@@ -14,6 +14,7 @@ from .circuit import (
     CircuitOpenError,
     circuit_status,
     get_circuit,
+    reset_all_circuits,
 )
 from .client import request_with_retries, write_circuit_metrics
 from .rate_limit import (
@@ -40,6 +41,7 @@ __all__ = [
     "circuit_status",
     "get_bulkhead",
     "get_circuit",
+    "reset_all_circuits",
     "get_rate_limiter",
     "rate_limiter_status",
     "request_with_retries",
