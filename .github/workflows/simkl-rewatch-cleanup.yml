@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       media_type:
-        description: anime | shows | movies
+        description: anime | shows | movies | all (runs all three in one job)
         required: true
-        default: anime
+        default: all
         type: choice
-        options: [anime, shows, movies]
+        options: [all, anime, shows, movies]
       execute:
         description: Attempt API removal (false = inventory only)
         required: true

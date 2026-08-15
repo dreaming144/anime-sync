@@ -243,7 +243,12 @@ def write_reports(rows: list[dict[str, Any]], json_out: Path | None, csv_out: Pa
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="SIMKL rewatch session inventory / cleanup")
-    ap.add_argument("--type", choices=["anime", "shows", "movies"], default="anime")
+    ap.add_argument(
+        "--type",
+        choices=["anime", "shows", "movies", "all"],
+        default="anime",
+        help="Media library to scan; 'all' runs anime + shows + movies in one pass",
+    )
     ap.add_argument("--status", default=None, help="Optional status filter (e.g. completed)")
     ap.add_argument("--json-out", type=Path, default=Path("simkl_rewatches.json"))
     ap.add_argument("--csv-out", type=Path, default=Path("simkl_rewatches.csv"))
@@ -257,27 +262,41 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     client_id, token = env_creds()
-    print(f"-> Fetching SIMKL {args.type} with allow_rewatch=yes …")
-    entries = fetch_all_items(client_id, token, media_type=args.type, status=args.status)
-    print(f"   Received {len(entries)} row(s) (canonical + rewatch)")
+    types = ["anime", "shows", "movies"] if args.type == "all" else [args.type]
 
-    canonical, rewatches = classify(entries)
-    print(f"   Canonical: {len(canonical)}  |  Rewatch sessions: {len(rewatches)}")
+    all_rows: list[dict[str, Any]] = []
+    for media_type in types:
+        print(f"-> Fetching SIMKL {media_type} with allow_rewatch=yes …")
+        try:
+            entries = fetch_all_items(client_id, token, media_type=media_type, status=args.status)
+        except Exception as e:
+            print(f"   ERROR fetching {media_type}: {e}")
+            continue
+        print(f"   Received {len(entries)} row(s) (canonical + rewatch)")
 
-    rows = summarize(canonical, rewatches)
-    print(f"   Titles with ≥1 rewatch: {len(rows)}")
-    write_reports(rows, args.json_out, args.csv_out)
+        canonical, rewatches = classify(entries)
+        print(f"   Canonical: {len(canonical)}  |  Rewatch sessions: {len(rewatches)}")
 
-    if not rows:
+        rows = summarize(canonical, rewatches)
+        for row in rows:
+            row["media_type"] = media_type
+        print(f"   Titles with ≥1 rewatch: {len(rows)}")
+        all_rows.extend(rows)
+
+    print(f"-> Combined: {len(all_rows)} title(s) with rewatches across {', '.join(types)}")
+    write_reports(all_rows, args.json_out, args.csv_out)
+
+    if not all_rows:
         print("Nothing to clean up.")
         return 0
 
     # Preview
-    for row in rows[:15]:
+    for row in all_rows[:20]:
         n = len(row["rewatch_sessions"])
-        print(f"   • {row['title']!r} simkl={row['simkl']} sessions={n}")
-    if len(rows) > 15:
-        print(f"   … and {len(rows) - 15} more titles")
+        mt = row.get("media_type") or args.type
+        print(f"   • [{mt}] {row['title']!r} simkl={row['simkl']} sessions={n}")
+    if len(all_rows) > 20:
+        print(f"   … and {len(all_rows) - 20} more titles")
 
     if not args.execute:
         print(
@@ -290,7 +309,8 @@ def main(argv: list[str] | None = None) -> int:
     removed = 0
     failed = 0
     count = 0
-    for row in rows:
+    for row in all_rows:
+        media_type = row.get("media_type") or (types[0] if types else "anime")
         for sess in row["rewatch_sessions"]:
             rid = sess.get("rewatch_id")
             if rid is None:
@@ -298,24 +318,25 @@ def main(argv: list[str] | None = None) -> int:
                 continue
             if args.limit and count >= args.limit:
                 print(f"Reached --limit {args.limit}")
-                print(f"Done. attempted_ok≈{removed} failed={failed}")
-                return 0 if failed == 0 else 2
-            code, body = attempt_remove_session(
+                print(f"Done. HTTP-success removals={removed} failed={failed}")
+                return 0 if not failed else 2
+            code, body = remove_rewatch(
                 client_id,
                 token,
-                args.type,
-                row["simkl"],
-                rid,
+                media_type=media_type,
+                simkl=row["simkl"],
+                rewatch_id=rid,
+                title=row.get("title"),
                 extra_ids={"mal": row.get("mal"), "anilist": row.get("anilist")},
             )
             count += 1
             ok = 200 <= code < 300
             if ok:
                 removed += 1
-                print(f"   removed rewatch_id={rid} {row['title']!r} [{code}]")
+                print(f"   removed [{media_type}] rewatch_id={rid} {row['title']!r} [{code}]")
             else:
                 failed += 1
-                print(f"   FAIL rewatch_id={rid} {row['title']!r} [{code}] {body[:120]}")
+                print(f"   FAIL [{media_type}] rewatch_id={rid} {row['title']!r} [{code}] {body[:120]}")
             time.sleep(args.sleep)
 
     print(f"Done. HTTP-success removals={removed} failed={failed}")
@@ -326,6 +347,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 2
     return 0
+
 
 
 if __name__ == "__main__":
