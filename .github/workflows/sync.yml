@@ -5,56 +5,57 @@ on:
     - cron: '0 */2 * * *'
   workflow_dispatch:
     inputs:
-      enrich_all:
-        description: 'Force re-enrich all IDs'
-        required: false
-        default: 'false'
+      run_mode:
+        description: >
+          What this run should do.
+          "Normal sync" = fetch lists, merge, push changes (usual run).
+          "Preview only" = same plan, but do NOT write to AniList/MAL/Kitsu/SIMKL.
+          "Fetch only" = update local DB/CSV, never push remote lists.
+          "Export CSVs only" = no API fetch; just rebuild pairings/unmatched from DB.
+          "Re-enrich all IDs" = clear ID cache and re-resolve every title (slow).
+        required: true
+        default: Normal sync (fetch + merge + push)
         type: choice
-        options: ['false','true']
-      export_only:
-        description: 'Only export CSVs, no fetch'
-        required: false
-        default: 'false'
-        type: choice
-        options: ['false','true']
-      dry_run:
-        description: 'Plan pushes only (no remote list writes)'
-        required: false
-        default: 'false'
-        type: choice
-        options: ['false','true']
-      no_push:
-        description: 'Fetch/enrich only (skip pushes)'
-        required: false
-        default: 'false'
-        type: choice
-        options: ['false','true']
+        options:
+          - Normal sync (fetch + merge + push)
+          - Preview only (no remote list writes)
+          - Fetch only (update local DB, skip pushes)
+          - Export CSVs only (no fetch)
+          - Re-enrich all IDs (slow full refresh)
       override_title:
-        description: 'Optional: title for a one-shot manual override'
+        description: >
+          Optional one-shot manual ID fix.
+          Title (or key) to add/update in manual_overrides.json.
+          Leave blank for a normal run.
         required: false
         default: ''
         type: string
       override_mal:
-        description: 'Optional: MAL id for override'
+        description: Optional MAL numeric id for the override title above
         required: false
         default: ''
         type: string
       override_anilist:
-        description: 'Optional: AniList id for override'
+        description: Optional AniList numeric id for the override title above
         required: false
         default: ''
         type: string
       override_simkl:
-        description: 'Optional: SIMKL id for override'
+        description: Optional SIMKL numeric id for the override title above
         required: false
         default: ''
         type: string
-      override_only:
-        description: 'Only apply override (skip full sync)'
-        required: false
-        default: 'false'
+      override_scope:
+        description: >
+          When an override title/id is filled in:
+          "Apply override then full sync" continues with the chosen run mode.
+          "Apply override only" writes manual_overrides.json and exits (no sync).
+        required: true
+        default: Apply override then full sync
         type: choice
-        options: ['false','true']
+        options:
+          - Apply override then full sync
+          - Apply override only (no sync)
 
 concurrency:
   group: anime-sync
@@ -149,9 +150,20 @@ jobs:
           SECRETS_WRITE_TOKEN: ${{ secrets.SECRETS_WRITE_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
+          set -euo pipefail
           EXTRA=""
-          if [ "${{ inputs.dry_run }}" = "true" ]; then EXTRA="$EXTRA --dry-run"; fi
-          if [ "${{ inputs.no_push }}" = "true" ]; then EXTRA="$EXTRA --no-push"; fi
+          MODE="${{ inputs.run_mode }}"
+          echo "Run mode: $MODE"
+
+          case "$MODE" in
+            "Preview only (no remote list writes)")
+              EXTRA="$EXTRA --dry-run"
+              ;;
+            "Fetch only (update local DB, skip pushes)")
+              EXTRA="$EXTRA --no-push"
+              ;;
+          esac
+
           # One-shot manual override from workflow_dispatch
           if [ -n "${{ inputs.override_title }}" ]; then
             EXTRA="$EXTRA --override-title $(printf %q "${{ inputs.override_title }}")"
@@ -165,18 +177,28 @@ jobs:
           if [ -n "${{ inputs.override_simkl }}" ]; then
             EXTRA="$EXTRA --override-simkl ${{ inputs.override_simkl }}"
           fi
-          if [ "${{ inputs.override_only }}" = "true" ]; then
+
+          if [ "${{ inputs.override_scope }}" = "Apply override only (no sync)" ]; then
+            if [ -z "${{ inputs.override_title }}${{ inputs.override_mal }}${{ inputs.override_anilist }}${{ inputs.override_simkl }}" ]; then
+              echo "Override-only selected but no title/ids provided."
+              exit 1
+            fi
             python -m anime_sync --override-only --no-json-backup $EXTRA
             exit 0
           fi
+
           # JSON backup is large; keep SQLite in git, JSON as artifact only
-          if [ "${{ inputs.export_only }}" = "true" ]; then
-            python -m anime_sync --export-only --no-json-backup $EXTRA
-          elif [ "${{ inputs.enrich_all }}" = "true" ]; then
-            python -m anime_sync --enrich-all --export-csv --no-json-backup $EXTRA
-          else
-            python -m anime_sync --export-csv --no-json-backup $EXTRA
-          fi
+          case "$MODE" in
+            "Export CSVs only (no fetch)")
+              python -m anime_sync --export-only --no-json-backup $EXTRA
+              ;;
+            "Re-enrich all IDs (slow full refresh)")
+              python -m anime_sync --enrich-all --export-csv --no-json-backup $EXTRA
+              ;;
+            *)
+              python -m anime_sync --export-csv --no-json-backup $EXTRA
+              ;;
+          esac
 
       - name: Show reports
         run: |

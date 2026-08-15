@@ -6,16 +6,24 @@ on:
     - cron: '0 6 * * 0'
   workflow_dispatch:
     inputs:
-      days:
-        description: 'Delete completed runs/artifacts older than this many days'
+      retention_days:
+        description: >
+          Keep workflow runs and artifacts newer than this many days.
+          Anything older is eligible for deletion (default 30).
         required: false
         default: '30'
-      dry_run:
-        description: 'List only; do not delete'
-        required: false
-        default: 'false'
+        type: string
+      mode:
+        description: >
+          Safe preview vs real deletion.
+          "List only" shows what would be removed (recommended first).
+          "Delete old runs" permanently removes completed runs/artifacts past the retention window.
+        required: true
+        default: List only (safe preview — no deletions)
         type: choice
-        options: ['false', 'true']
+        options:
+          - List only (safe preview — no deletions)
+          - Delete old runs and artifacts
 
 permissions:
   actions: write
@@ -32,14 +40,22 @@ jobs:
       - name: Prune old workflow runs and artifacts
         env:
           GH_TOKEN: ${{ github.token }}
-          DAYS: ${{ inputs.days || '30' }}
-          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          DAYS: ${{ inputs.retention_days || '30' }}
+          MODE_LABEL: ${{ inputs.mode || 'List only (safe preview — no deletions)' }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           DAYS="${DAYS:-30}"
-          DRY_RUN="${DRY_RUN:-false}"
-          echo "Repo=$REPO days=$DAYS dry_run=$DRY_RUN"
+          case "${MODE_LABEL:-}" in
+            "Delete old runs and artifacts"|true|delete)
+              DRY_RUN="false"
+              ;;
+            *)
+              DRY_RUN="true"
+              ;;
+          esac
+          echo "Repo=$REPO retention_days=$DAYS mode=${MODE_LABEL:-} dry_run=$DRY_RUN"
+          export DRY_RUN
 
           python3 << 'PY'
           import json, os, time, urllib.error, urllib.request

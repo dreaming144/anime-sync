@@ -4,6 +4,18 @@ on:
   schedule:
     - cron: '0 4 * * 1'   # Monday 04:00 UTC
   workflow_dispatch:
+    inputs:
+      enrich_scope:
+        description: >
+          How thorough this enrich pass should be.
+          "Full re-enrich" clears the ID cache and re-resolves every title (slow, usual weekly job).
+          "Export CSVs only" rebuilds pairings/unmatched from the existing DB with no network enrich.
+        required: true
+        default: Full re-enrich all IDs (slow — recommended weekly)
+        type: choice
+        options:
+          - Full re-enrich all IDs (slow — recommended weekly)
+          - Export CSVs only (no network enrich)
 
 concurrency:
   group: anime-sync
@@ -50,7 +62,16 @@ jobs:
           MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
           IDS_MOE_API_KEY: ${{ secrets.IDS_MOE_API_KEY }}
         run: |
-          python -m anime_sync --enrich-all --export-csv --no-push --no-json-backup
+          set -euo pipefail
+          SCOPE="${{ inputs.enrich_scope }}"
+          # Scheduled runs have empty inputs — default to full enrich
+          if [ -z "$SCOPE" ] || [ "$SCOPE" = "Full re-enrich all IDs (slow — recommended weekly)" ]; then
+            echo "Scope: full re-enrich (no remote pushes)"
+            python -m anime_sync --enrich-all --export-csv --no-push --no-json-backup
+          else
+            echo "Scope: export CSVs only"
+            python -m anime_sync --export-only --no-push --no-json-backup
+          fi
       - name: Commit DB/CSV
         run: |
           git config user.name "anime-sync-bot"
