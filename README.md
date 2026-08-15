@@ -1,4 +1,7 @@
 # anime-sync
+
+**Maintainer handover:** see [HANDOVER.md](HANDOVER.md) for architecture, ops, and open work.
+
 [![Universal Anime Sync](https://github.com/dreaming144/anime-sync/actions/workflows/sync.yml/badge.svg)](https://github.com/dreaming144/anime-sync/actions/workflows/sync.yml)
 
 Universal bidirectional anime list sync across **AniList**, **MyAnimeList**, **Kitsu**, and **SIMKL**.
