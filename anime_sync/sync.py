@@ -29,7 +29,14 @@ from anime_sync.http import (
     write_circuit_metrics,
 )
 from anime_sync.ids import dedupe_entries, get_canonical_key, hash_state, normalize_ids
-from anime_sync.platforms import LOADERS, PUSHERS
+from anime_sync.platforms import (
+    LOADERS,
+    PUSHERS,
+    load_anilist,
+    load_kitsu,
+    load_mal,
+    load_simkl,
+)
 from anime_sync.storage import db, ensure_loaded, id_cache, save_db
 
 CONFIG = {
