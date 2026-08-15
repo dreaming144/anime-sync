@@ -1592,7 +1592,7 @@ def export_csv(file_path=CSV_PATH_DEFAULT, fill_titles=True, max_title_fetches=4
         "year", "season", "format", "episodes",
         "canonical_key", "mal_id", "anilist_id", "kitsu_id", "anidb_id",
         "imdb_id", "tvdb_id", "tmdb_id", "simkl_id",
-        "status", "progress", "score", "last_updated", "source",
+        "status", "progress", "score", "last_updated", "source", "media_type",
     ]
 
     filled = 0
@@ -1634,6 +1634,7 @@ def export_csv(file_path=CSV_PATH_DEFAULT, fill_titles=True, max_title_fetches=4
             "score": state.get("score") or 0,
             "last_updated": data.get("last_updated") or "",
             "source": ids.get("_source") or "",
+            "media_type": ids.get("media_type") or data.get("media_type") or "",
         })
 
     rows.sort(key=lambda r: (r.get("title") or "").lower())
@@ -1667,8 +1668,10 @@ def export_unmatched(file_path=UNMATCHED_PATH):
             missing.append("anilist")
         if not ids.get("anidb"):
             missing.append("anidb")
-        # IMDB missing is normal, don't count as unmatched unless it's a movie
-        # Only flag as unmatched if missing core pairing
+        # Western / non-anime (Avatar, Korra, etc.) are not expected to have MAL/AniList
+        if data.get("non_anime") or ids.get("non_anime") or data.get("media_type") == "western" or ids.get("media_type") == "western":
+            continue
+        # Only flag as unmatched if missing core anime pairing (MAL + AniList)
         if not ids.get("mal") and not ids.get("anilist"):
             has = [k for k in ["kitsu", "simkl", "anidb"] if ids.get(k)]
             reason = "isolated - only has " + (",".join(has) if has else "nothing") + " - needs manual pairing"

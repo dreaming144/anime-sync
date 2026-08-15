@@ -1,8 +1,1 @@
 title,canonical_key,mal_id,anilist_id,kitsu_id,anidb_id,imdb_id,missing,reason,existing_ids,suggested_override_key,suggested_override_value
-Avatar: The Last Airbender Book 3: Fire,kitsu_7926,,,7926,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""7926"", ""title"": ""Avatar: The Last Airbender Book 3: Fire""}",kitsu_7926,"{""mal"": ???, ""anilist"": ???}"
-Avatar: The Last Airbender Book 2: Earth,kitsu_7937,,,7937,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""7937"", ""title"": ""Avatar: The Last Airbender Book 2: Earth""}",kitsu_7937,"{""mal"": ???, ""anilist"": ???}"
-Avatar: The Last Airbender Book 1: Water,kitsu_7936,,,7936,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""7936"", ""title"": ""Avatar: The Last Airbender Book 1: Water""}",kitsu_7936,"{""mal"": ???, ""anilist"": ???}"
-The Legend of Korra Book 3: Change,kitsu_8077,,,8077,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""8077"", ""title"": ""The Legend of Korra Book 3: Change""}",kitsu_8077,"{""mal"": ???, ""anilist"": ???}"
-Steven Universe,kitsu_10735,,,10735,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""10735"", ""title"": ""Steven Universe""}",kitsu_10735,"{""mal"": ???, ""anilist"": ???}"
-The Legend of Korra Book 4: Balance,kitsu_8706,,,8706,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""8706"", ""title"": ""The Legend of Korra Book 4: Balance""}",kitsu_8706,"{""mal"": ???, ""anilist"": ???}"
-Teen Titans,kitsu_7928,,,7928,,,"mal,anilist",isolated - only has kitsu,"{""kitsu"": ""7928"", ""title"": ""Teen Titans""}",kitsu_7928,"{""mal"": ???, ""anilist"": ???}"
