@@ -161,3 +161,15 @@ SIMKL_CLIENT_ID=... SIMKL_ACCESS_TOKEN=... \
 Or run the **SIMKL rewatch cleanup** workflow (`workflow_dispatch`). Default is inventory-only; set `execute=true` to attempt removals.
 
 **Note:** Status sync already avoids creating new rewatches on completed titles (`push_simkl` history skip). Cleanup targets sessions that already exist.
+
+
+## Watch history stats
+
+From the local SQLite library (`sync.db`):
+
+```bash
+python scripts/watch_history_stats.py
+# → watch_history_stats.md + watch_history_stats.json
+```
+
+Each normal sync also writes these files and embeds a short summary in `job_summary.md`.

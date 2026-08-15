@@ -38,6 +38,7 @@ from anime_sync.platforms import (
     load_simkl,
 )
 from anime_sync.storage import db, ensure_loaded, id_cache, save_db
+from anime_sync.stats import write_watch_stats
 
 CONFIG = {
     "anilist_username": os.getenv("ANILIST_USERNAME", ""),
@@ -159,6 +160,20 @@ def write_job_summary(path="job_summary.md"):
         pass
     lines.append("")
     lines.append(f"## Pushes recorded: {len(_push_report_rows)}")
+    try:
+        stats = write_watch_stats(entries)
+        lines.append("")
+        lines.append("## Watch history (summary)")
+        tot = stats.get("totals") or {}
+        lines.append(
+            f"- Completed **{tot.get('completed', 0)}** / watching **{tot.get('watching', 0)}** / PTW **{tot.get('plantowatch', 0)}** / dropped **{tot.get('dropped', 0)}**"
+        )
+        lines.append(
+            f"- Scored **{tot.get('scored', 0)}** · Σ progress eps **{tot.get('episodes_progress_sum', 0)}** · completion **{float(tot.get('completion_rate') or 0)*100:.1f}%**"
+        )
+        lines.append("- Full report: `watch_history_stats.md` / `.json`")
+    except Exception as e:
+        lines.append(f"- Watch stats error: {e}")
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"   Wrote {path}")
     return path

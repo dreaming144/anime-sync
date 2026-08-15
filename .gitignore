@@ -10,3 +10,6 @@ __pycache__/
 .env
 
 anime-offline-database-minified.json
+
+watch_history_stats.json
+watch_history_stats.md
