@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "updated_at": 1786776343.6683474,
+  "limiters": {
+    "arm": {
+      "min_interval": 0.12,
+      "base_interval": 0.12,
+      "max_interval": 30.0,
+      "per_minute": 200,
+      "base_per_minute": 200,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 97,
+      "waits": 44
+    },
+    "animeapi": {
+      "min_interval": 0.25,
+      "base_interval": 0.25,
+      "max_interval": 30.0,
+      "per_minute": 100,
+      "base_per_minute": 100,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 18,
+      "waits": 0
+    },
+    "simkl": {
+      "min_interval": 0.2,
+      "base_interval": 0.2,
+      "max_interval": 30.0,
+      "per_minute": 120,
+      "base_per_minute": 120,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 492,
+      "waits": 0
+    },
+    "anilist": {
+      "min_interval": 2.1,
+      "base_interval": 2.1,
+      "max_interval": 33.6,
+      "per_minute": 25,
+      "base_per_minute": 25,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 19,
+      "waits": 4
+    },
+    "mal": {
+      "min_interval": 0.35,
+      "base_interval": 0.35,
+      "max_interval": 30.0,
+      "per_minute": 90,
+      "base_per_minute": 90,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 8,
+      "waits": 0
+    },
+    "kitsu": {
+      "min_interval": 0.5,
+      "base_interval": 0.5,
+      "max_interval": 30.0,
+      "per_minute": 60,
+      "base_per_minute": 60,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 15,
+      "waits": 8
+    },
+    "api.ani.zip": {
+      "min_interval": 0.2,
+      "base_interval": 0.2,
+      "max_interval": 30.0,
+      "per_minute": 120,
+      "base_per_minute": 120,
+      "throttle_events": 0,
+      "recover_events": 0,
+      "consecutive_throttles": 0,
+      "last_throttle_at": null,
+      "total": 6,
+      "waits": 2
+    }
+  }
+}
