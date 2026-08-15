@@ -266,5 +266,82 @@ class TestDatesNeedPush(unittest.TestCase):
         self.assertFalse(dates_need_push({}, {"started_at": "not-a-date"}))
 
 
+
+class TestLeapYears(unittest.TestCase):
+    """Feb 29 must follow Gregorian leap rules (Python date() enforces this)."""
+
+    def test_valid_leap_days(self):
+        for s in (
+            "2020-02-29",   # div by 4
+            "2024-02-29",
+            "2000-02-29",   # div by 400
+            "1952-02-29",   # near MIN_YEAR
+            "2020-2-29",    # MAL unpadded
+        ):
+            d = parse_date(s)
+            self.assertEqual(d, date(int(s.split("-")[0]), 2, 29), msg=s)
+
+    def test_valid_leap_fuzzy(self):
+        self.assertEqual(
+            parse_date({"year": 2020, "month": 2, "day": 29}),
+            date(2020, 2, 29),
+        )
+        self.assertEqual(
+            parse_date({"year": 2000, "month": 2, "day": 29}),
+            date(2000, 2, 29),
+        )
+
+    def test_invalid_non_leap_feb29(self):
+        for s in (
+            "2019-02-29",
+            "2021-02-29",
+            "2023-02-29",
+            "2100-02-29",  # century not divisible by 400
+            "2021-2-29",
+        ):
+            self.assertIsNone(parse_date(s), msg=s)
+
+    def test_invalid_non_leap_fuzzy(self):
+        self.assertIsNone(parse_date({"year": 2021, "month": 2, "day": 29}))
+        self.assertIsNone(parse_date({"year": 1900, "month": 2, "day": 29}))
+
+    def test_leap_datetime(self):
+        self.assertEqual(parse_date("2020-02-29T23:59:59Z"), date(2020, 2, 29))
+        self.assertIsNone(parse_date("2021-02-29T00:00:00Z"))
+
+    def test_leap_format_roundtrip(self):
+        d = parse_date("2020-02-29")
+        self.assertEqual(to_mal_date(d), "2020-02-29")
+        self.assertEqual(to_fuzzy(d), {"year": 2020, "month": 2, "day": 29})
+        self.assertTrue(to_kitsu_dt(d).startswith("2020-02-29T"))
+
+    def test_merge_oldest_leap_day(self):
+        m = merge_platform_dates(
+            None, "mal", {"started_at": "2024-02-29", "completed_at": "2024-03-01"}
+        )
+        m = merge_platform_dates(
+            m, "anilist", {"started_at": {"year": 2020, "month": 2, "day": 29}}
+        )
+        self.assertEqual(m["started_at"], "2020-02-29")
+        self.assertEqual(m["completed_at"], "2024-03-01")
+
+    def test_sanitize_drops_invalid_leap_completed(self):
+        out = sanitize_dates_for_push(
+            {"started_at": "2020-02-29", "completed_at": "2021-02-29"}
+        )
+        self.assertEqual(out.get("started_at"), "2020-02-29")
+        self.assertNotIn("completed_at", out)
+
+    def test_pair_leap_start_before_end(self):
+        s, c = validate_date_pair(date(2020, 2, 29), date(2020, 3, 1))
+        self.assertEqual(s, date(2020, 2, 29))
+        self.assertEqual(c, date(2020, 3, 1))
+
+    def test_pair_inverted_around_leap(self):
+        s, c = validate_date_pair(date(2020, 2, 29), date(2020, 2, 28))
+        self.assertEqual(s, date(2020, 2, 29))
+        self.assertIsNone(c)
+
+
 if __name__ == "__main__":
     unittest.main()
