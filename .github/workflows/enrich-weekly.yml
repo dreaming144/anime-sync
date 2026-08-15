@@ -50,7 +50,7 @@ jobs:
           MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
           IDS_MOE_API_KEY: ${{ secrets.IDS_MOE_API_KEY }}
         run: |
-          python universal_anime_sync_github.py --enrich-all --export-csv --no-push --no-json-backup
+          python -m anime_sync --enrich-all --export-csv --no-push --no-json-backup
       - name: Commit DB/CSV
         run: |
           git config user.name "anime-sync-bot"

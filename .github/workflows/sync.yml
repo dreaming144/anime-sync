@@ -126,11 +126,11 @@ jobs:
           if [ "${{ inputs.no_push }}" = "true" ]; then EXTRA="$EXTRA --no-push"; fi
           # JSON backup is large; keep SQLite in git, JSON as artifact only
           if [ "${{ inputs.export_only }}" = "true" ]; then
-            python universal_anime_sync_github.py --export-only --no-json-backup $EXTRA
+            python -m anime_sync --export-only --no-json-backup $EXTRA
           elif [ "${{ inputs.enrich_all }}" = "true" ]; then
-            python universal_anime_sync_github.py --enrich-all --export-csv --no-json-backup $EXTRA
+            python -m anime_sync --enrich-all --export-csv --no-json-backup $EXTRA
           else
-            python universal_anime_sync_github.py --export-csv --no-json-backup $EXTRA
+            python -m anime_sync --export-csv --no-json-backup $EXTRA
           fi
 
       - name: Show reports
