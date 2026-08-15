@@ -93,10 +93,66 @@ def should_accept_update(existing, item, policy=None):
 
 
 
-def record_push(platform, ids, state, action="planned", detail="", title=""):
-    """Append a row for push_report.csv (always recorded; dry-run skips HTTP)."""
+
+def format_error(exc, *, response=None, limit=240) -> str:
+    """Build a compact, informative error detail string for reports.
+
+    Includes exception type, message, and optional HTTP status/body snippet.
+    """
+    parts = []
+    name = type(exc).__name__ if exc is not None else "Error"
+    msg = str(exc).strip() if exc is not None else ""
+    parts.append(f"{name}: {msg}" if msg else name)
+
+    resp = response
+    if resp is None and exc is not None:
+        resp = getattr(exc, "response", None)
+    if resp is not None:
+        try:
+            status = getattr(resp, "status_code", None)
+            if status is not None:
+                parts.append(f"HTTP {status}")
+            body = ""
+            try:
+                body = (getattr(resp, "text", None) or "")[:180]
+            except Exception:
+                body = ""
+            if body:
+                body = " ".join(body.split())
+                parts.append(body)
+        except Exception:
+            pass
+
+    # Circuit / timeout hints
+    low = msg.lower()
+    if "circuit open" in low:
+        parts.append("hint=wait-for-circuit-recovery")
+    elif "429" in low or "rate" in low:
+        parts.append("hint=rate-limited")
+    elif "timeout" in low:
+        parts.append("hint=retry-later")
+    elif "401" in low or "unauthorized" in low:
+        parts.append("hint=check-token")
+
+    detail = " | ".join(parts)
+    return detail[:limit]
+
+
+def record_push(platform, ids, state, action="planned", detail="", title="", error=None, response=None):
+    """Append a row for push_report.csv (always recorded; dry-run skips HTTP).
+
+    For failures pass error=exc and/or response=http_response so the show report
+    gets type, HTTP status, body snippet, and recovery hints.
+    """
     ids = ids or {}
     title = title or ids.get("title") or ""
+    if error is not None and not detail:
+        detail = format_error(error, response=response)
+    elif error is not None and detail:
+        # Enrich short detail with structured info
+        extra = format_error(error, response=response)
+        if extra and extra not in detail:
+            detail = f"{detail} | {extra}"
     _push_report_rows.append({
         "title": title,
         "platform": platform,
@@ -108,8 +164,9 @@ def record_push(platform, ids, state, action="planned", detail="", title=""):
         "status": (state or {}).get("status") or "",
         "progress": (state or {}).get("progress") or "",
         "score": (state or {}).get("score") or "",
-        "detail": detail,
+        "detail": (detail or "")[:300],
         "dry_run": str(bool(DRY_RUN)).lower(),
+        "error_type": type(error).__name__ if error is not None else "",
     })
 
 
@@ -118,7 +175,7 @@ def write_push_report(path=PUSH_REPORT_PATH):
     if not _push_report_rows:
         print("   Push report: no pushes planned")
         return None
-    fields = ["title", "platform", "action", "mal", "anilist", "kitsu", "simkl", "status", "progress", "score", "detail", "dry_run"]
+    fields = ["title", "platform", "action", "mal", "anilist", "kitsu", "simkl", "status", "progress", "score", "detail", "error_type", "dry_run"]
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
@@ -164,6 +221,34 @@ def write_show_report(path="show_report.md", max_rows=80):
         + " · ".join(f"{a}: {n}" for a, n in actions.most_common())
     )
     lines.append("")
+
+    # Dedicated error details block (easy to scan in Actions summary)
+    errors = [r for r in rows if (r.get("action") or "") == "error"]
+    if errors:
+        lines.append("### Errors")
+        lines.append("")
+        from collections import Counter
+        by_type = Counter((r.get("error_type") or "Error") for r in errors)
+        by_plat = Counter((r.get("platform") or "?") for r in errors)
+        lines.append(
+            "- By type: "
+            + ", ".join(f"`{k}` ×{v}" for k, v in by_type.most_common())
+        )
+        lines.append(
+            "- By platform: "
+            + ", ".join(f"`{k}` ×{v}" for k, v in by_plat.most_common())
+        )
+        lines.append("")
+        lines.append("| Show | Platform | Error |")
+        lines.append("|------|----------|-------|")
+        for r in errors[:40]:
+            title = (r.get("title") or r.get("mal") or r.get("anilist") or "?").replace("|", "/")[:40]
+            detail = (r.get("detail") or "").replace("|", "/")[:160]
+            lines.append(f"| {title} | `{r.get('platform')}` | {detail} |")
+        if len(errors) > 40:
+            lines.append("")
+            lines.append(f"_…and {len(errors) - 40} more error(s)._")
+        lines.append("")
     lines.append("| Show | Platform | Action | Status | Progress | Score | Detail |")
     lines.append("|------|----------|--------|--------|----------|-------|--------|")
 
@@ -318,7 +403,7 @@ def propagate_oldest_dates(write=True):
                 entry["dates"] = {**dates, "sources": sources}
                 n += 1
             except Exception as e:
-                record_push(platform, ids, state, action="error", detail=str(e)[:120])
+                record_push(platform, ids, state, action="error", error=e, title=entry.get("title") or ids.get("title") or "")
                 print(f"   date push {platform} failed: {e}")
     print(f"   Date propagation: {n} platform updates")
     return n
@@ -455,7 +540,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     existing["last_synced"][platform] = incoming_hash
                     changes += 1
                 except Exception as e:
-                    record_push(platform, existing.get("ids"), item["state"], action="error", detail=str(e)[:120])
+                    record_push(platform, existing.get("ids"), item["state"], action="error", error=e, title=existing.get("title") or (existing.get("ids") or {}).get("title") or item.get("title") or "")
                     print(f"Push to {platform} failed: {e}")
         else:
             # Incoming is older / lower priority → backfill the stored state to this platform if needed
@@ -472,7 +557,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                     changes += 1
                 except Exception as e:
-                    record_push(item["platform"], existing.get("ids"), existing["state"], action="error", detail=str(e)[:120])
+                    record_push(item["platform"], existing.get("ids"), existing["state"], action="error", error=e, title=existing.get("title") or (existing.get("ids") or {}).get("title") or "")
                     print(e)
 
     db["id_cache"] = id_cache

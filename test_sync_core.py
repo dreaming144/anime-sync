@@ -86,5 +86,28 @@ class TestInvalidDates(unittest.TestCase):
         self.assertIsNone(m.get("completed_at"))
 
 
+
+class TestFormatError(unittest.TestCase):
+    def test_format_error_http(self):
+        from anime_sync.sync import format_error
+        class Resp:
+            status_code = 401
+            text = "unauthorized token"
+        class Err(Exception):
+            def __init__(self):
+                super().__init__("auth failed")
+                self.response = Resp()
+        s = format_error(Err())
+        self.assertIn("401", s)
+        self.assertIn("auth failed", s)
+        self.assertIn("hint=check-token", s)
+
+    def test_format_error_timeout(self):
+        from anime_sync.sync import format_error
+        s = format_error(TimeoutError("read timed out"))
+        self.assertIn("TimeoutError", s)
+        self.assertIn("hint=retry-later", s)
+
+
 if __name__ == "__main__":
     unittest.main()
