@@ -51,7 +51,10 @@ def to_fuzzy(d: date | None) -> dict[str, int] | None:
 
 
 def to_mal_date(d: date | None) -> str | None:
-    return to_iso_date(d)
+    """MAL v2 expects year-month-day; prefer zero-padded YYYY-MM-DD."""
+    if not d:
+        return None
+    return f"{d.year:04d}-{d.month:02d}-{d.day:02d}"
 
 
 def to_kitsu_dt(d: date | None) -> str | None:

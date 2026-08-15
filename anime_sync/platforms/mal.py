@@ -132,12 +132,28 @@ def ensure_mal_token():
 
 
 def load_mal():
+    """Fetch the authenticated user's anime list via MAL API v2.
+
+    Explicitly requests nested list_status date fields:
+      start_date, finish_date, updated_at, is_rewatching, num_times_rewatched
+    See: https://myanimelist.net/apiconfig/references/api/v2
+    """
     token = ensure_mal_token()
     if not token:
         print("-> MAL skipped (no token)"); return []
-    print("-> Fetching MAL...")
+    print("-> Fetching MAL (API v2 + dates)...")
     headers = {"Authorization": f"Bearer {token}"}
-    url = "https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status{status,score,num_episodes_watched,is_rewatching,start_date,finish_date,updated_at},num_episodes&limit=1000&nsfw=true"
+    # Nested field selection is required for dates; bare list_status omits them.
+    fields = (
+        "list_status{"
+        "status,score,num_episodes_watched,is_rewatching,"
+        "start_date,finish_date,updated_at,num_times_rewatched,priority"
+        "},num_episodes,start_date,end_date,media_type"
+    )
+    url = (
+        "https://api.myanimelist.net/v2/users/@me/animelist"
+        f"?fields={fields}&limit=1000&nsfw=true"
+    )
     items = []
     page = 1
     while url:
@@ -150,37 +166,52 @@ def load_mal():
             break
         data = r.json()
         for n in data.get("data", []):
-            ls = n["list_status"]
-            title = n["node"].get("title", "")
+            node = n.get("node") or {}
+            ls = n.get("list_status") or {}
+            title = node.get("title", "")
+            # Prefer user start/finish; fall back never uses anime air dates
+            # (node.start_date is series premiere, not user watch date).
+            user_start = ls.get("start_date")
+            user_finish = ls.get("finish_date")
             items.append({
                 "platform": "mal",
-                "ids": normalize_ids({"mal": n["node"]["id"], "title": title}),
+                "ids": normalize_ids({"mal": node.get("id"), "title": title}),
                 "state": {
-                    "status": STATUS_MAP["mal"].get(ls["status"], "plantowatch"),
-                    "progress": ls["num_episodes_watched"],
-                    "score": ls["score"],
+                    "status": STATUS_MAP["mal"].get(ls.get("status"), "plantowatch"),
+                    "progress": ls.get("num_episodes_watched") or 0,
+                    "score": ls.get("score") or 0,
+                    "is_rewatching": bool(ls.get("is_rewatching")),
+                    "num_times_rewatched": int(ls.get("num_times_rewatched") or 0),
                 },
                 "dates": {
-                    "started_at": ls.get("start_date"),
-                    "completed_at": ls.get("finish_date"),
+                    "started_at": user_start,
+                    "completed_at": user_finish,
                 },
-                "updated": datetime.fromisoformat(ls["updated_at"].replace("Z", "+00:00")),
+                "updated": datetime.fromisoformat(
+                    ls["updated_at"].replace("Z", "+00:00")
+                ) if ls.get("updated_at") else datetime.now(timezone.utc),
                 "title": title,
+                "episodes": node.get("num_episodes"),
+                "format": node.get("media_type"),
             })
         url = (data.get("paging") or {}).get("next")
         page += 1
         if url:
             print(f"   MAL page {page}...")
-            time.sleep(0.3)
+            time.sleep(0.35)
     print(f"   MAL: {len(items)} entries")
     return items
 
 
 def push_mal(entry, state, dates=None):
-    """Create or update a MAL list entry via PUT /anime/{id}/my_list_status.
+    """Create or update a MAL list entry via PUT /anime/{id}/my_list_status (API v2).
 
-    Optional dates (started_at / completed_at as YYYY-MM-DD) set start_date / finish_date.
-    Does not touch rewatch counters.
+    Date rules (oldest-wins):
+      - start_date / finish_date only sent when we have a canonical date
+      - never bump is_rewatching or num_times_rewatched (avoids rewatch pollution)
+      - MAL only updates fields present in the form body
+
+    Dates are zero-padded YYYY-MM-DD as preferred by MAL v2 clients.
     """
     token = ensure_mal_token()
     if not token:
@@ -202,37 +233,77 @@ def push_mal(entry, state, dates=None):
         print(f"   -> PUSH MAL skipped (unknown status: {state.get('status')})")
         return
 
-    from anime_sync.dates import parse_date, to_mal_date
+    from anime_sync.dates import parse_date, to_mal_date, older
 
     score = int(round(float(state.get("score") or 0)))
-    if score < 0:
-        score = 0
-    if score > 10:
-        score = 10
+    score = max(0, min(10, score))
 
     body = {
         "status": status,
         "num_watched_episodes": int(state.get("progress") or 0),
         "score": score,
+        # Explicitly keep rewatch flags off unless the stored state says otherwise
+        "is_rewatching": "true" if state.get("is_rewatching") else "false",
     }
+    # Only preserve rewatch count if already on MAL and we're not resetting
+    nrr = int(state.get("num_times_rewatched") or 0)
+    if nrr > 0:
+        body["num_times_rewatched"] = nrr
+
     dates = dates or entry.get("dates") or {}
-    start_d = to_mal_date(parse_date(dates.get("started_at")))
-    finish_d = to_mal_date(parse_date(dates.get("completed_at")))
-    if start_d:
+    sources = (dates.get("sources") or {}) if isinstance(dates, dict) else {}
+    mal_snap = sources.get("mal") or {}
+
+    # Canonical oldest dates
+    canon_start = parse_date(dates.get("started_at"))
+    canon_finish = parse_date(dates.get("completed_at"))
+    # What MAL already has (from last load)
+    mal_start = parse_date(mal_snap.get("started_at"))
+    mal_finish = parse_date(mal_snap.get("completed_at"))
+
+    # Only write start_date when canonical is older than MAL's or MAL is missing
+    start_d = None
+    if canon_start and (mal_start is None or canon_start < mal_start):
+        start_d = to_mal_date(canon_start)
         body["start_date"] = start_d
-    if finish_d:
+    elif canon_start and mal_start is None:
+        start_d = to_mal_date(canon_start)
+        body["start_date"] = start_d
+    # If MAL already has equal or older, skip start_date field (partial update)
+
+    finish_d = None
+    if canon_finish and (mal_finish is None or canon_finish < mal_finish):
+        finish_d = to_mal_date(canon_finish)
         body["finish_date"] = finish_d
 
-    r = request_with_retries(
-        "PUT",
-        f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        data=body,
-        timeout=20,
-    )
-    print(f"   -> PUSH MAL {mal_id} => {state} dates={{start:{start_d},finish:{finish_d}}} [{r.status_code}]")
+    # If completed and we only have last_watched as completed hint already in completed_at
+    if status == "completed" and not finish_d and canon_finish:
+        finish_d = to_mal_date(canon_finish)
+        body["finish_date"] = finish_d
+
+    try:
+        r = request_with_retries(
+            "PUT",
+            f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            data=body,
+            timeout=20,
+        )
+        if r.ok:
+            print(
+                f"   -> PUSH MAL {mal_id} => {state.get('status')} "
+                f"eps={body.get('num_watched_episodes')} "
+                f"start={body.get('start_date')} finish={body.get('finish_date')} "
+                f"[{r.status_code}]"
+            )
+        else:
+            print(f"   -> PUSH MAL failed {mal_id}: {r.status_code} {r.text[:220]}")
+        return r
+    except requests.RequestException as e:
+        print(f"   -> PUSH MAL network error: {e}")
+        return None
 
 

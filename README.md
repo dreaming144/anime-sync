@@ -175,6 +175,16 @@ python scripts/watch_history_stats.py
 Each normal sync also writes these files and embeds a short summary in `job_summary.md`.
 
 
+## MyAnimeList API v2 (dates)
+
+List fetch uses nested fields so user watch dates are returned:
+
+```
+list_status{status,score,num_episodes_watched,is_rewatching,start_date,finish_date,updated_at,num_times_rewatched}
+```
+
+Writes use `PUT /anime/{id}/my_list_status` with zero-padded `start_date` / `finish_date` (YYYY-MM-DD). Only **older** canonical dates are written over MAL’s existing dates; `is_rewatching` is not forced on.
+
 ## Oldest watch-date sync
 
 Each full sync:
