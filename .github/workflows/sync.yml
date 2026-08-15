@@ -200,69 +200,15 @@ jobs:
               ;;
           esac
 
-      - name: Show reports
-        run: |
-          echo "=== anime_pairings.csv preview ==="
-          head -n 15 anime_pairings.csv || true
-          echo ""
-          echo "=== unmatched.csv (needs manual fix) ==="
-          cat unmatched.csv || echo "No unmatched - all paired!"
-          echo ""
-          echo "=== Coverage ==="
-          python -c "
-          import csv
-          try:
-              rows=list(csv.DictReader(open('anime_pairings.csv')))
-              print(f'Total shows: {len(rows)}')
-              print(f'MAL: {sum(1 for r in rows if r[\"mal_id\"])}')
-              print(f'AniList: {sum(1 for r in rows if r[\"anilist_id\"])}')
-              print(f'AniDB: {sum(1 for r in rows if r[\"anidb_id\"])}')
-              print(f'IMDB: {sum(1 for r in rows if r[\"imdb_id\"])}')
-              print(f'TVDB: {sum(1 for r in rows if r[\"tvdb_id\"])}')
-              print(f'Manual overrides: {sum(1 for r in rows if r[\"source\"]==\"manual_override\")}')
-          except Exception as e:
-              print(e)
-          try:
-              u=list(csv.DictReader(open('unmatched.csv')))
-              print(f'Unmatched needing attention: {len(u)}')
-          except Exception:
-              print('No unmatched file')
-          "
-
-      - name: Job summary
+      - name: Easy summary
         if: always()
         run: |
-          {
-            echo "# Anime Sync"
-            echo ""
-            if [ -f show_report.md ]; then
-              cat show_report.md
-              echo ""
-            fi
-            if [ -f job_summary.md ]; then
-              cat job_summary.md
-              echo ""
-            fi
-            if [ -f push_report.csv ]; then
-              echo "## Push report (CSV head)"
-              echo ""
-              echo '```'
-              head -n 30 push_report.csv
-              echo '```'
-            fi
-            if [ -f conflict_report.csv ]; then
-              echo ""
-              echo "## Conflict report (head)"
-              echo ""
-              echo '```'
-              head -n 25 conflict_report.csv
-              echo '```'
-            fi
-            if [ -f watch_history_stats.md ]; then
-              echo ""
-              head -n 40 watch_history_stats.md
-            fi
-          } >> "$GITHUB_STEP_SUMMARY" || true
+          set -euo pipefail
+          python3 scripts/render_run_summary.py \
+            --title "Universal Anime Sync" \
+            --out run_summary.md | tee -a "$GITHUB_STEP_SUMMARY"
+          echo ""
+          echo "Full files: show_report.md, job_summary.md, push_report.csv, conflict_report.csv (artifacts)"
 
       - name: Commit all
         run: |

@@ -85,34 +85,14 @@ jobs:
             git commit -m "chore: weekly enrich $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
             git push
           fi
-      - name: Job summary
+      - name: Easy summary
         if: always()
         run: |
-          {
-            echo "# Weekly deep enrich"
-            echo ""
-            if [ -f show_report.md ]; then
-              cat show_report.md
-            conflict_report.csv
-            rate_limit_state.json
-              echo ""
-            fi
-            if [ -f job_summary.md ]; then
-              cat job_summary.md
-              echo ""
-            fi
-            if [ -f push_report.csv ]; then
-              echo "## Push report (CSV head)"
-              echo ""
-              echo '```'
-              head -n 30 push_report.csv
-              echo '```'
-            fi
-            if [ -f watch_history_stats.md ]; then
-              echo ""
-              head -n 40 watch_history_stats.md
-            fi
-          } >> "$GITHUB_STEP_SUMMARY" || true
+          set -euo pipefail
+          python3 scripts/render_run_summary.py \
+            --title "Weekly deep enrich" \
+            --out run_summary.md | tee -a "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/upload-artifact@v4
         with:
           name: enrich-reports

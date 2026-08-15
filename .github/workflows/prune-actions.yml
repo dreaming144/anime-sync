@@ -219,14 +219,21 @@ jobs:
           print("DONE")
           PY
 
-      - name: Job summary
+      - name: Easy summary
         if: always()
+        env:
+          DAYS: ${{ inputs.retention_days || '30' }}
+          MODE_LABEL: ${{ inputs.mode || 'List only (safe preview — no deletions)' }}
         run: |
           {
-            echo "# Actions prune"
+            echo "# Prune Actions history"
             echo ""
-            echo "- Retention days: **${{ inputs.retention_days || 30 }}**"
-            echo "- Mode: see log for deleted runs/artifacts"
+            echo "| Setting | Value |"
+            echo "|---------|-------|"
+            echo "| Retention | keep last **${DAYS:-30}** days |"
+            echo "| Mode | ${MODE_LABEL:-scheduled} |"
             echo ""
-            echo "Full details are in the workflow log above."
-          } >> "$GITHUB_STEP_SUMMARY" || true
+            echo "Completed runs and artifacts older than the retention window are listed or deleted depending on mode."
+            echo ""
+            echo "See the **Prune old workflow runs and artifacts** step log for counts."
+          } | tee run_summary.md >> "$GITHUB_STEP_SUMMARY"

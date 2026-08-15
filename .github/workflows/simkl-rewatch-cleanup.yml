@@ -93,47 +93,22 @@ jobs:
             --csv-out simkl_rewatches.csv \
             $EXTRA
 
-      - name: Job summary
+      - name: Easy summary
         if: always()
         run: |
+          set -euo pipefail
           {
             echo "# SIMKL rewatch cleanup"
             echo ""
             echo "| Setting | Value |"
             echo "|---------|-------|"
-            echo "| Library scanned | \`${{ inputs.media_type }}\` |"
-            echo "| Mode | \`${{ inputs.mode }}\` |"
-            echo "| Max deletes | \`${{ inputs.max_deletes }}\` |"
+            echo "| Library | ${{ inputs.media_type }} |"
+            echo "| Mode | ${{ inputs.mode }} |"
+            echo "| Max deletes | ${{ inputs.max_deletes }} |"
             echo ""
-            echo "> **List only** = report extra rewatch sessions, change nothing."
-            echo "> **Delete** = remove those sessions via API; oldest/original watch is kept."
-            echo ""
-            if [ -f simkl_rewatches.csv ]; then
-              ROWS=$(($(wc -l < simkl_rewatches.csv) - 1))
-              echo "## Rewatch sessions found"
-              echo ""
-              echo "Rows in report: **${ROWS}**"
-              echo ""
-              echo "| media | simkl | title | rewatch_id | status | last watched |"
-              echo "|-------|-------|-------|------------|--------|--------------|"
-              # CSV: media_type,simkl,title,mal,anilist,canonical_status,canonical_last_watched_at,rewatch_id,rewatch_status,session_last_watched_at,session_progress
-              tail -n +2 simkl_rewatches.csv | head -n 60 | while IFS= read -r line; do
-                media=$(echo "$line" | cut -d',' -f1)
-                simkl=$(echo "$line" | cut -d',' -f2)
-                title=$(echo "$line" | cut -d',' -f3 | tr '|' '/')
-                rid=$(echo "$line" | cut -d',' -f8)
-                rst=$(echo "$line" | cut -d',' -f9)
-                slw=$(echo "$line" | cut -d',' -f10)
-                echo "| $media | $simkl | ${title:0:36} | $rid | $rst | $slw |"
-              done
-              if [ "$ROWS" -gt 60 ]; then
-                echo ""
-                echo "_…and $((ROWS - 60)) more in the artifact CSV._"
-              fi
-            else
-              echo "_No simkl_rewatches.csv produced (fetch may have failed — check logs)._"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY" || true
+          } > run_summary.md
+          python3 scripts/render_run_summary.py --title "SIMKL rewatch cleanup" >> run_summary.md || true
+          cat run_summary.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload reports
         if: always()
@@ -143,4 +118,5 @@ jobs:
           path: |
             simkl_rewatches.json
             simkl_rewatches.csv
+            run_summary.md
           if-no-files-found: warn
