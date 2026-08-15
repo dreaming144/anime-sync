@@ -31,6 +31,37 @@ UNMATCHED_PATH = Path("unmatched.csv")
 OVERRIDES_PATH = Path("manual_overrides.json")
 
 
+
+def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, **kwargs):
+    """HTTP helper with exponential backoff on 429/503 and Retry-After support.
+
+    kwargs passed to requests.request (headers, json, data, params, timeout, ...).
+    Returns the final Response (may still be non-OK after retries exhausted).
+    """
+    timeout = kwargs.pop("timeout", 30)
+    last = None
+    for attempt in range(max_retries):
+        try:
+            last = requests.request(method, url, timeout=timeout, **kwargs)
+        except requests.RequestException as e:
+            if attempt >= max_retries - 1:
+                raise
+            wait = base_sleep * (2 ** attempt)
+            print(f"   network error {e}; retry in {wait:.1f}s")
+            time.sleep(wait)
+            continue
+        if last.status_code not in (429, 503):
+            return last
+        retry_after = last.headers.get("Retry-After")
+        if retry_after and str(retry_after).isdigit():
+            wait = int(retry_after) + 1
+        else:
+            wait = min(120, base_sleep * (2 ** attempt) * 2)
+        print(f"   API {last.status_code} {url[:60]} — backoff {wait}s (attempt {attempt+1}/{max_retries})")
+        time.sleep(wait)
+    return last
+
+
 def _init_sqlite(conn):
     conn.execute("""
         CREATE TABLE IF NOT EXISTS entries (
@@ -515,7 +546,8 @@ def fetch_arm(ids_dict, use_cache=True):
     id_param = int(raw_id) if str(raw_id).isdigit() else raw_id
     result = {}
     try:
-        r = requests.get(
+        r = request_with_retries(
+            "GET",
             "https://relations.yuna.moe/api/v2/ids",
             params={"source": source, "id": id_param},
             timeout=15,
@@ -529,7 +561,7 @@ def fetch_arm(ids_dict, use_cache=True):
         # v1 often enough for core four; also used when v2 returns sparse
         try:
             body = {source: id_param}
-            r = requests.post("https://relations.yuna.moe/api/ids", json=body, timeout=15)
+            r = request_with_retries("POST", "https://relations.yuna.moe/api/ids", json=body, timeout=15)
             if r.ok:
                 v1 = _arm_normalize_entry(r.json(), source_tag="arm_v1")
                 for k, v in v1.items():
@@ -580,7 +612,8 @@ def fetch_arm_batch(ids_list, use_cache=True):
         chunk = to_fetch[start:start + chunk_size]
         bodies = [b for _, b, _ in chunk]
         try:
-            r = requests.post(
+            r = request_with_retries(
+                "POST",
                 "https://relations.yuna.moe/api/ids",
                 json=bodies,
                 timeout=30,
@@ -968,7 +1001,8 @@ def load_anilist():
     token = os.getenv("ANILIST_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    r = requests.post(
+    r = request_with_retries(
+        "POST",
         "https://graphql.anilist.co",
         json={"query": query, "variables": {"userName": username}},
         headers=headers,
@@ -1090,7 +1124,8 @@ def refresh_mal_token(force=False):
         data["client_secret"] = client_secret
 
     try:
-        r = requests.post(
+        r = request_with_retries(
+            "POST",
             "https://myanimelist.net/v1/oauth2/token",
             data=data,
             timeout=20,
@@ -1554,7 +1589,7 @@ def resolve_title(ids, existing_title=None):
     # Jikan (MAL)
     if ids.get("mal"):
         try:
-            r = requests.get(f"https://api.jikan.moe/v4/anime/{int(ids['mal'])}", timeout=12)
+            r = request_with_retries("GET", f"https://api.jikan.moe/v4/anime/{int(ids['mal'])}", timeout=12, base_sleep=2.0)
             if r.ok:
                 data = (r.json().get("data") or {})
                 title = data.get("title_english") or data.get("title") or data.get("title_japanese")

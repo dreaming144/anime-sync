@@ -52,23 +52,57 @@ jobs:
           CUTOFF = datetime.now(timezone.utc) - timedelta(days=DAYS)
           print(f"Cutoff: {CUTOFF.isoformat()} (keep newer)")
 
-          def api(method, path):
-              req = urllib.request.Request(
-                  f"https://api.github.com{path}",
-                  method=method,
-                  headers={
-                      "Authorization": f"Bearer {TOKEN}",
-                      "Accept": "application/vnd.github+json",
-                      "X-GitHub-Api-Version": "2022-11-28",
-                      "User-Agent": "anime-sync-prune",
-                  },
-              )
-              try:
-                  with urllib.request.urlopen(req, timeout=60) as r:
-                      body = r.read()
-                      return r.status, json.loads(body) if body else {}
-              except urllib.error.HTTPError as e:
-                  return e.code, {"error": e.read().decode("utf-8", "replace")[:400]}
+          def api(method, path, retries=6):
+              """GitHub API call with 403/429 rate-limit backoff."""
+              url = f"https://api.github.com{path}"
+              for attempt in range(retries):
+                  req = urllib.request.Request(
+                      url,
+                      method=method,
+                      headers={
+                          "Authorization": f"Bearer {TOKEN}",
+                          "Accept": "application/vnd.github+json",
+                          "X-GitHub-Api-Version": "2022-11-28",
+                          "User-Agent": "anime-sync-prune",
+                      },
+                  )
+                  try:
+                      with urllib.request.urlopen(req, timeout=60) as r:
+                          body = r.read()
+                          remaining = r.headers.get("X-RateLimit-Remaining")
+                          if remaining is not None and remaining.isdigit() and int(remaining) < 5:
+                              reset = r.headers.get("X-RateLimit-Reset")
+                              wait = 10
+                              if reset and reset.isdigit():
+                                  wait = max(5, int(reset) - int(time.time()) + 2)
+                                  wait = min(wait, 120)
+                              print(f"  rate budget low (remaining={remaining}); sleep {wait}s")
+                              time.sleep(wait)
+                          return r.status, json.loads(body) if body else {}
+                  except urllib.error.HTTPError as e:
+                      err_body = e.read().decode("utf-8", "replace")[:400]
+                      if e.code in (403, 429) and attempt < retries - 1:
+                          retry_after = e.headers.get("Retry-After")
+                          reset = e.headers.get("X-RateLimit-Reset")
+                          if retry_after and str(retry_after).isdigit():
+                              wait = int(retry_after) + 1
+                          elif reset and str(reset).isdigit():
+                              wait = max(5, int(reset) - int(time.time()) + 2)
+                          else:
+                              wait = min(120, 5 * (2 ** attempt))
+                          wait = min(max(wait, 5), 180)
+                          print(f"  API {e.code} on {method} {path[:60]} — backoff {wait}s (attempt {attempt+1}/{retries})")
+                          time.sleep(wait)
+                          continue
+                      return e.code, {"error": err_body}
+                  except (urllib.error.URLError, TimeoutError) as e:
+                      if attempt < retries - 1:
+                          wait = min(60, 3 * (attempt + 1))
+                          print(f"  network error {e}; retry in {wait}s")
+                          time.sleep(wait)
+                          continue
+                      return 0, {"error": str(e)}
+              return 429, {"error": "rate limit retries exhausted"}
 
           def list_pages(path_prefix):
               page = 1
