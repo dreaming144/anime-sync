@@ -1,5 +1,6 @@
 """Offline enrichment: Fribb (IMDb/TVDB) + Manami (titles)."""
 import json
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
