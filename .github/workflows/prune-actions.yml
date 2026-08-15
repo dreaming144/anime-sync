@@ -202,3 +202,15 @@ jobs:
           print(f"Caches: deleted/would_delete={del_c} listed={len(caches)}")
           print("DONE")
           PY
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "# Actions prune"
+            echo ""
+            echo "- Retention days: **${{ inputs.retention_days || 30 }}**"
+            echo "- Mode: see log for deleted runs/artifacts"
+            echo ""
+            echo "Full details are in the workflow log above."
+          } >> "$GITHUB_STEP_SUMMARY" || true

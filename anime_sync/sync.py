@@ -93,15 +93,18 @@ def should_accept_update(existing, item, policy=None):
 
 
 
-def record_push(platform, ids, state, action="planned", detail=""):
+def record_push(platform, ids, state, action="planned", detail="", title=""):
     """Append a row for push_report.csv (always recorded; dry-run skips HTTP)."""
+    ids = ids or {}
+    title = title or ids.get("title") or ""
     _push_report_rows.append({
+        "title": title,
         "platform": platform,
         "action": action,
-        "mal": (ids or {}).get("mal") or "",
-        "anilist": (ids or {}).get("anilist") or "",
-        "kitsu": (ids or {}).get("kitsu") or "",
-        "simkl": (ids or {}).get("simkl") or "",
+        "mal": ids.get("mal") or "",
+        "anilist": ids.get("anilist") or "",
+        "kitsu": ids.get("kitsu") or "",
+        "simkl": ids.get("simkl") or "",
         "status": (state or {}).get("status") or "",
         "progress": (state or {}).get("progress") or "",
         "score": (state or {}).get("score") or "",
@@ -115,7 +118,7 @@ def write_push_report(path=PUSH_REPORT_PATH):
     if not _push_report_rows:
         print("   Push report: no pushes planned")
         return None
-    fields = ["platform", "action", "mal", "anilist", "kitsu", "simkl", "status", "progress", "score", "detail", "dry_run"]
+    fields = ["title", "platform", "action", "mal", "anilist", "kitsu", "simkl", "status", "progress", "score", "detail", "dry_run"]
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
@@ -123,6 +126,78 @@ def write_push_report(path=PUSH_REPORT_PATH):
     print(f"   Push report: {len(_push_report_rows)} rows → {path}")
     return path
 
+
+
+def write_show_report(path="show_report.md", max_rows=80):
+    """Human-readable per-show change report for Actions step summary."""
+    rows = list(_push_report_rows)
+    lines = [
+        "## Show report",
+        "",
+    ]
+    if not rows:
+        lines.append("_No list/date pushes this run._")
+        lines.append("")
+        Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
+        print(f"   Show report: 0 changes → {path}")
+        return path
+
+    # Group by title / mal / anilist key
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for r in rows:
+        key = (
+            (r.get("title") or "").strip()
+            or (f"MAL {r['mal']}" if r.get("mal") else "")
+            or (f"AniList {r['anilist']}" if r.get("anilist") else "")
+            or (f"Kitsu {r['kitsu']}" if r.get("kitsu") else "")
+            or (f"SIMKL {r['simkl']}" if r.get("simkl") else "")
+            or "(unknown)"
+        )
+        groups[key].append(r)
+
+    # Action tallies
+    from collections import Counter
+    actions = Counter(r.get("action") or "?" for r in rows)
+    lines.append(
+        f"**{len(rows)}** change(s) across **{len(groups)}** show(s) · "
+        + " · ".join(f"{a}: {n}" for a, n in actions.most_common())
+    )
+    lines.append("")
+    lines.append("| Show | Platform | Action | Status | Progress | Score | Detail |")
+    lines.append("|------|----------|--------|--------|----------|-------|--------|")
+
+    # Prefer errors first, then dates, then others
+    order = {"error": 0, "dates": 1, "planned": 2, "backfill": 3}
+    sorted_keys = sorted(
+        groups.keys(),
+        key=lambda k: (
+            min(order.get(r.get("action"), 9) for r in groups[k]),
+            k.lower(),
+        ),
+    )
+    shown = 0
+    for key in sorted_keys:
+        for r in groups[key]:
+            if shown >= max_rows:
+                break
+            title = (key or "").replace("|", "/")[:48]
+            detail = (r.get("detail") or "").replace("|", "/")[:60]
+            lines.append(
+                f"| {title} | `{r.get('platform')}` | **{r.get('action')}** | "
+                f"{r.get('status') or ''} | {r.get('progress') or ''} | "
+                f"{r.get('score') or ''} | {detail} |"
+            )
+            shown += 1
+        if shown >= max_rows:
+            break
+    if len(rows) > shown:
+        lines.append("")
+        lines.append(f"_…and {len(rows) - shown} more row(s) in `push_report.csv`._")
+    lines.append("")
+    Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"   Show report: {len(rows)} rows / {len(groups)} shows → {path}")
+    return path
 
 
 def write_job_summary(path="job_summary.md"):
@@ -143,7 +218,10 @@ def write_job_summary(path="job_summary.md"):
             lines.append("")
             lines.append("## Circuits")
             for k, v in cs.items():
-                lines.append(f"- `{k}`: {v.get('state')} ok={v.get('successes')} fail={v.get('failures')} skip={v.get('short_circuits')}")
+                lines.append(
+                    f"- `{k}`: {v.get('state')} ok={v.get('successes')} "
+                    f"fail={v.get('failures')} skip={v.get('short_circuits')}"
+                )
     except Exception:
         pass
     try:
@@ -167,18 +245,33 @@ def write_job_summary(path="job_summary.md"):
         lines.append("## Watch history (summary)")
         tot = stats.get("totals") or {}
         lines.append(
-            f"- Completed **{tot.get('completed', 0)}** / watching **{tot.get('watching', 0)}** / PTW **{tot.get('plantowatch', 0)}** / dropped **{tot.get('dropped', 0)}**"
+            f"- Completed **{tot.get('completed', 0)}** / "
+            f"watching **{tot.get('watching', 0)}** / "
+            f"PTW **{tot.get('plantowatch', 0)}** / "
+            f"dropped **{tot.get('dropped', 0)}**"
         )
         lines.append(
-            f"- Scored **{tot.get('scored', 0)}** · Σ progress eps **{tot.get('episodes_progress_sum', 0)}** · completion **{float(tot.get('completion_rate') or 0)*100:.1f}%**"
+            f"- Scored **{tot.get('scored', 0)}** · "
+            f"Σ progress eps **{tot.get('episodes_progress_sum', 0)}** · "
+            f"completion **{float(tot.get('completion_rate') or 0)*100:.1f}%**"
         )
         lines.append("- Full report: `watch_history_stats.md` / `.json`")
     except Exception as e:
         lines.append(f"- Watch stats error: {e}")
+
+    # Embed show report body (without writing path dependency for summary file)
+    try:
+        show_path = write_show_report()
+        show_body = Path(show_path).read_text(encoding="utf-8")
+        lines.append("")
+        lines.append(show_body.rstrip())
+    except Exception as e:
+        lines.append("")
+        lines.append(f"## Show report\n\n_Error building show report: {e}_")
+
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"   Wrote {path}")
     return path
-
 
 
 
@@ -211,7 +304,7 @@ def propagate_oldest_dates(write=True):
             if not dates_need_push(snap, dates):
                 continue
             print(f"[DATES] {key} -> {platform} started={dates.get('started_at')} completed={dates.get('completed_at')}")
-            record_push(platform, ids, state, action="dates", detail=f"oldest start={dates.get('started_at')} end={dates.get('completed_at')}")
+            record_push(platform, ids, state, action="dates", detail=f"oldest start={dates.get('started_at')} end={dates.get('completed_at')}", title=entry.get("title") or ids.get("title") or "")
             if DRY_RUN or not write:
                 n += 1
                 continue
@@ -369,7 +462,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
             if existing["last_synced"].get(item["platform"]) != hash_state(existing["state"]):
                 print(f"[BACKFILL] {key} -> {item['platform']} (kept stored state: {reason})")
                 try:
-                    record_push(item["platform"], existing.get("ids"), existing["state"], action="backfill")
+                    record_push(item["platform"], existing.get("ids"), existing["state"], action="backfill", title=existing.get("title") or (existing.get("ids") or {}).get("title") or "")
                     if DRY_RUN:
                         print(f"   [DRY-RUN] skip backfill {item['platform']} {key}")
                         existing["last_synced"][item["platform"]] = hash_state(existing["state"])

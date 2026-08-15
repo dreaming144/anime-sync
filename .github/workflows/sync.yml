@@ -165,14 +165,29 @@ jobs:
       - name: Job summary
         if: always()
         run: |
-          if [ -f job_summary.md ]; then
-            cat job_summary.md >> "$GITHUB_STEP_SUMMARY" || true
-          fi
-          if [ -f push_report.csv ]; then
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "### Push report (head)" >> "$GITHUB_STEP_SUMMARY"
-            head -n 20 push_report.csv >> "$GITHUB_STEP_SUMMARY" || true
-          fi
+          {
+            echo "# Anime Sync"
+            echo ""
+            if [ -f show_report.md ]; then
+              cat show_report.md
+              echo ""
+            fi
+            if [ -f job_summary.md ]; then
+              cat job_summary.md
+              echo ""
+            fi
+            if [ -f push_report.csv ]; then
+              echo "## Push report (CSV head)"
+              echo ""
+              echo '```'
+              head -n 30 push_report.csv
+              echo '```'
+            fi
+            if [ -f watch_history_stats.md ]; then
+              echo ""
+              head -n 40 watch_history_stats.md
+            fi
+          } >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Commit all
         run: |
@@ -229,6 +244,9 @@ jobs:
             circuit_metrics.json
             push_report.csv
             job_summary.md
+            show_report.md
+            watch_history_stats.md
+            watch_history_stats.json
           retention-days: 30
           if-no-files-found: warn
 
