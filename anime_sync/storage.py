@@ -107,8 +107,9 @@ def save_db(db_obj, cache_obj, write_json_backup=True):
         for k, v in db_obj.get("entries", {}).items():
             # Normalize IDs before persisting
             if isinstance(v, dict) and "ids" in v:
+                from anime_sync.ids import normalize_ids as _normalize_ids
                 v = dict(v)
-                v["ids"] = normalize_ids(v.get("ids") or {})
+                v["ids"] = _normalize_ids(v.get("ids") or {})
             conn.execute(
                 "INSERT INTO entries (canonical_key, data) VALUES (?, ?)",
                 (k, json.dumps(v, ensure_ascii=False)),
