@@ -2025,6 +2025,7 @@ if __name__ == "__main__":
     if args.export_only:
         apply_offline_ids_to_db()
         apply_offline_titles_to_db()
+        dedupe_entries()
         save_db(db, id_cache, write_json_backup=not args.no_json_backup)
         export_csv(args.export_csv_file)
         if not args.no_unmatched:
