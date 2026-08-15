@@ -200,21 +200,30 @@ def get_circuit(url, failure_threshold=5, recovery_timeout=60.0):
 
 
 class RateLimiter:
-    """Token-bucket style limiter: min spacing between calls + optional per-minute budget.
+    """Adaptive rate limiter: base spacing + per-minute budget, adjusts on feedback.
 
-    Used proactively (before request) so we rarely hit 429s.
+    - Starts at base min_interval / per_minute
+    - On 429/503: multiplies current interval (up to max_interval)
+    - On sustained success: slowly decays interval toward base
+    - Honors X-RateLimit-* headers when present
     """
 
-    def __init__(self, name, min_interval=0.0, per_minute=None):
+    def __init__(self, name, min_interval=0.0, per_minute=None, max_interval=None):
         self.name = name
-        self.min_interval = float(min_interval)
+        self.base_interval = float(min_interval)
+        self.min_interval = float(min_interval)  # current adaptive interval
         self.per_minute = int(per_minute) if per_minute else None
+        self.base_per_minute = self.per_minute
+        self.max_interval = float(max_interval) if max_interval else max(self.base_interval * 8, 8.0)
         self._lock = threading.Lock()
         self._last = 0.0
         self._window_start = 0.0
         self._window_count = 0
         self.waits = 0
         self.total = 0
+        self.success_streak = 0
+        self.throttle_events = 0
+        self.recover_events = 0
 
     def acquire(self):
         with self._lock:
@@ -239,6 +248,55 @@ class RateLimiter:
             self._window_count += 1
             self.total += 1
 
+    def record_success(self):
+        """Call after a healthy 2xx/4xx-client response; gradually speed up."""
+        with self._lock:
+            self.success_streak += 1
+            # Every 8 successes, ease interval 15% toward base
+            if self.success_streak >= 8 and self.min_interval > self.base_interval + 0.01:
+                old = self.min_interval
+                self.min_interval = max(
+                    self.base_interval,
+                    self.min_interval * 0.85,
+                )
+                if self.base_per_minute:
+                    # restore budget slowly
+                    self.per_minute = min(
+                        self.base_per_minute,
+                        int((self.per_minute or self.base_per_minute) * 1.1) or self.base_per_minute,
+                    )
+                self.success_streak = 0
+                self.recover_events += 1
+                if old - self.min_interval > 0.05:
+                    print(
+                        f"   rate {self.name}: recover interval "
+                        f"{old:.2f}s → {self.min_interval:.2f}s"
+                    )
+
+    def record_throttle(self, status_code=429, retry_after=None):
+        """Call on 429/503 — back off hard."""
+        with self._lock:
+            self.success_streak = 0
+            self.throttle_events += 1
+            old = self.min_interval
+            factor = 2.0 if status_code == 429 else 1.5
+            self.min_interval = min(self.max_interval, max(self.base_interval, self.min_interval * factor))
+            if self.per_minute and self.base_per_minute:
+                self.per_minute = max(5, int(self.per_minute * 0.5))
+            extra = 0.0
+            if retry_after is not None:
+                try:
+                    extra = float(retry_after)
+                except (TypeError, ValueError):
+                    extra = 0.0
+            print(
+                f"   rate {self.name}: throttle ({status_code}) "
+                f"interval {old:.2f}s → {self.min_interval:.2f}s"
+                + (f" +wait {extra:.0f}s" if extra else "")
+            )
+            if extra > 0:
+                time.sleep(min(extra, 120))
+
     def note_headers(self, headers):
         """Slow down if upstream reports low remaining quota (AniList etc.)."""
         if not headers:
@@ -249,7 +307,6 @@ class RateLimiter:
             if remaining is not None and str(remaining).isdigit():
                 rem = int(remaining)
                 if rem <= 2:
-                    # pause until safer
                     reset = headers.get("X-RateLimit-Reset") or headers.get("x-ratelimit-reset")
                     if reset and str(reset).isdigit():
                         wait = max(1, int(reset) - int(time.time()) + 1)
@@ -257,8 +314,20 @@ class RateLimiter:
                     else:
                         wait = 15
                     print(f"   rate {self.name}: remaining={rem}; pause {wait}s")
+                    with self._lock:
+                        self.min_interval = min(
+                            self.max_interval,
+                            max(self.min_interval, self.base_interval * 2),
+                        )
+                        self.success_streak = 0
+                        self.throttle_events += 1
                     time.sleep(wait)
                 elif rem <= 5 and limit and str(limit).isdigit() and int(limit) <= 90:
+                    with self._lock:
+                        self.min_interval = min(
+                            self.max_interval,
+                            max(self.min_interval, self.base_interval * 1.5),
+                        )
                     time.sleep(1.0)
         except (TypeError, ValueError):
             pass
@@ -299,8 +368,11 @@ def rate_limiter_status():
         name: {
             "total": r.total,
             "waits": r.waits,
-            "min_interval": r.min_interval,
+            "base_interval": r.base_interval,
+            "min_interval": round(r.min_interval, 3),
             "per_minute": r.per_minute,
+            "throttle_events": r.throttle_events,
+            "recover_events": r.recover_events,
         }
         for name, r in _rate_limiters.items()
     }
@@ -356,9 +428,17 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
             if last.status_code in (429, 503, 502, 500):
                 if breaker:
                     breaker.record_failure()
+                retry_after = last.headers.get("Retry-After")
+                if limiter:
+                    try:
+                        limiter.record_throttle(
+                            last.status_code,
+                            retry_after if last.status_code == 429 else None,
+                        )
+                    except Exception:
+                        pass
                 if attempt >= max_retries - 1:
                     return last
-                retry_after = last.headers.get("Retry-After")
                 reset = last.headers.get("X-RateLimit-Reset") or last.headers.get("x-ratelimit-reset")
                 if retry_after and str(retry_after).replace(".", "", 1).isdigit():
                     wait = float(retry_after) + 1
@@ -377,6 +457,11 @@ def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circ
             if last.ok or last.status_code < 500:
                 if breaker:
                     breaker.record_success()
+                if limiter and last.ok:
+                    try:
+                        limiter.record_success()
+                    except Exception:
+                        pass
                 return last
 
             if breaker:
@@ -2810,7 +2895,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         print(
             "   RateLimits: "
             + ", ".join(
-                f"{k}={v['total']}req/{v['waits']}waits"
+                f"{k}={v['total']}req/{v['waits']}w/i={v['min_interval']}s"
                 for k, v in _rl.items()
             )
         )
