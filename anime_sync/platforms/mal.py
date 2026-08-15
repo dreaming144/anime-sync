@@ -1,4 +1,5 @@
 """MyAnimeList loader, pusher, and OAuth token refresh."""
+import json
 import os
 import time
 from datetime import datetime, timezone
@@ -14,7 +15,6 @@ _mal_token_refreshed = False
 
 def _persist_mal_secrets(access_token, refresh_token=None):
     """Best-effort write updated MAL tokens back to GitHub Actions secrets via gh CLI."""
-import json
     repo = os.getenv("GITHUB_REPOSITORY", "dreaming144/anime-sync")
     token = os.getenv("SECRETS_WRITE_TOKEN") or os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
     if not token:

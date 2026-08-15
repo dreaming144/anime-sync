@@ -1,4 +1,5 @@
 """ARM (relations.yuna.moe) ID mapping with sparse multi-source retry."""
+import json
 import time
 from datetime import datetime, timezone
 
@@ -10,7 +11,6 @@ import requests
 
 def _arm_pick_source(ids_dict):
     """Choose best ARM query key from a partial ids dict. Prefer MAL/AniList over Kitsu/AniDB."""
-import json
     if ids_dict.get("anilist") is not None and str(ids_dict.get("anilist")).strip() != "":
         return "anilist", ids_dict["anilist"], f"arm_anilist_{ids_dict['anilist']}"
     if ids_dict.get("mal") is not None and str(ids_dict.get("mal")).strip() != "":

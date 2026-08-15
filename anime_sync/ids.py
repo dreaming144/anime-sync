@@ -1,4 +1,5 @@
 """ID normalization, canonical keys, and entry deduplication."""
+import hashlib
 from datetime import datetime, timezone
 
 from anime_sync.storage import db, ensure_loaded, id_cache, manual_overrides
@@ -10,7 +11,6 @@ def hash_state(state):
 
 def normalize_ids(ids_dict):
     """Force all known ID fields to str (or None). Prevents str/int key mismatches."""
-import hashlib
     if not ids_dict:
         return {}
     out = dict(ids_dict)
