@@ -2243,11 +2243,96 @@ def dedupe_entries():
     return removed
 
 
+
+def fill_missing_simkl_ids(max_lookups=200):
+    """Backfill SIMKL IDs for entries that lack them.
+
+    Order: ARM cache/API → SIMKL search-by-id (mal / anilist) when client_id set.
+    """
+    ensure_loaded()
+    client_id = os.getenv("SIMKL_CLIENT_ID") or ""
+    entries = db.get("entries") or {}
+    missing = [
+        (k, d) for k, d in entries.items()
+        if not (d.get("ids") or {}).get("simkl")
+    ]
+    if not missing:
+        print("   SIMKL fill: nothing missing")
+        return 0
+
+    print(f"   SIMKL fill: {len(missing)} entries without simkl id")
+    filled = 0
+    lookups = 0
+
+    def _simkl_id_lookup(ids):
+        nonlocal lookups
+        if not client_id or lookups >= max_lookups:
+            return None
+        for param, key in (("mal", "mal"), ("anilist", "anilist")):
+            if not ids.get(key):
+                continue
+            lookups += 1
+            try:
+                r = request_with_retries(
+                    "GET",
+                    "https://api.simkl.com/search/id",
+                    params={param: ids[key], "client_id": client_id},
+                    timeout=15,
+                )
+            except (CircuitOpenError, TimeoutError, Exception) as e:
+                print(f"   SIMKL id lookup error: {e}")
+                return None
+            if not r.ok:
+                continue
+            data = r.json()
+            # API returns list or dict with anime key
+            items = data if isinstance(data, list) else (data.get("anime") or data.get("shows") or [])
+            if isinstance(data, dict) and data.get("ids"):
+                items = [data]
+            for it in items or []:
+                sid = (it.get("ids") or {}).get("simkl") or it.get("simkl_id") or it.get("simkl")
+                if sid:
+                    return str(sid)
+            time.sleep(0.15)
+        return None
+
+    for key, data in missing:
+        ids = dict(data.get("ids") or {})
+        simkl = None
+        # 1) ARM
+        try:
+            arm = fetch_arm(ids, use_cache=True)
+            if arm and arm.get("simkl"):
+                simkl = str(arm["simkl"])
+                for f in ("imdb", "tvdb", "tmdb", "anidb", "mal", "anilist", "kitsu"):
+                    if arm.get(f) and not ids.get(f):
+                        ids[f] = arm[f]
+        except Exception:
+            pass
+        # 2) SIMKL official id search
+        if not simkl:
+            simkl = _simkl_id_lookup(ids)
+        if not simkl:
+            continue
+        ids["simkl"] = simkl
+        data["ids"] = normalize_ids(ids)
+        entries[key] = data
+        filled += 1
+
+    if filled:
+        db["entries"] = entries
+        print(f"   SIMKL fill: +{filled} (lookups={lookups})")
+    else:
+        print(f"   SIMKL fill: +0 (lookups={lookups})")
+    return filled
+
+
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
     apply_offline_ids_to_db()
     apply_offline_titles_to_db()
+    fill_missing_simkl_ids()
     all_items=[]
     # Bulkhead: each platform loader runs in the isolated load pool
     load_pool = POOL_LOAD.executor()
@@ -2428,6 +2513,7 @@ if __name__ == "__main__":
     if args.export_only:
         apply_offline_ids_to_db()
         apply_offline_titles_to_db()
+        fill_missing_simkl_ids()
         dedupe_entries()
         save_db(db, id_cache, write_json_backup=not args.no_json_backup)
         export_csv(args.export_csv_file)

@@ -59,7 +59,7 @@ Suggested follow-ups when you return to this project:
 ### Data quality
 5. **Kitsu mapping bulkhead for western** — auto-pull TVDB from Kitsu mappings for any future non-anime entries
 6. **Override UI/workflow** — `workflow_dispatch` input to append one override without editing JSON
-7. **SIMKL coverage** — only ~half the list has SIMKL IDs; optional enrichment pass if useful for your apps
+7. **SIMKL coverage** — ~~optional enrichment~~ **done**: `fill_missing_simkl_ids()` via ARM + SIMKL search/id (needs `SIMKL_CLIENT_ID`)
 
 ### Product / UX
 8. **Daemon mode** (roadmap) — long-running local process vs Actions-only
