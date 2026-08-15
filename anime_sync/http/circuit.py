@@ -13,8 +13,10 @@ Design notes (classic + practical refinements):
 """
 from __future__ import annotations
 
+import json
 import os
 import time
+from pathlib import Path
 from typing import Any
 
 from .util import service_key as _service_key
@@ -275,3 +277,211 @@ def circuit_status() -> dict[str, dict[str, Any]]:
 def reset_all_circuits() -> None:
     """Clear registry (tests)."""
     _circuit_breakers.clear()
+
+
+# ---------------------------------------------------------------------------
+# Distributed (cross-process / cross-run) state
+# ---------------------------------------------------------------------------
+# Shared file so GitHub Actions runs (and local processes) remember OPEN
+# circuits. Timestamps are absolute epoch seconds.
+
+CIRCUIT_STATE_PATH = os.getenv("CIRCUIT_STATE_PATH", "circuit_state.json")
+_STATE_VERSION = 1
+
+
+def _try_lock(fh):
+    """Best-effort exclusive lock (POSIX). No-op on unsupported platforms."""
+    try:
+        import fcntl
+        fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
+        return True
+    except Exception:
+        return False
+
+
+def _try_unlock(fh):
+    try:
+        import fcntl
+        fcntl.flock(fh.fileno(), fcntl.LOCK_UN)
+    except Exception:
+        pass
+
+
+def load_circuit_state(path: str | None = None) -> dict[str, Any]:
+    """Load durable circuit state and restore breakers into the registry.
+
+    OPEN circuits whose recovery window has not elapsed stay OPEN so the next
+    process/run continues to short-circuit. Expired OPEN → HALF_OPEN so a
+    single probe can recover without waiting another full cooldown.
+    """
+    path = path or CIRCUIT_STATE_PATH
+    p = Path(path)
+    if not p.is_file():
+        return {}
+
+    try:
+        raw = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"   circuit state load skipped: {e}")
+        return {}
+
+    circuits = raw.get("circuits") or {}
+    now = time.time()
+    restored = 0
+    for name, snap in circuits.items():
+        if not isinstance(snap, dict):
+            continue
+        # Seed registry entry with thresholds from snap when present
+        if name not in _circuit_breakers:
+            _circuit_breakers[name] = CircuitBreaker(
+                name,
+                failure_threshold=int(snap.get("failure_threshold") or 5),
+                recovery_timeout=float(snap.get("base_recovery_timeout") or snap.get("recovery_timeout") or 60.0),
+                half_open_max=int(snap.get("half_open_max") or 2),
+                success_threshold=int(snap.get("success_threshold") or 2),
+                max_recovery_timeout=float(snap.get("max_recovery_timeout") or 300.0),
+            )
+        cb = _circuit_breakers[name]
+
+        # Restore cumulative metrics
+        for attr in (
+            "calls", "successes", "failures", "short_circuits",
+            "open_count", "half_open_count", "close_count",
+        ):
+            if attr in snap and isinstance(snap[attr], (int, float)):
+                setattr(cb, attr, int(snap[attr]))
+        for attr in ("last_failure_at", "last_success_at", "last_open_at", "last_close_at"):
+            if snap.get(attr):
+                try:
+                    setattr(cb, attr, float(snap[attr]))
+                except (TypeError, ValueError):
+                    pass
+        if snap.get("last_error"):
+            cb.last_error = str(snap["last_error"])[:200]
+        if snap.get("recovery_timeout"):
+            try:
+                cb.recovery_timeout = float(snap["recovery_timeout"])
+            except (TypeError, ValueError):
+                pass
+        if snap.get("base_recovery_timeout"):
+            try:
+                cb.base_recovery_timeout = float(snap["base_recovery_timeout"])
+            except (TypeError, ValueError):
+                pass
+        if snap.get("consecutive_failures") is not None:
+            try:
+                cb.consecutive_failures = int(snap["consecutive_failures"])
+            except (TypeError, ValueError):
+                pass
+
+        state = (snap.get("state") or CircuitBreaker.CLOSED).lower()
+        opened_at = float(snap.get("opened_at") or 0.0)
+
+        if state == CircuitBreaker.OPEN and opened_at:
+            elapsed = now - opened_at
+            if elapsed < cb.recovery_timeout:
+                cb.state = CircuitBreaker.OPEN
+                cb.opened_at = opened_at
+                remaining = cb.recovery_timeout - elapsed
+                print(
+                    f"   circuit {name}: restored OPEN "
+                    f"({remaining:.0f}s remaining; last_error={cb.last_error[:60]!r})"
+                )
+                restored += 1
+            else:
+                # Cooldown finished while we were offline — allow probes
+                cb.state = CircuitBreaker.HALF_OPEN
+                cb.opened_at = opened_at
+                cb.half_open_trials = 0
+                cb.half_open_successes = 0
+                cb.half_open_count += 1
+                print(f"   circuit {name}: restored OPEN→HALF_OPEN (cooldown elapsed offline)")
+                restored += 1
+        elif state == CircuitBreaker.HALF_OPEN:
+            cb.state = CircuitBreaker.HALF_OPEN
+            cb.opened_at = opened_at
+            cb.half_open_trials = int(snap.get("half_open_trials") or 0)
+            cb.half_open_successes = int(snap.get("half_open_successes") or 0)
+            print(f"   circuit {name}: restored HALF_OPEN")
+            restored += 1
+        else:
+            cb.state = CircuitBreaker.CLOSED
+
+    if restored:
+        print(f"   Distributed circuits: restored {restored} breaker(s) from {path}")
+    return circuits
+
+
+def save_circuit_state(path: str | None = None) -> str | None:
+    """Write current registry to disk for the next process/run."""
+    path = path or CIRCUIT_STATE_PATH
+    if not _circuit_breakers:
+        # Still write empty shell so loaders know the file is intentional
+        payload = {"version": _STATE_VERSION, "updated_at": time.time(), "circuits": {}}
+    else:
+        circuits = {}
+        for name, cb in _circuit_breakers.items():
+            circuits[name] = {
+                "state": cb.state,
+                "opened_at": cb.opened_at,
+                "recovery_timeout": cb.recovery_timeout,
+                "base_recovery_timeout": cb.base_recovery_timeout,
+                "max_recovery_timeout": cb.max_recovery_timeout,
+                "failure_threshold": cb.failure_threshold,
+                "success_threshold": cb.success_threshold,
+                "half_open_max": cb.half_open_max,
+                "half_open_trials": cb.half_open_trials,
+                "half_open_successes": cb.half_open_successes,
+                "consecutive_failures": cb.consecutive_failures,
+                "calls": cb.calls,
+                "successes": cb.successes,
+                "failures": cb.failures,
+                "short_circuits": cb.short_circuits,
+                "open_count": cb.open_count,
+                "half_open_count": cb.half_open_count,
+                "close_count": cb.close_count,
+                "last_error": cb.last_error,
+                "last_failure_at": cb.last_failure_at or None,
+                "last_success_at": cb.last_success_at or None,
+                "last_open_at": cb.last_open_at or None,
+                "last_close_at": cb.last_close_at or None,
+            }
+        payload = {
+            "version": _STATE_VERSION,
+            "updated_at": time.time(),
+            "circuits": circuits,
+        }
+
+    p = Path(path)
+    tmp = p.with_suffix(p.suffix + ".tmp")
+    try:
+        data = json.dumps(payload, indent=2)
+        with open(tmp, "w", encoding="utf-8") as fh:
+            _try_lock(fh)
+            fh.write(data)
+            fh.flush()
+            os.fsync(fh.fileno())
+            _try_unlock(fh)
+        os.replace(tmp, p)
+        print(f"   Distributed circuits: saved {len(payload.get('circuits') or {})} breaker(s) → {path}")
+        return path
+    except OSError as e:
+        print(f"   circuit state save failed: {e}")
+        try:
+            if tmp.exists():
+                tmp.unlink()
+        except OSError:
+            pass
+        return None
+
+
+def ensure_circuits_loaded(path: str | None = None) -> None:
+    """Idempotent load at process start (safe to call multiple times)."""
+    global _circuits_loaded
+    if _circuits_loaded:
+        return
+    load_circuit_state(path)
+    _circuits_loaded = True
+
+
+_circuits_loaded = False

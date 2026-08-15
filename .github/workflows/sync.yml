@@ -76,6 +76,7 @@ jobs:
           path: |
             sync.db
             id_cache.json
+            circuit_state.json
           key: anime-sync-state-${{ github.run_id }}
           restore-keys: |
             anime-sync-state-
@@ -198,7 +199,7 @@ jobs:
           [ -f manual_overrides.json ] || echo '{}' > manual_overrides.json
 
           # Git is source of truth for the DB
-          git add -f sync.db id_cache.json 2>/dev/null || true
+          git add -f sync.db id_cache.json circuit_state.json 2>/dev/null || true
           # JSON backup optional — skip if unchanged noise is high; still track when present
           # sync_db.json is artifact-only (avoid repo bloat)
           git add anime_pairings.csv unmatched.csv manual_overrides.json || true
@@ -218,6 +219,7 @@ jobs:
           path: |
             sync.db
             id_cache.json
+            circuit_state.json
           key: anime-sync-state-${{ github.run_id }}
 
       # Only save offline dumps when restore missed (stable key cannot be overwritten)
@@ -242,6 +244,7 @@ jobs:
             manual_overrides.json
             manual_overrides_template.json
             circuit_metrics.json
+            circuit_state.json
             push_report.csv
             job_summary.md
             show_report.md

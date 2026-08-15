@@ -7,11 +7,12 @@ from pathlib import Path
 import requests
 
 from .bulkhead import bulkhead_status, get_bulkhead
-from .circuit import CircuitOpenError, circuit_status, get_circuit
+from .circuit import CircuitOpenError, circuit_status, get_circuit, save_circuit_state, ensure_circuits_loaded
 from .rate_limit import get_rate_limiter, rate_limiter_status
 from .util import service_key as _service_key
 
 def request_with_retries(method, url, *, max_retries=5, base_sleep=1.0, use_circuit=True, use_bulkhead=True, use_rate_limit=True, **kwargs):
+    ensure_circuits_loaded()
     """HTTP helper: rate limit → bulkhead → circuit → request + 429 backoff.
 
     kwargs passed to requests.request (headers, json, data, params, timeout, ...).
@@ -132,4 +133,8 @@ def write_circuit_metrics(path="circuit_metrics.json"):
     except Exception:
         pass
     Path(path).write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    try:
+        save_circuit_state()
+    except Exception:
+        pass
     return payload

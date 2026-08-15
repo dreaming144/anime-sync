@@ -27,6 +27,9 @@ from anime_sync.http import (
     circuit_status,
     rate_limiter_status,
     write_circuit_metrics,
+    load_circuit_state,
+    save_circuit_state,
+    ensure_circuits_loaded,
 )
 from anime_sync.ids import dedupe_entries, get_canonical_key, hash_state, normalize_ids
 from anime_sync.platforms import (
@@ -413,6 +416,7 @@ def propagate_oldest_dates(write=True):
     return n
 
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
+    ensure_circuits_loaded()
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
     apply_offline_ids_to_db()
@@ -609,6 +613,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
         )
     try:
         write_circuit_metrics("circuit_metrics.json")
+        save_circuit_state()
         print("   Wrote circuit_metrics.json")
     except Exception as e:
         print(f"   circuit metrics write skipped: {e}")

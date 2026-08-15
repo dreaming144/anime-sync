@@ -201,3 +201,12 @@ Each full sync:
 python -m anime_sync --sync-dates-only          # load + propagate dates
 python -m anime_sync --dry-run --sync-dates-only # plan only
 ```
+
+## Distributed circuit breakers
+
+Circuit state is shared across processes and Actions runs via `circuit_state.json`:
+
+- OPEN breakers resume short-circuiting until their recovery window elapses
+- Expired OPEN windows restore as HALF_OPEN (one probe allowed)
+- File is atomic-written and included in the state cache / git commit
+- Override path with `CIRCUIT_STATE_PATH`

@@ -56,7 +56,7 @@ jobs:
           git config user.name "anime-sync-bot"
           git config user.email "anime-sync-bot@github.com"
           git pull --rebase --autostash || true
-          git add -f sync.db id_cache.json 2>/dev/null || true
+          git add -f sync.db id_cache.json circuit_state.json 2>/dev/null || true
           git add anime_pairings.csv unmatched.csv manual_overrides.json || true
           if git diff --staged --quiet; then
             echo "No changes"
@@ -97,6 +97,7 @@ jobs:
             anime_pairings.csv
             unmatched.csv
             circuit_metrics.json
+            circuit_state.json
             push_report.csv
             job_summary.md
             show_report.md

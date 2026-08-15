@@ -13,8 +13,11 @@ from .circuit import (
     CircuitBreaker,
     CircuitOpenError,
     circuit_status,
+    ensure_circuits_loaded,
     get_circuit,
+    load_circuit_state,
     reset_all_circuits,
+    save_circuit_state,
 )
 from .client import request_with_retries, write_circuit_metrics
 from .rate_limit import (
@@ -42,6 +45,9 @@ __all__ = [
     "get_bulkhead",
     "get_circuit",
     "reset_all_circuits",
+    "ensure_circuits_loaded",
+    "save_circuit_state",
+    "load_circuit_state",
     "get_rate_limiter",
     "rate_limiter_status",
     "request_with_retries",
