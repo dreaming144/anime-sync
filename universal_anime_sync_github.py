@@ -1991,6 +1991,7 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     print(e)
 
     db["id_cache"] = id_cache
+    dedupe_entries()
     save_db(db, id_cache, write_json_backup=write_json_backup)
     
     anidb_count = sum(1 for e in db["entries"].values() if e["ids"].get("anidb"))
