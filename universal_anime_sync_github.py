@@ -1,8 +1,14 @@
 """
-Universal Anime Sync — thin entry facade (Phases 1–5 modularization).
+Universal Anime Sync — thin entry facade (Phases 1–6 modularization).
 
-Prefer:  python -m anime_sync.cli
-Still supported:  python universal_anime_sync_github.py
+Preferred entrypoint (Actions + local):
+    python -m anime_sync [options]
+
+This module remains a compatibility shim that re-exports the public API for
+tests and older scripts. New code should import from `anime_sync.*` or run
+`python -m anime_sync`.
+
+DEPRECATED as a primary CLI path — use `python -m anime_sync` instead.
 """
 
 from pathlib import Path
