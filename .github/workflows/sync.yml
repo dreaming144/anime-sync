@@ -17,6 +17,18 @@ on:
         default: 'false'
         type: choice
         options: ['false','true']
+      dry_run:
+        description: 'Plan pushes only (no remote list writes)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false','true']
+      no_push:
+        description: 'Fetch/enrich only (skip pushes)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false','true']
 
 concurrency:
   group: anime-sync
@@ -109,12 +121,16 @@ jobs:
           SECRETS_WRITE_TOKEN: ${{ secrets.SECRETS_WRITE_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
+          EXTRA=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then EXTRA="$EXTRA --dry-run"; fi
+          if [ "${{ inputs.no_push }}" = "true" ]; then EXTRA="$EXTRA --no-push"; fi
+          # JSON backup is large; keep SQLite in git, JSON as artifact only
           if [ "${{ inputs.export_only }}" = "true" ]; then
-            python universal_anime_sync_github.py --export-only
+            python universal_anime_sync_github.py --export-only --no-json-backup $EXTRA
           elif [ "${{ inputs.enrich_all }}" = "true" ]; then
-            python universal_anime_sync_github.py --enrich-all --export-csv
+            python universal_anime_sync_github.py --enrich-all --export-csv --no-json-backup $EXTRA
           else
-            python universal_anime_sync_github.py --export-csv
+            python universal_anime_sync_github.py --export-csv --no-json-backup $EXTRA
           fi
 
       - name: Show reports
@@ -146,6 +162,18 @@ jobs:
               print('No unmatched file')
           "
 
+      - name: Job summary
+        if: always()
+        run: |
+          if [ -f job_summary.md ]; then
+            cat job_summary.md >> "$GITHUB_STEP_SUMMARY" || true
+          fi
+          if [ -f push_report.csv ]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Push report (head)" >> "$GITHUB_STEP_SUMMARY"
+            head -n 20 push_report.csv >> "$GITHUB_STEP_SUMMARY" || true
+          fi
+
       - name: Commit all
         run: |
           git config user.name "anime-sync-bot"
@@ -157,7 +185,7 @@ jobs:
           # Git is source of truth for the DB
           git add -f sync.db id_cache.json 2>/dev/null || true
           # JSON backup optional — skip if unchanged noise is high; still track when present
-          git add -f sync_db.json 2>/dev/null || true
+          # sync_db.json is artifact-only (avoid repo bloat)
           git add anime_pairings.csv unmatched.csv manual_overrides.json || true
 
           if git diff --staged --quiet; then
@@ -199,5 +227,13 @@ jobs:
             manual_overrides.json
             manual_overrides_template.json
             circuit_metrics.json
+            push_report.csv
+            job_summary.md
           retention-days: 30
           if-no-files-found: warn
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Universal Anime Sync failed. Check logs, circuit_metrics.json, and secrets."
+          if [ -f job_summary.md ]; then cat job_summary.md; fi

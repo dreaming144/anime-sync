@@ -1,0 +1,77 @@
+name: Weekly deep enrich
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # Monday 04:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: anime-sync
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Restore offline mapping caches
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            anime-list-mini.json
+            anime-offline-database-minified.json
+          key: anime-sync-offline-v3
+          restore-keys: |
+            anime-sync-offline-v3
+            anime-sync-offline-
+      - name: Install dependencies
+        run: pip install requests
+      - name: Deep enrich (no push)
+        env:
+          ANILIST_USERNAME: ${{ secrets.ANILIST_USERNAME }}
+          KITSU_USERNAME: ${{ secrets.KITSU_USERNAME }}
+          SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+          SIMKL_ACCESS_TOKEN: ${{ secrets.SIMKL_ACCESS_TOKEN }}
+          ANILIST_TOKEN: ${{ secrets.ANILIST_TOKEN }}
+          KITSU_TOKEN: ${{ secrets.KITSU_TOKEN }}
+          KITSU_EMAIL: ${{ secrets.KITSU_EMAIL }}
+          KITSU_PASSWORD: ${{ secrets.KITSU_PASSWORD }}
+          MAL_ACCESS_TOKEN: ${{ secrets.MAL_ACCESS_TOKEN }}
+          MAL_REFRESH_TOKEN: ${{ secrets.MAL_REFRESH_TOKEN }}
+          MAL_CLIENT_ID: ${{ secrets.MAL_CLIENT_ID }}
+          MAL_CLIENT_SECRET: ${{ secrets.MAL_CLIENT_SECRET }}
+          IDS_MOE_API_KEY: ${{ secrets.IDS_MOE_API_KEY }}
+        run: |
+          python universal_anime_sync_github.py --enrich-all --export-csv --no-push --no-json-backup
+      - name: Commit DB/CSV
+        run: |
+          git config user.name "anime-sync-bot"
+          git config user.email "anime-sync-bot@github.com"
+          git pull --rebase --autostash || true
+          git add -f sync.db id_cache.json 2>/dev/null || true
+          git add anime_pairings.csv unmatched.csv manual_overrides.json || true
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: weekly enrich $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enrich-reports
+          path: |
+            anime_pairings.csv
+            unmatched.csv
+            circuit_metrics.json
+            push_report.csv
+            job_summary.md
+          retention-days: 30
+          if-no-files-found: warn

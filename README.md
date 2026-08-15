@@ -43,9 +43,15 @@ See [SETUP_TOKENS.md](SETUP_TOKENS.md) for AniList / MAL / Kitsu OAuth.
 ```bash
 pip install requests
 python universal_anime_sync_github.py --export-csv
-# export only:
 python universal_anime_sync_github.py --export-only
+python universal_anime_sync_github.py --dry-run --export-csv   # plan pushes only
+python universal_anime_sync_github.py --no-push --enrich-all   # deep enrich, no remote writes
+python -m unittest test_sync_core.py -v
 ```
+
+Optional secret: `IDS_MOE_API_KEY` for ids.moe mappings.
+
+`sync_db.json` is no longer committed every run (artifact only). Weekly workflow `enrich-weekly.yml` runs deep enrich without pushes.
 
 ## Next Steps
 

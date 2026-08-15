@@ -28,6 +28,10 @@ MANAMI_URL = (
 # Refresh offline dumps if older than this (seconds). 7 days.
 OFFLINE_MAX_AGE_SEC = 7 * 24 * 3600
 CSV_PATH_DEFAULT = Path("anime_pairings.csv")
+PUSH_REPORT_PATH = Path("push_report.csv")
+DRY_RUN = False
+_push_report_rows = []
+
 UNMATCHED_PATH = Path("unmatched.csv")
 OVERRIDES_PATH = Path("manual_overrides.json")
 
@@ -267,7 +271,8 @@ class RateLimiter:
                     )
                 self.success_streak = 0
                 self.recover_events += 1
-                if old - self.min_interval > 0.05:
+                # Log at most every other recover to reduce noise
+                if old - self.min_interval > 0.05 and self.recover_events % 2 == 1:
                     print(
                         f"   rate {self.name}: recover interval "
                         f"{old:.2f}s → {self.min_interval:.2f}s"
@@ -875,14 +880,17 @@ def ensure_offline_file(path, url, label, max_age_sec=OFFLINE_MAX_AGE_SEC, force
         return True
     print(f"-> Downloading {label} ({url}) ...")
     try:
-        r = requests.get(url, timeout=180, allow_redirects=True)
+        r = request_with_retries(
+            "GET", url, timeout=180, allow_redirects=True,
+            use_circuit=False, use_bulkhead=False, use_rate_limit=True,
+        )
         r.raise_for_status()
         tmp = path.with_suffix(path.suffix + ".tmp")
         tmp.write_bytes(r.content)
         tmp.replace(path)
         print(f"   Saved {path.name} ({len(r.content)//1024} KB)")
         return True
-    except requests.RequestException as e:
+    except (requests.RequestException, CircuitOpenError, TimeoutError) as e:
         if path.exists():
             print(f"   {label} download failed ({e}); using existing file")
             return True
@@ -961,7 +969,7 @@ def fetch_anizip(anilist_id=None, mal_id=None, use_cache=True):
         return None
 
     try:
-        r = requests.get(url, timeout=15)
+        r = request_with_retries("GET", url, timeout=15)
         if not r.ok:
             return None
         data = r.json()
@@ -1001,7 +1009,7 @@ def fetch_kitsu_mappings(kitsu_anime_id, use_cache=True):
 
     try:
         url = f"https://kitsu.io/api/edge/anime/{kitsu_anime_id}/mappings"
-        r = requests.get(url, timeout=15)
+        r = request_with_retries("GET", url, timeout=15)
         if not r.ok:
             return {}
         result = {"kitsu": kitsu_anime_id, "_cached_at": datetime.now(timezone.utc).isoformat(), "_source": "kitsu_mappings"}
@@ -1216,6 +1224,65 @@ def fetch_arm(ids_dict, use_cache=True):
             # Still cache sparse briefly so we don't hammer
             id_cache[primary_key] = result
     return result
+
+
+
+def fetch_ids_moe(ids_dict, use_cache=True):
+    """Optional ids.moe mapping (requires IDS_MOE_API_KEY for non-trivial use).
+
+    Public endpoints are limited; when key is set, query by MAL/AniList.
+    """
+    api_key = os.getenv("IDS_MOE_API_KEY") or os.getenv("IDS_MOE_TOKEN")
+    if not api_key:
+        return {}
+    ids_dict = ids_dict or {}
+    if ids_dict.get("mal"):
+        path, cache_key = f"mal/{ids_dict['mal']}", f"idsmoe_mal_{ids_dict['mal']}"
+    elif ids_dict.get("anilist"):
+        path, cache_key = f"anilist/{ids_dict['anilist']}", f"idsmoe_anilist_{ids_dict['anilist']}"
+    else:
+        return {}
+    if use_cache and cache_key in id_cache:
+        cached = id_cache[cache_key]
+        try:
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(
+                cached.get("_cached_at", "2000-01-01T00:00:00+00:00")
+            )).days
+            if age < 30:
+                return cached
+        except (ValueError, TypeError):
+            pass
+    headers = {"Authorization": f"Bearer {api_key}", "Accept": "application/json"}
+    for base in ("https://api.ids.moe", "https://ids.moe"):
+        try:
+            r = request_with_retries(
+                "GET", f"{base}/{path}", headers=headers, timeout=15,
+            )
+            if not r.ok:
+                continue
+            data = r.json() if r.content else {}
+            if not isinstance(data, dict):
+                continue
+            result = {
+                "mal": data.get("myanimelist") or data.get("mal"),
+                "anilist": data.get("anilist"),
+                "kitsu": data.get("kitsu"),
+                "anidb": data.get("anidb"),
+                "simkl": data.get("simkl"),
+                "imdb": _normalize_imdb(data.get("imdb")) if data.get("imdb") else None,
+                "tvdb": data.get("thetvdb") or data.get("tvdb"),
+                "tmdb": data.get("themoviedb") or data.get("tmdb"),
+                "title": data.get("title"),
+                "_cached_at": datetime.now(timezone.utc).isoformat(),
+                "_source": "ids_moe",
+            }
+            result = {k: v for k, v in result.items() if v is not None and v != ""}
+            if cache_key and result:
+                id_cache[cache_key] = result
+            return result
+        except Exception:
+            continue
+    return {}
 
 
 def fetch_animeapi(ids_dict, use_cache=True):
@@ -1646,6 +1713,14 @@ def enrich_ids(ids_dict, do_network=True):
                         enriched[k] = alt[k]
                 if alt.get("_source") and not enriched.get("_source"):
                     enriched["_source"] = alt["_source"]
+        if (not enriched.get("simkl") or not enriched.get("imdb")) and (
+            enriched.get("mal") or enriched.get("anilist")
+        ):
+            moe = fetch_ids_moe(enriched, use_cache=True)
+            if moe:
+                for k in ["mal", "anilist", "kitsu", "anidb", "simkl", "imdb", "tvdb", "tmdb", "title"]:
+                    if moe.get(k) and not enriched.get(k):
+                        enriched[k] = moe[k]
 
     # 2) Kitsu mappings — strong for seasonal titles ARM has not indexed yet
     if enriched.get("kitsu") and (
@@ -1691,8 +1766,7 @@ def enrich_ids(ids_dict, do_network=True):
 
 def get_canonical_key(ids):
     enriched = enrich_ids(ids, do_network=False)
-    if not enriched.get("mal") and not enriched.get("anilist"):
-        enriched = enrich_ids(ids, do_network=True)
+    # Network enrich deliberately skipped here (hot path); run enrich_ids_batch instead
 
     if enriched.get("mal"):
         return f"mal_{enriched['mal']}"
@@ -1943,7 +2017,7 @@ def load_kitsu():
         print("-> Kitsu skipped (no KITSU_USERNAME)"); return []
     print(f"-> Fetching Kitsu {username}...")
     try:
-        u_resp = requests.get(f"https://kitsu.io/api/edge/users?filter[name]={username}", timeout=15)
+        u_resp = request_with_retries("GET", f"https://kitsu.io/api/edge/users?filter[name]={username}", timeout=15)
         u_resp.raise_for_status()
         u = u_resp.json()
         if not u.get("data"):
@@ -2006,10 +2080,10 @@ def push_simkl(entry, state):
     ids = {k:v for k,v in {"mal": entry["ids"].get("mal"), "anilist": entry["ids"].get("anilist"), "kitsu": entry["ids"].get("kitsu")}.items() if v}
     if not ids: return
     payload = {"shows": [{"ids": ids, "to": REVERSE_STATUS["simkl"][state["status"]]}]}
-    r = requests.post(f"https://api.simkl.com/sync/add-to-list?client_id={client_id}", json=payload, headers=headers, timeout=15)
+    r = request_with_retries("POST", f"https://api.simkl.com/sync/add-to-list?client_id={client_id}", json=payload, headers=headers, timeout=15)
     if state["progress"]>0:
         hist = {"shows": [{"ids": ids, "watched_episodes": state["progress"]}]}
-        requests.post(f"https://api.simkl.com/sync/history?client_id={client_id}", json=hist, headers=headers, timeout=15)
+        request_with_retries("POST", f"https://api.simkl.com/sync/history?client_id={client_id}", json=hist, headers=headers, timeout=15)
     print(f"   -> PUSH SIMKL {ids} => {state} [{r.status_code}]")
 
 def push_anilist(entry, state):
@@ -2059,7 +2133,8 @@ def push_anilist(entry, state):
         "Accept": "application/json",
     }
     try:
-        r = requests.post(
+        r = request_with_retries(
+            "POST",
             "https://graphql.anilist.co",
             json={"query": mutation, "variables": variables},
             headers=headers,
@@ -2117,7 +2192,8 @@ def push_mal(entry, state):
         "Content-Type": "application/x-www-form-urlencoded",
     }
     try:
-        r = requests.put(
+        r = request_with_retries(
+            "PUT",
             f"https://api.myanimelist.net/v2/anime/{mal_id}/my_list_status",
             data=payload,
             headers=headers,
@@ -2152,7 +2228,8 @@ def ensure_kitsu_token():
         return None
 
     try:
-        r = requests.post(
+        r = request_with_retries(
+            "POST",
             "https://kitsu.io/api/oauth/token",
             data={
                 "grant_type": "password",
@@ -2212,7 +2289,8 @@ def push_kitsu(entry, state):
     try:
         # Resolve current user id once per process
         if not _kitsu_user_id:
-            me = requests.get(
+            me = request_with_retries(
+                "GET",
                 "https://kitsu.io/api/edge/users?filter[self]=true",
                 headers=headers,
                 timeout=15,
@@ -2228,7 +2306,8 @@ def push_kitsu(entry, state):
         user_id = _kitsu_user_id
 
         # Look up library entry
-        lookup = requests.get(
+        lookup = request_with_retries(
+            "GET",
             f"https://kitsu.io/api/edge/library-entries"
             f"?filter[userId]={user_id}&filter[animeId]={kitsu_id}&filter[kind]=anime",
             headers=headers,
@@ -2252,7 +2331,8 @@ def push_kitsu(entry, state):
                     "attributes": attrs,
                 }
             }
-            r = requests.patch(
+            r = request_with_retries(
+                "PATCH",
                 f"https://kitsu.io/api/edge/library-entries/{entry_id}",
                 json=payload,
                 headers=headers,
@@ -2270,7 +2350,8 @@ def push_kitsu(entry, state):
                     },
                 }
             }
-            r = requests.post(
+            r = request_with_retries(
+                "POST",
                 "https://kitsu.io/api/edge/library-entries",
                 json=payload,
                 headers=headers,
@@ -2299,7 +2380,8 @@ def resolve_title(ids, existing_title=None):
     if ids.get("anilist"):
         try:
             q = "query ($id: Int) { Media(id: $id, type: ANIME) { title { romaji english native } } }"
-            r = requests.post(
+            r = request_with_retries(
+                "POST",
                 "https://graphql.anilist.co",
                 json={"query": q, "variables": {"id": int(ids["anilist"])}},
                 timeout=12,
@@ -2328,7 +2410,7 @@ def resolve_title(ids, existing_title=None):
     # Kitsu
     if ids.get("kitsu"):
         try:
-            r = requests.get(f"https://kitsu.io/api/edge/anime/{ids['kitsu']}", timeout=12)
+            r = request_with_retries("GET", f"https://kitsu.io/api/edge/anime/{ids['kitsu']}", timeout=12)
             if r.ok:
                 attrs = ((r.json().get("data") or {}).get("attributes") or {})
                 titles = attrs.get("titles") or {}
@@ -2732,6 +2814,78 @@ def fill_missing_simkl_ids(max_lookups=200):
     return filled
 
 
+
+def record_push(platform, ids, state, action="planned", detail=""):
+    """Append a row for push_report.csv (always recorded; dry-run skips HTTP)."""
+    _push_report_rows.append({
+        "platform": platform,
+        "action": action,
+        "mal": (ids or {}).get("mal") or "",
+        "anilist": (ids or {}).get("anilist") or "",
+        "kitsu": (ids or {}).get("kitsu") or "",
+        "simkl": (ids or {}).get("simkl") or "",
+        "status": (state or {}).get("status") or "",
+        "progress": (state or {}).get("progress") or "",
+        "score": (state or {}).get("score") or "",
+        "detail": detail,
+        "dry_run": str(bool(DRY_RUN)).lower(),
+    })
+
+
+def write_push_report(path=PUSH_REPORT_PATH):
+    if not _push_report_rows:
+        print("   Push report: no pushes planned")
+        return None
+    fields = ["platform", "action", "mal", "anilist", "kitsu", "simkl", "status", "progress", "score", "detail", "dry_run"]
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(_push_report_rows)
+    print(f"   Push report: {len(_push_report_rows)} rows → {path}")
+    return path
+
+
+def write_job_summary(path="job_summary.md"):
+    """Markdown summary for GitHub Actions step summary / artifact."""
+    entries = (db.get("entries") or {}) if isinstance(db, dict) else {}
+    lines = [
+        "# Anime Sync Job Summary",
+        "",
+        f"- Entries: **{len(entries)}**",
+        f"- Dry run: **{DRY_RUN}**",
+    ]
+    for field in ("mal", "anilist", "kitsu", "simkl", "imdb", "tvdb"):
+        n = sum(1 for e in entries.values() if (e.get("ids") or {}).get(field))
+        lines.append(f"- With {field}: **{n}**")
+    try:
+        cs = circuit_status()
+        if cs:
+            lines.append("")
+            lines.append("## Circuits")
+            for k, v in cs.items():
+                lines.append(f"- `{k}`: {v.get('state')} ok={v.get('successes')} fail={v.get('failures')} skip={v.get('short_circuits')}")
+    except Exception:
+        pass
+    try:
+        rl = rate_limiter_status()
+        if rl:
+            lines.append("")
+            lines.append("## Rate limits")
+            for k, v in rl.items():
+                lines.append(
+                    f"- `{k}`: {v.get('total')} req, {v.get('waits')} waits, "
+                    f"interval={v.get('min_interval')}s (base {v.get('base_interval')}), "
+                    f"throttle={v.get('throttle_events')} recover={v.get('recover_events')}"
+                )
+    except Exception:
+        pass
+    lines.append("")
+    lines.append(f"## Pushes recorded: {len(_push_report_rows)}")
+    Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"   Wrote {path}")
+    return path
+
+
 def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, export_unmatched_flag=True, write_json_backup=True):
     ensure_loaded()
     # Always apply offline IMDb/TVDB/TMDB + titles (refresh dumps if stale)
@@ -2847,20 +3001,34 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
                     existing["last_synced"][platform] = incoming_hash
                     continue
                 try:
+                    record_push(platform, existing.get("ids"), item["state"], action="change")
+                    if DRY_RUN:
+                        print(f"   [DRY-RUN] skip push {platform} {key}")
+                        existing["last_synced"][platform] = incoming_hash
+                        changes += 1
+                        continue
                     pusher(existing, item["state"])
                     existing["last_synced"][platform] = incoming_hash
                     changes += 1
                 except Exception as e:
+                    record_push(platform, existing.get("ids"), item["state"], action="error", detail=str(e)[:120])
                     print(f"Push to {platform} failed: {e}")
         else:
             # Incoming is older / lower priority → backfill the stored state to this platform if needed
             if existing["last_synced"].get(item["platform"]) != hash_state(existing["state"]):
                 print(f"[BACKFILL] {key} -> {item['platform']} (kept stored state: {reason})")
                 try:
+                    record_push(item["platform"], existing.get("ids"), existing["state"], action="backfill")
+                    if DRY_RUN:
+                        print(f"   [DRY-RUN] skip backfill {item['platform']} {key}")
+                        existing["last_synced"][item["platform"]] = hash_state(existing["state"])
+                        changes += 1
+                        continue
                     PUSHERS[item["platform"]](existing, existing["state"])
                     existing["last_synced"][item["platform"]] = hash_state(existing["state"])
                     changes += 1
                 except Exception as e:
+                    record_push(item["platform"], existing.get("ids"), existing["state"], action="error", detail=str(e)[:120])
                     print(e)
 
     db["id_cache"] = id_cache
@@ -2875,6 +3043,8 @@ def run_once(enrich_new=True, export_csv_flag=False, csv_file=CSV_PATH_DEFAULT, 
     manual_count = sum(1 for e in db["entries"].values() if e["ids"].get("_source") == "manual_override")
     
     print(f"Done. {len(all_items)} total fetched, {len(db['entries'])} unique shows, {changes} pushes.")
+    write_push_report()
+    write_job_summary()
     _cs = circuit_status()
     if _cs:
         print(
@@ -2920,7 +3090,13 @@ if __name__ == "__main__":
     parser.add_argument("--export-only", action="store_true", help="Only export CSVs, no fetch/sync")
     parser.add_argument("--no-unmatched", action="store_true", help="Skip unmatched report")
     parser.add_argument("--no-json-backup", action="store_true", help="Skip writing legacy JSON backups")
+    parser.add_argument("--dry-run", action="store_true", help="Plan pushes but do not write to remote lists")
+    parser.add_argument("--no-push", action="store_true", help="Fetch/enrich only; skip all remote pushes")
     args = parser.parse_args()
+
+    if args.dry_run or args.no_push:
+        DRY_RUN = True  # module-level flag
+        print("-> DRY-RUN / no-push: remote list writes disabled")
 
     ensure_loaded()
 
