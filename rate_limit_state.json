@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": 1786890219.5738468,
+  "updated_at": 1786897499.6133575,
   "limiters": {
     "arm": {
       "min_interval": 0.12,
@@ -13,7 +13,7 @@
       "consecutive_throttles": 0,
       "last_throttle_at": null,
       "total": 90,
-      "waits": 56
+      "waits": 26
     },
     "animeapi": {
       "min_interval": 0.25,
@@ -42,16 +42,16 @@
       "waits": 0
     },
     "anilist": {
-      "min_interval": 2.1,
+      "min_interval": 3.1500000000000004,
       "base_interval": 2.1,
       "max_interval": 33.6,
-      "per_minute": 25,
+      "per_minute": 12,
       "base_per_minute": 25,
-      "throttle_events": 0,
+      "throttle_events": 1,
       "recover_events": 0,
       "consecutive_throttles": 0,
-      "last_throttle_at": null,
-      "total": 8,
+      "last_throttle_at": 1786897375.75846,
+      "total": 10,
       "waits": 1
     },
     "mal": {
