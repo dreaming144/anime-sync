@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": 1787281489.2352302,
+  "updated_at": 1787287131.598353,
   "limiters": {
     "arm": {
       "min_interval": 0.12,
@@ -13,7 +13,7 @@
       "consecutive_throttles": 0,
       "last_throttle_at": null,
       "total": 90,
-      "waits": 54
+      "waits": 21
     },
     "animeapi": {
       "min_interval": 0.25,
@@ -39,7 +39,7 @@
       "consecutive_throttles": 0,
       "last_throttle_at": null,
       "total": 459,
-      "waits": 2
+      "waits": 0
     },
     "anilist": {
       "min_interval": 2.1,
