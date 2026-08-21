@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": 1787278599.3507197,
+  "updated_at": 1787281489.2352302,
   "limiters": {
     "arm": {
       "min_interval": 0.12,
@@ -13,7 +13,7 @@
       "consecutive_throttles": 0,
       "last_throttle_at": null,
       "total": 90,
-      "waits": 27
+      "waits": 54
     },
     "animeapi": {
       "min_interval": 0.25,
@@ -38,8 +38,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 461,
-      "waits": 0
+      "total": 459,
+      "waits": 2
     },
     "anilist": {
       "min_interval": 2.1,
@@ -51,7 +51,7 @@
       "recover_events": 2,
       "consecutive_throttles": 0,
       "last_throttle_at": 1786897375.75846,
-      "total": 9,
+      "total": 8,
       "waits": 1
     },
     "mal": {
@@ -64,7 +64,7 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 2,
+      "total": 1,
       "waits": 0
     },
     "kitsu": {
@@ -77,8 +77,8 @@
       "recover_events": 0,
       "consecutive_throttles": 0,
       "last_throttle_at": null,
-      "total": 9,
-      "waits": 5
+      "total": 3,
+      "waits": 1
     },
     "api.ani.zip": {
       "min_interval": 0.2,
