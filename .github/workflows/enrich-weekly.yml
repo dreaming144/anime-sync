@@ -93,7 +93,7 @@ jobs:
             --title "Weekly deep enrich" \
             --out run_summary.md | tee -a "$GITHUB_STEP_SUMMARY"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: enrich-reports
           path: |
