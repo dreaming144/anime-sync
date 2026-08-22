@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": 1787367410.6615632,
+  "updated_at": 1787373246.9227445,
   "limiters": {
     "arm": {
       "min_interval": 0.12,
@@ -13,7 +13,7 @@
       "consecutive_throttles": 0,
       "last_throttle_at": null,
       "total": 90,
-      "waits": 21
+      "waits": 23
     },
     "animeapi": {
       "min_interval": 0.25,
