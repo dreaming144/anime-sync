@@ -81,7 +81,7 @@ jobs:
       # Python still refreshes files if >7 days old on disk.
       - name: Restore offline mapping caches
         id: cache-offline
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             anime-list-mini.json
@@ -98,7 +98,7 @@ jobs:
       - name: Restore state cache (fallback)
         id: cache-state
         if: hashFiles('sync.db') == ''
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             sync.db
@@ -234,7 +234,7 @@ jobs:
       # Always save post-run state (versioned key so exact-hit never blocks updates)
       - name: Save state cache
         if: success()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             sync.db
@@ -245,7 +245,7 @@ jobs:
       # Only save offline dumps when restore missed (stable key cannot be overwritten)
       - name: Save offline mapping caches
         if: success() && steps.cache-offline.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             anime-list-mini.json
